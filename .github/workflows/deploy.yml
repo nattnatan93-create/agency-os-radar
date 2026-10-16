@@ -1,0 +1,37 @@
+name: Deploy to Cloudflare Pages
+
+# Every push to main republishes the site to Cloudflare Pages.
+#
+# Why Actions instead of Cloudflare's built-in Git integration?
+# The Pages project "oss-radar-agency-os" was created as a Direct Upload
+# project. Cloudflare does not allow converting a Direct Upload project to a
+# Git-integrated one, so this workflow calls wrangler directly. That keeps the
+# permanent URL (oss-radar-agency-os.pages.dev) unchanged.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:        # deploy on demand from the Actions tab
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true   # a newer push cancels an in-flight deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # index.html lives at the repository root, so publish the root.
+          # If you later move it into a build/ folder, change "." to "build".
+          command: pages deploy . --project-name=oss-radar-agency-os --branch=main --commit-dirty=true
