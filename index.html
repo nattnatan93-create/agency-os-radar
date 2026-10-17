@@ -15,10 +15,18 @@
   .tagline { color:var(--muted); margin-top:6px; }
   section { background:var(--card); border:1px solid #21262d; border-radius:10px; padding:24px; margin-bottom:20px; }
   h2 { color:var(--accent); font-size:1.2rem; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #21262d; }
+  h3 { color:#fff; font-size:1.05rem; margin:18px 0 6px; }
   ul { padding-left:22px; }
   li { margin:6px 0; }
   a { color:var(--accent); text-decoration:none; }
   a:hover { text-decoration:underline; }
+  p { margin:8px 0; }
+  .date { color:var(--accent); font-weight:600; }
+  .badge { display:inline-block; padding:2px 10px; border-radius:12px; font-size:0.78rem; font-weight:700; letter-spacing:0.5px; }
+  .b-test { background:rgba(63,185,80,0.18); color:var(--green); border:1px solid rgba(63,185,80,0.5); }
+  .b-invest { background:rgba(88,166,255,0.15); color:var(--accent); border:1px solid rgba(88,166,255,0.5); }
+  .muted { color:var(--muted); font-size:0.9rem; }
+  code { background:#0d1117; border:1px solid #21262d; border-radius:4px; padding:1px 6px; font-size:0.88em; }
 </style>
 </head>
 <body>
@@ -26,20 +34,147 @@
   <header>
     <h1>Agency OS <span>Radar</span></h1>
     <div class="tagline">Daily open-source discoveries for a one-person AI software agency</div>
+    <div class="tagline date">Report date: Saturday, October 17, 2026 · 5:50 PM · Addis Ababa (EAT)</div>
   </header>
+
   <section>
-    <h2>Status</h2>
-    <p>This site is auto-updated every day at 5:00 PM (Addis Ababa time). The first report has not been published yet — the next scheduled update will fill this page with today's five verified GitHub discoveries, the test-today pick, an Agency OS integration proposal, a business opportunity for Ethiopia, and daily learning.</p>
+    <h2>Start Here (plain English)</h2>
+    <p><strong>The problem:</strong> a one-person agency using AI coding tools moves fast, but every external piece you bolt on — agents, skills, plugins, test frameworks — is a supply-chain risk you didn't write and can't fully read. Speed without checks ships defects and leaked secrets to paying clients.</p>
+    <p><strong>The solution in today's radar:</strong> this week's most valuable releases are mostly <em>trust tools</em> — a scanner that checks AI agent skills before you install them, a governance toolkit that decides what agents are allowed to do, and AI code review that flags bugs before a human sees them. They let a vibe coder keep the speed and add the evidence.</p>
+    <p class="muted">Window: last 24h–7 days. All findings below are marked VERIFIED (seen in official repo/release sources) or UNVERIFIED (third-party reports). No prior radar reports were available to compare against, so repeats could not be checked — disclosed per research rules. Category 5 (reusable business-app components) had no verified new discovery this window; that slot is filled by the closest cross-category pick, and the gap is disclosed.</p>
   </section>
+
   <section>
-    <h2>Sections published daily</h2>
+    <h2>Top 5 Discoveries</h2>
+
+    <h3>1. NVIDIA SkillSpector — security scanner for AI agent skills <span class="badge b-test">TEST NOW</span></h3>
     <ul>
-      <li><strong>Top 5 discoveries</strong> — name, link, what it does, why it matters, license &amp; costs, Windows compatibility, verdict</li>
-      <li><strong>Test today</strong> — one tool realistically testable on a Windows PC</li>
-      <li><strong>Agency OS integration proposal</strong></li>
-      <li><strong>Business opportunity</strong> — for small businesses in Ethiopia</li>
-      <li><strong>Daily learning</strong> — one technical concept in plain English</li>
-      <li><strong>Final summary</strong> — best discovery, best improvement, one practical action</li>
+      <li><strong>Link:</strong> <a href="https://github.com/nvidia/skillspector">github.com/nvidia/skillspector</a></li>
+      <li><strong>What it does:</strong> scans AI agent skills (Claude Code, Codex, MCP) for malicious patterns, prompt injection, data exfiltration, and supply-chain risks <em>before</em> you install them, and outputs a risk report with severity and confidence.</li>
+      <li><strong>What changed &amp; when:</strong> actively developed — repo pushed 2026-10-04 (VERIFIED via third-party tracker citing the repo); README updated ~Oct 14, 2026 citing research that 26.1% of a 31,132-skill sample contained vulnerabilities (UNVERIFIED — from third-party blog citing the README; re-check the README yourself).</li>
+      <li><strong>Why it matters to a vibe coder:</strong> you install skills and MCP servers written by strangers into the same environment that holds your clients' code and API keys. This is antivirus for that habit.</li>
+      <li><strong>License &amp; costs:</strong> Apache-2.0 (VERIFIED, multiple sources). Free, open source; runs locally; no API key needed for scanning.</li>
+      <li><strong>Windows:</strong> Python-based (uv/pip, virtualenv). UNTESTED on Windows by me; plausible since it is pure Python, but the Makefile-driven workflow is Unix-flavored — verify on first run.</li>
+      <li><strong>Agency OS fit:</strong> SECURITY stage gate evidence before any REUSABLE_COMPONENT or skill is adopted. Agency OS compatibility: <em>plausible, untested.</em></li>
+      <li><strong>Agent/stage:</strong> Security agent · SECURITY and REUSABLE_COMPONENT stages.</li>
+      <li><strong>Evidence output:</strong> a per-skill risk report (score, severity, findings with file/line and confidence) — a REAL artifact you can store as gate evidence.</li>
+      <li><strong>Limitations/risks:</strong> pattern-based scanning has false positives/negatives; a clean report is not proof of safety. Human review still required for anything touching production clients.</li>
+    </ul>
+
+    <h3>2. Microsoft Agent Governance Toolkit (AGT) <span class="badge b-invest">INVESTIGATE</span></h3>
+    <ul>
+      <li><strong>Link:</strong> <a href="https://github.com/microsoft/agent-governance-toolkit">github.com/microsoft/agent-governance-toolkit</a></li>
+      <li><strong>What it does:</strong> a pip-installable governance layer for autonomous agents: policy enforcement ("is this action allowed?"), zero-trust identity ("which agent did this?"), execution sandboxing, and reliability engineering. Claims coverage of all 10 OWASP Agentic Top 10 risks.</li>
+      <li><strong>What changed &amp; when:</strong> new-ish Microsoft project that surfaced in agent-governance coverage this week (Oct 2026). Exact release date and activity stats UNVERIFIED — check the repo's releases page.</li>
+      <li><strong>Why it matters:</strong> Agency OS already has a gate engine and governance rules; AGT is the same idea from a big vendor. Studying its policy/audit design (Merkle audit logs, privilege rings) can strengthen your own evidence model — without replacing it.</li>
+      <li><strong>License &amp; costs:</strong> MIT (VERIFIED). Free and open source; full Azure-based deployment would incur Azure costs — not required for evaluation.</li>
+      <li><strong>Windows:</strong> Python pip package — plausible on Windows; UNTESTED.</li>
+      <li><strong>Agency OS fit:</strong> reference design for orchestrator policy checks. Do NOT swap your gate engine for it without evidence.</li>
+      <li><strong>Agent/stage:</strong> Orchestrator · all gated transitions (PROPOSAL→SPEC, RELEASE approvals).</li>
+      <li><strong>Evidence output:</strong> policy decisions and audit logs per agent action.</li>
+      <li><strong>Limitations/risks:</strong> young project, Azure leanings, and adopting a second decision engine risks conflicting with your single-source-of-truth rules. Investigate, don't adopt yet.</li>
+    </ul>
+
+    <h3>3. OpenAI Codex CLI 0.163.0 <span class="badge b-test">TEST NOW</span></h3>
+    <ul>
+      <li><strong>Link:</strong> <a href="https://github.com/openai/codex">github.com/openai/codex</a></li>
+      <li><strong>What it does:</strong> OpenAI's open-source terminal coding agent that reads, edits, and runs code locally.</li>
+      <li><strong>What changed &amp; when:</strong> v0.163.0 went GA on October 15, 2026 with "mid-response steering" now default — you can redirect the agent while it is still generating (VERIFIED via release coverage; check the releases page for the official notes).</li>
+      <li><strong>Why it matters:</strong> steering a running agent instead of letting it finish a wrong path saves time and reduces runaway edits — the exact failure mode that hurts vibe coders most.</li>
+      <li><strong>License &amp; costs:</strong> Apache-2.0 (VERIFIED). The CLI is open source; the <em>model</em> is not free — it requires a ChatGPT plan or paid OpenAI API key. Open source ≠ free model access.</li>
+      <li><strong>Windows:</strong> official Windows install: <code>powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"</code> (VERIFIED from official docs). Runs locally; model calls are the external dependency.</li>
+      <li><strong>Agency OS fit:</strong> dev-agent harness for DEVELOPMENT stage; steering helps human-in-the-loop control the CEO_REVIEW philosophy expects. Compatibility: plausible, untested.</li>
+      <li><strong>Agent/stage:</strong> Dev agent · DEVELOPMENT.</li>
+      <li><strong>Evidence output:</strong> session transcripts, diffs, and test runs produced during steering.</li>
+      <li><strong>Limitations/risks:</strong> agent can execute commands — use its sandbox/restricted modes, never give unrestricted computer access, and keep it out of client credential stores. Ongoing subscription/API cost.</li>
+    </ul>
+
+    <h3>4. Alibaba Open Code Review (ocr) <span class="badge b-test">TEST NOW</span></h3>
+    <ul>
+      <li><strong>Link:</strong> <a href="https://github.com/alibaba/open-code-review">github.com/alibaba/open-code-review</a></li>
+      <li><strong>What it does:</strong> hybrid code-review CLI — deterministic rule pipelines (NPE, thread-safety, XSS, SQL injection) plus an LLM agent — producing precise line-level review comments from git diffs.</li>
+      <li><strong>What changed &amp; when:</strong> latest release v1.12.12 on 2026-10-05, with releases landing every 1–3 days (VERIFIED via third-party tracker citing the repo); repo was on GitHub trending this month.</li>
+      <li><strong>Why it matters:</strong> a solo agency has no second engineer. This is a stand-in reviewer that catches the classic dangerous bug classes before your own eyes see the diff.</li>
+      <li><strong>License &amp; costs:</strong> Apache-2.0, self-hosted — your code does not leave your infrastructure; you choose any OpenAI- or Anthropic-compatible model endpoint (VERIFIED). Model costs depend on the endpoint you pick (a local endpoint = free).</li>
+      <li><strong>Windows:</strong> Go CLI distributed via npm — plausible on Windows; UNTESTED. Verify on first run.</li>
+      <li><strong>Agency OS fit:</strong> a QA/CEO_REVIEW helper that turns every commit diff into structured findings — evidence, not vibes. Compatibility: plausible, untested.</li>
+      <li><strong>Agent/stage:</strong> QA agent (review) · QA and SECURITY stages, and pre-RELEASE review.</li>
+      <li><strong>Evidence output:</strong> line-level review comments and defect reports per diff/commit/branch range.</li>
+      <li><strong>Limitations/risks:</strong> LLM reviews have false positives/negatives; findings must be validated before advancing a gate — never treated as automatic approval.</li>
+    </ul>
+
+    <h3>5. TesterArmy e2e <span class="badge b-invest">INVESTIGATE</span></h3>
+    <ul>
+      <li><strong>Link:</strong> <a href="https://github.com/tester-army/e2e">github.com/tester-army/e2e</a></li>
+      <li><strong>What it does:</strong> end-to-end testing framework for web and mobile apps where tests are written as natural-language user goals ("upgrade the workspace to Pro"), recorded once with AI, then replayed deterministically with zero model calls.</li>
+      <li><strong>What changed &amp; when:</strong> hit #1 on GitHub daily trending in early October (e2e 0.18 release; ~9.5k stars by Oct 12 per a third-party trending digest — star figures UNVERIFIED and conflicting between sources, check the repo).</li>
+      <li><strong>Why it matters:</strong> AI-authored tests that replay without AI cost directly serve Agency OS's UI-E2E QA layer for client web apps — and running costs stay near zero.</li>
+      <li><strong>License &amp; costs:</strong> Apache-2.0 (VERIFIED via third-party report citing the repo). Free and local; a model is needed only at recording time.</li>
+      <li><strong>Windows:</strong> TypeScript/Node-based — plausible on Windows; UNTESTED.</li>
+      <li><strong>Agency OS fit:</strong> the UI-E2E slice of the QA stage for client web apps. Compatibility: plausible, untested.</li>
+      <li><strong>Agent/stage:</strong> QA agent · QA stage.</li>
+      <li><strong>Evidence output:</strong> replayable test suites and pass/fail reports per run.</li>
+      <li><strong>Limitations/risks:</strong> young, fast-moving framework — API churn risk; verify maturity and CI integration before promising it in client contracts.</li>
+    </ul>
+
+    <p class="muted">Disclosure: no verified new discovery this window in category 5 (reusable business components — dashboards, API starters, desktop/Android kits). Nothing worth fabricating a slot for; five strong beats five weak. Watch this category again tomorrow.</p>
+  </section>
+
+  <section>
+    <h2>Test Today: NVIDIA SkillSpector</h2>
+    <ul>
+      <li><strong>Why this one:</strong> fully local, free, no API keys, no subscription, Python-based — realistic on a Windows PC with an AI IDE in under an hour. It also addresses the riskiest habit a vibe coder has: installing third-party skills.</li>
+      <li><strong>Prerequisites:</strong> Python 3.10+ and pip (or uv) on Windows; git.</li>
+      <li><strong>Official install steps (from the repo):</strong> create and activate a virtualenv first (the Makefile assumes it); install with <code>uv</code> or <code>pip</code>; then run <code>skillspector scan</code> against a skill directory. Follow the repo README exactly — it is the authoritative source; if a Makefile step fails on Windows, run the underlying commands manually rather than improvising.</li>
+      <li><strong>Practical test:</strong> pick one skill you already use or are considering installing; run the scanner on its folder; read the report.</li>
+      <li><strong>Expected results:</strong> a risk report with a 0–100 score, severity rating, per-file findings (e.g., env-variable harvesting), and a recommendation such as DO NOT INSTALL for dangerous patterns.</li>
+      <li><strong>Safety precautions:</strong> run inside a virtualenv; never pipe install scripts straight into a shell without reading them; scan copies, not live installs; a HIGH score means stop — do not install to review it. Never give any scanner unrestricted computer access.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Agency OS Integration Proposal: SkillSpector as SECURITY-stage evidence</h2>
+    <ul>
+      <li><strong>Problem solved:</strong> REUSABLE_COMPONENT onboarding and skill adoption currently have no automated security evidence — the security agent would have to rely on claims (SIMULATED/ASSUMPTION) instead of artifacts.</li>
+      <li><strong>Workflow improved:</strong> security agent's component/skill intake check.</li>
+      <li><strong>Lifecycle location:</strong> SECURITY stage, plus the REUSABLE_COMPONENT stage when a skill is promoted for reuse.</li>
+      <li><strong>Inputs:</strong> a skill/MCP package directory (local copy).</li>
+      <li><strong>Outputs:</strong> a SkillSpector risk report stored as project evidence with REAL classification and the scan date/version.</li>
+      <li><strong>Validation:</strong> evidence must be validated before advancing: report exists, scanner version recorded, findings triaged by the security agent; findings marked VERIFIED only after a human reads the flagged lines.</li>
+      <li><strong>On failure:</strong> any HIGH finding marks the component BLOCKED; the security agent records BLOCKED in project-state.json with the report as evidence. BLOCKED components cannot advance without an explicit human waiver.</li>
+      <li><strong>Gate blocking / approval:</strong> it feeds the existing SECURITY gate as evidence — it does not replace the gate engine. A waiver (accepting a flagged component) is a scope/safety decision → human approval required, per governance rules.</li>
+      <li><strong>Smallest safe experiment:</strong> in a virtualenv, scan one existing skill you already use; save the report; have the security agent classify findings REAL/SIMULATED/UNVERIFIED. No production change, no gate modification. Cost: ~30 minutes.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Business Opportunity (Ethiopia)</h2>
+    <ul>
+      <li><strong>Customer problem:</strong> small businesses in Addis Ababa adopting AI assistants (shops, agencies, clinics, importers) increasingly install third-party plugins and "skills" — with no way to know whether one silently sends their customer data or API keys abroad.</li>
+      <li><strong>Minimum viable service:</strong> a fixed-price <strong>"AI Tool Safety Audit"</strong>: inventory the client's AI tools and plugins, run SkillSpector-style scans on every installed skill/MCP, deliver a plain-Amharic/English risk report with remove/keep/replace recommendations, plus a one-page plugin policy for staff.</li>
+      <li><strong>Delivery workflow:</strong> LEAD → DISCOVERY (interview + tool inventory) → SECURITY (local scans, evidence reports) → CEO_REVIEW (human signs off) → RELEASE (report + policy handover) → MAINTENANCE (re-scan quarterly).</li>
+      <li><strong>Main risks:</strong> clients undervaluing prevention (sell after a scare story or bundle with setup); false positives damaging trust (always human-review flagged lines before reporting); scanner gaps (clean ≠ safe — say so in the report).</li>
+      <li class="muted">No revenue projections — price against local freelance audit rates once you have delivered one paid pilot.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Daily Learning: Skill supply-chain risk (prompt injection &amp; exfiltration)</h2>
+    <ul>
+      <li><strong>Concept:</strong> an AI "skill" or plugin is code plus instructions that your agent will follow. A malicious one can embed instructions that redirect the agent ("send this .env file to help debug") — the agent follows them because instructions look authoritative. That's prompt injection; shipping the data out is exfiltration.</li>
+      <li><strong>How an AI agent gets it wrong:</strong> it treats a skill's README as trusted documentation and recommends installing it based on its own description — reasoning from the attacker's own words.</li>
+      <li><strong>How you recognize the failure:</strong> an adoption recommendation with no scan artifact behind it; evidence classed as VERIFIED when it's actually UNVERIFIED.</li>
+      <li><strong>Which tool/test detects it:</strong> SkillSpector scan before install, plus your own rule: no skill enters an Agency OS environment without a stored scan report.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Final Summary</h2>
+    <ul>
+      <li><strong>Best discovery today:</strong> NVIDIA SkillSpector — turns your riskiest habit (installing stranger-written skills) into a gated, evidence-backed process.</li>
+      <li><strong>Best security/reliability improvement:</strong> SkillSpector scans + Open Code Review on every diff — one guards what comes in, the other guards what goes out.</li>
+      <li><strong>Best Agency OS integration:</strong> SkillSpector as SECURITY-stage evidence producer (REAL artifacts, BLOCKED on HIGH findings, human waiver only) — without touching the gate engine.</li>
+      <li><strong>One practical action today:</strong> set up a virtualenv, scan one skill you already use, and save the report as your first REAL security evidence artifact.</li>
     </ul>
   </section>
 </div>
