@@ -27,6 +27,7 @@
   .b-invest { background:rgba(88,166,255,0.15); color:var(--accent); border:1px solid rgba(88,166,255,0.5); }
   .muted { color:var(--muted); font-size:0.9rem; }
   code { background:#0d1117; border:1px solid #21262d; border-radius:4px; padding:1px 6px; font-size:0.88em; }
+  .gap-box { border-left:3px solid var(--accent); padding:10px 14px; margin:10px 0; background:#0d1117; border-radius:0 6px 6px 0; }
 </style>
 </head>
 <body>
@@ -34,147 +35,141 @@
   <header>
     <h1>Agency OS <span>Radar</span></h1>
     <div class="tagline">Daily open-source discoveries for a one-person AI software agency</div>
-    <div class="tagline date">Report date: Monday, October 19, 2026 · 6:00 PM · Addis Ababa (EAT)</div>
+    <div class="tagline date">Report date: Monday, October 19, 2026 · Focus Edition: "Can AI Ship Production-Ready Apps?" · Addis Ababa (EAT)</div>
   </header>
 
   <section>
     <h2>Start Here (plain English)</h2>
-    <p><strong>The problem:</strong> an AI-assisted one-person agency ships code fast, but the boring proofs — "no secrets in the repo", "no known-vulnerable dependencies", "the app still works in a browser after the change" — are exactly what clients, and attackers, check. Doing them by hand every day doesn't scale.</p>
-    <p><strong>The solution in today's radar:</strong> today's finds are mostly <em>evidence machines</em>: a local secret scanner with CI-friendly exit codes, a fresh dependency/vulnerability scanner release, a fresh Playwright release, a brand-new design system for AI-app interfaces, and an open reimplementation of Anthropic's agent-first source control. They turn daily claims into saved, machine-checkable reports.</p>
-    <p class="muted">Window: last 24h–7 days. Yesterday's report (Oct 18: heldkeys, Tencent AI-Infra-Guard, Keploy, MS Agent Framework, browser-use) was retrieved and checked — none are repeated today because none had a verified meaningful update in this window. Findings are marked VERIFIED (seen in the repo, release, or license file) or UNVERIFIED. Runner-up noted below in disclosures.</p>
+    <p><strong>The problem:</strong> developers keep saying "AI doesn't make production-ready apps." They're partly right — an AI-coded app that <em>runs</em> can still break under real users, leak secrets, and be impossible to maintain. As a vibe coder building client apps, this argument is aimed directly at you.</p>
+    <p><strong>The solution in today's radar:</strong> the argument isn't really about AI — it's about what happens <em>after</em> the AI writes code. Today's finds are the answer: a proven production architecture to generate <em>into</em>, a production-grade starter kit so AI never invents infrastructure, an IDE built for reviewing AI code, a framework where AI output is reviewable by design, and a battle-tested checklist that defines "production-ready" line by line. Used together, they turn "AI can't ship production apps" into "my pipeline can prove every claim."</p>
+    <p class="muted">This is a focus edition: the five picks were chosen for the production-readiness theme rather than a strict 24-hour news window. Star counts were verified via GitHub search on Oct 19, 2026; licenses verified from each repo's LICENSE file. Claims about recent changes are made only where verified. Per your request, the Ethiopia business-opportunity section has been removed from the report format.</p>
   </section>
 
   <section>
-    <h2>Top 5 Discoveries</h2>
-
-    <h3>1. SecretSieve — local-first secret detection CLI <span class="badge b-test">TEST NOW</span></h3>
-    <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/3rab1Dev/SecretSieve">github.com/3rab1Dev/SecretSieve</a></li>
-      <li><strong>What it does:</strong> a Python command-line scanner that finds accidentally exposed credentials — API keys, tokens, private keys, passwords, connection strings — in source code and config files. It uses signatures + entropy + context scoring (not just regex), prints findings <em>redacted</em> (<code>AKIA****************9X2F</code>), runs 100% locally with no network I/O, never verifies secrets against third-party services, and has CI-friendly JSON output and exit codes (0 clean, 1 findings, 2 scanner error).</li>
-      <li><strong>What changed &amp; when:</strong> brand-new project — repo created October 7, 2026; first release V1.0 the same day, v1.0.1 published October 10, 2026 (VERIFIED via GitHub releases).</li>
-      <li><strong>Why it matters to a vibe coder:</strong> AI agents paste config snippets and .env examples into repos all the time. This catches leaked client credentials before a push, locally, free, with a JSON report you can store as evidence.</li>
-      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from LICENSE file). Free and open source; no API keys, no subscription, no external services.</li>
-      <li><strong>Windows:</strong> pure-Python CLI, requires Python 3.10+, installs via <code>pip install secretsieve</code> or pipx — should work on Windows; UNTESTED by me (plausible, not verified).</li>
-      <li><strong>Agency OS fit:</strong> a SECURITY-stage evidence producer feeding your existing precommit/prepush checks. Agency OS compatibility: <em>plausible, untested</em>.</li>
-      <li><strong>Agent/stage:</strong> Security agent · SECURITY stage; also wired into DEVELOPMENT pre-commit and RELEASE pre-push checks.</li>
-      <li><strong>Evidence/output:</strong> redacted findings list + <code>--json</code> report with rule IDs, severity, fingerprints; exit code usable directly as a gate signal.</li>
-      <li><strong>Limitations/risks:</strong> very young project (small community, ~24 stars at time of check) — expect false positives/negatives; a clean scan is not proof no secrets exist; suppressions must be reviewed by a human, never blanket-ignored.</li>
-    </ul>
-
-    <h3>2. gitai (git-ai) — version control designed for AI agents <span class="badge b-invest">INVESTIGATE</span></h3>
-    <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/feder-cr/git-ai">github.com/feder-cr/git-ai</a></li>
-      <li><strong>What it does:</strong> an open-source, community implementation of the design Anthropic described in "Redesigning source control" (their internal system is called Scion). It is a server-centric version control system where many coding agents read, write, and land small changes on shared branches in seconds: server-side history, compare-and-swap landing instead of merge queues, a changeset log, per-agent tokens with an RPC allowlist, automatic conflict resolution (bring any LLM or a deterministic resolver), and a "test after landing, revert the culprit" verify command. Normal Git repositories underneath. The server never calls a language model.</li>
-      <li><strong>What changed &amp; when:</strong> brand-new project — created mid-October 2026; v0.1.0 released October 15 and v0.2.0 released October 18, 2026 (VERIFIED via GitHub releases). ~2,400 stars at time of check (VERIFIED via GitHub search).</li>
-      <li><strong>Why it matters to a vibe coder:</strong> if Agency OS ever runs many agents in parallel on one codebase, plain Git merge queues become the bottleneck. gitai is the first open answer to that problem — worth understanding even before adopting.</li>
-      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from LICENSE file; started as a fork of GitLab's MIT-licensed Gitaly). Free; optional conflict-resolution LLM costs whatever your chosen provider charges (works without any model).</li>
-      <li><strong>Windows:</strong> NOT supported — README states requirements are Linux or macOS, Go 1.26, C toolchain, Meson, Ninja. On Windows it would need WSL (UNVERIFIED).</li>
-      <li><strong>Agency OS fit:</strong> future candidate for multi-agent DEVELOPMENT coordination and automatic revert-on-failure. Agency OS compatibility: <em>untested; not recommended before 1.0</em> — interfaces may still change.</li>
-      <li><strong>Agent/stage:</strong> Orchestrator / Dev agents · DEVELOPMENT stage (parallel landing, review rules, per-agent permissions).</li>
-      <li><strong>Evidence/output:</strong> changeset log entries with the agent that made each change; graft-verify test/bisect/revert reports; per-agent audit trail.</li>
-      <li><strong>Limitations/risks:</strong> v0.2.0, pre-1.0, single-maintainer community project; server infrastructure to run; migration story unproven. Do NOT replace your existing Git workflow or Agency OS gates on this without real evidence.</li>
-    </ul>
-
-    <h3>3. Trivy v0.76.0 — dependency &amp; vulnerability scanner <span class="badge b-test">TEST NOW</span></h3>
-    <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/aquasecurity/trivy">github.com/aquasecurity/trivy</a></li>
-      <li><strong>What it does:</strong> one command-line tool that scans container images, filesystems, Git repos, and dependency files (pip/npm/requirements) for known vulnerabilities, plus misconfigurations (IaC, Docker, K8s) and exposed secrets. One binary, JSON output, CI exit codes.</li>
-      <li><strong>What changed &amp; when:</strong> release v0.76.0 published October 14, 2026 (VERIFIED via GitHub releases; v0.75.0 was October 1).</li>
-      <li><strong>Why it matters to a vibe coder:</strong> Agency OS's security rules require dependency auditing. Trivy is the de-facto standard way to turn "dependencies OK" into a dated, machine-generated report instead of an agent's claim.</li>
-      <li><strong>License &amp; costs:</strong> Apache-2.0 (VERIFIED from LICENSE file). Free; vulnerability database downloads from public feeds (needs internet on first run); Trivy also offers a paid cloud offering — not required for local use.</li>
-      <li><strong>Windows:</strong> official Windows binaries are published with each release (works on Windows; installation itself UNTESTED by me today).</li>
-      <li><strong>Agency OS fit:</strong> SECURITY-stage dependency audit, repeatable in MAINTENANCE. Agency OS compatibility: <em>plausible, untested</em>.</li>
-      <li><strong>Agent/stage:</strong> Security agent · SECURITY stage; MAINTENANCE re-scans.</li>
-      <li><strong>Evidence/output:</strong> vulnerability report (CVE IDs, severity, fixed versions) per project/lockfile; JSON for the gate engine.</li>
-      <li><strong>Limitations/risks:</strong> findings are "known CVE matches" — they need triage before blocking a release (a low-severity CVE in a dev-only dependency is not a release blocker); scan quality depends on the DB being current; keep the report out of public repos.</li>
-    </ul>
-
-    <h3>4. Playwright v1.64.1 — browser automation &amp; UI-E2E testing <span class="badge b-invest">INVESTIGATE (upgrade)</span></h3>
-    <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/microsoft/playwright">github.com/microsoft/playwright</a></li>
-      <li><strong>What it does:</strong> Microsoft's framework for automating and testing Chromium, Firefox and WebKit with one API — the backbone of modern UI-E2E testing: auto-waiting to cut flaky tests, traces (DOM snapshots, network logs) on failure, parallel runs, and codegen for recording tests.</li>
-      <li><strong>What changed &amp; when:</strong> v1.64.1 released October 14, 2026 (v1.64.0 on October 7) (VERIFIED via GitHub releases).</li>
-      <li><strong>Why it matters to a vibe coder:</strong> Agency OS QA requires UI-E2E coverage and "tests pass" is not production-readiness — but you can't even claim "tests pass" without a trustworthy browser suite. Playwright is the most realistic local option on Windows.</li>
-      <li><strong>License &amp; costs:</strong> Apache-2.0 (VERIFIED from LICENSE file). Free and open source; no subscription; runs fully locally.</li>
-      <li><strong>Windows:</strong> first-class Windows support (official installer and Node.js/.NET/Python APIs) — standard setup, UNTESTED by me today.</li>
-      <li><strong>Agency OS fit:</strong> the UI-E2E slice of the QA stage, run by the QA agent after every release candidate. Agency OS compatibility: <em>plausible, untested</em>.</li>
-      <li><strong>Agent/stage:</strong> QA agent · QA stage (UI-E2E), evidence for RELEASE.</li>
-      <li><strong>Evidence/output:</strong> HTML test reports, trace files per failure, pass/fail exit codes — directly consumable as gate evidence.</li>
-      <li><strong>Limitations/risks:</strong> a green suite proves the covered paths only; review what the agent actually asserted; upgrade lockfile-pinned versions deliberately (minor versions can change snapshots/behavior).</li>
-    </ul>
-
-    <h3>5. Solid Glass — design system for AI applications <span class="badge b-invest">INVESTIGATE</span></h3>
-    <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/deeplethe/solid-glass">github.com/deeplethe/solid-glass</a></li>
-      <li><strong>What it does:</strong> a free, MIT glass-inspired theme + component set built on shadcn/ui (React 19, Tailwind CSS 4). It installs as one stylesheet via <code>npx shadcn add deeplethe/solid-glass/solid-glass</code> and adds components made specifically for AI/agent interfaces: <code>tool-steps</code> (what the agent did), <code>diff-view</code>, <code>ask-card</code> (human approval prompts), <code>reasoning</code>, <code>status-glyph</code>, <code>context-ring</code>, plus dashboard-style <em>blocks</em> (whole screens) such as an agent workspace with sessions, threads, files and background tasks.</li>
-      <li><strong>What changed &amp; when:</strong> new project this month, actively developed — ~2,270 stars at time of check (VERIFIED via GitHub search on Oct 19); MIT LICENSE file dated 2026 (VERIFIED).</li>
-      <li><strong>Why it matters to a vibe coder:</strong> this is the first category-5 discovery this week: reusable, installable UI for exactly the screens a one-person AI agency builds — client dashboards showing agent runs, approvals, diffs, task notices — instead of hand-rolling each client's admin UI.</li>
-      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from LICENSE file; shadcn/ui-derived parts also MIT, per NOTICE). Free; components are copied into your project (shadcn model), so they are yours to edit.</li>
-      <li><strong>Windows:</strong> it is CSS + React components installed by npm/shadcn CLI — cross-platform, works on Windows (setup UNTESTED by me).</li>
-      <li><strong>Agency OS fit:</strong> reusable component library for client dashboards and for an Agency OS control panel (agent status, approvals, task notices). Agency OS compatibility: <em>plausible, untested</em>.</li>
-      <li><strong>Agent/stage:</strong> Dev agent · DEVELOPMENT stage, feeding REUSABLE_COMPONENT (dashboard/approval UI blocks).</li>
-      <li><strong>Evidence/output:</strong> working, theme-consistent UI screens; the ask-card pattern maps naturally to human-approval gates.</li>
-      <li><strong>Limitations/risks:</strong> young single-author project; requires a shadcn/ui + Tailwind 4 + React 19 stack (not for every client codebase); aesthetic choice — check with clients before adopting as your house style.</li>
-    </ul>
-
-    <p class="muted">Runner-up (disclosed, not counted): outcrawlai/scout, an open-source browser agent (Apache-2.0, ~950 stars, mirrored repo) — needs an Outcrawl key (1,000 free credits/month, no card) or a local browser plus your own model API costs, so it is heavier than today's picks. Also LangGraph shipped a patch release today (1.2.16, Oct 16/19) — routine maintenance, no meaningful change for Agency OS.</p>
+    <h2>The Production-Readiness Gap</h2>
+    <div class="gap-box">
+      <p><strong>The criticism:</strong> "Every tool can produce a working demo. None of them consistently produce production-ready software without human review." — practicing engineers and CTOs reviewing 2026's vibe-coding tools ([Justin McKelvey, fractional CTO](https://justinmckelvey.com/blog/best-vibe-coding-tools-2026)).</p>
+    </div>
+    <div class="gap-box">
+      <p><strong>The industry's working definition:</strong> production readiness = the team can tell whether the application is healthy from the outside, explain a failure from the inside, and handle real users, sensitive data and an accountable lifecycle ([SDG Engineering checklist](https://www.sdg.la/guides/vibe-coded-app-production-readiness-checklist/)). A working prototype proves the idea; readiness is the engineering layer added after.</p>
+    </div>
+    <div class="gap-box">
+      <p><strong>The sequence that works:</strong> testing first (unit/integration/E2E), then CI/CD that ships only tested code, then monitoring, then security audit — responsibility for readiness lies with the team that deploys, not the generator ([Slash's production checklist](https://slash.co/resources/vibe-coding-to-production-the-checklist-testing-ci-cd-monitoring-security/)).</p>
+    </div>
+    <p><strong>Today's five picks map one-to-one onto that answer:</strong> architecture (bulletproof-react), infrastructure (react-starter-kit), review (px0, Lowdefy), and a measurable definition of done (Mercari's checklist). This is exactly your Agency OS governance philosophy — a project is never production-ready just because it runs.</p>
   </section>
 
   <section>
-    <h2>Test Today: SecretSieve (30 minutes, fully local)</h2>
+    <h2>Top 5 Discoveries — Narrowing the "AI Can't Ship Production" Gap</h2>
+
+    <h3>1. bulletproof-react — production architecture for AI-generated React apps <span class="badge b-test">TEST NOW</span></h3>
     <ul>
-      <li><strong>Why this one:</strong> a tiny new tool, one pip install, zero cost, zero network, and it hardens the riskiest everyday habit in AI-assisted work: pasted credentials.</li>
-      <li><strong>Prerequisites:</strong> Windows PC with Python 3.10+ (check with <code>python --version</code>); pipx recommended for an isolated install. No API keys, no model access, no subscription.</li>
-      <li><strong>Official install (from the repo README):</strong> <code>pipx install secretsieve</code> (or <code>pip install secretsieve</code> from PyPI).</li>
-      <li><strong>Practical test:</strong> create a throwaway folder with a few <em>fake</em> secrets — a made-up AWS-style key, a fake GitHub token, a dummy connection string — then run <code>secretsieve .</code> and <code>secretsieve scan . --json --fail-on high</code>. Then scan one of your real project folders.</li>
-      <li><strong>Expected results:</strong> the fake keys are found and printed redacted (no full values shown); JSON output lists rule IDs and severities; the command exits 1 when findings reach the threshold — the exact signal a gate needs.</li>
-      <li><strong>Safety precautions:</strong> scan only folders you own; the tool is read-only and offline by design, but still review what it prints; never commit the JSON report if it contains file paths of a client project; review every suppression before adding it.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/alan2207/bulletproof-react">github.com/alan2207/bulletproof-react</a></li>
+      <li><strong>What it does (simple English):</strong> a widely-used open-source reference architecture showing how to structure a real React application so it stays maintainable: layered project structure, feature folders, API/error/state layers, security and performance chapters, and a testing strategy. It's a "known-good blueprint," not a library.</li>
+      <li><strong>Status &amp; adoption:</strong> ~36,000 stars (VERIFIED via GitHub search, Oct 19, 2026). It is an established, actively maintained reference project; no specific recent change is claimed here.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> the #1 reason AI apps become unmaintainable spaghetti is that the agent invents structure per session. Give the agent bulletproof-react as the architecture contract and every generation lands in the same known-good shape — the strongest single rebuttal to "AI code can't be maintained."</li>
+      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from LICENSE file, © 2024 Alan Alickovic). Free; no services, no subscriptions.</li>
+      <li><strong>Windows &amp; install:</strong> clone and read — it's code + docs; works on any OS. The example app runs with Node/pnpm (UNTESTED by me today).</li>
+      <li><strong>Agency OS fit:</strong> ARCHITECTURE stage standard; the architecture agent's rules of the road. Agency OS compatibility: <em>plausible, untested</em>.</li>
+      <li><strong>Evidence/output:</strong> a project skeleton whose layering can be checked file-by-file; an agent can be audited against the structure rules.</li>
+      <li><strong>Limitations/risks:</strong> it's guidance, not enforcement — an agent can still deviate; requires the discipline of pasting the structure into every relevant prompt/skill.</li>
+    </ul>
+
+    <h3>2. React Starter Kit — production-grade full-stack skeleton <span class="badge b-test">TEST NOW</span></h3>
+    <ul>
+      <li><strong>Link:</strong> <a href="https://github.com/kriasoft/react-starter-kit">github.com/kriasoft/react-starter-kit</a></li>
+      <li><strong>What it does:</strong> a batteries-included production starter: Bun, TypeScript, Tailwind, tRPC (typed end-to-end API), auth, Stripe payments, and deployment to Cloudflare Workers — organized as app + web packages. Real infrastructure decisions already made and tested by thousands of users.</li>
+      <li><strong>Status &amp; adoption:</strong> ~23,700 stars (VERIFIED via GitHub search, Oct 19, 2026). Established project, maintained since 2014; no specific recent change claimed.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> instead of letting AI invent auth, payments and deployment (the parts that break in production), the agent fills features into a proven skeleton. This moves AI output from "prototype" to "production-shaped" from day one.</li>
+      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from LICENSE file, © Kriasoft). The kit is free; deploying costs whatever Cloudflare/Stripe charge for usage — free tiers exist (check current pricing before committing).</li>
+      <li><strong>Windows &amp; install:</strong> Node/Bun + pnpm via npm — standard Windows-friendly toolchain (setup UNTESTED by me today).</li>
+      <li><strong>Agency OS fit:</strong> SPECIFICATION → ARCHITECTURE stage: pick this skeleton as the default for client web apps; REUSABLE_COMPONENT across projects. Compatibility: <em>plausible, untested</em>.</li>
+      <li><strong>Evidence/output:</strong> a running skeleton with typed API, auth and CI hooks an agent extends — fewer invented facts to verify.</li>
+      <li><strong>Limitations/risks:</strong> opinionated stack (Bun, tRPC, Cloudflare) — clients needing a different stack need a different skeleton; starter-kit lock-in means upgrades must be tracked.</li>
+    </ul>
+
+    <h3>3. px0 — an IDE built for reviewing AI-generated code <span class="badge b-invest">INVESTIGATE</span></h3>
+    <ul>
+      <li><strong>Link:</strong> <a href="https://github.com/px0-ai/px0">github.com/px0-ai/px0</a></li>
+      <li><strong>What it does:</strong> an IDE optimized for one job: reviewing AI-generated code fast — it turns your browser into a code-review workstation tuned for the volumes of machine-written code that AI IDEs produce.</li>
+      <li><strong>Status &amp; adoption:</strong> ~1,900 stars (VERIFIED via GitHub search, Oct 19, 2026); MIT LICENSE dated 2026, © Arpit Bhayani (VERIFIED) — a young project from a well-known engineering educator.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> the critics' strongest point is "AI code needs human review, and nobody can review at AI speed." A tool whose entire purpose is high-speed human review of AI output directly attacks the bottleneck in that argument.</li>
+      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from LICENSE file). Free; no subscription requirements known — verify current pricing model before adoption (project is young).</li>
+      <li><strong>Windows &amp; install:</strong> runs in the browser; repo is TypeScript — usable from Windows (setup UNTESTED by me).</li>
+      <li><strong>Agency OS fit:</strong> QA + CEO_REVIEW stages: the human checkpoint where generated code is actually inspected before release. Compatibility: <em>untested</em>.</li>
+      <li><strong>Evidence/output:</strong> review sessions/decisions over AI diffs — a record that a human actually looked.</li>
+      <li><strong>Limitations/risks:</strong> young project (features and pricing may change); a review IDE doesn't replace automated tests — it complements them.</li>
+    </ul>
+
+    <h3>4. Lowdefy — apps AI can generate, humans can review <span class="badge b-invest">INVESTIGATE</span></h3>
+    <ul>
+      <li><strong>Link:</strong> <a href="https://github.com/lowdefy/lowdefy">github.com/lowdefy/lowdefy</a></li>
+      <li><strong>What it does:</strong> a framework for building internal/business web apps from YAML/JSON configuration instead of free-form code — dashboards, admin panels, CRUD apps — connected to databases and APIs. Tagline in the repo: "Build apps that AI can generate, humans can review, and teams can maintain."</li>
+      <li><strong>Status &amp; adoption:</strong> ~3,000 stars (VERIFIED via GitHub search, Oct 19, 2026); Apache-2.0 (VERIFIED from LICENSE file). No specific recent change claimed.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> this is the structural answer to the argument. When AI generates <em>configuration</em> for a constrained runtime, every change is a small, readable diff a human can actually approve — "reviewable by design" instead of "hope the code review catches it."</li>
+      <li><strong>License &amp; costs:</strong> Apache-2.0 (VERIFIED). Self-hosting is free; it's open source — hosting costs are your own infrastructure; no subscription required.</li>
+      <li><strong>Windows &amp; install:</strong> Node-based CLI; cross-platform (setup UNTESTED by me today).</li>
+      <li><strong>Agency OS fit:</strong> DEVELOPMENT stage for internal business tools and client dashboards; ideal for small-business CRUD apps. Compatibility: <em>plausible, untested</em>.</li>
+      <li><strong>Evidence/output:</strong> config files that double as human-reviewable specs; the review artifact <em>is</em> the app definition.</li>
+      <li><strong>Limitations/risks:</strong> config-driven frameworks trade flexibility for reviewability — complex custom UX may outgrow it; smaller community than the React ecosystem.</li>
+    </ul>
+
+    <h3>5. Mercari production-readiness-checklist — the definition of "done" <span class="badge b-test">TEST NOW</span></h3>
+    <ul>
+      <li><strong>Link:</strong> <a href="https://github.com/mercari/production-readiness-checklist">github.com/mercari/production-readiness-checklist</a></li>
+      <li><strong>What it does:</strong> the production-readiness checklist used internally at Mercari/Merpay (a large-scale production company) before microservices go live: architecture, capacity, dependencies, security, observability, incident response, and more — as concrete, checkable items.</li>
+      <li><strong>Status &amp; adoption:</strong> ~950 stars (VERIFIED via GitHub search, Oct 19, 2026); MIT (VERIFIED from LICENSE file, © 2020 Mercari, Inc.). Established internal practice, published openly.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> the argument "AI apps aren't production-ready" is vague until someone defines production-ready. This checklist is that definition, from a company that runs real production at scale. Adopt it and every AI-built release is measured against the same bar a professional SRE would use.</li>
+      <li><strong>License &amp; costs:</strong> MIT (VERIFIED). Free; it's a document.</li>
+      <li><strong>Windows &amp; install:</strong> none needed — Markdown checklist; usable anywhere.</li>
+      <li><strong>Agency OS fit:</strong> the strongest match of the day: turn this checklist into the RELEASE gate's evidence rubric inside your existing gate_engine — items become required evidence types. Compatibility: <em>plausible — requires your adaptation; untested</em>.</li>
+      <li><strong>Evidence/output:</strong> a per-release checklist artifact mapping each item to evidence (test reports, monitoring config, security scan results) — the exact "proof, not promise" the argument demands.</li>
+      <li><strong>Limitations/risks:</strong> written for microservices at Mercari's scale — prune items irrelevant to small-business apps rather than demanding all; a checklist is only as honest as the evidence attached to each item.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Agency OS Integration Proposal: SecretSieve as a SECURITY-stage evidence producer</h2>
+    <h2>Test Today: bulletproof-react as your agent's architecture contract (45–60 minutes, read-only)</h2>
     <ul>
-      <li><strong>Problem solved:</strong> today, "no secrets in the repo" is an agent's word. SecretSieve turns it into a dated, redacted, machine-checkable report with a pass/fail exit code.</li>
-      <li><strong>Workflow improved:</strong> security agent's secret-detection check, run alongside your existing precommit_check.py and prepush_release_check.ps1 — not replacing the gate engine.</li>
-      <li><strong>Lifecycle location:</strong> SECURITY stage; repeated pre-push before RELEASE, and in MAINTENANCE after config changes.</li>
-      <li><strong>Inputs:</strong> the project directory (optionally restricted to <code>src</code> and config paths).</li>
-      <li><strong>Outputs:</strong> redacted JSON findings report stored as project evidence, classified REAL after validation; exit code 0/1/2.</li>
-      <li><strong>Validation:</strong> evidence validated before advancing — the report exists and is current; every HIGH/CRITICAL finding is confirmed by a human as a real exposure before anything is marked VERIFIED; false positives get a fingerprint suppression with a written reason.</li>
-      <li><strong>On failure:</strong> exit code 1 blocks the SECURITY stage in project-state.json with the report attached; the finding is triaged, the secret rotated/moved, then re-scanned. Exit code 2 (scanner error) = BLOCKED, re-run after fixing.</li>
-      <li><strong>Gate blocking / approval:</strong> it <em>feeds</em> the existing gate engine as evidence. Waiving a finding (accepting a known exposure) is a safety decision → human approval required, per governance rules.</li>
-      <li><strong>Smallest safe experiment:</strong> install it, scan one real project, save the JSON report, and classify each finding REAL/UNVERIFIED/BLOCKED. No gate change, no production system touched, ~30 minutes.</li>
+      <li><strong>Why this one:</strong> zero-risk (no install of unfamiliar code), works on Windows with any AI IDE, and attacks the maintainability half of the critics' argument immediately.</li>
+      <li><strong>Prerequisites:</strong> your AI coding IDE (Cursor/Copilot/Claude Code etc.) and git to clone the repo. No subscriptions beyond what you already pay.</li>
+      <li><strong>Practical test:</strong> clone or open <a href="https://github.com/alan2207/bulletproof-react">bulletproof-react</a>, read the project-structure and architecture docs, then start a tiny test app and instruct the agent: "Follow the bulletproof-react structure: features folders, layered architecture (app/pages/features/entities/shared/api), no cross-layer imports." Have it build one small feature (e.g., a user list with API layer).</li>
+      <li><strong>Expected results:</strong> the generated code lands in a predictable structure; a second agent session (or you) can navigate and extend it without re-reading everything — the maintainability test critics claim AI fails.</li>
+      <li><strong>Safety precautions:</strong> it's docs + example code — read, don't run unknown scripts; keep the test app throwaway; never grant an agent unrestricted access beyond the project folder.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Business Opportunity (Ethiopia)</h2>
+    <h2>Agency OS Integration Proposal: a verifiable production-readiness gate</h2>
     <ul>
-      <li><strong>Customer problem:</strong> small businesses in Addis Ababa — e-commerce shops, travel agencies, clinics — get websites and mini-apps built by freelancers who hardcode payment keys (Telebirr, Chapa, HelloCash), email passwords and cPanel credentials into files that end up in shared folders, public repos, or backups. Nobody ever checks.</li>
-      <li><strong>Minimum viable service:</strong> a fixed-price <strong>"Secret Leak Audit"</strong>: with the owner's written permission, scan their website files, deploy configs and repo backups with a local secret scanner; deliver a plain-Amharic/English report — what is exposed, what to rotate, where to move it (env vars / credential store) — and fix the top exposures the same day.</li>
-      <li><strong>Delivery workflow:</strong> LEAD → DISCOVERY (inventory of site files &amp; where they live) → SECURITY (local scans, redacted evidence reports) → CEO_REVIEW (human signs off) → RELEASE (report + fixed files handed over) → MAINTENANCE (re-scan after any site change).</li>
-      <li><strong>Main risks:</strong> touching live credentials requires explicit client permission and a tested rollback (rotate one key at a time); a scanner can miss secrets — present the report as "known exposures found", never "your site is safe"; underprice nothing — value is in the same-day fix, not the scan.</li>
-      <li class="muted">No revenue projections — price against local freelance rates after one paid pilot.</li>
+      <li><strong>Problem solved:</strong> "production-ready" is currently an opinion. The critics win arguments because readiness claims have no measurable definition. The fix: a checklist-driven, evidence-backed definition — which is already your governance philosophy, now with an industry-authored rubric.</li>
+      <li><strong>Exact workflow improved:</strong> RELEASE gate. Today's picks fill it: <em>bulletproof-react</em> = ARCHITECTURE-stage standard the dev agent must follow; <em>Mercari checklist</em> = RELEASE-stage rubric; <em>px0/Lowdefy</em> = future QA/CEO_REVIEW review tooling.</li>
+      <li><strong>Where in the lifecycle:</strong> ARCHITECTURE (structure standard) → DEVELOPMENT (agent builds into the skeleton, e.g. react-starter-kit) → QA (tests + human review) → SECURITY (your existing scanners: SecretSieve, Trivy) → RELEASE (checklist rubric).</li>
+      <li><strong>Inputs:</strong> the pruned Mercari checklist (small-business-relevant items only), the project's evidence artifacts (test reports, security scans, monitoring config).</li>
+      <li><strong>Outputs:</strong> a per-release readiness artifact in project-state.json: each checklist item marked VERIFIED (with evidence link) / UNVERIFIED / BLOCKED.</li>
+      <li><strong>How results are validated:</strong> evidence validated before advancing — an item is VERIFIED only with a dated artifact attached; agents may never self-mark items without the artifact (your REAL/SIMULATED/ASSUMPTION rules apply).</li>
+      <li><strong>What happens on failure:</strong> missing evidence blocks the RELEASE stage in the gate engine; a waiver (shipping with a known gap) is a commercial/risk decision → human approval required. No change to the gate engine itself — this feeds it.</li>
+      <li><strong>Smallest safe experiment:</strong> take 10 checklist items relevant to a small-business web app (auth, secrets, dependencies, backups, monitoring, error handling, rollback…), run one current project through them by hand, and mark each VERIFIED/UNVERIFIED/BLOCKED. That artifact is your first honest readiness report — and the beginning of your rebuttal to the critics.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Daily Learning: secret-scanning false negatives (and the canary test)</h2>
+    <h2>Daily Learning: "production-ready" is a claim about operations, not about code quality</h2>
     <ul>
-      <li><strong>Concept:</strong> a secret scanner matches <em>patterns</em> (known key formats) plus <em>entropy</em> (random-looking strings) plus <em>context</em> (is it near "password="?). A false positive flags a random-looking-but-harmless string; a false negative misses a real secret in an unusual format or place. Scanners reduce risk; they never prove absence.</li>
-      <li><strong>How an AI agent might get it wrong:</strong> it runs a scanner once, sees "no findings", and reports "VERIFIED: no secrets in the project" — turning a scanner limitation into a security guarantee.</li>
-      <li><strong>How you recognize the failure:</strong> a security claim with no stored scan artifact, or a VERIFIED label on what is really a tool-limited UNVERIFIED result.</li>
-      <li><strong>Which tool/test detects it:</strong> a <em>canary test</em>: plant a few fake secrets in a test folder and confirm the scanner (today: SecretSieve; also Trivy's secret scanning) finds them. No canary found = your scan setup is broken, not your codebase clean. Store the canary result next to every real scan report.</li>
+      <li><strong>Concept (simple English):</strong> production-ready doesn't mean "the code is good." It means: you can tell from the outside whether the app is healthy (monitoring), you can explain why it failed from the inside (logs/traces), you can recover quickly (rollback/backup), and you can account for what it did (audit). A bug you can detect, explain, and roll back is a production incident; a bug you can't see is an outage.</li>
+      <li><strong>How an AI agent might get it wrong:</strong> the agent equates "all tests pass" with "production-ready" and marks the release VERIFIED — ignoring observability, backups, rollback and incident response, which no unit test covers.</li>
+      <li><strong>How you recognize the failure:</strong> a VERIFIED readiness claim with no artifacts for monitoring, error handling, data backup, or rollback — the checklist items with empty evidence slots expose it immediately.</li>
+      <li><strong>Which tool/test detects it:</strong> the Mercari production-readiness checklist turned into a gate rubric — its observability/incident-response items fail loudly when evidence is missing; pair with your existing prepush_release_check.ps1 so a release without those artifacts never reaches the push.</li>
     </ul>
   </section>
 
   <section>
     <h2>Final Summary</h2>
     <ul>
-      <li><strong>Best discovery today:</strong> SecretSieve — new, MIT, fully local, redacted output, CI exit codes; the cheapest way to turn "no secrets" from a claim into evidence.</li>
-      <li><strong>Best security/reliability improvement:</strong> pair SecretSieve (secrets) with Trivy v0.76.0 (dependencies) in your pre-push check — two dated JSON reports covering the two most common real-world breaches.</li>
-      <li><strong>Best Agency OS integration:</strong> SecretSieve as a SECURITY-stage evidence producer with exit-code blocking, human-approval waivers only — no changes to the gate engine.</li>
-      <li><strong>One practical action today:</strong> <code>pipx install secretsieve</code>, run it on one real project, save the JSON report as your first REAL secret-scan evidence artifact.</li>
+      <li><strong>Best discovery today:</strong> Mercari's production-readiness checklist — the industry definition of "done" that turns the critics' vague argument into a measurable bar your pipeline can clear and prove.</li>
+      <li><strong>Best security/reliability improvement:</strong> bulletproof-react as an architecture contract for every agent session — maintainability is the critics' strongest point, and structure is the cheapest countermeasure.</li>
+      <li><strong>Best Agency OS integration:</strong> the evidence-backed RELEASE gate — checklist items as required evidence types in your existing gate engine, human approval for waivers, no governance changes.</li>
+      <li><strong>One practical action today:</strong> run the 10-item checklist experiment on one current project and mark each item VERIFIED/UNVERIFIED/BLOCKED — your first machine-checkable readiness artifact.</li>
     </ul>
   </section>
 </div>
