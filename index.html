@@ -34,147 +34,147 @@
   <header>
     <h1>Agency OS <span>Radar</span></h1>
     <div class="tagline">Daily open-source discoveries for a one-person AI software agency</div>
-    <div class="tagline date">Report date: Sunday, October 18, 2026 · 5:15 PM · Addis Ababa (EAT)</div>
+    <div class="tagline date">Report date: Monday, October 19, 2026 · 6:00 PM · Addis Ababa (EAT)</div>
   </header>
 
   <section>
     <h2>Start Here (plain English)</h2>
-    <p><strong>The problem:</strong> you run AI coding agents on the same PC that holds your clients' code, API keys, cloud logins, and payment credentials. If an agent is ever hijacked (for example by a malicious skill or prompt injection), everything it can reach is stolen in one go — and you have no list of what it can actually reach.</p>
-    <p><strong>The solution in today's radar:</strong> today's best finds are <em>measurement tools</em> — one lists every credential your agent could grab, one checks AI infrastructure for known weaknesses, one turns real traffic into API tests, and a big-vendor framework release shows how mature agent orchestration is evolving. They turn "I think I'm safe" into a saved, checkable report.</p>
-    <p class="muted">Window: last 24h–7 days. Yesterday's report (Oct 17: SkillSpector, MS Agent Governance Toolkit, Codex CLI, Alibaba open-code-review, TesterArmy e2e) was retrieved and checked — none are repeated today because none had a verified meaningful update in this window. Findings are marked VERIFIED (seen in the repo, release, or license file) or UNVERIFIED. Category 5 (reusable business components) again had no verified new discovery — disclosed, not padded; five strong beats five weak.</p>
+    <p><strong>The problem:</strong> an AI-assisted one-person agency ships code fast, but the boring proofs — "no secrets in the repo", "no known-vulnerable dependencies", "the app still works in a browser after the change" — are exactly what clients, and attackers, check. Doing them by hand every day doesn't scale.</p>
+    <p><strong>The solution in today's radar:</strong> today's finds are mostly <em>evidence machines</em>: a local secret scanner with CI-friendly exit codes, a fresh dependency/vulnerability scanner release, a fresh Playwright release, a brand-new design system for AI-app interfaces, and an open reimplementation of Anthropic's agent-first source control. They turn daily claims into saved, machine-checkable reports.</p>
+    <p class="muted">Window: last 24h–7 days. Yesterday's report (Oct 18: heldkeys, Tencent AI-Infra-Guard, Keploy, MS Agent Framework, browser-use) was retrieved and checked — none are repeated today because none had a verified meaningful update in this window. Findings are marked VERIFIED (seen in the repo, release, or license file) or UNVERIFIED. Runner-up noted below in disclosures.</p>
   </section>
 
   <section>
     <h2>Top 5 Discoveries</h2>
 
-    <h3>1. heldkeys — which keys is your agent holding? <span class="badge b-test">TEST NOW</span></h3>
+    <h3>1. SecretSieve — local-first secret detection CLI <span class="badge b-test">TEST NOW</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/hugomn/heldkeys">github.com/hugomn/heldkeys</a></li>
-      <li><strong>What it does:</strong> a small Rust CLI that answers one question: "if a prompt injection hijacked the AI agent running here, which credentials could it use?" It lists the credentials an agent can reach — environment variables, cloud CLI logins (AWS, gcloud, Azure), AI tool logins (Claude Code, Codex, Gemini CLI, Copilot, Hugging Face), .env files and their editor backups, SSH keys, package/git tokens, and tokens pasted into MCP server configs — <em>without ever printing a single secret</em>. It also checks agent risks in GitHub Actions and has a <code>--strict</code> mode that fails like a gate.</li>
-      <li><strong>What changed &amp; when:</strong> brand-new project — repo created October 15, 2026; actively updated through October 18 (VERIFIED via GitHub).</li>
-      <li><strong>Why it matters to a vibe coder:</strong> your IDE, terminals, and agents sit next to every client login you own. heldkeys turns that invisible exposure into a concrete list — the input for real least-privilege cleanup.</li>
-      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from repo). Free, open source, runs fully locally, no API keys, no subscription.</li>
-      <li><strong>Windows:</strong> NOT supported yet — built and tested on Linux and macOS only; on Windows use the Linux binary under WSL (VERIFIED from README FAQ). Native Windows support is on their roadmap.</li>
-      <li><strong>Agency OS fit:</strong> a preflight check before any agent is allowed near a client project. Agency OS compatibility: <em>plausible, untested</em>.</li>
-      <li><strong>Agent/stage:</strong> Security agent · SECURITY stage, and as a preflight gate before DEVELOPMENT and RELEASE.</li>
-      <li><strong>Evidence/output:</strong> a credential-exposure report (severity-graded findings, e.g. "HIGH: Docker registry credentials, plaintext") — REAL evidence, no secrets leaked into the report itself.</li>
-      <li><strong>Limitations/risks:</strong> it can't see browser sessions, IDE tokens, OS keychains, or unlocked password managers, and it can't tell what a token is allowed to do — a clean report means "no known exposure", not "no exposure" (README is explicit about this). Human review still decides what to revoke or move.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/3rab1Dev/SecretSieve">github.com/3rab1Dev/SecretSieve</a></li>
+      <li><strong>What it does:</strong> a Python command-line scanner that finds accidentally exposed credentials — API keys, tokens, private keys, passwords, connection strings — in source code and config files. It uses signatures + entropy + context scoring (not just regex), prints findings <em>redacted</em> (<code>AKIA****************9X2F</code>), runs 100% locally with no network I/O, never verifies secrets against third-party services, and has CI-friendly JSON output and exit codes (0 clean, 1 findings, 2 scanner error).</li>
+      <li><strong>What changed &amp; when:</strong> brand-new project — repo created October 7, 2026; first release V1.0 the same day, v1.0.1 published October 10, 2026 (VERIFIED via GitHub releases).</li>
+      <li><strong>Why it matters to a vibe coder:</strong> AI agents paste config snippets and .env examples into repos all the time. This catches leaked client credentials before a push, locally, free, with a JSON report you can store as evidence.</li>
+      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from LICENSE file). Free and open source; no API keys, no subscription, no external services.</li>
+      <li><strong>Windows:</strong> pure-Python CLI, requires Python 3.10+, installs via <code>pip install secretsieve</code> or pipx — should work on Windows; UNTESTED by me (plausible, not verified).</li>
+      <li><strong>Agency OS fit:</strong> a SECURITY-stage evidence producer feeding your existing precommit/prepush checks. Agency OS compatibility: <em>plausible, untested</em>.</li>
+      <li><strong>Agent/stage:</strong> Security agent · SECURITY stage; also wired into DEVELOPMENT pre-commit and RELEASE pre-push checks.</li>
+      <li><strong>Evidence/output:</strong> redacted findings list + <code>--json</code> report with rule IDs, severity, fingerprints; exit code usable directly as a gate signal.</li>
+      <li><strong>Limitations/risks:</strong> very young project (small community, ~24 stars at time of check) — expect false positives/negatives; a clean scan is not proof no secrets exist; suppressions must be reviewed by a human, never blanket-ignored.</li>
     </ul>
 
-    <h3>2. Tencent AI-Infra-Guard v4.6.6 — AI red-teaming &amp; security scanner <span class="badge b-invest">INVESTIGATE</span></h3>
+    <h3>2. gitai (git-ai) — version control designed for AI agents <span class="badge b-invest">INVESTIGATE</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/Tencent/AI-Infra-Guard">github.com/Tencent/AI-Infra-Guard</a></li>
-      <li><strong>What it does:</strong> a full-stack AI security platform from Tencent's Zhuque Lab: agent scan, skills scan, MCP scan, and AI infrastructure scan. It has a web UI with one-click scanning, a Swagger-documented API, and plug-and-play agent skills for AI agent workflows.</li>
-      <li><strong>What changed &amp; when:</strong> release v4.6.6 on October 15, 2026 (VERIFIED via GitHub releases). ~6.9k stars per GitHub search on Oct 18.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> it complements yesterday's SkillSpector: it scans not just skills but whole AI deployments (MCP servers, agent endpoints, AI infrastructure) — the wider blast radius a one-person agency never has time to audit by hand.</li>
-      <li><strong>License &amp; costs:</strong> Apache-2.0 <em>with attribution requirements</em> (VERIFIED from README): you must credit "Tencent Zhuque Lab AI-Infra-Guard" in docs/UI if you embed it, and repackaging it as your own product is prohibited. Open source ≠ unrestricted commercial use — read the LICENSE/NOTICE terms before client work. Free to run; Docker images on Docker Hub.</li>
-      <li><strong>Windows:</strong> cross-platform via Docker-based deployment, including Windows (VERIFIED from README).</li>
-      <li><strong>Agency OS fit:</strong> security agent's platform-level scanner for client deployments. Agency OS compatibility: <em>plausible, untested</em>.</li>
-      <li><strong>Agent/stage:</strong> Security agent · SECURITY stage and MAINTENANCE re-scans.</li>
-      <li><strong>Evidence/output:</strong> scan reports with findings per target (agent/skill/MCP/infra).</li>
-      <li><strong>Limitations/risks:</strong> scanner findings include false positives and must be validated before anything is marked VERIFIED; attribution clause limits white-label use; large platform — heavier than a single-purpose tool.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/feder-cr/git-ai">github.com/feder-cr/git-ai</a></li>
+      <li><strong>What it does:</strong> an open-source, community implementation of the design Anthropic described in "Redesigning source control" (their internal system is called Scion). It is a server-centric version control system where many coding agents read, write, and land small changes on shared branches in seconds: server-side history, compare-and-swap landing instead of merge queues, a changeset log, per-agent tokens with an RPC allowlist, automatic conflict resolution (bring any LLM or a deterministic resolver), and a "test after landing, revert the culprit" verify command. Normal Git repositories underneath. The server never calls a language model.</li>
+      <li><strong>What changed &amp; when:</strong> brand-new project — created mid-October 2026; v0.1.0 released October 15 and v0.2.0 released October 18, 2026 (VERIFIED via GitHub releases). ~2,400 stars at time of check (VERIFIED via GitHub search).</li>
+      <li><strong>Why it matters to a vibe coder:</strong> if Agency OS ever runs many agents in parallel on one codebase, plain Git merge queues become the bottleneck. gitai is the first open answer to that problem — worth understanding even before adopting.</li>
+      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from LICENSE file; started as a fork of GitLab's MIT-licensed Gitaly). Free; optional conflict-resolution LLM costs whatever your chosen provider charges (works without any model).</li>
+      <li><strong>Windows:</strong> NOT supported — README states requirements are Linux or macOS, Go 1.26, C toolchain, Meson, Ninja. On Windows it would need WSL (UNVERIFIED).</li>
+      <li><strong>Agency OS fit:</strong> future candidate for multi-agent DEVELOPMENT coordination and automatic revert-on-failure. Agency OS compatibility: <em>untested; not recommended before 1.0</em> — interfaces may still change.</li>
+      <li><strong>Agent/stage:</strong> Orchestrator / Dev agents · DEVELOPMENT stage (parallel landing, review rules, per-agent permissions).</li>
+      <li><strong>Evidence/output:</strong> changeset log entries with the agent that made each change; graft-verify test/bisect/revert reports; per-agent audit trail.</li>
+      <li><strong>Limitations/risks:</strong> v0.2.0, pre-1.0, single-maintainer community project; server infrastructure to run; migration story unproven. Do NOT replace your existing Git workflow or Agency OS gates on this without real evidence.</li>
     </ul>
 
-    <h3>3. Keploy v3.6.141 — API tests from real traffic <span class="badge b-test">TEST NOW</span></h3>
+    <h3>3. Trivy v0.76.0 — dependency &amp; vulnerability scanner <span class="badge b-test">TEST NOW</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/keploy/keploy">github.com/keploy/keploy</a></li>
-      <li><strong>What it does:</strong> a developer-centric API and integration testing tool that auto-generates test cases (with mocks) from real application traffic instead of hand-written test code, then replays them; it also creates safe, isolated production sandboxes for API, integration, and E2E testing. It pitches "API tests faster than unit tests, from user traffic."</li>
-      <li><strong>What changed &amp; when:</strong> release v3.6.141 published TODAY, October 18, 2026 (VERIFIED via GitHub releases) — very high release cadence. ~18.6k stars per GitHub search on Oct 18.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> AI agents write features fast but regressions in API behavior are what quietly break client systems. Recording real calls and replaying them as tests gives Agency OS's API-QA layer evidence without writing hundreds of test stubs by hand.</li>
-      <li><strong>License &amp; costs:</strong> Apache-2.0 (VERIFIED from LICENSE file). The OSS tool is free; Keploy also sells a cloud/enterprise offering — not required for local use.</li>
-      <li><strong>Windows:</strong> the keploy binary is Linux-native; on Windows use WSL2 (per Keploy's docs) — UNVERIFIED by me on Windows, check the official docs before installing.</li>
-      <li><strong>Agency OS fit:</strong> API/integration slice of the QA stage. Agency OS compatibility: <em>plausible, untested</em>.</li>
-      <li><strong>Agent/stage:</strong> QA agent · QA stage, plus regression evidence for RELEASE.</li>
-      <li><strong>Evidence/output:</strong> generated test case files, mocks, and pass/fail test-run reports per replay.</li>
-      <li><strong>Limitations/risks:</strong> recorded tests prove "same behavior as before", not "correct behavior" — someone must define what correct is; recordings can contain sensitive data that must be scrubbed before being stored as evidence.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/aquasecurity/trivy">github.com/aquasecurity/trivy</a></li>
+      <li><strong>What it does:</strong> one command-line tool that scans container images, filesystems, Git repos, and dependency files (pip/npm/requirements) for known vulnerabilities, plus misconfigurations (IaC, Docker, K8s) and exposed secrets. One binary, JSON output, CI exit codes.</li>
+      <li><strong>What changed &amp; when:</strong> release v0.76.0 published October 14, 2026 (VERIFIED via GitHub releases; v0.75.0 was October 1).</li>
+      <li><strong>Why it matters to a vibe coder:</strong> Agency OS's security rules require dependency auditing. Trivy is the de-facto standard way to turn "dependencies OK" into a dated, machine-generated report instead of an agent's claim.</li>
+      <li><strong>License &amp; costs:</strong> Apache-2.0 (VERIFIED from LICENSE file). Free; vulnerability database downloads from public feeds (needs internet on first run); Trivy also offers a paid cloud offering — not required for local use.</li>
+      <li><strong>Windows:</strong> official Windows binaries are published with each release (works on Windows; installation itself UNTESTED by me today).</li>
+      <li><strong>Agency OS fit:</strong> SECURITY-stage dependency audit, repeatable in MAINTENANCE. Agency OS compatibility: <em>plausible, untested</em>.</li>
+      <li><strong>Agent/stage:</strong> Security agent · SECURITY stage; MAINTENANCE re-scans.</li>
+      <li><strong>Evidence/output:</strong> vulnerability report (CVE IDs, severity, fixed versions) per project/lockfile; JSON for the gate engine.</li>
+      <li><strong>Limitations/risks:</strong> findings are "known CVE matches" — they need triage before blocking a release (a low-severity CVE in a dev-only dependency is not a release blocker); scan quality depends on the DB being current; keep the report out of public repos.</li>
     </ul>
 
-    <h3>4. Microsoft Agent Framework 1.22.0 (Python) — multi-agent orchestration <span class="badge b-invest">INVESTIGATE</span></h3>
+    <h3>4. Playwright v1.64.1 — browser automation &amp; UI-E2E testing <span class="badge b-invest">INVESTIGATE (upgrade)</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/microsoft/agent-framework">github.com/microsoft/agent-framework</a></li>
-      <li><strong>What it does:</strong> Microsoft's open-source framework for building, orchestrating, and deploying AI agents and multi-agent workflows (Python and .NET): agents with tools, graph/sequential/concurrent workflows, checkpoints, memory, and human-in-the-loop support.</li>
-      <li><strong>What changed &amp; when:</strong> python-1.22.0 released October 15, 2026 (VERIFIED via GitHub releases): Python 3.15 support (partial — some packages/extras lag), workflow checkpoint and session improvements, and an important compatibility warning: pre-1.22 runtimes cannot read records written by 1.22 — do not mix old and new workers against the same persisted store.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> Agency OS's orchestrator coordinates specialized agents with state and gates. This release shows the exact patterns (checkpoints, persisted state, human-in-the-loop) a production multi-agent system needs — useful as a reference design even if you never adopt it.</li>
-      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from LICENSE file). Free; model access costs depend on which LLM provider you point it at (a local model via Ollama is possible but unverified here).</li>
-      <li><strong>Windows:</strong> Python/.NET — runs on Windows; UNTESTED by me.</li>
-      <li><strong>Agency OS fit:</strong> reference for the orchestrator's workflow and checkpoint design. Do NOT swap your gate engine or project-state.json for it without evidence.</li>
-      <li><strong>Agent/stage:</strong> Orchestrator · all stages (workflow coordination).</li>
-      <li><strong>Evidence/output:</strong> checkpointed workflow state, execution traces, human-in-the-loop approval records.</li>
-      <li><strong>Limitations/risks:</strong> the persisted-state breaking change in this very release is the risk in miniature — agent state formats churn; pin versions, isolate state stores, and test upgrades. Model API costs apply.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/microsoft/playwright">github.com/microsoft/playwright</a></li>
+      <li><strong>What it does:</strong> Microsoft's framework for automating and testing Chromium, Firefox and WebKit with one API — the backbone of modern UI-E2E testing: auto-waiting to cut flaky tests, traces (DOM snapshots, network logs) on failure, parallel runs, and codegen for recording tests.</li>
+      <li><strong>What changed &amp; when:</strong> v1.64.1 released October 14, 2026 (v1.64.0 on October 7) (VERIFIED via GitHub releases).</li>
+      <li><strong>Why it matters to a vibe coder:</strong> Agency OS QA requires UI-E2E coverage and "tests pass" is not production-readiness — but you can't even claim "tests pass" without a trustworthy browser suite. Playwright is the most realistic local option on Windows.</li>
+      <li><strong>License &amp; costs:</strong> Apache-2.0 (VERIFIED from LICENSE file). Free and open source; no subscription; runs fully locally.</li>
+      <li><strong>Windows:</strong> first-class Windows support (official installer and Node.js/.NET/Python APIs) — standard setup, UNTESTED by me today.</li>
+      <li><strong>Agency OS fit:</strong> the UI-E2E slice of the QA stage, run by the QA agent after every release candidate. Agency OS compatibility: <em>plausible, untested</em>.</li>
+      <li><strong>Agent/stage:</strong> QA agent · QA stage (UI-E2E), evidence for RELEASE.</li>
+      <li><strong>Evidence/output:</strong> HTML test reports, trace files per failure, pass/fail exit codes — directly consumable as gate evidence.</li>
+      <li><strong>Limitations/risks:</strong> a green suite proves the covered paths only; review what the agent actually asserted; upgrade lockfile-pinned versions deliberately (minor versions can change snapshots/behavior).</li>
     </ul>
 
-    <h3>5. browser-use 0.13.13 — AI browser agent <span class="badge b-invest">INVESTIGATE</span></h3>
+    <h3>5. Solid Glass — design system for AI applications <span class="badge b-invest">INVESTIGATE</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/browser-use/browser-use">github.com/browser-use/browser-use</a></li>
-      <li><strong>What it does:</strong> open-source Python library that lets an AI agent control a real browser (click, type, navigate) to complete tasks — usable for automated web QA and UI-E2E checks.</li>
-      <li><strong>What changed &amp; when:</strong> release 0.13.13 on October 15, 2026, named "OpenAI browser tools and Cloud fixes" (VERIFIED via GitHub releases). ~118k stars per GitHub search on Oct 18.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> a QA agent that can actually operate a client's web app like a user is the missing UI-E2E pair to Keploy's API tests.</li>
-      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from LICENSE file). The library is free; you supply the model — Browser Use Cloud and some providers are paid, but the README documents running with a local browser and a local model via Ollama (subject to your hardware).</li>
-      <li><strong>Windows:</strong> Python library — works on Windows in principle; UNTESTED by me.</li>
-      <li><strong>Agency OS fit:</strong> UI-E2E slice of QA. Agency OS compatibility: <em>plausible, untested</em>.</li>
-      <li><strong>Agent/stage:</strong> QA agent · QA stage (UI-E2E).</li>
-      <li><strong>Evidence/output:</strong> step-by-step agent traces and pass/fail outcomes per web task.</li>
-      <li><strong>Limitations/risks:</strong> an agent with browser control is powerful — run it in a dedicated browser profile, never on accounts holding client credentials or payments; a passing run is not a full E2E suite; model quality governs reliability; recurring model costs unless run locally.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/deeplethe/solid-glass">github.com/deeplethe/solid-glass</a></li>
+      <li><strong>What it does:</strong> a free, MIT glass-inspired theme + component set built on shadcn/ui (React 19, Tailwind CSS 4). It installs as one stylesheet via <code>npx shadcn add deeplethe/solid-glass/solid-glass</code> and adds components made specifically for AI/agent interfaces: <code>tool-steps</code> (what the agent did), <code>diff-view</code>, <code>ask-card</code> (human approval prompts), <code>reasoning</code>, <code>status-glyph</code>, <code>context-ring</code>, plus dashboard-style <em>blocks</em> (whole screens) such as an agent workspace with sessions, threads, files and background tasks.</li>
+      <li><strong>What changed &amp; when:</strong> new project this month, actively developed — ~2,270 stars at time of check (VERIFIED via GitHub search on Oct 19); MIT LICENSE file dated 2026 (VERIFIED).</li>
+      <li><strong>Why it matters to a vibe coder:</strong> this is the first category-5 discovery this week: reusable, installable UI for exactly the screens a one-person AI agency builds — client dashboards showing agent runs, approvals, diffs, task notices — instead of hand-rolling each client's admin UI.</li>
+      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from LICENSE file; shadcn/ui-derived parts also MIT, per NOTICE). Free; components are copied into your project (shadcn model), so they are yours to edit.</li>
+      <li><strong>Windows:</strong> it is CSS + React components installed by npm/shadcn CLI — cross-platform, works on Windows (setup UNTESTED by me).</li>
+      <li><strong>Agency OS fit:</strong> reusable component library for client dashboards and for an Agency OS control panel (agent status, approvals, task notices). Agency OS compatibility: <em>plausible, untested</em>.</li>
+      <li><strong>Agent/stage:</strong> Dev agent · DEVELOPMENT stage, feeding REUSABLE_COMPONENT (dashboard/approval UI blocks).</li>
+      <li><strong>Evidence/output:</strong> working, theme-consistent UI screens; the ask-card pattern maps naturally to human-approval gates.</li>
+      <li><strong>Limitations/risks:</strong> young single-author project; requires a shadcn/ui + Tailwind 4 + React 19 stack (not for every client codebase); aesthetic choice — check with clients before adopting as your house style.</li>
     </ul>
 
-    <p class="muted">Disclosure: no verified new discovery this window in category 5 (reusable business-app components — dashboards, API starters, desktop/Android kits) for the second day running. New "template" repos found in the window were either replicas of closed SaaS products (license risk) or too immature to recommend. Watch this category again tomorrow.</p>
+    <p class="muted">Runner-up (disclosed, not counted): outcrawlai/scout, an open-source browser agent (Apache-2.0, ~950 stars, mirrored repo) — needs an Outcrawl key (1,000 free credits/month, no card) or a local browser plus your own model API costs, so it is heavier than today's picks. Also LangGraph shipped a patch release today (1.2.16, Oct 16/19) — routine maintenance, no meaningful change for Agency OS.</p>
   </section>
 
   <section>
-    <h2>Test Today: heldkeys (under WSL)</h2>
+    <h2>Test Today: SecretSieve (30 minutes, fully local)</h2>
     <ul>
-      <li><strong>Why this one:</strong> fully local, free, no API keys, no subscription, single small binary — and it measures the single biggest silent risk in your setup. It is the realistic one-hour test on a Windows PC via WSL.</li>
-      <li><strong>Prerequisites:</strong> WSL2 with Ubuntu (or any Linux/macOS machine). Rust toolchain if installing from crates.io, or grab the release binary from the repo's releases page.</li>
-      <li><strong>Official install (from the repo):</strong> it is published on crates.io, so <code>cargo install heldkeys</code> — or download the prebuilt binary from the repo's releases page. Follow the README exactly; it is the authoritative source.</li>
-      <li><strong>Practical test:</strong> inside WSL, in the same environment your coding agent/IDE shells run (same user, not root — the README warns root sees more than the agent can), run <code>heldkeys</code>, then <code>heldkeys --details</code> to see the first findings.</li>
-      <li><strong>Expected results:</strong> a summary table of credential types found (env vars, cloud CLIs, AI tool logins, .env files, SSH keys) with severities like "HIGH: Docker registry credentials (plaintext)" — and zero actual secret values printed.</li>
-      <li><strong>Safety precautions:</strong> run as the agent's user, not root; never run untrusted scanners outside a controlled environment; treat the report itself as sensitive metadata; do not paste full reports into chats or repos.</li>
+      <li><strong>Why this one:</strong> a tiny new tool, one pip install, zero cost, zero network, and it hardens the riskiest everyday habit in AI-assisted work: pasted credentials.</li>
+      <li><strong>Prerequisites:</strong> Windows PC with Python 3.10+ (check with <code>python --version</code>); pipx recommended for an isolated install. No API keys, no model access, no subscription.</li>
+      <li><strong>Official install (from the repo README):</strong> <code>pipx install secretsieve</code> (or <code>pip install secretsieve</code> from PyPI).</li>
+      <li><strong>Practical test:</strong> create a throwaway folder with a few <em>fake</em> secrets — a made-up AWS-style key, a fake GitHub token, a dummy connection string — then run <code>secretsieve .</code> and <code>secretsieve scan . --json --fail-on high</code>. Then scan one of your real project folders.</li>
+      <li><strong>Expected results:</strong> the fake keys are found and printed redacted (no full values shown); JSON output lists rule IDs and severities; the command exits 1 when findings reach the threshold — the exact signal a gate needs.</li>
+      <li><strong>Safety precautions:</strong> scan only folders you own; the tool is read-only and offline by design, but still review what it prints; never commit the JSON report if it contains file paths of a client project; review every suppression before adding it.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Agency OS Integration Proposal: heldkeys as a preflight security gate</h2>
+    <h2>Agency OS Integration Proposal: SecretSieve as a SECURITY-stage evidence producer</h2>
     <ul>
-      <li><strong>Problem solved:</strong> nothing currently measures what credentials an Agency OS agent could reach — the security agent would be asserting safety from an ASSUMPTION, not evidence.</li>
-      <li><strong>Workflow improved:</strong> security agent's environment preflight check, run before an agent session starts on a client project.</li>
-      <li><strong>Lifecycle location:</strong> SECURITY stage; also run as a preflight before DEVELOPMENT sessions and before RELEASE.</li>
-      <li><strong>Inputs:</strong> none beyond the environment itself — it runs in the agent's shell context.</li>
-      <li><strong>Outputs:</strong> a credential-exposure report stored as project evidence, classified REAL, with scanner version and date.</li>
-      <li><strong>Validation:</strong> evidence validated before advancing: report exists, findings triaged; each finding marked VERIFIED only after a human confirms the credential is really exposed and decides revoke/move/accept.</li>
-      <li><strong>On failure:</strong> with <code>--strict</code>, unreadable-but-present files fail the gate; HIGH findings mark the environment BLOCKED in project-state.json with the report as evidence. BLOCKED requires an explicit human waiver to proceed.</li>
-      <li><strong>Gate blocking / approval:</strong> it <em>feeds</em> the existing gate engine as evidence — it does not replace it. Accepting an exposure (waiver) is a safety decision → human approval required, per governance rules.</li>
-      <li><strong>Smallest safe experiment:</strong> in WSL, run heldkeys once in your dev environment today; save the report; have the security agent classify each finding REAL/UNVERIFIED/BLOCKED. No production change, no gate modification, ~30 minutes.</li>
+      <li><strong>Problem solved:</strong> today, "no secrets in the repo" is an agent's word. SecretSieve turns it into a dated, redacted, machine-checkable report with a pass/fail exit code.</li>
+      <li><strong>Workflow improved:</strong> security agent's secret-detection check, run alongside your existing precommit_check.py and prepush_release_check.ps1 — not replacing the gate engine.</li>
+      <li><strong>Lifecycle location:</strong> SECURITY stage; repeated pre-push before RELEASE, and in MAINTENANCE after config changes.</li>
+      <li><strong>Inputs:</strong> the project directory (optionally restricted to <code>src</code> and config paths).</li>
+      <li><strong>Outputs:</strong> redacted JSON findings report stored as project evidence, classified REAL after validation; exit code 0/1/2.</li>
+      <li><strong>Validation:</strong> evidence validated before advancing — the report exists and is current; every HIGH/CRITICAL finding is confirmed by a human as a real exposure before anything is marked VERIFIED; false positives get a fingerprint suppression with a written reason.</li>
+      <li><strong>On failure:</strong> exit code 1 blocks the SECURITY stage in project-state.json with the report attached; the finding is triaged, the secret rotated/moved, then re-scanned. Exit code 2 (scanner error) = BLOCKED, re-run after fixing.</li>
+      <li><strong>Gate blocking / approval:</strong> it <em>feeds</em> the existing gate engine as evidence. Waiving a finding (accepting a known exposure) is a safety decision → human approval required, per governance rules.</li>
+      <li><strong>Smallest safe experiment:</strong> install it, scan one real project, save the JSON report, and classify each finding REAL/UNVERIFIED/BLOCKED. No gate change, no production system touched, ~30 minutes.</li>
     </ul>
   </section>
 
   <section>
     <h2>Business Opportunity (Ethiopia)</h2>
     <ul>
-      <li><strong>Customer problem:</strong> small businesses in Addis Ababa — agencies, shops, clinics, travel firms — are adopting AI assistants and automation tools on office PCs that also hold payment API keys, Telebirch/Chapa credentials, email accounts, and customer data. Nobody has ever listed what their AI tools could touch if hijacked.</li>
-      <li><strong>Minimum viable service:</strong> a fixed-price <strong>"AI Credential Exposure Audit"</strong>: inventory their AI tools, run a heldkeys-style scan in each working environment, and deliver a plain-Amharic/English report — what is exposed, what to revoke, what to move into a credential store — plus a one-page staff policy (no pasting tokens into chats, .env files out of backups).</li>
-      <li><strong>Delivery workflow:</strong> LEAD → DISCOVERY (interview + tool inventory) → SECURITY (local scans, evidence reports) → CEO_REVIEW (human signs off) → RELEASE (report + policy handover) → MAINTENANCE (re-scan after each new tool install).</li>
-      <li><strong>Main risks:</strong> clients see prevention as invisible value (bundle with a concrete fix: "audit + we revoke/move the top 5 exposures same day"); trust risk if you overstate findings (clean report ≠ safe — say so); WSL/technical setup friction on client machines.</li>
-      <li class="muted">No revenue projections — price against local freelance IT-audit rates after one paid pilot.</li>
+      <li><strong>Customer problem:</strong> small businesses in Addis Ababa — e-commerce shops, travel agencies, clinics — get websites and mini-apps built by freelancers who hardcode payment keys (Telebirr, Chapa, HelloCash), email passwords and cPanel credentials into files that end up in shared folders, public repos, or backups. Nobody ever checks.</li>
+      <li><strong>Minimum viable service:</strong> a fixed-price <strong>"Secret Leak Audit"</strong>: with the owner's written permission, scan their website files, deploy configs and repo backups with a local secret scanner; deliver a plain-Amharic/English report — what is exposed, what to rotate, where to move it (env vars / credential store) — and fix the top exposures the same day.</li>
+      <li><strong>Delivery workflow:</strong> LEAD → DISCOVERY (inventory of site files &amp; where they live) → SECURITY (local scans, redacted evidence reports) → CEO_REVIEW (human signs off) → RELEASE (report + fixed files handed over) → MAINTENANCE (re-scan after any site change).</li>
+      <li><strong>Main risks:</strong> touching live credentials requires explicit client permission and a tested rollback (rotate one key at a time); a scanner can miss secrets — present the report as "known exposures found", never "your site is safe"; underprice nothing — value is in the same-day fix, not the scan.</li>
+      <li class="muted">No revenue projections — price against local freelance rates after one paid pilot.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Daily Learning: Credential blast radius</h2>
+    <h2>Daily Learning: secret-scanning false negatives (and the canary test)</h2>
     <ul>
-      <li><strong>Concept:</strong> "blast radius" is the damage possible if something goes wrong. For an AI agent, its credential blast radius is every key, login, and token it can reach from where it runs — often far more than you consciously gave it, because CLIs, .env files, and editors quietly store logins on your machine.</li>
-      <li><strong>How an AI agent might get it wrong:</strong> it assumes it only has the credentials it was explicitly handed ("I only have the API key in my config"), and reports the environment as safe based on that assumption.</li>
-      <li><strong>How you recognize the failure:</strong> a security claim with no scan artifact behind it; an evidence item classified VERIFIED that is actually an ASSUMPTION.</li>
-      <li><strong>Which tool/test detects it:</strong> heldkeys (today's test) enumerates the real blast radius without printing secrets; your rule: no agent environment is declared safe without a stored, dated scan report.</li>
+      <li><strong>Concept:</strong> a secret scanner matches <em>patterns</em> (known key formats) plus <em>entropy</em> (random-looking strings) plus <em>context</em> (is it near "password="?). A false positive flags a random-looking-but-harmless string; a false negative misses a real secret in an unusual format or place. Scanners reduce risk; they never prove absence.</li>
+      <li><strong>How an AI agent might get it wrong:</strong> it runs a scanner once, sees "no findings", and reports "VERIFIED: no secrets in the project" — turning a scanner limitation into a security guarantee.</li>
+      <li><strong>How you recognize the failure:</strong> a security claim with no stored scan artifact, or a VERIFIED label on what is really a tool-limited UNVERIFIED result.</li>
+      <li><strong>Which tool/test detects it:</strong> a <em>canary test</em>: plant a few fake secrets in a test folder and confirm the scanner (today: SecretSieve; also Trivy's secret scanning) finds them. No canary found = your scan setup is broken, not your codebase clean. Store the canary result next to every real scan report.</li>
     </ul>
   </section>
 
   <section>
     <h2>Final Summary</h2>
     <ul>
-      <li><strong>Best discovery today:</strong> heldkeys — new, free, MIT, and it answers the most important unasked question in AI-assisted development: what could a hijacked agent actually steal?</li>
-      <li><strong>Best security/reliability improvement:</strong> a heldkeys preflight (what the agent can reach) + Tencent AI-Infra-Guard scans (what your AI infrastructure exposes) — incoming exposure and outgoing deployment, both measurable.</li>
-      <li><strong>Best Agency OS integration:</strong> heldkeys as a SECURITY-stage evidence producer with --strict, BLOCKED on HIGH findings, human waivers only — without touching the gate engine.</li>
-      <li><strong>One practical action today:</strong> open WSL, install heldkeys, run it in your dev environment, and save the report as your first REAL credential-exposure evidence artifact.</li>
+      <li><strong>Best discovery today:</strong> SecretSieve — new, MIT, fully local, redacted output, CI exit codes; the cheapest way to turn "no secrets" from a claim into evidence.</li>
+      <li><strong>Best security/reliability improvement:</strong> pair SecretSieve (secrets) with Trivy v0.76.0 (dependencies) in your pre-push check — two dated JSON reports covering the two most common real-world breaches.</li>
+      <li><strong>Best Agency OS integration:</strong> SecretSieve as a SECURITY-stage evidence producer with exit-code blocking, human-approval waivers only — no changes to the gate engine.</li>
+      <li><strong>One practical action today:</strong> <code>pipx install secretsieve</code>, run it on one real project, save the JSON report as your first REAL secret-scan evidence artifact.</li>
     </ul>
   </section>
 </div>
