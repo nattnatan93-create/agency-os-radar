@@ -35,141 +35,143 @@
   <header>
     <h1>Agency OS <span>Radar</span></h1>
     <div class="tagline">Daily open-source discoveries for a one-person AI software agency</div>
-    <div class="tagline date">Report date: Monday, October 19, 2026 · Focus Edition: "Can AI Ship Production-Ready Apps?" · Addis Ababa (EAT)</div>
+    <div class="tagline date">Report date: Tuesday, October 20, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
   </header>
 
   <section>
     <h2>Start Here (plain English)</h2>
-    <p><strong>The problem:</strong> developers keep saying "AI doesn't make production-ready apps." They're partly right — an AI-coded app that <em>runs</em> can still break under real users, leak secrets, and be impossible to maintain. As a vibe coder building client apps, this argument is aimed directly at you.</p>
-    <p><strong>The solution in today's radar:</strong> the argument isn't really about AI — it's about what happens <em>after</em> the AI writes code. Today's finds are the answer: a proven production architecture to generate <em>into</em>, a production-grade starter kit so AI never invents infrastructure, an IDE built for reviewing AI code, a framework where AI output is reviewable by design, and a battle-tested checklist that defines "production-ready" line by line. Used together, they turn "AI can't ship production apps" into "my pipeline can prove every claim."</p>
-    <p class="muted">This is a focus edition: the five picks were chosen for the production-readiness theme rather than a strict 24-hour news window. Star counts were verified via GitHub search on Oct 19, 2026; licenses verified from each repo's LICENSE file. Claims about recent changes are made only where verified. Per your request, the Ethiopia business-opportunity section has been removed from the report format.</p>
+    <p><strong>The problem:</strong> you use AI agents to build software for clients, and you make those agents more powerful every week — you install "skills" that teach them new abilities, you let multiple agents work together, you trust them to test and secure what they build. But every new ability you bolt onto an agent is also a new door for attackers: a skill downloaded from the internet can quietly read your environment variables, send your API keys to someone else's server, or inject instructions your agent will obey. And nobody is auditing those doors yet.</p>
+    <p><strong>The solution in today's radar:</strong> the open-source ecosystem just shipped the missing security layer for exactly this. Today's five verified finds: NVIDIA's SkillSpector scans agent skills before you install them; Vercel's universal skills CLI gives you one safe, consistent way to install skills across 75+ agents; OMA is an orchestration runtime where approvals and audit records are built in; Strix is an AI pentester that attacks your app the way a real attacker would; and Callstack's agent-device lets your AI agent actually verify a mobile app on a real device. Together they cover the theme that matters to Agency OS: <em>trust nothing the agent runs until it has been scanned, approved, and evidenced.</em></p>
+    <p class="muted">All five repos were verified today (Oct 20, 2026): links opened, licenses read from each repo's LICENSE file, and recent activity confirmed from commit/release dates (SkillSpector: commits Oct 19; vercel-labs/skills: v1.7.4 released Oct 19; OMA: core v1.21.3 released Oct 16, docs Oct 19; Strix: commits Oct 18; agent-device: commits Oct 20). Prior daily reports were not available to me in this session except yesterday's focus edition (bulletproof-react, react-starter-kit, px0, Lowdefy, Mercari checklist) — none of today's picks repeat those. Per your standing format, the Ethiopia business-opportunity section remains removed.</p>
   </section>
 
   <section>
     <h2>The Production-Readiness Gap</h2>
     <div class="gap-box">
-      <p><strong>The criticism:</strong> "Every tool can produce a working demo. None of them consistently produce production-ready software without human review." — practicing engineers and CTOs reviewing 2026's vibe-coding tools ([Justin McKelvey, fractional CTO](https://justinmckelvey.com/blog/best-vibe-coding-tools-2026)).</p>
+      <p><strong>The criticism:</strong> "AI isn't production-ready" doesn't only apply to generated code — it applies even harder to the <em>agent tooling itself</em>. Installing third-party agent skills is effectively running untrusted code with your credentials in scope; AI vulnerability findings and AI test passes are claims, not proof, unless they produce auditable evidence.</p>
     </div>
     <div class="gap-box">
-      <p><strong>The industry's working definition:</strong> production readiness = the team can tell whether the application is healthy from the outside, explain a failure from the inside, and handle real users, sensitive data and an accountable lifecycle ([SDG Engineering checklist](https://www.sdg.la/guides/vibe-coded-app-production-readiness-checklist/)). A working prototype proves the idea; readiness is the engineering layer added after.</p>
+      <p><strong>Today's answer:</strong> the ecosystem is building the "trust but verify" layer — scanners that gate what agents ingest (SkillSpector), standardized install paths (skills CLI), runtimes that record what agents did (OMA), security testing that produces findings with evidence (Strix), and device-level verification of what agents ship (agent-device).</p>
     </div>
-    <div class="gap-box">
-      <p><strong>The sequence that works:</strong> testing first (unit/integration/E2E), then CI/CD that ships only tested code, then monitoring, then security audit — responsibility for readiness lies with the team that deploys, not the generator ([Slash's production checklist](https://slash.co/resources/vibe-coding-to-production-the-checklist-testing-ci-cd-monitoring-security/)).</p>
-    </div>
-    <p><strong>Today's five picks map one-to-one onto that answer:</strong> architecture (bulletproof-react), infrastructure (react-starter-kit), review (px0, Lowdefy), and a measurable definition of done (Mercari's checklist). This is exactly your Agency OS governance philosophy — a project is never production-ready just because it runs.</p>
+    <p><strong>Why this maps to Agency OS:</strong> your governance rules already say agents must never invent facts or evidence and that info must be REAL/VERIFIED before advancing. Today's tools are exactly the kind of external, evidence-producing checkers your gate engine can consume — they don't replace your governance, they feed it.</p>
   </section>
 
   <section>
-    <h2>Top 5 Discoveries — Narrowing the "AI Can't Ship Production" Gap</h2>
+    <h2>Top 5 Discoveries</h2>
 
-    <h3>1. bulletproof-react — production architecture for AI-generated React apps <span class="badge b-test">TEST NOW</span></h3>
+    <h3>1. NVIDIA SkillSpector — security scanner for AI agent skills <span class="badge b-test">TEST NOW</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/alan2207/bulletproof-react">github.com/alan2207/bulletproof-react</a></li>
-      <li><strong>What it does (simple English):</strong> a widely-used open-source reference architecture showing how to structure a real React application so it stays maintainable: layered project structure, feature folders, API/error/state layers, security and performance chapters, and a testing strategy. It's a "known-good blueprint," not a library.</li>
-      <li><strong>Status &amp; adoption:</strong> ~36,000 stars (VERIFIED via GitHub search, Oct 19, 2026). It is an established, actively maintained reference project; no specific recent change is claimed here.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> the #1 reason AI apps become unmaintainable spaghetti is that the agent invents structure per session. Give the agent bulletproof-react as the architecture contract and every generation lands in the same known-good shape — the strongest single rebuttal to "AI code can't be maintained."</li>
-      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from LICENSE file, © 2024 Alan Alickovic). Free; no services, no subscriptions.</li>
-      <li><strong>Windows &amp; install:</strong> clone and read — it's code + docs; works on any OS. The example app runs with Node/pnpm (UNTESTED by me today).</li>
-      <li><strong>Agency OS fit:</strong> ARCHITECTURE stage standard; the architecture agent's rules of the road. Agency OS compatibility: <em>plausible, untested</em>.</li>
-      <li><strong>Evidence/output:</strong> a project skeleton whose layering can be checked file-by-file; an agent can be audited against the structure rules.</li>
-      <li><strong>Limitations/risks:</strong> it's guidance, not enforcement — an agent can still deviate; requires the discipline of pasting the structure into every relevant prompt/skill.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/nvidia/skillspector">github.com/nvidia/skillspector</a></li>
+      <li><strong>What it does (simple English):</strong> scans Claude Code, Codex, and MCP "skills" <em>before</em> you install them, looking for malicious patterns, prompt injection, secret/env harvesting, data exfiltration, and supply-chain risks — and gives a risk score and a DO-NOT-INSTALL-style recommendation.</li>
+      <li><strong>What changed recently:</strong> very active — merge commits on Oct 19, 2026, plus security fixes through October (batch scanning, report-output race fix, provider-cost fixes). This is an evolving project, not a one-off release.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> you install community skills into the agents that hold your API keys. This is the antivirus layer for exactly that supply chain — it converts "this skill looks cool" into "this skill was scanned, here is the report."</li>
+      <li><strong>License &amp; costs:</strong> Apache-2.0 (VERIFIED from LICENSE file, © 2026 NVIDIA). Open source and free; optional LLM-provider API keys can be configured (.env) for provider-based scans — without them you still get pattern-based scanning (UNTESTED by me today).</li>
+      <li><strong>Windows &amp; install:</strong> Python project (uv/pip style toolchain); cross-platform including Windows. Requires Python — check the repo README for the exact install command before running anything.</li>
+      <li><strong>Agency OS fit:</strong> SECURITY stage: a mandatory pre-install scan step for any skill/plugin your agents adopt; also supports REUSABLE_COMPONENT vetting. Compatibility: <em>plausible — produces report files your gate engine could require; untested with your scripts.</em></li>
+      <li><strong>Evidence/output:</strong> a structured scan report per skill (risk score, severity, findings with file/line locations, recommendation) — exactly the kind of artifact that can be attached to project-state.json.</li>
+      <li><strong>Limitations/risks/human review:</strong> pattern detection can miss novel attacks and can false-positive; a clean scan is not a guarantee. Human review still required before installing anything into a production agent setup.</li>
+      <li><strong>Verdict:</strong> TEST NOW — local, free, Windows-friendly, and it hardens the exact supply chain you depend on.</li>
     </ul>
 
-    <h3>2. React Starter Kit — production-grade full-stack skeleton <span class="badge b-test">TEST NOW</span></h3>
+    <h3>2. vercel-labs/skills — universal package manager for agent skills <span class="badge b-test">TEST NOW</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/kriasoft/react-starter-kit">github.com/kriasoft/react-starter-kit</a></li>
-      <li><strong>What it does:</strong> a batteries-included production starter: Bun, TypeScript, Tailwind, tRPC (typed end-to-end API), auth, Stripe payments, and deployment to Cloudflare Workers — organized as app + web packages. Real infrastructure decisions already made and tested by thousands of users.</li>
-      <li><strong>Status &amp; adoption:</strong> ~23,700 stars (VERIFIED via GitHub search, Oct 19, 2026). Established project, maintained since 2014; no specific recent change claimed.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> instead of letting AI invent auth, payments and deployment (the parts that break in production), the agent fills features into a proven skeleton. This moves AI output from "prototype" to "production-shaped" from day one.</li>
-      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from LICENSE file, © Kriasoft). The kit is free; deploying costs whatever Cloudflare/Stripe charge for usage — free tiers exist (check current pricing before committing).</li>
-      <li><strong>Windows &amp; install:</strong> Node/Bun + pnpm via npm — standard Windows-friendly toolchain (setup UNTESTED by me today).</li>
-      <li><strong>Agency OS fit:</strong> SPECIFICATION → ARCHITECTURE stage: pick this skeleton as the default for client web apps; REUSABLE_COMPONENT across projects. Compatibility: <em>plausible, untested</em>.</li>
-      <li><strong>Evidence/output:</strong> a running skeleton with typed API, auth and CI hooks an agent extends — fewer invented facts to verify.</li>
-      <li><strong>Limitations/risks:</strong> opinionated stack (Bun, tRPC, Cloudflare) — clients needing a different stack need a different skeleton; starter-kit lock-in means upgrades must be tracked.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/vercel-labs/skills">github.com/vercel-labs/skills</a></li>
+      <li><strong>What it does (simple English):</strong> one CLI (<code>npx skills</code>) that installs, lists, and searches agent skills across Claude Code, Codex, Cursor, OpenCode, and 75+ other agents — so a skill becomes a portable, versioned package instead of hand-copied files in one tool's private folder.</li>
+      <li><strong>What changed recently:</strong> v1.7.4 released Oct 19, 2026 (VERIFIED from the repo's release tag and latest commit); heavily trending this week; non-interactive CI-friendly install modes and experimental sync were recent focus areas.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> you switch agents constantly. With this, your curated Agency OS skill set installs identically into every agent in one command — less drift, fewer invented setups, reproducible environments.</li>
+      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from LICENSE file, © 2026 Vercel, Inc.). Free; the CLI itself needs no subscription (the skills you install remain your responsibility — see SkillSpector).</li>
+      <li><strong>Windows &amp; install:</strong> Node.js CLI via <code>npx skills</code> — works on Windows with Node installed. No special hardware.</li>
+      <li><strong>Agency OS fit:</strong> DEVELOPMENT stage + REUSABLE_COMPONENT: your internal skill library becomes installable packages for the dev/QA/security agents. Compatibility: <em>plausible, untested</em>.</li>
+      <li><strong>Evidence/output:</strong> reproducible installs (declared skills per agent, CI-friendly non-interactive mode) — a skills manifest an auditor can re-run.</li>
+      <li><strong>Limitations/risks/human review:</strong> it standardizes distribution, not safety — it will happily install a malicious skill unless you pair it with SkillSpector scanning. Skills come from third parties: review before install, never blanket-trust.</li>
+      <li><strong>Verdict:</strong> TEST NOW — quick to try (one npx command), immediate practical value.</li>
     </ul>
 
-    <h3>3. px0 — an IDE built for reviewing AI-generated code <span class="badge b-invest">INVESTIGATE</span></h3>
+    <h3>3. open-multi-agent (OMA) — orchestration runtime with durable approvals and verifiable run records <span class="badge b-invest">INVESTIGATE</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/px0-ai/px0">github.com/px0-ai/px0</a></li>
-      <li><strong>What it does:</strong> an IDE optimized for one job: reviewing AI-generated code fast — it turns your browser into a code-review workstation tuned for the volumes of machine-written code that AI IDEs produce.</li>
-      <li><strong>Status &amp; adoption:</strong> ~1,900 stars (VERIFIED via GitHub search, Oct 19, 2026); MIT LICENSE dated 2026, © Arpit Bhayani (VERIFIED) — a young project from a well-known engineering educator.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> the critics' strongest point is "AI code needs human review, and nobody can review at AI speed." A tool whose entire purpose is high-speed human review of AI output directly attacks the bottleneck in that argument.</li>
-      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from LICENSE file). Free; no subscription requirements known — verify current pricing model before adoption (project is young).</li>
-      <li><strong>Windows &amp; install:</strong> runs in the browser; repo is TypeScript — usable from Windows (setup UNTESTED by me).</li>
-      <li><strong>Agency OS fit:</strong> QA + CEO_REVIEW stages: the human checkpoint where generated code is actually inspected before release. Compatibility: <em>untested</em>.</li>
-      <li><strong>Evidence/output:</strong> review sessions/decisions over AI diffs — a record that a human actually looked.</li>
-      <li><strong>Limitations/risks:</strong> young project (features and pricing may change); a review IDE doesn't replace automated tests — it complements them.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/open-multi-agent/open-multi-agent">github.com/open-multi-agent/open-multi-agent</a></li>
+      <li><strong>What it does (simple English):</strong> a self-hosted TypeScript runtime for running agent teams where the interesting part is governance: human approvals are durable (work pauses until a person decides) and every run produces a verifiable, auditable record. Tagline: "Own it, approve it, audit it."</li>
+      <li><strong>What changed recently:</strong> core v1.21.3 and create-oma-app v0.8.10 released Oct 16, 2026; docs and README updates on Oct 19 (VERIFIED from the repo's CHANGELOG and commit history). Requires Node.js 20+ (Node 20 support ends no earlier than Oct 31, 2026 — use a maintained LTS).</li>
+      <li><strong>Why it matters to a vibe coder:</strong> Agency OS's core bet is exactly this — orchestrated specialist agents, human approval on decisions that matter, evidence over claims. OMA is the closest off-the-shelf open-source implementation of that philosophy found today.</li>
+      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from LICENSE file, © Shenzhen YuanASI Technology Co., Ltd. and contributors). Free; running agents consumes whatever LLM API you point it at (external API dependency — model costs are yours).</li>
+      <li><strong>Windows &amp; install:</strong> TypeScript/Node.js; Windows-compatible in principle (UNTESTED by me); the repo documents known production uses.</li>
+      <li><strong>Agency OS fit:</strong> ORCHESTRATOR support / multiple lifecycle stages (PROPOSAL approvals, QA evidence, CEO_REVIEW checkpoints). Compatibility: <em>plausible — do not replace your gate engine; study its approval/run-record patterns instead; untested against your project-state.json.</em></li>
+      <li><strong>Evidence/output:</strong> durable approval records + verifiable run records per agent execution — the audit trail your VERIFIED/UNVERIFIED rules need.</li>
+      <li><strong>Limitations/risks/human review:</strong> younger ecosystem than the big frameworks; adopting a new orchestration runtime is an architecture decision — investigate first, don't migrate anything yet. LLM API dependency means ongoing model costs.</li>
+      <li><strong>Verdict:</strong> INVESTIGATE — strong philosophy match; needs a hands-on evaluation before any Agency OS commitment.</li>
     </ul>
 
-    <h3>4. Lowdefy — apps AI can generate, humans can review <span class="badge b-invest">INVESTIGATE</span></h3>
+    <h3>4. Strix — open-source AI penetration testing tool <span class="badge b-invest">INVESTIGATE</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/lowdefy/lowdefy">github.com/lowdefy/lowdefy</a></li>
-      <li><strong>What it does:</strong> a framework for building internal/business web apps from YAML/JSON configuration instead of free-form code — dashboards, admin panels, CRUD apps — connected to databases and APIs. Tagline in the repo: "Build apps that AI can generate, humans can review, and teams can maintain."</li>
-      <li><strong>Status &amp; adoption:</strong> ~3,000 stars (VERIFIED via GitHub search, Oct 19, 2026); Apache-2.0 (VERIFIED from LICENSE file). No specific recent change claimed.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> this is the structural answer to the argument. When AI generates <em>configuration</em> for a constrained runtime, every change is a small, readable diff a human can actually approve — "reviewable by design" instead of "hope the code review catches it."</li>
-      <li><strong>License &amp; costs:</strong> Apache-2.0 (VERIFIED). Self-hosting is free; it's open source — hosting costs are your own infrastructure; no subscription required.</li>
-      <li><strong>Windows &amp; install:</strong> Node-based CLI; cross-platform (setup UNTESTED by me today).</li>
-      <li><strong>Agency OS fit:</strong> DEVELOPMENT stage for internal business tools and client dashboards; ideal for small-business CRUD apps. Compatibility: <em>plausible, untested</em>.</li>
-      <li><strong>Evidence/output:</strong> config files that double as human-reviewable specs; the review artifact <em>is</em> the app definition.</li>
-      <li><strong>Limitations/risks:</strong> config-driven frameworks trade flexibility for reviewability — complex custom UX may outgrow it; smaller community than the React ecosystem.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/usestrix/strix">github.com/usestrix/strix</a></li>
+      <li><strong>What it does (simple English):</strong> an AI-driven pentest tool that attacks your app like a real intruder — against code, web apps, APIs, and the OWASP Top 10 — then helps fix the findings; ships as skills so Claude Code, Cursor, or Codex can run pentests, and can scope CI scans to changed files in pull requests.</li>
+      <li><strong>What changed recently:</strong> commits on Oct 18, 2026 (agent pause/resume fixes) and LLM configuration features on Oct 15 (VERIFIED from the repo's commit history); 930+ commits total — an actively developed project, not a new release-day spike.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> your SECURITY stage covers auth, input validation, secrets, dependencies — Strix tests those against a <em>live</em> target the way an attacker would, complementing static scanners that only read code.</li>
+      <li><strong>License &amp; costs:</strong> Apache-2.0 (VERIFIED from LICENSE file, © 2025 OmniSecure Inc.). The tool is free, but it needs an LLM to drive it — external API dependency; model costs depend on the provider you configure (examples default to an OpenRouter-hosted model).</li>
+      <li><strong>Windows &amp; install:</strong> Python-based with a Go/Bubble Tea TUI; CI via GitHub Actions. Windows compatibility plausible but UNTESTED by me — check the README's supported platforms before relying on it.</li>
+      <li><strong>Agency OS fit:</strong> SECURITY stage: the security agent's active-testing capability, before RELEASE. Compatibility: <em>plausible, untested</em>.</li>
+      <li><strong>Evidence/output:</strong> findings with reproducible scope, CI scan results scoped to changed files — attachable as SECURITY-stage evidence artifacts.</li>
+      <li><strong>Limitations/risks/human review:</strong> pentest tools can damage misconfigured targets and generate false findings; never point it at client production systems without written authorization; every finding needs human triage before it enters evidence. Running it means running AI-driven attack logic — restrict to your own test environments.</li>
+      <li><strong>Verdict:</strong> INVESTIGATE — valuable capability, but authorize, scope, and supervise before any real use.</li>
     </ul>
 
-    <h3>5. Mercari production-readiness-checklist — the definition of "done" <span class="badge b-test">TEST NOW</span></h3>
+    <h3>5. agent-device (Callstack) — mobile app automation &amp; verification for AI agents <span class="badge b-invest">INVESTIGATE</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/mercari/production-readiness-checklist">github.com/mercari/production-readiness-checklist</a></li>
-      <li><strong>What it does:</strong> the production-readiness checklist used internally at Mercari/Merpay (a large-scale production company) before microservices go live: architecture, capacity, dependencies, security, observability, incident response, and more — as concrete, checkable items.</li>
-      <li><strong>Status &amp; adoption:</strong> ~950 stars (VERIFIED via GitHub search, Oct 19, 2026); MIT (VERIFIED from LICENSE file, © 2020 Mercari, Inc.). Established internal practice, published openly.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> the argument "AI apps aren't production-ready" is vague until someone defines production-ready. This checklist is that definition, from a company that runs real production at scale. Adopt it and every AI-built release is measured against the same bar a professional SRE would use.</li>
-      <li><strong>License &amp; costs:</strong> MIT (VERIFIED). Free; it's a document.</li>
-      <li><strong>Windows &amp; install:</strong> none needed — Markdown checklist; usable anywhere.</li>
-      <li><strong>Agency OS fit:</strong> the strongest match of the day: turn this checklist into the RELEASE gate's evidence rubric inside your existing gate_engine — items become required evidence types. Compatibility: <em>plausible — requires your adaptation; untested</em>.</li>
-      <li><strong>Evidence/output:</strong> a per-release checklist artifact mapping each item to evidence (test reports, monitoring config, security scan results) — the exact "proof, not promise" the argument demands.</li>
-      <li><strong>Limitations/risks:</strong> written for microservices at Mercari's scale — prune items irrelevant to small-business apps rather than demanding all; a checklist is only as honest as the evidence attached to each item.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Test Today: bulletproof-react as your agent's architecture contract (45–60 minutes, read-only)</h2>
-    <ul>
-      <li><strong>Why this one:</strong> zero-risk (no install of unfamiliar code), works on Windows with any AI IDE, and attacks the maintainability half of the critics' argument immediately.</li>
-      <li><strong>Prerequisites:</strong> your AI coding IDE (Cursor/Copilot/Claude Code etc.) and git to clone the repo. No subscriptions beyond what you already pay.</li>
-      <li><strong>Practical test:</strong> clone or open <a href="https://github.com/alan2207/bulletproof-react">bulletproof-react</a>, read the project-structure and architecture docs, then start a tiny test app and instruct the agent: "Follow the bulletproof-react structure: features folders, layered architecture (app/pages/features/entities/shared/api), no cross-layer imports." Have it build one small feature (e.g., a user list with API layer).</li>
-      <li><strong>Expected results:</strong> the generated code lands in a predictable structure; a second agent session (or you) can navigate and extend it without re-reading everything — the maintainability test critics claim AI fails.</li>
-      <li><strong>Safety precautions:</strong> it's docs + example code — read, don't run unknown scripts; keep the test app throwaway; never grant an agent unrestricted access beyond the project folder.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/callstack/agent-device">github.com/callstack/agent-device</a></li>
+      <li><strong>What it does (simple English):</strong> a CLI, MCP server, and typed Node.js API that lets an AI coding agent drive and verify a real mobile app on iOS, Android, HarmonyOS, TV, and desktop platforms — launch, interact, screenshot, check state — so "the app works" becomes a testable claim instead of an assumption.</li>
+      <li><strong>What changed recently:</strong> commits on Oct 20, 2026 (VERIFIED via the repo's commit history): screenshot selector-crop support for physical iPhones with capture evidence required, plus other active feature work this month.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> if Agency OS ever ships Android apps for small businesses, QA currently has no way to verify on a device without you manually tapping through. This gives the QA agent hands on a real device — and it insists on capture evidence, which matches your evidence rules.</li>
+      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from LICENSE file, © 2026 Callstack). Free; no subscription known. Needs the target device/emulator infrastructure (Android emulator on your PC; some iOS features require Apple hardware/tooling).</li>
+      <li><strong>Windows &amp; install:</strong> Node.js-based CLI/MCP server; Android testing via ADB works on Windows with an emulator or device. Physical-iOS workflows depend on Apple tooling — treat those as macOS-side. UNTESTED by me.</li>
+      <li><strong>Agency OS fit:</strong> QA stage (UI verification for Android deliverables) and REUSABLE_COMPONENT (device-verification skill). Compatibility: <em>plausible, untested</em>.</li>
+      <li><strong>Evidence/output:</strong> screenshots, interaction logs, and verification results from the device — screenshot evidence is required by the tool itself for physical-device claims.</li>
+      <li><strong>Limitations/risks/human review:</strong> platform-dependent (device/emulator setup is fiddly); agent-driven device interaction should be scoped to test devices only; a passing device check doesn't cover performance or store-compliance review — humans still decide release.</li>
+      <li><strong>Verdict:</strong> INVESTIGATE — file it now; test when your first Android project reaches QA.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Agency OS Integration Proposal: a verifiable production-readiness gate</h2>
+    <h2>Test Today: SkillSpector — scan an agent skill before you install it (~30–45 min)</h2>
     <ul>
-      <li><strong>Problem solved:</strong> "production-ready" is currently an opinion. The critics win arguments because readiness claims have no measurable definition. The fix: a checklist-driven, evidence-backed definition — which is already your governance philosophy, now with an industry-authored rubric.</li>
-      <li><strong>Exact workflow improved:</strong> RELEASE gate. Today's picks fill it: <em>bulletproof-react</em> = ARCHITECTURE-stage standard the dev agent must follow; <em>Mercari checklist</em> = RELEASE-stage rubric; <em>px0/Lowdefy</em> = future QA/CEO_REVIEW review tooling.</li>
-      <li><strong>Where in the lifecycle:</strong> ARCHITECTURE (structure standard) → DEVELOPMENT (agent builds into the skeleton, e.g. react-starter-kit) → QA (tests + human review) → SECURITY (your existing scanners: SecretSieve, Trivy) → RELEASE (checklist rubric).</li>
-      <li><strong>Inputs:</strong> the pruned Mercari checklist (small-business-relevant items only), the project's evidence artifacts (test reports, security scans, monitoring config).</li>
-      <li><strong>Outputs:</strong> a per-release readiness artifact in project-state.json: each checklist item marked VERIFIED (with evidence link) / UNVERIFIED / BLOCKED.</li>
-      <li><strong>How results are validated:</strong> evidence validated before advancing — an item is VERIFIED only with a dated artifact attached; agents may never self-mark items without the artifact (your REAL/SIMULATED/ASSUMPTION rules apply).</li>
-      <li><strong>What happens on failure:</strong> missing evidence blocks the RELEASE stage in the gate engine; a waiver (shipping with a known gap) is a commercial/risk decision → human approval required. No change to the gate engine itself — this feeds it.</li>
-      <li><strong>Smallest safe experiment:</strong> take 10 checklist items relevant to a small-business web app (auth, secrets, dependencies, backups, monitoring, error handling, rollback…), run one current project through them by hand, and mark each VERIFIED/UNVERIFIED/BLOCKED. That artifact is your first honest readiness report — and the beginning of your rebuttal to the critics.</li>
+      <li><strong>Why this one:</strong> local, free, Windows-friendly (Python), no expensive subscription, and it hardens the supply chain you actually use daily — installing third-party skills into AI agents that hold your API keys.</li>
+      <li><strong>Prerequisites:</strong> Windows PC with Python installed, git, and your AI coding IDE open. Read the SkillSpector README's official install instructions and follow them exactly — do not run install commands from anywhere other than the official repo.</li>
+      <li><strong>Practical test:</strong> clone the official repo (or use its documented install method), then pick one skill you already use or are considering (e.g., from a popular skills repository) and run the scanner against it. Never execute the skill itself during the test — you are scanning files, not installing them.</li>
+      <li><strong>Expected results:</strong> a structured report with a risk score, severity-tagged findings with file/line locations (env harvesting, exfiltration URLs, prompt injection patterns), and an install recommendation. Test on the repo's own sample "suspicious" skill if one is provided, so you can see a true-positive report safely.</li>
+      <li><strong>Safety precautions:</strong> scan in a sandbox/throwaway directory; don't paste secrets; do not install any scanned skill into your real agent setup based on a "clean" report alone — a clean scan reduces risk, it doesn't eliminate it. Keep agent tool access scoped; never grant unrestricted computer access.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Daily Learning: "production-ready" is a claim about operations, not about code quality</h2>
+    <h2>Agency OS Integration Proposal: a skill-intake gate fed by SkillSpector</h2>
     <ul>
-      <li><strong>Concept (simple English):</strong> production-ready doesn't mean "the code is good." It means: you can tell from the outside whether the app is healthy (monitoring), you can explain why it failed from the inside (logs/traces), you can recover quickly (rollback/backup), and you can account for what it did (audit). A bug you can detect, explain, and roll back is a production incident; a bug you can't see is an outage.</li>
-      <li><strong>How an AI agent might get it wrong:</strong> the agent equates "all tests pass" with "production-ready" and marks the release VERIFIED — ignoring observability, backups, rollback and incident response, which no unit test covers.</li>
-      <li><strong>How you recognize the failure:</strong> a VERIFIED readiness claim with no artifacts for monitoring, error handling, data backup, or rollback — the checklist items with empty evidence slots expose it immediately.</li>
-      <li><strong>Which tool/test detects it:</strong> the Mercari production-readiness checklist turned into a gate rubric — its observability/incident-response items fail loudly when evidence is missing; pair with your existing prepush_release_check.ps1 so a release without those artifacts never reaches the push.</li>
+      <li><strong>Problem solved:</strong> today, adding a skill to an Agency OS agent is an ungoverned act — nothing stops a bad plugin from touching your credentials. The gap is between "agent needs a new ability" and "ability is proven safe."</li>
+      <li><strong>Exact workflow it improves:</strong> the SECURITY stage check applied to <em>agent tooling itself</em> — plus the REUSABLE_COMPONENT stage, where adopted skills become shared assets across projects.</li>
+      <li><strong>Where in the lifecycle:</strong> SECURITY (skill intake scan) and REUSABLE_COMPONENT (vetted skills enter the shared library only with a stored scan report).</li>
+      <li><strong>Inputs:</strong> a candidate skill's source files (from <code>npx skills</code> or any source) + the SkillSpector CLI.</li>
+      <li><strong>Outputs:</strong> a dated scan report artifact per skill, referenced from project-state.json with the skill's source URL and version.</li>
+      <li><strong>How results are validated:</strong> the report is an external artifact, not an agent's word — an agent may attach it but never author the verdict; findings marked VERIFIED only when the report file exists and is dated.</li>
+      <li><strong>What happens on failure:</strong> a HIGH-severity finding blocks the skill from entering the library; overriding that block is a waiver → human approval required, per your existing rules. This <em>feeds</em> the gate engine as a new evidence type — no replacement of the gate engine or governance is proposed.</li>
+      <li><strong>Smallest safe experiment:</strong> scan one skill you already trust, store the report, and add one manual checklist step: "no new skill installs without a scan report." No code changes to gate_engine.py yet — first prove the report quality is worth wiring in.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Daily Learning: supply-chain risk in agent skills (skills are code with your credentials)</h2>
+    <ul>
+      <li><strong>Concept (simple English):</strong> an agent "skill" is not documentation — it's instructions and often scripts that run in the same environment as your API keys. A malicious skill can read environment variables, phone home, or inject prompts that redirect the agent's later behavior. It's the npm-malware problem, but the package executes <em>inside your most privileged tool</em>.</li>
+      <li><strong>How an AI agent might get it wrong:</strong> the agent recommends or auto-installs a skill because it's popular or "looks official," and reports the install as a success — popularity is not verification, and the agent has no way to know what the skill's scripts actually do at runtime.</li>
+      <li><strong>How you recognize the failure:</strong> an install happened with no scan report attached; the evidence trail for "this skill is safe" is missing or was authored by the agent itself instead of an external scanner.</li>
+      <li><strong>Which tool/test detects it:</strong> SkillSpector — its findings (env-variable harvesting, exfiltration endpoints, prompt-injection patterns) catch the common malicious patterns; pair it with your rule that no skill enters the environment without a stored scan artifact. Detects patterns, not everything — human review stays mandatory.</li>
     </ul>
   </section>
 
   <section>
     <h2>Final Summary</h2>
     <ul>
-      <li><strong>Best discovery today:</strong> Mercari's production-readiness checklist — the industry definition of "done" that turns the critics' vague argument into a measurable bar your pipeline can clear and prove.</li>
-      <li><strong>Best security/reliability improvement:</strong> bulletproof-react as an architecture contract for every agent session — maintainability is the critics' strongest point, and structure is the cheapest countermeasure.</li>
-      <li><strong>Best Agency OS integration:</strong> the evidence-backed RELEASE gate — checklist items as required evidence types in your existing gate engine, human approval for waivers, no governance changes.</li>
-      <li><strong>One practical action today:</strong> run the 10-item checklist experiment on one current project and mark each item VERIFIED/UNVERIFIED/BLOCKED — your first machine-checkable readiness artifact.</li>
+      <li><strong>Best discovery today:</strong> NVIDIA SkillSpector — the security layer for the agent-skills supply chain, from a vendor you can hold accountable, Apache-2.0, actively maintained, and locally testable today.</li>
+      <li><strong>Best security/reliability improvement:</strong> a skill-intake gate: every skill scanned (SkillSpector) before install, distributed reproducibly (vercel-labs/skills), with the report stored as evidence.</li>
+      <li><strong>Best Agency OS integration:</strong> scan reports as a new SECURITY-stage evidence type in your existing gate engine — human approval required to override a HIGH finding; no governance changes.</li>
+      <li><strong>One practical action today:</strong> run SkillSpector on one skill you already use, read its report, and start the habit: no unscanned skill ever enters your agent setup again.</li>
     </ul>
   </section>
 </div>
