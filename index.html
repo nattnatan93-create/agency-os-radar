@@ -36,145 +36,145 @@
   <header>
     <h1>Agency OS <span>Radar</span></h1>
     <div class="tagline">Daily open-source discoveries for a one-person AI software agency</div>
-    <div class="tagline date">Report date: Wednesday, October 21, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
+    <div class="tagline date">Report date: Thursday, October 22, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
   </header>
 
   <section>
     <h2>Start Here (plain English)</h2>
-    <p><strong>The problem:</strong> your AI agency builds apps fast, but "fast" quietly depends on two fragile things: (1) the open-source building blocks you pull into every project — libraries, containers, toolchains — which can carry known vulnerabilities or broken certificates; and (2) your ability to <em>prove</em> the app actually works end-to-end, not just that it compiled and tests passed. Clients don't pay for "it runs"; they pay for "it's safe and it works."</p>
-    <p><strong>The solution in today's radar:</strong> the open-source ecosystem shipped real, evidence-producing answers this week. Trivy released a security update <em>today</em> (Oct 21) that also protects against a real certificate-authority compromise. OSV-Scanner shipped a new release that checks your dependencies against Google's vulnerability database. Playwright shipped WebMCP support so your tests can verify the AI tools your own web apps expose. And two actively developed desktop orchestrators — Orchestrator.inc and Orca — show how far "run and supervise a fleet of coding agents from one place" has matured. Together they feed Agency OS exactly what it needs: <em>scanners and tests that produce dated evidence, not claims.</em></p>
-    <p class="muted">All five links, licenses, and release dates were verified today (Oct 21, 2026) directly on GitHub (license files read from each repo; release dates read from each repo's Releases page; activity confirmed from commit history). Yesterday's report (SkillSpector, vercel-labs/skills, OMA, Strix, agent-device) is available and none of today's picks repeat those. OMA was updated again (commits Oct 20) but not enough of a change to re-feature. No verified fresh discovery was found in the reusable-components category (dashboards, UI kits) within the 7-day window this cycle — rather than pad the list with unverifiable templates, today's five are the strongest verified finds. Per your standing format, the Ethiopia business-opportunity section remains removed.</p>
+    <p><strong>The problem:</strong> your agency's apps are only as trustworthy as (1) the coding agents that build them — what they did, and whether their behavior changed when a prompt or model changed; and (2) your ability to hand work between agents without losing context. Clients pay for apps whose AI behavior is <em>tested and stable</em>, not for apps whose AI "seemed smart once."</p>
+    <p><strong>The solution in today's radar:</strong> five verified finds. OpenCode 2.0 is a major release of the flagship open-source coding agent — now embeddable via an SDK. promptfoo turns AI behavior into regression tests and red-team scans that run in CI. ai-memory gives coding agents persistent, git-backed memory and vendor-neutral handoff. google/skills shows how reusable agent know-how is being packaged as official, reusable components. And a brand-new pre-commit secret scanner demonstrates the change-aware pattern your own precommit checks could adopt. Together they attack the two gaps a vibe coder feels most: <em>agent output you can't verify, and context you lose between agents.</em></p>
+    <p class="muted">All five GitHub links and licenses were verified today (Oct 22, 2026) via the GitHub API (license fields read from each repo; star counts and push dates read from each repo). Release dates are sourced from official release pages and news coverage, cited where used. Prior reports were available (Oct 20: SkillSpector, vercel-labs/skills, OMA, Strix, agent-device; Oct 21: Trivy, OSV-Scanner, Playwright, Orchestrator.inc, Orca) — none of today's picks repeat them. Per your standing preference set Oct 19, the Ethiopia business-opportunity section remains removed from this report.</p>
   </section>
 
   <section>
     <h2>The Production-Readiness Gap</h2>
     <div class="gap-box">
-      <p><strong>The criticism:</strong> "AI-built apps aren't production-ready" is usually an evidence problem. An agent saying "no known vulnerabilities" or "the app works" is a claim. Production-ready means a scanner report with dates and findings, a test run against the real app, and an audit trail of what agents did.</p>
+      <p><strong>The criticism:</strong> "AI-built apps aren't production-ready" is usually an <em>evidence</em> problem. An agent saying "the AI feature works" or "I remember the client's requirements" is a claim. Production-ready means: AI behavior is regression-tested against approved examples, prompts can't silently break, agents can prove what they did, and knowledge survives the switch from one agent to the next.</p>
     </div>
     <div class="gap-box">
-      <p><strong>Today's answer:</strong> Trivy and OSV-Scanner turn dependency/config security into machine-readable reports; Playwright's WebMCP support extends proven browser testing to the AI-tool layer; Orchestrator.inc and Orca turn "multiple agents working on one project" into a supervised, trackable workflow with branches, PRs, CI and review state attached.</p>
+      <p><strong>Today's answer:</strong> promptfoo makes AI outputs testable in CI with pass/fail evidence and AI red-teaming; OpenCode 2.0's SDK turns the coding agent itself into an auditable, embeddable component; ai-memory makes agent memory a plain, diffable, human-readable git artifact; google/skills packages repeatable know-how as reviewable components instead of buried prompts.</p>
     </div>
-    <p><strong>Why this maps to Agency OS:</strong> your governance already demands VERIFIED evidence before a gate advances and human approval for release. Today's tools are external evidence producers — scanners and test runners whose output your gate engine can consume. None of them replace your governance; they feed it.</p>
+    <p><strong>Why this maps to Agency OS:</strong> your governance already demands VERIFIED evidence and distinguishes REAL/SIMULATED/ASSUMPTION. Today's tools are external evidence producers — eval reports, git-backed memory, session records — that your gate engine can consume. They feed your governance; none replace it.</p>
   </section>
 
   <section>
     <h2>Top 5 Discoveries</h2>
 
-    <h3>1. Trivy v0.76.1 — vulnerability &amp; misconfiguration scanner with an urgent security update <span class="badge b-test">TEST NOW</span></h3>
+    <h3>1. OpenCode 2.0 — flagship open-source AI coding agent, now embeddable <span class="badge b-test">TEST NOW</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/aquasecurity/trivy">github.com/aquasecurity/trivy</a> · <a href="https://github.com/aquasecurity/trivy/releases/tag/v0.76.1">v0.76.1 release</a></li>
-      <li><strong>What it does (simple English):</strong> one scanner that checks your project files, containers, and infrastructure-as-code for known vulnerabilities, exposed secrets, and misconfigurations — and outputs JSON/SARIF reports.</li>
-      <li><strong>What changed recently and when:</strong> v0.76.1 released <strong>today, Oct 21, 2026</strong> (VERIFIED from the repo's Releases page, signed release). It is a security update for the eMudhra intermediate CA key compromise: official binaries are built with Go 1.27.3, which includes the certificate distrust mitigation tracked as CVE-2026-111943; container images carry an updated Alpine CA trust store that rejects the affected chains.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> your SECURITY stage covers dependencies, config, and deployment — Trivy scans all three in one command and produces the dated report your rules require. And today's release is a live lesson: even your <em>scanner's own trust chain</em> can be the thing that needs patching.</li>
-      <li><strong>License &amp; costs:</strong> Apache-2.0 (VERIFIED from the LICENSE file). Free and open source; no subscription. Scanning is local/offline-capable for vuln databases you download; no external API required.</li>
-      <li><strong>Windows &amp; install:</strong> single static binary; Windows binaries are distributed on the Releases page (check the exact asset name there), plus documented installer routes. No heavy prerequisites.</li>
-      <li><strong>Agency OS fit:</strong> SECURITY stage (dependencies, config, deployment) and MAINTENANCE (re-scan on new CVEs). Compatibility: <em>plausible — its JSON/SARIF output could be required by gate_engine.py as evidence; untested with your scripts.</em></li>
-      <li><strong>Evidence/output:</strong> JSON/SARIF scan reports with CVE IDs, severities, and fixed versions — exactly the artifact type project-state.json can reference.</li>
-      <li><strong>Limitations/risks/human review:</strong> scanners report findings, not risk decisions — a HIGH finding needs human triage before it blocks or waives anything; false positives happen; a clean scan is a snapshot, not a guarantee.</li>
-      <li><strong>Verdict:</strong> TEST NOW — local, free, Windows-friendly, shipped a security fix literally today.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/anomalyco/opencode">github.com/anomalyco/opencode</a></li>
+      <li><strong>What it does (simple English):</strong> an open-source AI coding agent that works in the terminal, desktop, and web — it reads your code, makes edits, runs commands, and explains what it did.</li>
+      <li><strong>What changed recently and when:</strong> version 2.0 launched Oct 16, 2026: background agents (subagents work while the main agent continues), "Code Mode" (agents write scripts that combine MCP servers and OpenAPI endpoints in one flow), a rebuilt server API, a new <code>@opencode/client</code> package, and an <code>@opencode/sdk</code> for embedding OpenCode into custom apps. Breaking change: 1.0 plugins and the old server API are incompatible. (VERIFIED: repo active today — last push Oct 22; release coverage from launch news.)</li>
+      <li><strong>Why it matters to a vibe coder:</strong> the SDK means the coding agent stops being a fixed app and becomes a component your orchestrator could spawn, supervise, and audit — the exact shape of Agency OS's dev agent.</li>
+      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from the repo license). The tool is free; the models it calls are not — you bring your own provider keys/subscriptions, so cost depends on your plan. Open source ≠ free model access.</li>
+      <li><strong>Windows &amp; install:</strong> TypeScript project; terminal-first with a desktop app also available. Get install steps from the official repo/docs only — never from third-party mirrors.</li>
+      <li><strong>Agency OS fit:</strong> DEVELOPMENT stage dev agent, or an embeddable engine behind your orchestrator. Compatibility: <em>plausible — the SDK/API could integrate with your orchestration; untested with gate_engine.py or project-state.json.</em></li>
+      <li><strong>Evidence/output:</strong> session records of edits, commands run, and diffs — reviewable history of what the agent actually did.</li>
+      <li><strong>Limitations/risks/human review:</strong> 2.0 has breaking changes (plugins from 1.x won't work); agent edits still require your QA gates — "the agent wrote it" is not evidence of correctness; model subscription costs are yours.</li>
+      <li><strong>Verdict:</strong> TEST NOW — major, well-documented release of the category leader in open-source coding agents.</li>
     </ul>
 
-    <h3>2. OSV-Scanner v2.7.0 — dependency auditing against Google's OSV database <span class="badge b-test">TEST NOW</span></h3>
+    <h3>2. promptfoo — regression tests and red-teaming for AI apps, now part of OpenAI <span class="badge b-test">TEST NOW</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/google/osv-scanner">github.com/google/osv-scanner</a> · <a href="https://github.com/google/osv-scanner/releases/tag/v2.7.0">v2.7.0 release</a></li>
-      <li><strong>What it does (simple English):</strong> scans your lockfiles and SBOMs and checks every dependency against OSV — the open, Google-backed database of known open-source vulnerabilities — so "is this package safe to use?" gets a data-backed answer.</li>
-      <li><strong>What changed recently and when:</strong> v2.7.0 released Oct 12, 2026 (VERIFIED from the Releases page, signed release): package URLs (purl) in JSON output, vulnerability severity/rating in CycloneDX output, the Dart package-config extractor enabled by default, better Maven resolution, Bitnami SPDX SBOM scanning, and offline-mode fixes (no network-required plugins when scanning offline).</li>
-      <li><strong>Why it matters to a vibe coder:</strong> agents love adding packages. OSV-Scanner is the cheap, automated check that turns "the agent added 12 dependencies" into a dated list of which ones carry known CVEs.</li>
-      <li><strong>License &amp; costs:</strong> Apache-2.0 (VERIFIED from the LICENSE file). Free, no subscription; queries the free public OSV API (or offline databases) — no paid account needed.</li>
-      <li><strong>Windows &amp; install:</strong> Go-based single binary; Windows binaries distributed on the Releases page (check the exact asset name there). No special hardware.</li>
-      <li><strong>Agency OS fit:</strong> SECURITY stage (dependency auditing) and DEVELOPMENT pre-commit checks alongside your precommit_check.py. Compatibility: <em>plausible — JSON output is gate-engine friendly; untested with your scripts.</em></li>
-      <li><strong>Evidence/output:</strong> JSON results with purl identifiers and CVE/GHSA IDs per dependency — a machine-readable dependency audit artifact.</li>
-      <li><strong>Limitations/risks/human review:</strong> only as good as the OSV data and your lockfiles (unpinned deps are harder to judge); severity ≠ exploitability — humans decide what actually blocks a release.</li>
-      <li><strong>Verdict:</strong> TEST NOW — one-binary local scan, free, pairs naturally with Trivy.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/promptfoo/promptfoo">github.com/promptfoo/promptfoo</a></li>
+      <li><strong>What it does (simple English):</strong> a CLI that runs your AI prompts and agents against a fixed set of test cases and scores the answers — so when a prompt or model changes, you find out what broke in seconds, in CI, instead of hoping nothing did. It also runs AI red-team scans (jailbreaks, injection, OWASP LLM presets).</li>
+      <li><strong>What changed recently and when:</strong> v0.124.0 released Oct 6, 2026; repo active today (last push Oct 22, VERIFIED). The project was acquired by OpenAI (announced March 2026) and the repo remains MIT-licensed open source.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> every AI app your agency ships has prompts. promptfoo turns "the AI seems fine" into a dated pass/fail artifact — and its red-team scans give your SECURITY stage something real to check before release.</li>
+      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from the repo license). Free; runs against your model provider using your own API key (usage costs apply), and supports provider-free self-tests (echo provider) for CI plumbing with zero model calls.</li>
+      <li><strong>Windows &amp; install:</strong> Node.js CLI — <code>npx promptfoo@latest</code> — also installable via npm, pip, or brew. No special hardware.</li>
+      <li><strong>Agency OS fit:</strong> QA stage (AI-feature regression evidence) and SECURITY stage (AI red-teaming before release). Compatibility: <em>plausible — JSON/HTML results are gate-engine friendly; untested with your scripts.</em></li>
+      <li><strong>Evidence/output:</strong> dated eval results (JSON/HTML) with pass/fail per test case, plus structured red-team findings reports.</li>
+      <li><strong>Limitations/risks/human review:</strong> LLM-as-judge scores are non-deterministic — prefer deterministic assertions, treat judge scores as advisory; red-team scans send your prompts to your model provider — check data handling before using client data; a passing suite proves covered cases, not overall safety.</li>
+      <li><strong>Verdict:</strong> TEST NOW — free, Windows-friendly, testable today with zero model spend.</li>
     </ul>
 
-    <h3>3. Playwright v1.64 (WebMCP) — browser testing now covers AI tools your app exposes <span class="badge b-test">TEST NOW</span></h3>
+    <h3>3. ai-memory — persistent, git-backed memory and handoff for coding agents <span class="badge b-invest">INVESTIGATE</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/microsoft/playwright">github.com/microsoft/playwright</a> · <a href="https://github.com/microsoft/playwright/releases/tag/v1.64.1">v1.64.1 release</a></li>
-      <li><strong>What it does (simple English):</strong> the standard open-source library for automating real browsers to test web apps — click, type, screenshot, assert. New in v1.64.0: <code>page.webmcp</code> lets tests call the tools a page registers via the experimental WebMCP browser API, and Playwright MCP exposes those page-defined tools to agents as <code>webmcp_&lt;tool&gt;</code>.</li>
-      <li><strong>What changed recently and when:</strong> v1.64.0 released Oct 7, 2026 (WebMCP support, custom-framerate videos with CSS-styled action decorations); v1.64.1 released Oct 14, 2026 fixing an Electron launch regression and a Chromium cross-origin redirect routing bug (VERIFIED from the Releases page).</li>
-      <li><strong>Why it matters to a vibe coder:</strong> your QA stage needs UI-E2E evidence. Playwright is the de-facto way to produce it — trace viewers, videos, screenshots — and WebMCP means that when your apps expose AI tools to browsers, those tools get tested like any other feature instead of trusted blindly.</li>
-      <li><strong>License &amp; costs:</strong> Apache-2.0 (VERIFIED from the LICENSE file). Free; no subscription. Runs locally; browsers are auto-downloaded on install (disk space required).</li>
-      <li><strong>Windows &amp; install:</strong> first-class Windows support; Node.js (npm init playwright@latest) — also works from Python/.NET. No special hardware.</li>
-      <li><strong>Agency OS fit:</strong> QA stage (UI-E2E evidence: traces, videos, screenshots) — the exact artifact set your QA→SECURITY→RELEASE chain needs. Compatibility: <em>plausible — its reports could gate QA; untested with your scripts.</em></li>
-      <li><strong>Evidence/output:</strong> test results, traces, videos, screenshots — human-reviewable proof the app behaves as specified.</li>
-      <li><strong>Limitations/risks/human review:</strong> WebMCP is experimental and behind a browser feature flag — don't build client deliverables on it yet; passing E2E tests prove covered paths, not overall correctness; a human still signs off UAT.</li>
-      <li><strong>Verdict:</strong> TEST NOW — if you don't already run UI-E2E tests, v1.64 is the release to start with.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/akitaonrails/ai-memory">github.com/akitaonrails/ai-memory</a></li>
+      <li><strong>What it does (simple English):</strong> gives AI coding CLIs (Claude Code, Codex, and similar) long-term memory stored as a plain markdown wiki backed by git — so context survives between sessions and can be handed off between different agent vendors.</li>
+      <li><strong>What changed recently and when:</strong> very active — last push Oct 22, 2026 (today, VERIFIED from the repo), ~12.6k stars; it was a top trending repo the week of Oct 17, 2026 in trending analyses. Specific release dates were not individually verified today.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> Agency OS's orchestrator coordinates specialized agents — discovery, spec, dev, QA, security. Their shared context currently lives (if anywhere) in project-state.json. A git-backed, human-readable memory layer is the same problem solved once, and its diffs are reviewable evidence.</li>
+      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from the repo license). Free; local-first, no subscription. No external API dependency for storage (markdown + git).</li>
+      <li><strong>Windows &amp; install:</strong> Rust-powered tool distributed as a binary — check the official repo README for the current Windows route before installing. Verify binaries come from the official repo only.</li>
+      <li><strong>Agency OS fit:</strong> orchestrator coordination and MAINTENANCE stage (context across sessions). Compatibility: <em>plausible — memory as markdown files is portable and could complement project-state.json; untested.</em></li>
+      <li><strong>Evidence/output:</strong> a diffable markdown knowledge base — every memory addition is a commit you can review, reject, or attribute.</li>
+      <li><strong>Limitations/risks/human review:</strong> agents writing to shared memory can record unverified claims as if they were facts — your REAL/SIMULATED/ASSUMPTION discipline must apply to memory contents too; never let client secrets land in memory files; newer project — pin versions and review what it stores.</li>
+      <li><strong>Verdict:</strong> INVESTIGATE — the pattern fits Agency OS's handoff problem perfectly; verify maturity firsthand before adopting.</li>
     </ul>
 
-    <h3>4. Orchestrator.inc — desktop workspace for running and supervising coding-agent teams <span class="badge b-invest">INVESTIGATE</span></h3>
+    <h3>4. google/skills — official reusable agent skills for Google technologies <span class="badge b-invest">INVESTIGATE</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/OrchestratorInc/agent-orchestrator">github.com/OrchestratorInc/agent-orchestrator</a></li>
-      <li><strong>What it does (simple English):</strong> a local desktop app that lets you run multiple coding agents (Claude Code, Codex, 30+ others) on one project: each worker gets its own branch and git worktree, and the task, terminal, changed files, preview, pull request, CI run, and review state stay attached to that session, tracked in a live Kanban view.</li>
-      <li><strong>What changed recently and when:</strong> very active project — 3,416 commits in the repo (VERIFIED from the repo's commit history Oct 21, 2026); this is a maturing product, not a one-day spike. Specific recent release dates were not verified today — check the repo's Releases page before relying on any version.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> Agency OS's core design is specialist agents coordinated by an orchestrator. Orchestrator.inc is a working, open-source implementation of the "supervise many agents on one codebase" problem — worktree isolation, branch-collision prevention, and per-task visibility are the same problems your orchestrator faces.</li>
-      <li><strong>License &amp; costs:</strong> Apache-2.0 (VERIFIED from the LICENSE page). The desktop app is free/open source; the coding agents it drives run on your own subscriptions/API keys — those are external paid dependencies (model costs are yours).</li>
-      <li><strong>Windows &amp; install:</strong> desktop app for macOS, Windows, and Linux, plus mobile companion apps (per the repo README, VERIFIED Oct 21). Download from the official repo's releases; don't trust third-party download mirrors.</li>
-      <li><strong>Agency OS fit:</strong> DEVELOPMENT stage oversight: a human-supervised cockpit for multi-agent coding sessions. Compatibility: <em>plausible — it complements, not replaces, your gate engine; untested against project-state.json.</em></li>
-      <li><strong>Evidence/output:</strong> per-session records of changed files, PRs, CI runs, and review state — visible, human-reviewable history of what each agent did.</li>
-      <li><strong>Limitations/risks/human review:</strong> a powerful agent cockpit still requires the human to review every merge; multi-agent parallel work multiplies blast radius if unreviewed; external API/subscription dependency for the agents; version/feature claims should be re-verified from releases before adoption.</li>
-      <li><strong>Verdict:</strong> INVESTIGATE — strongest philosophy match found for your orchestrator layer; evaluate before committing.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/google/skills">github.com/google/skills</a></li>
+      <li><strong>What it does (simple English):</strong> a growing public library of "Agent Skills" for Google products and technologies — structured instruction packages that teach AI agents how to correctly use specific platforms, instead of the agent guessing.</li>
+      <li><strong>What changed recently and when:</strong> active today (last push Oct 22, 2026, VERIFIED from the repo); ~21.5k stars, created March 2026 — one of the fastest-growing "skills" libraries on GitHub, part of the emerging agent-skills ecosystem trend this month.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> your REUSABLE_COMPONENT lifecycle stage is about never solving the same problem twice. Agent-skills repos are the instruction-format equivalent: packaged, versioned, reviewable know-how your agents load on demand — and this is Google publishing them officially.</li>
+      <li><strong>License &amp; costs:</strong> Apache-2.0 (VERIFIED from the repo license). Free, no subscription, no external API required to use the files.</li>
+      <li><strong>Windows &amp; install:</strong> no install — skills are plain files (markdown instructions) your agent reads. Works on any OS.</li>
+      <li><strong>Agency OS fit:</strong> REUSABLE_COMPONENT stage — a model for how to package your own repeatable expertise (e.g., "deploy a client site to Cloudflare Pages" as a reviewed skill). Compatibility: <em>plausible — skill files are tool-agnostic; untested with your agent setup.</em></li>
+      <li><strong>Evidence/output:</strong> the skills themselves are reviewable artifacts — you read exactly what instructions your agent received, no hidden prompt.</li>
+      <li><strong>Limitations/risks/human review:</strong> Google-technology-specific scope; the "skills" format is still an emerging convention — always review any third-party skill's full text before loading it into an agent (a skill is executable influence over your agent); verify a skill matches your actual tool versions before trusting its instructions.</li>
+      <li><strong>Verdict:</strong> INVESTIGATE — low-cost to study now, and the packaging pattern is worth stealing for Agency OS regardless of stack.</li>
     </ul>
 
-    <h3>5. Orca (stablyai) — run a fleet of coding agents under your own subscriptions <span class="badge b-invest">INVESTIGATE</span></h3>
+    <h3>5. SecureVibeCoded / Hacktoberfest-CommitShield (svc) — change-aware pre-commit secret scanner <span class="badge b-invest">INVESTIGATE</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/stablyai/orca">github.com/stablyai/orca</a></li>
-      <li><strong>What it does (simple English):</strong> an Electron-based desktop workspace for running multiple coding agents ("a fleet") — each task its own agent session, on desktop and mobile, with agent skills, remote terminals, and project tooling built in (per the repo structure and the agents-radar trending digest of Oct 18, 2026; fleet/subscriptions framing from the digest, not yet independently verified by me beyond the repo itself).</li>
-      <li><strong>What changed recently and when:</strong> extremely active — latest commit Oct 21, 2026 (today), 15,535 commits total, including Windows-specific fixes (win32 EPERM handling) and active work across docs, CLI skill guides, mobile, and remote-terminal components (VERIFIED from the repo's commit history Oct 21, 2026).</li>
-      <li><strong>Why it matters to a vibe coder:</strong> it treats "many agents, many projects, one operator" as the primary interface — the exact shape of a one-person AI agency. Its skill-guide and safe-Jira-access work suggests deliberate thinking about scoped agent permissions.</li>
-      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from the LICENSE file, © 2026 Lovecast Inc.). Free; the coding agents it runs consume your own subscriptions/API keys — external paid dependency.</li>
-      <li><strong>Windows &amp; install:</strong> Electron desktop app with explicit win32 fixes in the codebase — Windows is a supported target (UNTESTED by me). Install only from the official repo's releases.</li>
-      <li><strong>Agency OS fit:</strong> DEVELOPMENT/RELEASE oversight cockpit; its permission-scoped agent skills are a pattern your security agent could learn from. Compatibility: <em>plausible, untested.</em></li>
-      <li><strong>Evidence/output:</strong> session and project records, remote-terminal history, and per-skill permission boundaries — but treat its records as SIMULATED/UNVERIFIED until you validate them against your own evidence rules.</li>
-      <li><strong>Limitations/risks/human review:</strong> huge, fast-moving codebase means rapid change — pin versions; "fleet of agents with your subscriptions" concentrates credentials in one app, so scope its access carefully; capability claims from the trending digest need firsthand verification; never grant unrestricted computer access.</li>
-      <li><strong>Verdict:</strong> INVESTIGATE — promising and very alive; verify capabilities yourself before any Agency OS use.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Test Today: Trivy v0.76.1 — scan an Agency OS project folder on Windows (~30 min)</h2>
-    <ul>
-      <li><strong>Why this one:</strong> a single free binary, runs locally on Windows, no subscription, and it shipped a security fix <em>today</em> — including a real-world lesson in certificate trust that every developer should absorb.</li>
-      <li><strong>Prerequisites:</strong> a Windows PC and one project folder (e.g., an Agency OS client project with lockfiles or requirements). No Python/Node needed — it's a static binary.</li>
-      <li><strong>Official installation steps:</strong> open the official <a href="https://github.com/aquasecurity/trivy/releases/tag/v0.76.1">v0.76.1 release page</a>, download the Windows 64-bit zip asset, verify it came from the aquasecurity repo (signed release), extract it, and add it to PATH. Get commands from the official docs only — never copy install commands from random blog posts.</li>
-      <li><strong>Practical test:</strong> in your project folder run <code>trivy fs . --scanners vuln,secret,misconfig --format json --output trivy-report.json</code>, then open the JSON and note every HIGH/CRITICAL finding with its fixed version.</li>
-      <li><strong>Expected results:</strong> a dated machine-readable report listing vulnerable dependencies (with CVE IDs and fix versions), any committed secrets, and config problems. First run downloads vulnerability databases; later runs can use cached data.</li>
-      <li><strong>Safety precautions:</strong> scanning is read-only, but keep the report out of public repos if it lists secret findings (fix and re-scan instead of publishing); download the binary only from the official repo; don't paste findings with client data into public AI tools; treat every HIGH finding as human-triage required, not auto-block.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/yashselokar2025/Hacktoberfest-CommitShield">github.com/yashselokar2025/Hacktoberfest-CommitShield</a></li>
+      <li><strong>What it does (simple English):</strong> a pre-commit hook that sits on top of Gitleaks and only alerts on <em>newly introduced</em> secrets (tracking findings in a local SQLite baseline), optionally using a local Gemma model via Ollama to judge borderline tokens — aiming to kill alert fatigue without letting real keys through.</li>
+      <li><strong>What changed recently and when:</strong> brand new — repo created Oct 17, 2026 (VERIFIED from the repo; MIT license). It's a Hacktoberfest 2026 challenge submission published this month, with an install.ps1 for Windows and a Next.js showcase site.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> the design directly addresses your daily reality — agents generate lots of code with lots of tokens, and a scanner that cries wolf on every commit gets disabled. The change-aware NEW/EXISTING/RESOLVED baseline is a pattern your precommit_check.py could adopt even if you never install this tool.</li>
+      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from the repo license). Free; core scanning is offline-capable (Gitleaks rules + local SQLite; Gemma via local Ollama with a rule-based fallback).</li>
+      <li><strong>Windows &amp; install:</strong> Python/pip install from the git repo, with a Windows install.ps1 script provided. Note: pip-installing from a five-day-old repo is a supply-chain risk — see below.</li>
+      <li><strong>Agency OS fit:</strong> SECURITY stage pre-commit (secrets). Compatibility: <em>plausible pattern for precommit_check.py; the tool itself is UNTESTED and too immature to trust as-is.</em></li>
+      <li><strong>Evidence/output:</strong> pre-commit block/pass decisions plus a SQLite findings baseline; the concept of a machine-checked "no new secrets" statement is exactly the evidence type your SECURITY gate wants.</li>
+      <li><strong>Limitations/risks/human review:</strong> its accuracy claims (e.g., F1 = 0.950, ~8% false positives) are SELF-REPORTED and UNVERIFIED — treat as claims, not facts; a 2-star, week-old hackathon project with install scripts must be code-reviewed before you run anything; running an LLM over your diffs means diffs pass through that model — keep it local (Ollama) and never point it at client secrets.</li>
+      <li><strong>Verdict:</strong> INVESTIGATE — study and borrow the pattern today; do not install blindly.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Agency OS Integration Proposal: Trivy scan reports as SECURITY-stage gate evidence</h2>
+    <h2>Test Today: promptfoo — a no-API-key AI regression suite on Windows (~30 min)</h2>
     <ul>
-      <li><strong>Problem solved:</strong> your SECURITY stage covers dependencies, config, and deployment, but today nothing forces a machine-readable scan artifact to exist before a gate advances — an agent's "no vulnerabilities known" is currently a claim, not evidence.</li>
-      <li><strong>Exact workflow/agent it improves:</strong> the security agent's dependency/config/deployment checks, plus prepush_release_check.ps1-style pre-release verification.</li>
-      <li><strong>Where in the lifecycle:</strong> SECURITY stage, re-run at MAINTENANCE whenever new CVEs land.</li>
-      <li><strong>Inputs:</strong> the project directory (lockfiles, IaC, Dockerfiles) + the Trivy binary; no API keys, no secrets in the report command.</li>
-      <li><strong>Outputs:</strong> <code>trivy-report.json</code> (dated, versioned) + a summary of HIGH/CRITICAL findings, referenced from project-state.json.</li>
-      <li><strong>How results are validated:</strong> the JSON report is generated by the external scanner, not authored by an agent — an agent may attach and summarize it but never substitute its own verdict; findings are VERIFIED only when the dated report file exists.</li>
-      <li><strong>What happens on failure:</strong> any CRITICAL finding blocks the SECURITY gate from advancing; overriding it is a waiver → human approval required, per your existing rules. This adds a new evidence type <em>to</em> the gate engine — no replacement of the gate engine or governance is proposed.</li>
-      <li><strong>Blocks a gate or needs human approval?</strong> Gate-blocking on CRITICAL findings (rule-based); any waiver, risk acceptance, or client-affecting decision stays with the human CEO_REVIEW.</li>
-      <li><strong>Smallest safe experiment:</strong> run Trivy once on one real project folder, store the JSON, and add one line to your pre-release checklist: "no release without a dated Trivy report." Only wire it into gate_engine.py after the report quality proves useful.</li>
+      <li><strong>Why this one:</strong> free, MIT-licensed, Node.js CLI that runs on Windows, and you can test its full pipeline today with the built-in "echo" provider — zero model calls, zero subscription spend, no API keys needed.</li>
+      <li><strong>Prerequisites:</strong> a Windows PC with Node.js installed. Nothing else.</li>
+      <li><strong>Official installation steps:</strong> from the official repo README/docs: <code>npx promptfoo@latest</code> runs any command without a global install (also available via <code>npm install -g promptfoo</code> or pip). Get commands from the official documentation only — never from random blog posts.</li>
+      <li><strong>Practical test:</strong> create a small <code>promptfooconfig.yaml</code> with the echo provider and 3–5 test cases with deterministic assertions (e.g., "output must contain X", "must not contain Y"), run <code>npx promptfoo@latest eval</code>, then <code>npx promptfoo@latest validate</code> on the config itself. When you're ready, add one real test using your existing model API key.</li>
+      <li><strong>Expected results:</strong> a pass/fail result per test case plus a viewable results page — a dated, machine-generated artifact you can already imagine attaching to a QA gate. Deterministic assertions should pass/fail exactly as written; the echo provider lets you verify the whole CI plumbing without spending tokens.</li>
+      <li><strong>Safety precautions:</strong> don't paste client data into test prompts; disable telemetry/update checks in CI (documented officially); pin your promptfoo version; red-team scans (later) send prompts to your model provider — confirm data handling first; treat LLM-judge scores as advisory, never as gate-deciding evidence.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Daily Learning: certificate trust chains (why a CA compromise is everyone's problem)</h2>
+    <h2>Agency OS Integration Proposal: promptfoo eval reports as QA-stage gate evidence</h2>
     <ul>
-      <li><strong>Concept (simple English):</strong> when your app talks HTTPS, it doesn't verify "the server is who it says it is" by itself — it trusts a short chain: the server's certificate, signed by an intermediate authority, signed by a root authority your operating system already trusts. If a thief steals an intermediate authority's private key, they can forge certificates your machine will happily accept as genuine. Today's Trivy v0.76.1 exists precisely because of such an incident (the eMudhra intermediate CA key compromise, mitigated via Go 1.27.3 and updated trust stores, tracked as CVE-2026-111943).</li>
-      <li><strong>How an AI agent might get it wrong:</strong> the agent says "all HTTPS connections verified, no vulnerabilities" because the code makes HTTPS calls — but the trust store is outdated and still trusts the compromised chain; or it patches app code while ignoring the runtime/trust-store update that the CVE is actually about.</li>
-      <li><strong>How you recognize the failure:</strong> the security evidence contains no line item for runtime/toolchain versions or trust-store freshness; "secure" claims rest on protocol use rather than on a dated scan of the actual environment.</li>
-      <li><strong>Which tool/test detects it:</strong> Trivy v0.76.1 — scanning with an up-to-date scanner on an up-to-date runtime is exactly how CVE-2026-111943-class issues surface; its report shows which components (binaries, images, trust stores) need the update. Human review of the scanner's own version remains mandatory — as today proved, scanners need patching too.</li>
+      <li><strong>Problem solved:</strong> your QA stage covers unit/integration/API/UI-E2E/UAT — but nothing yet produces machine-checkable evidence that an app's <em>AI behavior</em> still meets the spec after a prompt, model, or dependency change. Today that's a claim, not evidence.</li>
+      <li><strong>Exact workflow/agent it improves:</strong> the QA agent's test suite assembly, plus the SECURITY agent's pre-release review (via promptfoo's red-team findings).</li>
+      <li><strong>Where in the lifecycle:</strong> QA stage — run the eval suite on every change that touches prompts, model config, or AI dependencies; re-run at SECURITY before release.</li>
+      <li><strong>Inputs:</strong> a client-approved golden test set (approved during SPECIFICATION), a <code>promptfooconfig.yaml</code>, and (for real model tests) your existing API key. No secrets in configs.</li>
+      <li><strong>Outputs:</strong> a dated eval results file (JSON/HTML) with pass/fail per case, referenced from project-state.json — plus, later, structured red-team findings.</li>
+      <li><strong>How results are validated:</strong> the report is generated by the external tool, not authored by an agent. The QA agent may attach and summarize it but never substitute its own verdict; findings are VERIFIED only when the dated report file exists. Deterministic assertions gate; LLM-judge scores stay advisory.</li>
+      <li><strong>What happens on failure:</strong> any failed deterministic assertion blocks QA→SECURITY advancement; a waiver is a governance decision → human approval required, per your existing rules. This <em>adds an evidence type to</em> your gate engine — no replacement of the gate engine or governance is proposed.</li>
+      <li><strong>Blocks a gate or needs human approval?</strong> Rule-based gate-blocking on failed assertions; humans approve waivers, golden-set changes, and anything client-facing.</li>
+      <li><strong>Smallest safe experiment:</strong> today's echo-provider test above: one config, five cases, run locally, store the result. Only wire it into gate_engine.py after the artifact quality proves itself on a real project.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Daily Learning: golden-dataset regression testing for AI behavior</h2>
+    <ul>
+      <li><strong>Concept (simple English):</strong> a "golden dataset" is a small, fixed set of input/expected-output examples you and the client agreed are correct. Regression testing means every time the code (or prompt, or model) changes, you re-run the whole set and compare — so "still works" is measured, not remembered.</li>
+      <li><strong>How an AI agent might get it wrong:</strong> the agent tests its own new output with an LLM judge that scores leniently (or is the same model family), quietly changes the expected outputs to match the new behavior ("the test was outdated"), or declares the feature stable after trying two or three informal examples instead of the agreed set.</li>
+      <li><strong>How you recognize the failure:</strong> eval results vary run-to-run with no fixed dataset; test files were modified in the same commit as the feature; "the AI works" claims carry no dated artifact with a case-by-case pass/fail.</li>
+      <li><strong>Which tool/test detects it:</strong> promptfoo — a committed golden dataset with deterministic assertions makes each case pass or fail mechanically; judge-style scores are visible as advisory only. Diff review catches expected-output tampering: the golden set changes only with human approval, exactly like your waiver rule.</li>
     </ul>
   </section>
 
   <section>
     <h2>Final Summary</h2>
     <ul>
-      <li><strong>Best discovery today:</strong> Trivy v0.76.1 — a real security update shipped today, Apache-2.0, locally testable on Windows in minutes, and a live lesson in trust-chain risk (CVE-2026-111943).</li>
-      <li><strong>Best security/reliability improvement:</strong> a dependency/config/deployment scan habit: Trivy (config + vulns + secrets) paired with OSV-Scanner (dependencies), both producing dated JSON evidence.</li>
-      <li><strong>Best Agency OS integration:</strong> Trivy JSON reports as a new SECURITY-stage evidence type consumed by your existing gate engine — CRITICAL findings block, waivers need human approval, governance unchanged.</li>
-      <li><strong>One practical action today:</strong> download Trivy v0.76.1, scan one real project folder, and store the JSON report as your first dated security evidence artifact.</li>
+      <li><strong>Best discovery today:</strong> OpenCode 2.0 — the flagship open-source coding agent shipped its biggest release (background agents, Code Mode, embeddable SDK), MIT-licensed and actively developed as of today.</li>
+      <li><strong>Best security/reliability improvement:</strong> promptfoo — turning AI behavior into CI-tested, red-teamed, dated evidence instead of vibes; pair it later with the change-aware secret-scan pattern from CommitShield.</li>
+      <li><strong>Best Agency OS integration:</strong> promptfoo eval reports as a QA-stage evidence type consumed by your existing gate engine — deterministic failures block, waivers need human approval, governance unchanged.</li>
+      <li><strong>One practical action today:</strong> run the zero-cost promptfoo echo-provider test suite (5 cases, deterministic assertions) and save the results as your first AI-behavior evidence artifact.</li>
     </ul>
   </section>
 </div>
