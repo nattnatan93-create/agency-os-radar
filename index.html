@@ -36,145 +36,145 @@
   <header>
     <h1>Agency OS <span>Radar</span></h1>
     <div class="tagline">Daily open-source discoveries for a one-person AI software agency</div>
-    <div class="tagline date">Report date: Thursday, October 22, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
+    <div class="tagline date">Report date: Friday, October 23, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
   </header>
 
   <section>
     <h2>Start Here (plain English)</h2>
-    <p><strong>The problem:</strong> your agency's apps are only as trustworthy as (1) the coding agents that build them — what they did, and whether their behavior changed when a prompt or model changed; and (2) your ability to hand work between agents without losing context. Clients pay for apps whose AI behavior is <em>tested and stable</em>, not for apps whose AI "seemed smart once."</p>
-    <p><strong>The solution in today's radar:</strong> five verified finds. OpenCode 2.0 is a major release of the flagship open-source coding agent — now embeddable via an SDK. promptfoo turns AI behavior into regression tests and red-team scans that run in CI. ai-memory gives coding agents persistent, git-backed memory and vendor-neutral handoff. google/skills shows how reusable agent know-how is being packaged as official, reusable components. And a brand-new pre-commit secret scanner demonstrates the change-aware pattern your own precommit checks could adopt. Together they attack the two gaps a vibe coder feels most: <em>agent output you can't verify, and context you lose between agents.</em></p>
-    <p class="muted">All five GitHub links and licenses were verified today (Oct 22, 2026) via the GitHub API (license fields read from each repo; star counts and push dates read from each repo). Release dates are sourced from official release pages and news coverage, cited where used. Prior reports were available (Oct 20: SkillSpector, vercel-labs/skills, OMA, Strix, agent-device; Oct 21: Trivy, OSV-Scanner, Playwright, Orchestrator.inc, Orca) — none of today's picks repeat them. Per your standing preference set Oct 19, the Ethiopia business-opportunity section remains removed from this report.</p>
+    <p><strong>The problem:</strong> a one-person agency ships software with AI helpers, but clients only trust apps where (1) the tools the AI used are themselves safe and current, (2) every machine-checked claim comes with a real, dated report, and (3) agents don't leak passwords and API keys into code. "It works on my machine" is not production-ready; "here is the scan report from today" is.</p>
+    <p><strong>The solution in today's radar:</strong> five fresh, verified finds. wshobson/agents is a big library of ready-made expert instructions you can drop into your AI coding IDE. agent-fleet-o is a self-hosted mission-control for agent teams with human-approval gates. Titus is a fast secret scanner that turns "no leaked keys" into a machine-generated report. mcp-accessibility-scanner lets your AI agent audit websites for accessibility failures (WCAG) with real keyboard tests. shadcn-admin is a free, MIT-licensed admin dashboard you own component-by-component — a reusable component for every future business web app.</p>
+    <p class="muted">Coverage note: nothing major launched in the last 24 hours specifically, so this report uses the allowed 7-day window (Oct 16–23, 2026). Prior reports were available (Oct 20: SkillSpector, vercel-labs/skills, OMA, Strix, agent-device; Oct 21: Trivy, OSV-Scanner, Playwright, Orchestrator.inc, Orca; Oct 22: OpenCode 2.0, promptfoo, ai-memory, google/skills, CommitShield) — none of today's picks repeat them. Star counts and license fields were read from each repo; release dates from official release pages and verified coverage. Per your standing preference set Oct 19, the Ethiopia business-opportunity section remains removed.</p>
   </section>
 
   <section>
     <h2>The Production-Readiness Gap</h2>
     <div class="gap-box">
-      <p><strong>The criticism:</strong> "AI-built apps aren't production-ready" is usually an <em>evidence</em> problem. An agent saying "the AI feature works" or "I remember the client's requirements" is a claim. Production-ready means: AI behavior is regression-tested against approved examples, prompts can't silently break, agents can prove what they did, and knowledge survives the switch from one agent to the next.</p>
+      <p><strong>The criticism:</strong> "AI-built apps aren't production-ready" is an evidence problem. Claims like "no secrets in the code", "the dashboard works", or "the agent followed best practices" are worthless unless a tool produced them — with a date, a format, and a pass/fail result your gate engine can read.</p>
     </div>
     <div class="gap-box">
-      <p><strong>Today's answer:</strong> promptfoo makes AI outputs testable in CI with pass/fail evidence and AI red-teaming; OpenCode 2.0's SDK turns the coding agent itself into an auditable, embeddable component; ai-memory makes agent memory a plain, diffable, human-readable git artifact; google/skills packages repeatable know-how as reviewable components instead of buried prompts.</p>
+      <p><strong>Today's answer:</strong> Titus produces SARIF/JSON secret-scan reports from your whole repo and git history; mcp-accessibility-scanner produces per-page WCAG violation reports from real browser sessions; wshobson/agents replaces vague "the agent knows testing patterns" hopes with reviewed, versioned instruction files; shadcn-admin replaces "the AI will design a consistent dashboard" with components you read and own before shipping.</p>
     </div>
-    <p><strong>Why this maps to Agency OS:</strong> your governance already demands VERIFIED evidence and distinguishes REAL/SIMULATED/ASSUMPTION. Today's tools are external evidence producers — eval reports, git-backed memory, session records — that your gate engine can consume. They feed your governance; none replace it.</p>
+    <p><strong>Why this maps to Agency OS:</strong> your governance demands VERIFIED evidence before a gate advances. Today's tools are external evidence producers your gate engine can consume. None of them replaces the gate engine or project-state.json — they feed it.</p>
   </section>
 
   <section>
     <h2>Top 5 Discoveries</h2>
 
-    <h3>1. OpenCode 2.0 — flagship open-source AI coding agent, now embeddable <span class="badge b-test">TEST NOW</span></h3>
+    <h3>1. wshobson/agents — 41K-star multi-harness plugin marketplace for AI coding IDEs <span class="badge b-test">TEST NOW</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/anomalyco/opencode">github.com/anomalyco/opencode</a></li>
-      <li><strong>What it does (simple English):</strong> an open-source AI coding agent that works in the terminal, desktop, and web — it reads your code, makes edits, runs commands, and explains what it did.</li>
-      <li><strong>What changed recently and when:</strong> version 2.0 launched Oct 16, 2026: background agents (subagents work while the main agent continues), "Code Mode" (agents write scripts that combine MCP servers and OpenAPI endpoints in one flow), a rebuilt server API, a new <code>@opencode/client</code> package, and an <code>@opencode/sdk</code> for embedding OpenCode into custom apps. Breaking change: 1.0 plugins and the old server API are incompatible. (VERIFIED: repo active today — last push Oct 22; release coverage from launch news.)</li>
-      <li><strong>Why it matters to a vibe coder:</strong> the SDK means the coding agent stops being a fixed app and becomes a component your orchestrator could spawn, supervise, and audit — the exact shape of Agency OS's dev agent.</li>
-      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from the repo license). The tool is free; the models it calls are not — you bring your own provider keys/subscriptions, so cost depends on your plan. Open source ≠ free model access.</li>
-      <li><strong>Windows &amp; install:</strong> TypeScript project; terminal-first with a desktop app also available. Get install steps from the official repo/docs only — never from third-party mirrors.</li>
-      <li><strong>Agency OS fit:</strong> DEVELOPMENT stage dev agent, or an embeddable engine behind your orchestrator. Compatibility: <em>plausible — the SDK/API could integrate with your orchestration; untested with gate_engine.py or project-state.json.</em></li>
-      <li><strong>Evidence/output:</strong> session records of edits, commands run, and diffs — reviewable history of what the agent actually did.</li>
-      <li><strong>Limitations/risks/human review:</strong> 2.0 has breaking changes (plugins from 1.x won't work); agent edits still require your QA gates — "the agent wrote it" is not evidence of correctness; model subscription costs are yours.</li>
-      <li><strong>Verdict:</strong> TEST NOW — major, well-documented release of the category leader in open-source coding agents.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/wshobson/agents">github.com/wshobson/agents</a></li>
+      <li><strong>What it does (simple English):</strong> a huge, curated library of "plugins" — agents, skills, and commands written as plain Markdown — that install into Claude Code, Codex CLI, Cursor, OpenCode, GitHub Copilot, Google Antigravity, and Pi. Instead of re-explaining to your IDE how to do code review, testing, or debugging, you install a reviewed instruction pack.</li>
+      <li><strong>What changed recently and when:</strong> it crossed into GitHub Trending's top 15 on Oct 21, 2026 (~41,300 stars at the time); repo shows ~41,249 stars with +93/day velocity and a last update of Oct 19, 2026. Current scale per its README analyses: 94 plugins, 202 agents, 185 skills, 105 commands. (VERIFIED from repo/trending coverage this week.)</li>
+      <li><strong>Why it matters to a vibe coder:</strong> this is the "write expertise once, use it in every IDE" layer. You switch between AI IDEs; your standards shouldn't depend on which one is open. Notably it includes a block-no-verify plugin whose hook rejects <code>git commit --no-verify</code> — exactly the anti-gate-bypass pattern Agency OS cares about.</li>
+      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from repo license). External plugins have their own licenses — check each. Free; no subscription. Some plugin content may reference paid model features.</li>
+      <li><strong>Windows &amp; install:</strong> plain Markdown skills — OS-agnostic. Install per skill via GitHub CLI (<code>gh skill install wshobson/agents &lt;skill&gt;</code>) or <code>npx skills add</code>, or clone into your IDE's skills folder. Always read a skill's full text before installing — a skill is executable influence over your agent.</li>
+      <li><strong>Agency OS fit:</strong> DEVELOPMENT stage (expert patterns for the dev agent) and REUSABLE_COMPONENT stage (a model for packaging your own standards as versioned, reviewed skills). Compatibility: <em>plausible — skill files are plain Markdown; untested with your orchestrator/gate engine.</em></li>
+      <li><strong>Evidence/output:</strong> installed skills are reviewable text files — you know exactly what instructions your agent received.</li>
+      <li><strong>Limitations/risks/human review:</strong> one independent analysis calls it "a well-executed personal catalog with great visibility" — most plugins come from one author, so treat quality as varying; review every skill before loading; plugin content can drift from your tool versions.</li>
+      <li><strong>Verdict:</strong> TEST NOW — zero-cost, zero-risk to try one skill today (start with block-no-verify).</li>
     </ul>
 
-    <h3>2. promptfoo — regression tests and red-teaming for AI apps, now part of OpenAI <span class="badge b-test">TEST NOW</span></h3>
+    <h3>2. agent-fleet-o (FleetQ Community Edition) — self-hosted multi-agent mission control with approval gates <span class="badge b-invest">INVESTIGATE</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/promptfoo/promptfoo">github.com/promptfoo/promptfoo</a></li>
-      <li><strong>What it does (simple English):</strong> a CLI that runs your AI prompts and agents against a fixed set of test cases and scores the answers — so when a prompt or model changes, you find out what broke in seconds, in CI, instead of hoping nothing did. It also runs AI red-team scans (jailbreaks, injection, OWASP LLM presets).</li>
-      <li><strong>What changed recently and when:</strong> v0.124.0 released Oct 6, 2026; repo active today (last push Oct 22, VERIFIED). The project was acquired by OpenAI (announced March 2026) and the repo remains MIT-licensed open source.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> every AI app your agency ships has prompts. promptfoo turns "the AI seems fine" into a dated pass/fail artifact — and its red-team scans give your SECURITY stage something real to check before release.</li>
-      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from the repo license). Free; runs against your model provider using your own API key (usage costs apply), and supports provider-free self-tests (echo provider) for CI plumbing with zero model calls.</li>
-      <li><strong>Windows &amp; install:</strong> Node.js CLI — <code>npx promptfoo@latest</code> — also installable via npm, pip, or brew. No special hardware.</li>
-      <li><strong>Agency OS fit:</strong> QA stage (AI-feature regression evidence) and SECURITY stage (AI red-teaming before release). Compatibility: <em>plausible — JSON/HTML results are gate-engine friendly; untested with your scripts.</em></li>
-      <li><strong>Evidence/output:</strong> dated eval results (JSON/HTML) with pass/fail per test case, plus structured red-team findings reports.</li>
-      <li><strong>Limitations/risks/human review:</strong> LLM-as-judge scores are non-deterministic — prefer deterministic assertions, treat judge scores as advisory; red-team scans send your prompts to your model provider — check data handling before using client data; a passing suite proves covered cases, not overall safety.</li>
-      <li><strong>Verdict:</strong> TEST NOW — free, Windows-friendly, testable today with zero model spend.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/escapeboy/agent-fleet-o">github.com/escapeboy/agent-fleet-o</a></li>
+      <li><strong>What it does (simple English):</strong> a self-hosted web platform ("mission control") for running teams of autonomous AI agents: visual DAG workflows, 670+ MCP tools, human-in-the-loop approvals, per-agent versioned policy files, drift and eval monitors, cost tracking ("Return on Cognitive Spend"), and outbound chat channels.</li>
+      <li><strong>What changed recently and when:</strong> actively shipping this month — merged release PRs this week promote fixes and upgrades (neuron-ai 4, phpstan/larastan upgrades, Sentry triage), and v1.27 added policy-governed autonomy, web UIs for previously headless features, and an "Agentic AI Flywheel" (self-growing eval set + production monitors). (VERIFIED from merged release PRs on the repo; exact release dates vary per PR.)</li>
+      <li><strong>Why it matters to a vibe coder:</strong> it is a working reference model for exactly Agency OS's core idea — specialized agents, versioned policies, replay, approvals, drift monitors — that you can study and borrow governance patterns from before building your own.</li>
+      <li><strong>License &amp; costs:</strong> Community Edition is AGPL-3.0 (VERIFIED from the repo README) — a copyleft license with serious implications for offering services built on it; a managed FleetQ Cloud exists with a free tier (separate terms). Not "free for unrestricted commercial use."</li>
+      <li><strong>Windows &amp; install:</strong> PHP/Laravel 13 stack self-hosted via Docker Compose-style <code>make</code> workflows — runs on Windows through Docker Desktop, but it is a real self-hosting commitment, not a quick install. LLM providers need your own API keys.</li>
+      <li><strong>Agency OS fit:</strong> orchestrator coordination and MAINTENANCE stage (drift monitors, eval sets). Compatibility: <em>untested — study it for patterns; do not adopt as infrastructure without license review.</em></li>
+      <li><strong>Evidence/output:</strong> approval records, versioned policy files, run/replay logs, drift and eval monitor reports.</li>
+      <li><strong>Limitations/risks/human review:</strong> small community (~70 stars, ~11 forks) — expect rough edges and self-hosting burden; AGPL-3.0 requires legal review before any commercial embedding; its 670+ MCP tool integrations each need their own trust review.</li>
+      <li><strong>Verdict:</strong> INVESTIGATE — valuable governance reference; license and maturity keep it out of the production path today.</li>
     </ul>
 
-    <h3>3. ai-memory — persistent, git-backed memory and handoff for coding agents <span class="badge b-invest">INVESTIGATE</span></h3>
+    <h3>3. Titus — high-performance secrets scanner from Praetorian (NoseyParker successor) <span class="badge b-test">TEST NOW</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/akitaonrails/ai-memory">github.com/akitaonrails/ai-memory</a></li>
-      <li><strong>What it does (simple English):</strong> gives AI coding CLIs (Claude Code, Codex, and similar) long-term memory stored as a plain markdown wiki backed by git — so context survives between sessions and can be handed off between different agent vendors.</li>
-      <li><strong>What changed recently and when:</strong> very active — last push Oct 22, 2026 (today, VERIFIED from the repo), ~12.6k stars; it was a top trending repo the week of Oct 17, 2026 in trending analyses. Specific release dates were not individually verified today.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> Agency OS's orchestrator coordinates specialized agents — discovery, spec, dev, QA, security. Their shared context currently lives (if anywhere) in project-state.json. A git-backed, human-readable memory layer is the same problem solved once, and its diffs are reviewable evidence.</li>
-      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from the repo license). Free; local-first, no subscription. No external API dependency for storage (markdown + git).</li>
-      <li><strong>Windows &amp; install:</strong> Rust-powered tool distributed as a binary — check the official repo README for the current Windows route before installing. Verify binaries come from the official repo only.</li>
-      <li><strong>Agency OS fit:</strong> orchestrator coordination and MAINTENANCE stage (context across sessions). Compatibility: <em>plausible — memory as markdown files is portable and could complement project-state.json; untested.</em></li>
-      <li><strong>Evidence/output:</strong> a diffable markdown knowledge base — every memory addition is a commit you can review, reject, or attribute.</li>
-      <li><strong>Limitations/risks/human review:</strong> agents writing to shared memory can record unverified claims as if they were facts — your REAL/SIMULATED/ASSUMPTION discipline must apply to memory contents too; never let client secrets land in memory files; newer project — pin versions and review what it stores.</li>
-      <li><strong>Verdict:</strong> INVESTIGATE — the pattern fits Agency OS's handoff problem perfectly; verify maturity firsthand before adopting.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/praetorian-inc/titus">github.com/praetorian-inc/titus</a></li>
+      <li><strong>What it does (simple English):</strong> scans code, directories, git history, GitHub/GitLab repos, and Docker images for leaked credentials — API keys, tokens, passwords — using 487 detection rules. Every finding gets a 0–100 score and severity tier. Reports come out as human-readable text, JSON, or SARIF (the format GitHub CI understands).</li>
+      <li><strong>What changed recently and when:</strong> Titus is the official replacement for the now-archived NoseyParker (per HackTricks' tooling index, verified Oct 2026), with active commits over the past year and a CI workflow on main; it's currently surfacing in security-tooling coverage this month. Specific release dates were not individually verified today.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> AI agents generate code fast — one hallucinated config file with a real-looking key can burn a client. Titus gives you a dated, machine-generated "no leaked secrets" artifact for every project, and scanning git history catches keys deleted from files but still buried in old commits.</li>
+      <li><strong>License &amp; costs:</strong> Apache 2.0 (VERIFIED from repo LICENSE; rules derived from Apache-2.0-licensed NoseyParker and Kingfisher). Free and offline-capable — detection runs with no external API by default. (Related market note: Gitleaks is now frozen — security patches only — and its original author's successor Betterleaks is at v2.0.0-rc.3 as of Oct 19, 2026.)</li>
+      <li><strong>Windows &amp; install:</strong> Go binary (Go 1.27+); prebuilt binaries from the official Releases page, or build with <code>make build</code>. Pure-Go fallback exists for platforms without Hyperscan/Vectorscan, so Windows is supported. No daemon, no subscription.</li>
+      <li><strong>Agency OS fit:</strong> SECURITY stage (secrets) — security agent's scanner, and pre-commit/pre-push check complement to your precommit_check.py. Compatibility: <em>plausible — SARIF/JSON output is gate-engine friendly; untested with your scripts.</em></li>
+      <li><strong>Evidence/output:</strong> a datastore plus reports: <code>titus report</code> (human), <code>--format json</code>, <code>--format sarif</code> for CI.</li>
+      <li><strong>Limitations/risks/human review:</strong> <code>--validate</code> (live credential verification) sends candidate secrets to provider APIs — never run it on client credentials without explicit approval; scanning public repos you don't own may raise legal/authorization questions; findings need triage — score ≠ confirmed leak.</li>
+      <li><strong>Verdict:</strong> TEST NOW — single binary, offline, free, immediate Agency OS evidence value.</li>
     </ul>
 
-    <h3>4. google/skills — official reusable agent skills for Google technologies <span class="badge b-invest">INVESTIGATE</span></h3>
+    <h3>4. mcp-accessibility-scanner — axe-core accessibility audits driven by your AI agent <span class="badge b-invest">INVESTIGATE</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/google/skills">github.com/google/skills</a></li>
-      <li><strong>What it does (simple English):</strong> a growing public library of "Agent Skills" for Google products and technologies — structured instruction packages that teach AI agents how to correctly use specific platforms, instead of the agent guessing.</li>
-      <li><strong>What changed recently and when:</strong> active today (last push Oct 22, 2026, VERIFIED from the repo); ~21.5k stars, created March 2026 — one of the fastest-growing "skills" libraries on GitHub, part of the emerging agent-skills ecosystem trend this month.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> your REUSABLE_COMPONENT lifecycle stage is about never solving the same problem twice. Agent-skills repos are the instruction-format equivalent: packaged, versioned, reviewable know-how your agents load on demand — and this is Google publishing them officially.</li>
-      <li><strong>License &amp; costs:</strong> Apache-2.0 (VERIFIED from the repo license). Free, no subscription, no external API required to use the files.</li>
-      <li><strong>Windows &amp; install:</strong> no install — skills are plain files (markdown instructions) your agent reads. Works on any OS.</li>
-      <li><strong>Agency OS fit:</strong> REUSABLE_COMPONENT stage — a model for how to package your own repeatable expertise (e.g., "deploy a client site to Cloudflare Pages" as a reviewed skill). Compatibility: <em>plausible — skill files are tool-agnostic; untested with your agent setup.</em></li>
-      <li><strong>Evidence/output:</strong> the skills themselves are reviewable artifacts — you read exactly what instructions your agent received, no hidden prompt.</li>
-      <li><strong>Limitations/risks/human review:</strong> Google-technology-specific scope; the "skills" format is still an emerging convention — always review any third-party skill's full text before loading it into an agent (a skill is executable influence over your agent); verify a skill matches your actual tool versions before trusting its instructions.</li>
-      <li><strong>Verdict:</strong> INVESTIGATE — low-cost to study now, and the packaging pattern is worth stealing for Agency OS regardless of stack.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/JustasMonkev/mcp-accessibility-scanner">github.com/JustasMonkev/mcp-accessibility-scanner</a></li>
+      <li><strong>What it does (simple English):</strong> an MCP server that lets an AI agent (Claude Code, VS Code Copilot, Gemini CLI, etc.) audit real web pages for accessibility failures using axe-core and Playwright: WCAG 2.0/2.1/2.2 checks at A/AA/AAA, whole-site crawling audits, real keyboard-navigation testing, and a "matrix" scan comparing mobile/desktop/zoom/reduced-motion variants of the same page.</li>
+      <li><strong>What changed recently and when:</strong> last pushed Oct 17, 2026; release 4.0.1 shipped recently with new survival tests, artifact-saving for browser findings, keyboard-audit fixes, and trusted npm publishing on version tags. It's been trending in the MCP ecosystem this month (rose ~689 spots in early September per HVTracker's ranking history).</li>
+      <li><strong>Why it matters to a vibe coder:</strong> AI-coded UIs are notorious for accessibility regressions (missing labels, keyboard traps). This gives your QA stage a machine-checked, per-page violation report produced by a real browser session — not the agent's opinion of "looks accessible."</li>
+      <li><strong>License &amp; costs:</strong> MIT (VERIFIED via HVTracker's supply-chain record reading the repo). Free; published on npm as <code>mcp-accessibility-scanner</code>. Uses local Playwright browsers (free download); no paid API required.</li>
+      <li><strong>Windows &amp; install:</strong> Node.js MCP server — runs on Windows; installs via npm/npx with Playwright browser downloads (needs explicit install capability per recent release notes). Works with VS Code, Claude Desktop, Copilot CLI, Gemini CLI, Codex CLI.</li>
+      <li><strong>Agency OS fit:</strong> QA stage (UI accessibility evidence for UAT/UI-E2E coverage). Compatibility: <em>plausible — MCP servers plug into agent harnesses; untested with your QA agent.</em></li>
+      <li><strong>Evidence/output:</strong> per-page violation reports (visual + JSON) with WCAG levels and remediation guidance; site-crawl aggregates.</li>
+      <li><strong>Limitations/risks/human review:</strong> small project (dozens of stars); OpenSSF Scorecard 6.1/10 with code-review and branch-protection checks at 0 — pin the version, review before adopting in client work; automated a11y scans catch ~30–50% of issues by common industry estimates — real screen-reader testing with humans remains irreplaceable.</li>
+      <li><strong>Verdict:</strong> INVESTIGATE — strong QA evidence pattern; verify stability on a scratch project before client use.</li>
     </ul>
 
-    <h3>5. SecureVibeCoded / Hacktoberfest-CommitShield (svc) — change-aware pre-commit secret scanner <span class="badge b-invest">INVESTIGATE</span></h3>
+    <h3>5. shadcn-admin — production-grade admin dashboard you own, component by component <span class="badge b-invest">INVESTIGATE</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/yashselokar2025/Hacktoberfest-CommitShield">github.com/yashselokar2025/Hacktoberfest-CommitShield</a></li>
-      <li><strong>What it does (simple English):</strong> a pre-commit hook that sits on top of Gitleaks and only alerts on <em>newly introduced</em> secrets (tracking findings in a local SQLite baseline), optionally using a local Gemma model via Ollama to judge borderline tokens — aiming to kill alert fatigue without letting real keys through.</li>
-      <li><strong>What changed recently and when:</strong> brand new — repo created Oct 17, 2026 (VERIFIED from the repo; MIT license). It's a Hacktoberfest 2026 challenge submission published this month, with an install.ps1 for Windows and a Next.js showcase site.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> the design directly addresses your daily reality — agents generate lots of code with lots of tokens, and a scanner that cries wolf on every commit gets disabled. The change-aware NEW/EXISTING/RESOLVED baseline is a pattern your precommit_check.py could adopt even if you never install this tool.</li>
-      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from the repo license). Free; core scanning is offline-capable (Gitleaks rules + local SQLite; Gemma via local Ollama with a rule-based fallback).</li>
-      <li><strong>Windows &amp; install:</strong> Python/pip install from the git repo, with a Windows install.ps1 script provided. Note: pip-installing from a five-day-old repo is a supply-chain risk — see below.</li>
-      <li><strong>Agency OS fit:</strong> SECURITY stage pre-commit (secrets). Compatibility: <em>plausible pattern for precommit_check.py; the tool itself is UNTESTED and too immature to trust as-is.</em></li>
-      <li><strong>Evidence/output:</strong> pre-commit block/pass decisions plus a SQLite findings baseline; the concept of a machine-checked "no new secrets" statement is exactly the evidence type your SECURITY gate wants.</li>
-      <li><strong>Limitations/risks/human review:</strong> its accuracy claims (e.g., F1 = 0.950, ~8% false positives) are SELF-REPORTED and UNVERIFIED — treat as claims, not facts; a 2-star, week-old hackathon project with install scripts must be code-reviewed before you run anything; running an LLM over your diffs means diffs pass through that model — keep it local (Ollama) and never point it at client secrets.</li>
-      <li><strong>Verdict:</strong> INVESTIGATE — study and borrow the pattern today; do not install blindly.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Test Today: promptfoo — a no-API-key AI regression suite on Windows (~30 min)</h2>
-    <ul>
-      <li><strong>Why this one:</strong> free, MIT-licensed, Node.js CLI that runs on Windows, and you can test its full pipeline today with the built-in "echo" provider — zero model calls, zero subscription spend, no API keys needed.</li>
-      <li><strong>Prerequisites:</strong> a Windows PC with Node.js installed. Nothing else.</li>
-      <li><strong>Official installation steps:</strong> from the official repo README/docs: <code>npx promptfoo@latest</code> runs any command without a global install (also available via <code>npm install -g promptfoo</code> or pip). Get commands from the official documentation only — never from random blog posts.</li>
-      <li><strong>Practical test:</strong> create a small <code>promptfooconfig.yaml</code> with the echo provider and 3–5 test cases with deterministic assertions (e.g., "output must contain X", "must not contain Y"), run <code>npx promptfoo@latest eval</code>, then <code>npx promptfoo@latest validate</code> on the config itself. When you're ready, add one real test using your existing model API key.</li>
-      <li><strong>Expected results:</strong> a pass/fail result per test case plus a viewable results page — a dated, machine-generated artifact you can already imagine attaching to a QA gate. Deterministic assertions should pass/fail exactly as written; the echo provider lets you verify the whole CI plumbing without spending tokens.</li>
-      <li><strong>Safety precautions:</strong> don't paste client data into test prompts; disable telemetry/update checks in CI (documented officially); pin your promptfoo version; red-team scans (later) send prompts to your model provider — confirm data handling first; treat LLM-judge scores as advisory, never as gate-deciding evidence.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/satnaing/shadcn-admin">github.com/satnaing/shadcn-admin</a></li>
+      <li><strong>What it does (simple English):</strong> a free, open-source admin dashboard UI — dashboard, tasks, chats, users, auth flows, error pages, settings — built on React 19, Vite, Tailwind CSS v4, and shadcn/ui. Every component is vendored into your project: the code is yours to read and edit, not a black-box library dependency.</li>
+      <li><strong>What changed recently and when:</strong> ~12,630 stars / 2,007 forks per an Oct 11, 2026 review; that review reported the last commit as June 16, 2026 — recent release activity could not be verified today, so treat freshness as UNVERIFIED. React 19 / Tailwind v4 support is current.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> every small-business web app needs an admin panel. Starting from an accessible, RTL-aware, responsive base with error pages and auth flows already built means your dev agent spends its tokens on the client's actual business logic — and you can read every component before shipping it.</li>
+      <li><strong>License &amp; costs:</strong> MIT (VERIFIED per repo/reviews). Free; sponsored but not paywalled. No external API required.</li>
+      <li><strong>Windows &amp; install:</strong> clone the repo, <code>npm install</code>, <code>npm run dev</code> — standard Vite workflow on Windows. Requires Node.js.</li>
+      <li><strong>Agency OS fit:</strong> REUSABLE_COMPONENT stage — the exact artifact type your lifecycle ends with: a vetted component base reused across client projects. Compatibility: <em>plausible — it's a UI starting point, not an integration; untested in your pipeline.</em></li>
+      <li><strong>Evidence/output:</strong> the vendored component code itself — diffable, reviewable, and reusable; every AI modification to it is visible in git.</li>
+      <li><strong>Limitations/risks/human review:</strong> reported commit inactivity since June 2026 — check the repo before adopting; it's a UI collection, not a starter with backend conventions (auth, database, API are yours to wire); still run your full QA/SECURITY gates on anything built from it.</li>
+      <li><strong>Verdict:</strong> INVESTIGATE — high-value reusable base; confirm it's actively maintained before making it your default.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Agency OS Integration Proposal: promptfoo eval reports as QA-stage gate evidence</h2>
+    <h2>Test Today: Titus — offline secret scan on Windows (~30–45 min)</h2>
     <ul>
-      <li><strong>Problem solved:</strong> your QA stage covers unit/integration/API/UI-E2E/UAT — but nothing yet produces machine-checkable evidence that an app's <em>AI behavior</em> still meets the spec after a prompt, model, or dependency change. Today that's a claim, not evidence.</li>
-      <li><strong>Exact workflow/agent it improves:</strong> the QA agent's test suite assembly, plus the SECURITY agent's pre-release review (via promptfoo's red-team findings).</li>
-      <li><strong>Where in the lifecycle:</strong> QA stage — run the eval suite on every change that touches prompts, model config, or AI dependencies; re-run at SECURITY before release.</li>
-      <li><strong>Inputs:</strong> a client-approved golden test set (approved during SPECIFICATION), a <code>promptfooconfig.yaml</code>, and (for real model tests) your existing API key. No secrets in configs.</li>
-      <li><strong>Outputs:</strong> a dated eval results file (JSON/HTML) with pass/fail per case, referenced from project-state.json — plus, later, structured red-team findings.</li>
-      <li><strong>How results are validated:</strong> the report is generated by the external tool, not authored by an agent. The QA agent may attach and summarize it but never substitute its own verdict; findings are VERIFIED only when the dated report file exists. Deterministic assertions gate; LLM-judge scores stay advisory.</li>
-      <li><strong>What happens on failure:</strong> any failed deterministic assertion blocks QA→SECURITY advancement; a waiver is a governance decision → human approval required, per your existing rules. This <em>adds an evidence type to</em> your gate engine — no replacement of the gate engine or governance is proposed.</li>
-      <li><strong>Blocks a gate or needs human approval?</strong> Rule-based gate-blocking on failed assertions; humans approve waivers, golden-set changes, and anything client-facing.</li>
-      <li><strong>Smallest safe experiment:</strong> today's echo-provider test above: one config, five cases, run locally, store the result. Only wire it into gate_engine.py after the artifact quality proves itself on a real project.</li>
+      <li><strong>Why this one:</strong> single prebuilt binary, Apache 2.0, runs offline by default, no subscription, no API keys, and it produces exactly the evidence type your SECURITY gate wants (a dated scan report).</li>
+      <li><strong>Prerequisites:</strong> a Windows PC; nothing else for the prebuilt binary (Go 1.27+ only if you build from source).</li>
+      <li><strong>Official installation steps:</strong> download the Windows binary from the official GitHub Releases page only (never third-party mirrors); verify the checksum if the release provides one; alternatively build from source with <code>make build</code> per the README.</li>
+      <li><strong>Practical test:</strong> (1) create a scratch folder (not a client project) and plant 3 obviously fake keys — e.g., a dummy AWS-style key, a fake GitHub token pattern, a fake Slack token; (2) run <code>titus scan path\to\scratch</code>; (3) run <code>titus report --format json</code> and <code>titus report --format sarif</code>; (4) make it a git repo, commit a fake key, delete the file, commit again, then <code>titus scan --git path\to\repo</code> — the "deleted" key should still be found in history.</li>
+      <li><strong>Expected results:</strong> findings with rule name, score 0–100, and severity; JSON and SARIF files you can store as dated evidence. The git-history step should demonstrate that deleting a file does not delete a leak — the single most important lesson for agent-driven commits.</li>
+      <li><strong>Safety precautions:</strong> use only fake keys in the scratch folder; do NOT run <code>--validate</code> (it contacts provider APIs); don't scan public repos you have no authorization to test; download only from the official repo; keep the binary out of client repos (run it from a tools directory).</li>
     </ul>
   </section>
 
   <section>
-    <h2>Daily Learning: golden-dataset regression testing for AI behavior</h2>
+    <h2>Agency OS Integration Proposal: Titus SARIF reports as SECURITY-gate evidence</h2>
     <ul>
-      <li><strong>Concept (simple English):</strong> a "golden dataset" is a small, fixed set of input/expected-output examples you and the client agreed are correct. Regression testing means every time the code (or prompt, or model) changes, you re-run the whole set and compare — so "still works" is measured, not remembered.</li>
-      <li><strong>How an AI agent might get it wrong:</strong> the agent tests its own new output with an LLM judge that scores leniently (or is the same model family), quietly changes the expected outputs to match the new behavior ("the test was outdated"), or declares the feature stable after trying two or three informal examples instead of the agreed set.</li>
-      <li><strong>How you recognize the failure:</strong> eval results vary run-to-run with no fixed dataset; test files were modified in the same commit as the feature; "the AI works" claims carry no dated artifact with a case-by-case pass/fail.</li>
-      <li><strong>Which tool/test detects it:</strong> promptfoo — a committed golden dataset with deterministic assertions makes each case pass or fail mechanically; judge-style scores are visible as advisory only. Diff review catches expected-output tampering: the golden set changes only with human approval, exactly like your waiver rule.</li>
+      <li><strong>Problem solved:</strong> your SECURITY stage covers secrets, but today "no secrets committed" is an agent's claim unless a scanner produced a report. AI agents commit fast and often; a machine-checked secrets artifact makes the claim VERIFIED.</li>
+      <li><strong>Exact workflow/agent it improves:</strong> the security agent's secrets check, complementing (not replacing) precommit_check.py and prepush_release_check.ps1.</li>
+      <li><strong>Where in the lifecycle:</strong> SECURITY stage — run on every entry to SECURITY; also run the git-history scan at RELEASE as a final pre-publish check.</li>
+      <li><strong>Inputs:</strong> the project repo path; the Titus binary; no network needed (offline detection). For public-repo or Docker-image scans, human authorization first.</li>
+      <li><strong>Outputs:</strong> a dated SARIF/JSON report stored with the project, referenced from project-state.json as VERIFIED evidence: rule, score, severity, file, line.</li>
+      <li><strong>How results are validated:</strong> the report is generated by the external tool, not authored by an agent; the security agent may attach and summarize it, never substitute its own verdict; zero findings = clean only if the report file exists and covers the full repo + history.</li>
+      <li><strong>What happens on failure:</strong> any high-severity finding blocks SECURITY advancement → secrets are rotated/removed (history rewrite or key rotation is the only real fix) → rescan. A waiver (e.g., a flagged test fixture) is a governance decision → human approval required. This <em>adds an evidence type to</em> your existing gate engine — no replacement of the gate engine or governance is proposed.</li>
+      <li><strong>Blocks a gate or needs human approval?</strong> Rule-based gate-blocking on findings; human approval for waivers, any use of <code>--validate</code>, and any scan of third-party assets.</li>
+      <li><strong>Smallest safe experiment:</strong> today's scratch-folder test above. If the SARIF artifact looks good, wire one line into prepush_release_check.ps1 that runs Titus and fails on exit code — nothing more until proven on a real project.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Daily Learning: secrets in git history</h2>
+    <ul>
+      <li><strong>Concept (simple English):</strong> git keeps every version of every file it ever committed. Deleting a file with a password in it, and committing the deletion, removes it from the latest version — but the password is still in the repository's history, and anyone who clones it can find it. The only real fix is rotating the credential; cleaning history is a bonus, not a cure.</li>
+      <li><strong>How an AI agent might get it wrong:</strong> the agent notices a committed secret, deletes the file (or the line), commits "removed secret," and reports the issue resolved — believing deletion equals remediation. Or it "verifies" safety by checking the current files only, never the history.</li>
+      <li><strong>How you recognize the failure:</strong> a remediation report that mentions deleting code but not rotating the key; a "clean" claim based only on a working-tree scan; the credential never revoked at its provider.</li>
+      <li><strong>Which tool/test detects it:</strong> Titus — <code>titus scan --git</code> parses full git history and reports the "deleted" secret; that failing report is exactly the gate evidence that turns the agent's "resolved" claim back into BLOCKED until the key is rotated.</li>
     </ul>
   </section>
 
   <section>
     <h2>Final Summary</h2>
     <ul>
-      <li><strong>Best discovery today:</strong> OpenCode 2.0 — the flagship open-source coding agent shipped its biggest release (background agents, Code Mode, embeddable SDK), MIT-licensed and actively developed as of today.</li>
-      <li><strong>Best security/reliability improvement:</strong> promptfoo — turning AI behavior into CI-tested, red-teamed, dated evidence instead of vibes; pair it later with the change-aware secret-scan pattern from CommitShield.</li>
-      <li><strong>Best Agency OS integration:</strong> promptfoo eval reports as a QA-stage evidence type consumed by your existing gate engine — deterministic failures block, waivers need human approval, governance unchanged.</li>
-      <li><strong>One practical action today:</strong> run the zero-cost promptfoo echo-provider test suite (5 cases, deterministic assertions) and save the results as your first AI-behavior evidence artifact.</li>
+      <li><strong>Best discovery today:</strong> praetorian-inc/titus — Apache-2.0, offline, single-binary secret scanning with SARIF output: an immediate, free evidence producer for your SECURITY gate.</li>
+      <li><strong>Best security/reliability improvement:</strong> Titus git-history scans (plus the block-no-verify hook pattern from wshobson/agents — agents must not be able to skip your hooks).</li>
+      <li><strong>Best Agency OS integration:</strong> Titus SARIF reports as a SECURITY-gate evidence type: deterministic blocking on findings, human approval for waivers, gate engine and governance unchanged.</li>
+      <li><strong>One practical action today:</strong> run the Titus scratch-folder test — plant fake keys, scan, then scan the git history — and save the SARIF report as your first secrets-evidence artifact.</li>
     </ul>
   </section>
 </div>
