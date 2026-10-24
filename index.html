@@ -36,145 +36,145 @@
   <header>
     <h1>Agency OS <span>Radar</span></h1>
     <div class="tagline">Daily open-source discoveries for a one-person AI software agency</div>
-    <div class="tagline date">Report date: Friday, October 23, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
+    <div class="tagline date">Report date: Saturday, October 24, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
   </header>
 
   <section>
     <h2>Start Here (plain English)</h2>
-    <p><strong>The problem:</strong> a one-person agency ships software with AI helpers, but clients only trust apps where (1) the tools the AI used are themselves safe and current, (2) every machine-checked claim comes with a real, dated report, and (3) agents don't leak passwords and API keys into code. "It works on my machine" is not production-ready; "here is the scan report from today" is.</p>
-    <p><strong>The solution in today's radar:</strong> five fresh, verified finds. wshobson/agents is a big library of ready-made expert instructions you can drop into your AI coding IDE. agent-fleet-o is a self-hosted mission-control for agent teams with human-approval gates. Titus is a fast secret scanner that turns "no leaked keys" into a machine-generated report. mcp-accessibility-scanner lets your AI agent audit websites for accessibility failures (WCAG) with real keyboard tests. shadcn-admin is a free, MIT-licensed admin dashboard you own component-by-component — a reusable component for every future business web app.</p>
-    <p class="muted">Coverage note: nothing major launched in the last 24 hours specifically, so this report uses the allowed 7-day window (Oct 16–23, 2026). Prior reports were available (Oct 20: SkillSpector, vercel-labs/skills, OMA, Strix, agent-device; Oct 21: Trivy, OSV-Scanner, Playwright, Orchestrator.inc, Orca; Oct 22: OpenCode 2.0, promptfoo, ai-memory, google/skills, CommitShield) — none of today's picks repeat them. Star counts and license fields were read from each repo; release dates from official release pages and verified coverage. Per your standing preference set Oct 19, the Ethiopia business-opportunity section remains removed.</p>
+    <p><strong>The problem:</strong> you build with AI agents that move fast — but "fast" means nothing to a client if the tests were invented, the keys leaked into a transcript, or nobody supervised what the agent actually did. Trust comes from machine-produced, dated evidence, not agent claims.</p>
+    <p><strong>The solution in today's radar:</strong> five fresh, verified finds. Codex CLI shipped v0.164.0 yesterday with reusable prompt presets and a permission system. munder-difflin is a brand-new open-source "office" that coordinates the coding-agent CLIs you already use. secret-guard intercepts agents before they can read your .env files. tester-army/e2e is an agentic test framework that records what the agent did and replays it without paying the model again. Nuxt UI v4 just made its entire 125+ component catalog free under MIT.</p>
+    <p class="muted">Coverage note: Codex CLI v0.164.0 released Oct 23, 2026 (within 24 hours); the rest of today's picks come from the allowed 7-day window (Oct 17–24, 2026). Prior reports were available (Oct 20: SkillSpector, vercel-labs/skills, OMA, Strix, agent-device; Oct 21: Trivy, OSV-Scanner, Playwright, Orchestrator.inc, Orca; Oct 22: OpenCode 2.0, promptfoo, ai-memory, google/skills, CommitShield; Oct 23: wshobson/agents, agent-fleet-o, Titus, mcp-accessibility-scanner, shadcn-admin) — none of today's picks repeat them. Per your standing preference set Oct 19, the Ethiopia business-opportunity section remains removed.</p>
   </section>
 
   <section>
     <h2>The Production-Readiness Gap</h2>
     <div class="gap-box">
-      <p><strong>The criticism:</strong> "AI-built apps aren't production-ready" is an evidence problem. Claims like "no secrets in the code", "the dashboard works", or "the agent followed best practices" are worthless unless a tool produced them — with a date, a format, and a pass/fail result your gate engine can read.</p>
+      <p><strong>The criticism:</strong> "AI-built apps aren't production-ready" is an evidence problem. "The app works", "the agent didn't touch secrets", and "the tests passed" are worthless as agent claims — they only count when a tool produced an artifact with a date and a pass/fail result the gate engine can read.</p>
     </div>
     <div class="gap-box">
-      <p><strong>Today's answer:</strong> Titus produces SARIF/JSON secret-scan reports from your whole repo and git history; mcp-accessibility-scanner produces per-page WCAG violation reports from real browser sessions; wshobson/agents replaces vague "the agent knows testing patterns" hopes with reviewed, versioned instruction files; shadcn-admin replaces "the AI will design a consistent dashboard" with components you read and own before shipping.</p>
+      <p><strong>Today's answer:</strong> e2e turns "the UI works" into recorded, replayable test steps with hard assertions; secret-guard turns "the agent didn't touch secrets" into blocked-operation records and an audit journal; Codex CLI's permission system turns "the agent behaved" into explicit approval records; munder-difflin's mailboxes and memory give every agent action a visible trail.</p>
     </div>
-    <p><strong>Why this maps to Agency OS:</strong> your governance demands VERIFIED evidence before a gate advances. Today's tools are external evidence producers your gate engine can consume. None of them replaces the gate engine or project-state.json — they feed it.</p>
+    <p><strong>Why this maps to Agency OS:</strong> your governance demands VERIFIED evidence before a gate advances. These tools are external evidence producers your gate engine can consume — none of them replaces the gate engine or project-state.json; they feed it.</p>
   </section>
 
   <section>
     <h2>Top 5 Discoveries</h2>
 
-    <h3>1. wshobson/agents — 41K-star multi-harness plugin marketplace for AI coding IDEs <span class="badge b-test">TEST NOW</span></h3>
+    <h3>1. OpenAI Codex CLI — v0.164.0 terminal coding agent <span class="badge b-test">TEST NOW</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/wshobson/agents">github.com/wshobson/agents</a></li>
-      <li><strong>What it does (simple English):</strong> a huge, curated library of "plugins" — agents, skills, and commands written as plain Markdown — that install into Claude Code, Codex CLI, Cursor, OpenCode, GitHub Copilot, Google Antigravity, and Pi. Instead of re-explaining to your IDE how to do code review, testing, or debugging, you install a reviewed instruction pack.</li>
-      <li><strong>What changed recently and when:</strong> it crossed into GitHub Trending's top 15 on Oct 21, 2026 (~41,300 stars at the time); repo shows ~41,249 stars with +93/day velocity and a last update of Oct 19, 2026. Current scale per its README analyses: 94 plugins, 202 agents, 185 skills, 105 commands. (VERIFIED from repo/trending coverage this week.)</li>
-      <li><strong>Why it matters to a vibe coder:</strong> this is the "write expertise once, use it in every IDE" layer. You switch between AI IDEs; your standards shouldn't depend on which one is open. Notably it includes a block-no-verify plugin whose hook rejects <code>git commit --no-verify</code> — exactly the anti-gate-bypass pattern Agency OS cares about.</li>
-      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from repo license). External plugins have their own licenses — check each. Free; no subscription. Some plugin content may reference paid model features.</li>
-      <li><strong>Windows &amp; install:</strong> plain Markdown skills — OS-agnostic. Install per skill via GitHub CLI (<code>gh skill install wshobson/agents &lt;skill&gt;</code>) or <code>npx skills add</code>, or clone into your IDE's skills folder. Always read a skill's full text before installing — a skill is executable influence over your agent.</li>
-      <li><strong>Agency OS fit:</strong> DEVELOPMENT stage (expert patterns for the dev agent) and REUSABLE_COMPONENT stage (a model for packaging your own standards as versioned, reviewed skills). Compatibility: <em>plausible — skill files are plain Markdown; untested with your orchestrator/gate engine.</em></li>
-      <li><strong>Evidence/output:</strong> installed skills are reviewable text files — you know exactly what instructions your agent received.</li>
-      <li><strong>Limitations/risks/human review:</strong> one independent analysis calls it "a well-executed personal catalog with great visibility" — most plugins come from one author, so treat quality as varying; review every skill before loading; plugin content can drift from your tool versions.</li>
-      <li><strong>Verdict:</strong> TEST NOW — zero-cost, zero-risk to try one skill today (start with block-no-verify).</li>
+      <li><strong>Link:</strong> <a href="https://github.com/openai/codex">github.com/openai/codex</a></li>
+      <li><strong>What it does (simple English):</strong> OpenAI's terminal coding agent, written in Rust: it reads your repository, edits files, and runs commands inside a sandbox, guided by AGENTS.md instruction files you version in the repo.</li>
+      <li><strong>What changed recently and when:</strong> v0.164.0 released Oct 23, 2026 — ten /presets slots for reusable prompts, inline /model and /permissions arguments, enterprise-managed MCP sign-in, and a Bedrock setup wizard on by default. Mid-response steering (redirecting the agent while it is still generating) became the default in v0.163.0 on Oct 15. (VERIFIED from release coverage this week.)</li>
+      <li><strong>Why it matters to a vibe coder:</strong> your dev agent needs a harness with sandboxing and versionable instructions; the new preset system is close to your "specialist agent prompts as files" idea, and the permission system records what the agent was and wasn't allowed to do.</li>
+      <li><strong>License &amp; costs:</strong> Apache-2.0 (VERIFIED from the repo). Model access is NOT free: ChatGPT Plus from $20/mo or API-key billing; GPT-5.5 retired from Codex on Oct 14, 2026. Open source code ≠ free model access.</li>
+      <li><strong>Windows &amp; install:</strong> the Linux sandbox uses bubblewrap, so WSL2 is required on Windows (per OpenAI's Windows docs). npm install, sign in with ChatGPT or API key.</li>
+      <li><strong>Agency OS fit:</strong> DEVELOPMENT stage, dev agent harness — <em>plausible — untested with your orchestrator/gate engine.</em></li>
+      <li><strong>Evidence/output:</strong> session transcripts, permission and approval records.</li>
+      <li><strong>Limitations/risks/human review:</strong> WSL dependency; usage costs on every run; never grant unrestricted approval modes on client repos — human approval stays required for commercial decisions and releases.</li>
+      <li><strong>Verdict:</strong> TEST NOW — if you already have a ChatGPT plan, try /presets with one of your agent prompt files.</li>
     </ul>
 
-    <h3>2. agent-fleet-o (FleetQ Community Edition) — self-hosted multi-agent mission control with approval gates <span class="badge b-invest">INVESTIGATE</span></h3>
+    <h3>2. munder-difflin — open-source "office of agents" orchestrator <span class="badge b-invest">INVESTIGATE</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/escapeboy/agent-fleet-o">github.com/escapeboy/agent-fleet-o</a></li>
-      <li><strong>What it does (simple English):</strong> a self-hosted web platform ("mission control") for running teams of autonomous AI agents: visual DAG workflows, 670+ MCP tools, human-in-the-loop approvals, per-agent versioned policy files, drift and eval monitors, cost tracking ("Return on Cognitive Spend"), and outbound chat channels.</li>
-      <li><strong>What changed recently and when:</strong> actively shipping this month — merged release PRs this week promote fixes and upgrades (neuron-ai 4, phpstan/larastan upgrades, Sentry triage), and v1.27 added policy-governed autonomy, web UIs for previously headless features, and an "Agentic AI Flywheel" (self-growing eval set + production monitors). (VERIFIED from merged release PRs on the repo; exact release dates vary per PR.)</li>
-      <li><strong>Why it matters to a vibe coder:</strong> it is a working reference model for exactly Agency OS's core idea — specialized agents, versioned policies, replay, approvals, drift monitors — that you can study and borrow governance patterns from before building your own.</li>
-      <li><strong>License &amp; costs:</strong> Community Edition is AGPL-3.0 (VERIFIED from the repo README) — a copyleft license with serious implications for offering services built on it; a managed FleetQ Cloud exists with a free tier (separate terms). Not "free for unrestricted commercial use."</li>
-      <li><strong>Windows &amp; install:</strong> PHP/Laravel 13 stack self-hosted via Docker Compose-style <code>make</code> workflows — runs on Windows through Docker Desktop, but it is a real self-hosting commitment, not a quick install. LLM providers need your own API keys.</li>
-      <li><strong>Agency OS fit:</strong> orchestrator coordination and MAINTENANCE stage (drift monitors, eval sets). Compatibility: <em>untested — study it for patterns; do not adopt as infrastructure without license review.</em></li>
-      <li><strong>Evidence/output:</strong> approval records, versioned policy files, run/replay logs, drift and eval monitor reports.</li>
-      <li><strong>Limitations/risks/human review:</strong> small community (~70 stars, ~11 forks) — expect rough edges and self-hosting burden; AGPL-3.0 requires legal review before any commercial embedding; its 670+ MCP tool integrations each need their own trust review.</li>
-      <li><strong>Verdict:</strong> INVESTIGATE — valuable governance reference; license and maturity keep it out of the production path today.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/HarnessMD/munder-difflin">github.com/HarnessMD/munder-difflin</a></li>
+      <li><strong>What it does (simple English):</strong> takes the terminal agent CLIs you already run (claude, codex, gemini, opencode, grok, kimi, qwen, crush, pi, copilot and more) and turns them into a self-coordinating team: each agent gets long-term memory, a mailbox, and a desk on a 2D office floor, while a router ("Michael") assigns work between them.</li>
+      <li><strong>What changed recently and when:</strong> launch week — v0.5.6 is current; the Pro tier is free for everyone only until Saturday, October 24, 2026 (today), then $150 USD/year, purchasing-power adjusted down to about $100/year. (VERIFIED from the repo README.)</li>
+      <li><strong>Why it matters to a vibe coder:</strong> it is the closest off-the-shelf match to your orchestrator-coordinated specialist-agents design — worth studying for routing, memory, and mailbox patterns even if you don't adopt it.</li>
+      <li><strong>License &amp; costs:</strong> open-source core, but Pro is a paid subscription — the exact free/Pro feature boundary was NOT verified today; check before relying on any feature.</li>
+      <li><strong>Windows &amp; install:</strong> Node.js 18+ and npm, plus a C/C++ toolchain for node-pty's native addon (Visual Studio Build Tools on Windows), and at least one supported agent CLI on PATH. Requirements VERIFIED from the repo; Windows behavior untested.</li>
+      <li><strong>Agency OS fit:</strong> orchestrator pattern reference, DEVELOPMENT stage — <em>plausible, untested.</em></li>
+      <li><strong>Evidence/output:</strong> agent memory and mailbox logs, routing and coordination records.</li>
+      <li><strong>Limitations/risks/human review:</strong> brand-new project (expect rough edges); paid tier boundary unverified; it coordinates multiple agent CLIs on your machine — scope each CLI's permissions first and review what "Michael" can dispatch.</li>
+      <li><strong>Verdict:</strong> INVESTIGATE — study the design; do not put a week-old launcher in your production path.</li>
     </ul>
 
-    <h3>3. Titus — high-performance secrets scanner from Praetorian (NoseyParker successor) <span class="badge b-test">TEST NOW</span></h3>
+    <h3>3. secret-guard — blocks agents from reading your .env files <span class="badge b-invest">INVESTIGATE</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/praetorian-inc/titus">github.com/praetorian-inc/titus</a></li>
-      <li><strong>What it does (simple English):</strong> scans code, directories, git history, GitHub/GitLab repos, and Docker images for leaked credentials — API keys, tokens, passwords — using 487 detection rules. Every finding gets a 0–100 score and severity tier. Reports come out as human-readable text, JSON, or SARIF (the format GitHub CI understands).</li>
-      <li><strong>What changed recently and when:</strong> Titus is the official replacement for the now-archived NoseyParker (per HackTricks' tooling index, verified Oct 2026), with active commits over the past year and a CI workflow on main; it's currently surfacing in security-tooling coverage this month. Specific release dates were not individually verified today.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> AI agents generate code fast — one hallucinated config file with a real-looking key can burn a client. Titus gives you a dated, machine-generated "no leaked secrets" artifact for every project, and scanning git history catches keys deleted from files but still buried in old commits.</li>
-      <li><strong>License &amp; costs:</strong> Apache 2.0 (VERIFIED from repo LICENSE; rules derived from Apache-2.0-licensed NoseyParker and Kingfisher). Free and offline-capable — detection runs with no external API by default. (Related market note: Gitleaks is now frozen — security patches only — and its original author's successor Betterleaks is at v2.0.0-rc.3 as of Oct 19, 2026.)</li>
-      <li><strong>Windows &amp; install:</strong> Go binary (Go 1.27+); prebuilt binaries from the official Releases page, or build with <code>make build</code>. Pure-Go fallback exists for platforms without Hyperscan/Vectorscan, so Windows is supported. No daemon, no subscription.</li>
-      <li><strong>Agency OS fit:</strong> SECURITY stage (secrets) — security agent's scanner, and pre-commit/pre-push check complement to your precommit_check.py. Compatibility: <em>plausible — SARIF/JSON output is gate-engine friendly; untested with your scripts.</em></li>
-      <li><strong>Evidence/output:</strong> a datastore plus reports: <code>titus report</code> (human), <code>--format json</code>, <code>--format sarif</code> for CI.</li>
-      <li><strong>Limitations/risks/human review:</strong> <code>--validate</code> (live credential verification) sends candidate secrets to provider APIs — never run it on client credentials without explicit approval; scanning public repos you don't own may raise legal/authorization questions; findings need triage — score ≠ confirmed leak.</li>
-      <li><strong>Verdict:</strong> TEST NOW — single binary, offline, free, immediate Agency OS evidence value.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/JohnXu22786/secret-guard">github.com/JohnXu22786/secret-guard</a></li>
+      <li><strong>What it does (simple English):</strong> a security plugin for DeepSeek Harness (dsh) that intercepts agent reads and writes of sensitive files (.env, credentials, key material) BEFORE the agent's file tools execute, masks secret-shaped values that slip through into tool results, keeps a JSONL audit journal, and provides sg_* inspection tools that never print raw values.</li>
+      <li><strong>What changed recently and when:</strong> new project — listed in the dsh plugin registries on Aug 17, 2026, and surfacing in this week's ecosystem roundups; no new release verified in the last 7 days.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> prevention beats detection: the most common leak is an agent reading a real key into its context. This stops that path at the tool layer and journals every attempt — the enforcement layer your "agents must never invent facts or expose secrets" rule wants.</li>
+      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from the repo LICENSE). Free; no external API.</li>
+      <li><strong>Windows &amp; install:</strong> pure TypeScript source, zero build steps — but it requires DeepSeek Harness (dsh) as its host. Dependency VERIFIED; the combination is untested on Windows.</li>
+      <li><strong>Agency OS fit:</strong> SECURITY stage plus a runtime guard for every agent stage — <em>plausible, untested.</em></li>
+      <li><strong>Evidence/output:</strong> JSONL audit journal entries and blocked-operation records — exactly the artifact type a gate can read.</li>
+      <li><strong>Limitations/risks/human review (from the repo's own Security Notes):</strong> transformed content (base64, rev, split lines) defeats the shape rules; symlinks and ".." path aliases are known limitations. It stops the most common path, not everything — pair with a repo/history scanner, don't treat it as complete protection.</li>
+      <li><strong>Verdict:</strong> INVESTIGATE — high-value pattern; gated on whether you adopt dsh as a harness.</li>
     </ul>
 
-    <h3>4. mcp-accessibility-scanner — axe-core accessibility audits driven by your AI agent <span class="badge b-invest">INVESTIGATE</span></h3>
+    <h3>4. tester-army/e2e — agentic E2E testing with deterministic replay <span class="badge b-test">TEST NOW</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/JustasMonkev/mcp-accessibility-scanner">github.com/JustasMonkev/mcp-accessibility-scanner</a></li>
-      <li><strong>What it does (simple English):</strong> an MCP server that lets an AI agent (Claude Code, VS Code Copilot, Gemini CLI, etc.) audit real web pages for accessibility failures using axe-core and Playwright: WCAG 2.0/2.1/2.2 checks at A/AA/AAA, whole-site crawling audits, real keyboard-navigation testing, and a "matrix" scan comparing mobile/desktop/zoom/reduced-motion variants of the same page.</li>
-      <li><strong>What changed recently and when:</strong> last pushed Oct 17, 2026; release 4.0.1 shipped recently with new survival tests, artifact-saving for browser findings, keyboard-audit fixes, and trusted npm publishing on version tags. It's been trending in the MCP ecosystem this month (rose ~689 spots in early September per HVTracker's ranking history).</li>
-      <li><strong>Why it matters to a vibe coder:</strong> AI-coded UIs are notorious for accessibility regressions (missing labels, keyboard traps). This gives your QA stage a machine-checked, per-page violation report produced by a real browser session — not the agent's opinion of "looks accessible."</li>
-      <li><strong>License &amp; costs:</strong> MIT (VERIFIED via HVTracker's supply-chain record reading the repo). Free; published on npm as <code>mcp-accessibility-scanner</code>. Uses local Playwright browsers (free download); no paid API required.</li>
-      <li><strong>Windows &amp; install:</strong> Node.js MCP server — runs on Windows; installs via npm/npx with Playwright browser downloads (needs explicit install capability per recent release notes). Works with VS Code, Claude Desktop, Copilot CLI, Gemini CLI, Codex CLI.</li>
-      <li><strong>Agency OS fit:</strong> QA stage (UI accessibility evidence for UAT/UI-E2E coverage). Compatibility: <em>plausible — MCP servers plug into agent harnesses; untested with your QA agent.</em></li>
-      <li><strong>Evidence/output:</strong> per-page violation reports (visual + JSON) with WCAG levels and remediation guidance; site-crawl aggregates.</li>
-      <li><strong>Limitations/risks/human review:</strong> small project (dozens of stars); OpenSSF Scorecard 6.1/10 with code-review and branch-protection checks at 0 — pin the version, review before adopting in client work; automated a11y scans catch ~30–50% of issues by common industry estimates — real screen-reader testing with humans remains irreplaceable.</li>
-      <li><strong>Verdict:</strong> INVESTIGATE — strong QA evidence pattern; verify stability on a scratch project before client use.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/tester-army/e2e">github.com/tester-army/e2e</a></li>
+      <li><strong>What it does (simple English):</strong> you write ordinary TypeScript tests with locators and assertions — and where a selector would be brittle, you write a goal in plain English (agent.act('upgrade to the Pro plan')). An AI agent drives the app to reach the goal; once a later assertion confirms the result, the actions are recorded, and the next run replays them WITHOUT calling a model until the app changes.</li>
+      <li><strong>What changed recently and when:</strong> releases shipped Oct 9 (v0.19.0, with @e2e-dev/web 0.14.0 and @e2e-dev/mobile 0.11.0), Oct 13, and Oct 15–16, 2026; ~11.5k stars as of Oct 20 with roughly +120/day growth. (VERIFIED from release pages and independent reviews this week.)</li>
+      <li><strong>Why it matters to a vibe coder:</strong> AI-coded UIs break in ways brittle selectors miss. This gives your QA agent natural-language test authoring PLUS deterministic, near-zero-cost replay — the UI-E2E evidence your QA gate needs, produced by a real browser, not an opinion.</li>
+      <li><strong>License &amp; costs:</strong> Apache-2.0 (VERIFIED from the repo). The framework is free; you bring a model — an API key, a gateway, an existing ChatGPT/Copilot/OpenCode subscription via npx e2e login, or a LOCAL Ollama model at zero cost. The replay cache is what keeps cost flat after the first green run.</li>
+      <li><strong>Windows &amp; install:</strong> Node.js 24.8+ (or 22.22.3+); mobile testing needs Xcode or the Android SDK; Windows users run it inside WSL. Pre-1.0: APIs can change between minor releases. The CLI sends anonymous usage telemetry (commands and failure points, no test content or credentials) — opt out with npx e2e telemetry disable or E2E_TELEMETRY_DISABLED=1.</li>
+      <li><strong>Agency OS fit:</strong> QA stage, QA agent — <em>plausible — untested with your pipeline.</em></li>
+      <li><strong>Evidence/output:</strong> test run reports and traces, plus automatic PR comments via @e2e-dev/github; recorded replay steps are themselves reviewable artifacts.</li>
+      <li><strong>Limitations/risks/human review:</strong> young project (repo created July 22, 2026) and pre-1.0 churn; agent-driven tests still need real assertions — a goal without a check is not evidence; WSL prerequisite on Windows.</li>
+      <li><strong>Verdict:</strong> TEST NOW — with a local Ollama model in WSL, this is today's highest-value experiment.</li>
     </ul>
 
-    <h3>5. shadcn-admin — production-grade admin dashboard you own, component by component <span class="badge b-invest">INVESTIGATE</span></h3>
+    <h3>5. Nuxt UI v4 — entire 125+ component catalog now free under MIT <span class="badge b-invest">INVESTIGATE</span></h3>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/satnaing/shadcn-admin">github.com/satnaing/shadcn-admin</a></li>
-      <li><strong>What it does (simple English):</strong> a free, open-source admin dashboard UI — dashboard, tasks, chats, users, auth flows, error pages, settings — built on React 19, Vite, Tailwind CSS v4, and shadcn/ui. Every component is vendored into your project: the code is yours to read and edit, not a black-box library dependency.</li>
-      <li><strong>What changed recently and when:</strong> ~12,630 stars / 2,007 forks per an Oct 11, 2026 review; that review reported the last commit as June 16, 2026 — recent release activity could not be verified today, so treat freshness as UNVERIFIED. React 19 / Tailwind v4 support is current.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> every small-business web app needs an admin panel. Starting from an accessible, RTL-aware, responsive base with error pages and auth flows already built means your dev agent spends its tokens on the client's actual business logic — and you can read every component before shipping it.</li>
-      <li><strong>License &amp; costs:</strong> MIT (VERIFIED per repo/reviews). Free; sponsored but not paywalled. No external API required.</li>
-      <li><strong>Windows &amp; install:</strong> clone the repo, <code>npm install</code>, <code>npm run dev</code> — standard Vite workflow on Windows. Requires Node.js.</li>
-      <li><strong>Agency OS fit:</strong> REUSABLE_COMPONENT stage — the exact artifact type your lifecycle ends with: a vetted component base reused across client projects. Compatibility: <em>plausible — it's a UI starting point, not an integration; untested in your pipeline.</em></li>
-      <li><strong>Evidence/output:</strong> the vendored component code itself — diffable, reviewable, and reusable; every AI modification to it is visible in git.</li>
-      <li><strong>Limitations/risks/human review:</strong> reported commit inactivity since June 2026 — check the repo before adopting; it's a UI collection, not a starter with backend conventions (auth, database, API are yours to wire); still run your full QA/SECURITY gates on anything built from it.</li>
-      <li><strong>Verdict:</strong> INVESTIGATE — high-value reusable base; confirm it's actively maintained before making it your default.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Test Today: Titus — offline secret scan on Windows (~30–45 min)</h2>
-    <ul>
-      <li><strong>Why this one:</strong> single prebuilt binary, Apache 2.0, runs offline by default, no subscription, no API keys, and it produces exactly the evidence type your SECURITY gate wants (a dated scan report).</li>
-      <li><strong>Prerequisites:</strong> a Windows PC; nothing else for the prebuilt binary (Go 1.27+ only if you build from source).</li>
-      <li><strong>Official installation steps:</strong> download the Windows binary from the official GitHub Releases page only (never third-party mirrors); verify the checksum if the release provides one; alternatively build from source with <code>make build</code> per the README.</li>
-      <li><strong>Practical test:</strong> (1) create a scratch folder (not a client project) and plant 3 obviously fake keys — e.g., a dummy AWS-style key, a fake GitHub token pattern, a fake Slack token; (2) run <code>titus scan path\to\scratch</code>; (3) run <code>titus report --format json</code> and <code>titus report --format sarif</code>; (4) make it a git repo, commit a fake key, delete the file, commit again, then <code>titus scan --git path\to\repo</code> — the "deleted" key should still be found in history.</li>
-      <li><strong>Expected results:</strong> findings with rule name, score 0–100, and severity; JSON and SARIF files you can store as dated evidence. The git-history step should demonstrate that deleting a file does not delete a leak — the single most important lesson for agent-driven commits.</li>
-      <li><strong>Safety precautions:</strong> use only fake keys in the scratch folder; do NOT run <code>--validate</code> (it contacts provider APIs); don't scan public repos you have no authorization to test; download only from the official repo; keep the binary out of client repos (run it from a tools directory).</li>
+      <li><strong>Link:</strong> <a href="https://github.com/nuxt/ui">github.com/nuxt/ui</a></li>
+      <li><strong>What it does (simple English):</strong> a Vue 3 / Nuxt component library for business web apps — buttons, tables, forms, navigation, modals, dashboards — with accessibility built in. In v4, all 125+ components previously locked behind the paid Pro tier became completely free under the MIT license.</li>
+      <li><strong>What changed recently and when:</strong> the v4 license change (Pro components → MIT) is the meaningful update, verified via an October 2026 template survey. The exact v4 release date was NOT independently verified today — check the repo's releases page before citing one.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> a full, accessible, MIT dashboard component set means near-zero license risk when reusing components across client projects — a direct REUSABLE_COMPONENT asset for your library.</li>
+      <li><strong>License &amp; costs:</strong> MIT for the formerly-Pro components (VERIFIED for the change via the October 2026 survey). Free; no subscription; no external API.</li>
+      <li><strong>Windows &amp; install:</strong> standard Node.js/Vite toolchain — runs natively on Windows, no WSL needed.</li>
+      <li><strong>Agency OS fit:</strong> REUSABLE_COMPONENT stage plus spec/UX stage — <em>plausible, untested.</em></li>
+      <li><strong>Evidence/output:</strong> the vendored component code itself — diffable, reviewable, reusable.</li>
+      <li><strong>Limitations/risks/human review:</strong> Vue/Nuxt only — useless for React projects; verify the installed package's LICENSE file before commercial reuse; still run your full QA/SECURITY gates on anything built with it.</li>
+      <li><strong>Verdict:</strong> INVESTIGATE — high-value if you adopt a Vue stack; zero-risk to evaluate.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Agency OS Integration Proposal: Titus SARIF reports as SECURITY-gate evidence</h2>
+    <h2>Test Today: Nuxt UI v4 on Windows (~30–45 min)</h2>
     <ul>
-      <li><strong>Problem solved:</strong> your SECURITY stage covers secrets, but today "no secrets committed" is an agent's claim unless a scanner produced a report. AI agents commit fast and often; a machine-checked secrets artifact makes the claim VERIFIED.</li>
-      <li><strong>Exact workflow/agent it improves:</strong> the security agent's secrets check, complementing (not replacing) precommit_check.py and prepush_release_check.ps1.</li>
-      <li><strong>Where in the lifecycle:</strong> SECURITY stage — run on every entry to SECURITY; also run the git-history scan at RELEASE as a final pre-publish check.</li>
-      <li><strong>Inputs:</strong> the project repo path; the Titus binary; no network needed (offline detection). For public-repo or Docker-image scans, human authorization first.</li>
-      <li><strong>Outputs:</strong> a dated SARIF/JSON report stored with the project, referenced from project-state.json as VERIFIED evidence: rule, score, severity, file, line.</li>
-      <li><strong>How results are validated:</strong> the report is generated by the external tool, not authored by an agent; the security agent may attach and summarize it, never substitute its own verdict; zero findings = clean only if the report file exists and covers the full repo + history.</li>
-      <li><strong>What happens on failure:</strong> any high-severity finding blocks SECURITY advancement → secrets are rotated/removed (history rewrite or key rotation is the only real fix) → rescan. A waiver (e.g., a flagged test fixture) is a governance decision → human approval required. This <em>adds an evidence type to</em> your existing gate engine — no replacement of the gate engine or governance is proposed.</li>
-      <li><strong>Blocks a gate or needs human approval?</strong> Rule-based gate-blocking on findings; human approval for waivers, any use of <code>--validate</code>, and any scan of third-party assets.</li>
-      <li><strong>Smallest safe experiment:</strong> today's scratch-folder test above. If the SARIF artifact looks good, wire one line into prepush_release_check.ps1 that runs Titus and fails on exit code — nothing more until proven on a real project.</li>
+      <li><strong>Why this one:</strong> the only pick today that runs natively on Windows with zero subscriptions, zero API keys, and zero WSL — and the MIT change makes it safe to evaluate for client reuse.</li>
+      <li><strong>Prerequisites:</strong> a Windows PC; Node.js 18+ LTS; any editor (an AI IDE helps but isn't required).</li>
+      <li><strong>Official installation steps:</strong> create a project with <code>npm create nuxt@latest</code>, then install the UI package (<code>npm install nuxt ui</code>) and add it to your Nuxt modules per the official Nuxt UI docs; run <code>npm run dev</code>.</li>
+      <li><strong>Practical test:</strong> build one page with a dashboard layout — buttons, cards, a data table, a sidebar navigation menu, and the dark-mode toggle. Let your AI IDE generate it from the official v4 docs, then verify accessibility basics yourself in the browser: keyboard tab order, visible focus states, and readable contrast in dark mode.</li>
+      <li><strong>Expected results:</strong> a working, accessible dashboard page in under an hour, all MIT-licensed — a candidate template for your REUSABLE_COMPONENT library.</li>
+      <li><strong>Safety precautions:</strong> do this in a scratch project, never a client repo; don't paste real API keys into example env files; confirm the LICENSE file in the installed package before any commercial use; review AI-generated component code before keeping it.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Daily Learning: secrets in git history</h2>
+    <h2>Agency OS Integration Proposal: e2e reports as QA-gate UI-E2E evidence</h2>
     <ul>
-      <li><strong>Concept (simple English):</strong> git keeps every version of every file it ever committed. Deleting a file with a password in it, and committing the deletion, removes it from the latest version — but the password is still in the repository's history, and anyone who clones it can find it. The only real fix is rotating the credential; cleaning history is a bonus, not a cure.</li>
-      <li><strong>How an AI agent might get it wrong:</strong> the agent notices a committed secret, deletes the file (or the line), commits "removed secret," and reports the issue resolved — believing deletion equals remediation. Or it "verifies" safety by checking the current files only, never the history.</li>
-      <li><strong>How you recognize the failure:</strong> a remediation report that mentions deleting code but not rotating the key; a "clean" claim based only on a working-tree scan; the credential never revoked at its provider.</li>
-      <li><strong>Which tool/test detects it:</strong> Titus — <code>titus scan --git</code> parses full git history and reports the "deleted" secret; that failing report is exactly the gate evidence that turns the agent's "resolved" claim back into BLOCKED until the key is rotated.</li>
+      <li><strong>Problem solved:</strong> your QA stage covers UI-E2E, but today "the UI works" is an agent claim unless a real browser run produced a report.</li>
+      <li><strong>Exact workflow/agent it improves:</strong> the QA agent's UI-E2E check, complementing (not replacing) your Python validation utilities.</li>
+      <li><strong>Where in the lifecycle:</strong> QA stage — run on every entry to QA; re-run at RELEASE as regression evidence.</li>
+      <li><strong>Inputs:</strong> the staged web app's local URL; test goals in plain English plus TypeScript assertions; a model — a local Ollama model keeps cost at zero.</li>
+      <li><strong>Outputs:</strong> dated test run reports and traces; optional PR comments via @e2e-dev/github; recorded replay steps as reviewable artifacts, referenced from project-state.json as VERIFIED evidence.</li>
+      <li><strong>How results are validated:</strong> the report is produced by the external tool, not authored by the agent; the agent may attach and summarize it, never substitute its own verdict; a pass counts only if all assertions are green AND the report file exists — otherwise the claim stays UNVERIFIED.</li>
+      <li><strong>What happens on failure:</strong> any failed assertion blocks QA advancement → fix → re-run. Cache invalidation on failure forces a fresh agent pass, so stale replays cannot mask regressions. This adds one evidence type to your existing gate engine — no replacement of the gate engine or governance is proposed.</li>
+      <li><strong>Blocks a gate or needs human approval?</strong> Rule-based gate-blocking on assertion failures; human approval remains required for UAT, client acceptance, and release — exactly as in your governance.</li>
+      <li><strong>Smallest safe experiment:</strong> in WSL2, install Node 24.8+, run <code>npx e2e init</code> in a scratch repo with a tiny demo page, write one natural-language step plus one hard assertion, run it with a local Ollama model, then re-run and confirm the replay uses no model. Nothing client-facing until that works.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Daily Learning: replay caching in agent-driven tests</h2>
+    <ul>
+      <li><strong>Concept (simple English):</strong> when an agent successfully performs a UI action, the framework saves the exact steps. On the next run it replays them like a normal script — no model call, no cost, no randomness. If the app changed and the replay no longer works, the cache is invalidated and the agent drives it fresh.</li>
+      <li><strong>How an AI agent might get it wrong:</strong> it "remembers" a test passing and reports PASS without running anything — or a stale cached path silently skips a step that now leads somewhere else, and the agent reports success anyway.</li>
+      <li><strong>How you recognize the failure:</strong> a PASS claim with no run report or trace; a "test passed" that references no dated artifact; results that cannot be reproduced on a second run.</li>
+      <li><strong>Which tool/test detects it:</strong> e2e's replay cache plus its assertion layer — failures invalidate the cache and show up in the report; the missing artifact is exactly what turns an agent's claim back to UNVERIFIED in project-state.json.</li>
     </ul>
   </section>
 
   <section>
     <h2>Final Summary</h2>
     <ul>
-      <li><strong>Best discovery today:</strong> praetorian-inc/titus — Apache-2.0, offline, single-binary secret scanning with SARIF output: an immediate, free evidence producer for your SECURITY gate.</li>
-      <li><strong>Best security/reliability improvement:</strong> Titus git-history scans (plus the block-no-verify hook pattern from wshobson/agents — agents must not be able to skip your hooks).</li>
-      <li><strong>Best Agency OS integration:</strong> Titus SARIF reports as a SECURITY-gate evidence type: deterministic blocking on findings, human approval for waivers, gate engine and governance unchanged.</li>
-      <li><strong>One practical action today:</strong> run the Titus scratch-folder test — plant fake keys, scan, then scan the git history — and save the SARIF report as your first secrets-evidence artifact.</li>
+      <li><strong>Best discovery today:</strong> <a href="https://github.com/tester-army/e2e">tester-army/e2e</a> — agentic E2E testing with deterministic, near-zero-cost replay and real browser evidence.</li>
+      <li><strong>Best security/reliability improvement:</strong> <a href="https://github.com/JohnXu22786/secret-guard">secret-guard</a>'s tool-layer secret-interception pattern (plus Codex CLI's permission records for dev-time guardrails).</li>
+      <li><strong>Best Agency OS integration:</strong> e2e reports as QA-gate UI-E2E evidence — deterministic blocking on assertion failures, human approval untouched, gate engine unchanged.</li>
+      <li><strong>One practical action today:</strong> run the Nuxt UI v4 scratch test on Windows and save the result as your next REUSABLE_COMPONENT candidate.</li>
     </ul>
   </section>
 </div>
