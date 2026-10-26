@@ -29,6 +29,9 @@
   .muted { color:var(--muted); font-size:0.9rem; }
   code { background:#0d1117; border:1px solid #21262d; border-radius:4px; padding:1px 6px; font-size:0.88em; }
   .gap-box { border-left:3px solid var(--accent); padding:10px 14px; margin:10px 0; background:#0d1117; border-radius:0 6px 6px 0; }
+  table { width:100%; border-collapse:collapse; margin:10px 0; font-size:0.92rem; }
+  th, td { border:1px solid #21262d; padding:8px 10px; text-align:left; vertical-align:top; }
+  th { color:var(--accent); background:#0d1117; }
 </style>
 </head>
 <body>
@@ -36,145 +39,120 @@
   <header>
     <h1>Agency OS <span>Radar</span></h1>
     <div class="tagline">Daily open-source discoveries for a one-person AI software agency</div>
-    <div class="tagline date">Report date: Sunday, October 25, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
+    <div class="tagline date">Report date: Monday, October 26, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
   </header>
 
   <section>
     <h2>Start Here (plain English)</h2>
-    <p><strong>The problem:</strong> an AI-built app is only sellable to a small business when every lifecycle stage passes on <em>evidence</em>, not agent claims. The weakest stage in the factory right now is SECURITY: there are validation scripts and a gate engine, but no automated tool that turns &quot;the dependencies are safe&quot; into a dated, machine-readable artifact.</p>
-    <p><strong>The solution in today's radar:</strong> five verified finds, one per pipeline slot. OWASP cve-lite-cli v1.40.0 is a local dependency vulnerability scanner that outputs JSON/SARIF/SBOM and can fail CI — the missing SECURITY-stage evidence producer. paperclip manages agents at work and just made agent work survive controller outages. Prime Intellect prime-agent is a self-improving autonomous coding agent. QA Wolf CLI v2.6.0 brings AI-agent-friendly e2e test filing into your terminal. Meta's Astryx is an agent-ready, accessible React component system for business dashboards.</p>
-    <p class="muted">Coverage note: QA Wolf v2.6.0 released Oct 23 (~48h); cve-lite-cli v1.40.0 released Oct 21; the rest verified active via GitHub commits on Oct 25, 2026. Prior reports (Oct 20–24: SkillSpector, vercel-labs/skills, OMA, Strix, agent-device, Trivy, OSV-Scanner, Playwright, Orchestrator.inc, Orca, OpenCode 2.0, promptfoo, ai-memory, google/skills, CommitShield, wshobson/agents, agent-fleet-o, Titus, mcp-accessibility-scanner, shadcn-admin, Codex CLI, munder-difflin, secret-guard, tester-army/e2e, Nuxt UI) were available — none of today's picks repeat them. Per the standing preference set Oct 19, the Ethiopia business-opportunity section remains removed.</p>
+    <p><strong>The problem:</strong> a one-person AI agency needs its coding agent to behave like a disciplined software team — ask what the client really needs before building, write the spec down, plan the work, test first, and review everything — not a code-spitting chatbot that improvises. Stitching those habits together by hand, every day, is exactly what a solo vibe coder has no time for.</p>
+    <p><strong>The solution in today's radar:</strong> <a href="https://github.com/obra/superpowers">obra/superpowers</a> is a free, MIT-licensed <em>methodology, delivered as skills</em>, that plugs into the coding agent you already use (Claude Code, Cursor, Codex CLI, OpenCode, and many more). Once installed, your agent automatically follows one connected workflow: brainstorm the requirement → get your sign-off → isolate a git worktree → write a task-by-task plan → build with subagents under strict test-first rules → review each task → finish the branch with a human merge decision. It works end-to-end like a mini software factory — and today it shipped a fresh release (v7.0.1, Oct 21, 2026) plus repo commits on Oct 20, putting it inside the 7-day activity window.</p>
+    <p class="muted">Format note: per the standing focus set Oct 25, 2026, this report uses the single-featured-factory layout (one connected project, mapped stage-by-stage) and the Ethiopia business-opportunity section remains removed. Prior reports (Oct 20–25, as listed on the previous page: SkillSpector, vercel-labs/skills, OMA, Strivy, agent-device, Trivy, OSV-Scanner, Playwright, OpenCode 2.0, promptfoo, Codex CLI, dzhng/skills, cve-lite-cli, QA Wolf CLI, paperclip, Astryx, and others) were available — Superpowers was not among them, so it is not a repeat.</p>
   </section>
 
   <section>
-    <h2>The Production-Readiness Gap</h2>
-    <div class="gap-box">
-      <p><strong>The criticism:</strong> &quot;AI-built apps aren't production-ready&quot; is an evidence problem. &quot;The dependencies are safe&quot; is worthless as an agent claim — it only counts when a tool produced an artifact with a date and an exit code the gate engine can read.</p>
-    </div>
-    <div class="gap-box">
-      <p><strong>Today's answer:</strong> cve-lite-cli turns &quot;dependencies are safe&quot; into a dated JSON/SARIF/SBOM report plus a blocking exit code; its ratchet baseline means the pipeline can only get safer over time. paperclip turns &quot;the agent kept working&quot; into durable, committed receipts that survive outages. QA Wolf CLI attaches reproduction files to bug reports so a fix conversation carries real evidence. Astryx documents accessibility contracts as verifiable specs, not claims.</p>
-    </div>
-    <p><strong>Why this maps to Agency OS:</strong> governance demands VERIFIED evidence before a gate advances. These tools are external evidence producers the gate engine can consume — none of them replaces the gate engine or project-state.json; they feed it.</p>
-  </section>
-
-  <section>
-    <h2>Top 5 Discoveries</h2>
-
-    <h3>1. OWASP CVE Lite CLI — v1.40.0 local dependency vulnerability scanner <span class="badge b-test">TEST NOW</span></h3>
+    <h2>The Featured Factory: obra/superpowers <span class="badge b-test">TEST NOW</span></h2>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/OWASP/cve-lite-cli">github.com/OWASP/cve-lite-cli</a></li>
-      <li><strong>What it does (simple English):</strong> scans your JS/TS lockfile locally, matches dependencies against OSV and npm advisory data, and prints copy-and-run fix commands — not just CVE IDs. Shows direct vs transitive packages, which parent to upgrade, and can run fully offline with a local advisory database.</li>
-      <li><strong>What changed recently and when:</strong> v1.40.0 released Oct 21, 2026 — pnpm 8 lockfile parsing and &quot;a ratchet that can fail CI&quot; (baseline suppression). Commits Oct 25 treat 0.0.x patch upgrades as breaking and document real adopters. (VERIFIED from GitHub releases/commits.)</li>
-      <li><strong>Why it matters to a vibe coder:</strong> AI agents add dozens of transitive dependencies silently. This turns dependency safety into a dated artifact with an exit code — the exact evidence type the SECURITY gate consumes.</li>
-      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from the repo LICENSE). Free, no account, no API key. Queries OSV/npm advisory APIs unless the offline DB is synced. ~773 stars (GitHub API, Oct 25).</li>
-      <li><strong>Windows &amp; install:</strong> Node.js + <code>npm install -g cve-lite-cli</code> (or <code>npx cve-lite-cli .</code>). Uses better-sqlite3 (native binding) — prebuilt binary normally; VS C++ Build Tools only if compiling. Standard Node on Windows; untested on this machine.</li>
-      <li><strong>Agency OS fit:</strong> SECURITY stage, security agent's dependency check — <em>plausible, untested with the gate engine.</em></li>
-      <li><strong>Evidence/output:</strong> JSON, SARIF (GitHub Code Scanning), SPDX/CycloneDX SBOM with findings attached, HTML report, non-zero exit code with <code>--fail-on high</code>.</li>
-      <li><strong>Limitations/risks/human review:</strong> JS/TS only; does not detect malicious packages, secrets, or runtime reachability; the project's own limitations list says it does not replace a full security program. Review every fix command before running; waivers stay human-approved.</li>
-      <li><strong>Verdict:</strong> TEST NOW — local, free, Windows-friendly, zero subscription.</li>
-    </ul>
-
-    <h3>2. paperclip — open-source app to manage agents at work <span class="badge b-invest">INVESTIGATE</span></h3>
-    <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/paperclipai/paperclip">github.com/paperclipai/paperclip</a></li>
-      <li><strong>What it does (simple English):</strong> a management layer for AI agents at work — hosts, supervises, and keeps durable records of agent tasks instead of leaving them scattered across terminal sessions.</li>
-      <li><strong>What changed recently and when:</strong> commit Oct 25, 2026: remote native agent work now survives controller outages — durable tools held under an authenticated connection lease through reconnection; per the commit message, verified with real-process regression tests including a 125-second offline window. (Commit VERIFIED; not run here.)</li>
-      <li><strong>Why it matters to a vibe coder:</strong> a production factory's orchestrator must not lose agent work or audit trails when infrastructure hiccups — resilience separates a demo from a factory.</li>
-      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from the repo LICENSE). No subscription requirement found in the repo; cloud/backend pricing, if any, NOT verified today.</li>
-      <li><strong>Windows &amp; install:</strong> not verified today — check the README before installing.</li>
-      <li><strong>Agency OS fit:</strong> orchestrator-adjacent supervision layer, all agent stages — <em>plausible, untested.</em></li>
-      <li><strong>Evidence/output:</strong> committed workspace receipts, provenance records, connection/work logs.</li>
-      <li><strong>Limitations/risks/human review:</strong> activity verified, capability not; grant only scoped permissions, never unrestricted machine access; review what its controllers can dispatch.</li>
-      <li><strong>Verdict:</strong> INVESTIGATE — study the outage-resilience pattern; don't adopt on day one.</li>
-    </ul>
-
-    <h3>3. Prime Intellect prime-agent — self-improving agent for long-running coding tasks <span class="badge b-invest">INVESTIGATE</span></h3>
-    <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/PrimeIntellect-ai/prime-agent">github.com/PrimeIntellect-ai/prime-agent</a></li>
-      <li><strong>What it does (simple English):</strong> an autonomous coding agent built for long-running workflows and long-horizon tasks; a port of the Prime Agent TypeScript product by Mario Zechner.</li>
-      <li><strong>What changed recently and when:</strong> commit Oct 25, 2026 restoring OpenCode conversation identity/routing (session IDs across transports, plus a large accompanying test suite). (VERIFIED from commit history.)</li>
-      <li><strong>Why it matters to a vibe coder:</strong> a dev agent must run for hours without losing state; session/conversation identity across reconnects is the plumbing that makes that possible.</li>
-      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from the repo LICENSE). Model access costs money — needs an LLM API key or subscription; open source ≠ free model access.</li>
-      <li><strong>Windows &amp; install:</strong> Rust toolchain likely required to build from source; not verified today.</li>
-      <li><strong>Agency OS fit:</strong> DEVELOPMENT stage, dev agent — <em>plausible, untested.</em></li>
-      <li><strong>Evidence/output:</strong> session/conversation records; its own test suites.</li>
-      <li><strong>Limitations/risks/human review:</strong> early-stage, research-grade; never give an autonomous agent unrestricted access; human approval for anything touching client repos or commercial decisions.</li>
-      <li><strong>Verdict:</strong> INVESTIGATE.</li>
-    </ul>
-
-    <h3>4. QA Wolf CLI — v2.6.0 e2e testing from terminal, CI, or AI agent <span class="badge b-invest">INVESTIGATE</span></h3>
-    <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/qawolf/cli">github.com/qawolf/cli</a></li>
-      <li><strong>What it does (simple English):</strong> the CLI companion to QA Wolf: file, attach evidence to, and manage browser e2e test runs and bug reports from a terminal or AI agent, on top of Playwright-based infrastructure.</li>
-      <li><strong>What changed recently and when:</strong> v2.6.0 released Oct 23, 2026 — <code>issue create --type bug</code> takes <code>--file-paths</code> so a bug report carries the files it reproduced with; <code>qawolf build requestDownload</code>; run reports show app builds and site versions per attempt. (VERIFIED from the release page.)</li>
-      <li><strong>Why it matters to a vibe coder:</strong> when the QA agent finds a UI bug, the fix conversation needs reproduction files attached automatically, not pasted by hand.</li>
-      <li><strong>License &amp; costs:</strong> Apache-2.0 (VERIFIED from the repo LICENSE) — but the CLI drives the QA Wolf cloud platform, a commercial paid service; current pricing NOT verified today. Open-source CLI ≠ free product.</li>
-      <li><strong>Windows &amp; install:</strong> Node/npm CLI; untested on Windows.</li>
-      <li><strong>Agency OS fit:</strong> QA stage, QA agent bug-reporting workflow — <em>plausible, untested.</em></li>
-      <li><strong>Evidence/output:</strong> bug reports with immutable attached files, run records with app-version provenance.</li>
-      <li><strong>Limitations/risks/human review:</strong> depends on a paid cloud service and network access — conflicts with the &quot;prefer local, no expensive subscriptions&quot; rule; verify pricing before any trial.</li>
-      <li><strong>Verdict:</strong> INVESTIGATE — good pattern; likely SKIP unless pricing fits.</li>
-    </ul>
-
-    <h3>5. Meta Astryx — agent-ready, accessible React design system <span class="badge b-invest">INVESTIGATE</span></h3>
-    <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/facebook/astryx">github.com/facebook/astryx</a></li>
-      <li><strong>What it does (simple English):</strong> an open-source design system from Meta: 150+ accessible, typed React components with brand-level theming via CSS custom properties, dark mode, ready-to-ship templates, and a CLI. Strong, documented conventions mean both humans and AI assistants can predict how an unfamiliar component behaves.</li>
-      <li><strong>What changed recently and when:</strong> commits Oct 25, 2026 recording shipped component contracts as specs (IconButton, Spinner) with accessibility evidence and explicit evidence gaps — its docs treat accessibility claims as things to verify, not assert. (VERIFIED from commit messages; launch date not verified.)</li>
-      <li><strong>Why it matters to a vibe coder:</strong> business dashboards are the core product; an MIT, accessible, AI-predictable component system is a direct REUSABLE_COMPONENT asset.</li>
-      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from the repo LICENSE, Meta Platforms 2026). Free; no external API.</li>
-      <li><strong>Windows &amp; install:</strong> standard Node/Vite/React toolchain — native Windows, no WSL expected; untested here.</li>
-      <li><strong>Agency OS fit:</strong> SPECIFICATION and REUSABLE_COMPONENT stages, spec/UX agent — <em>plausible, untested.</em></li>
-      <li><strong>Evidence/output:</strong> component code plus documented accessibility contracts — diffable, reusable artifacts.</li>
-      <li><strong>Limitations/risks/human review:</strong> React only; verify the installed package's LICENSE before commercial reuse; still run full QA/SECURITY gates on anything built with it.</li>
-      <li><strong>Verdict:</strong> INVESTIGATE — zero-risk to evaluate.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/obra/superpowers">github.com/obra/superpowers</a></li>
+      <li><strong>What it is (simple English):</strong> a complete software development methodology for coding agents, built from composable skills that trigger automatically. It is not a new IDE — it is the discipline layer that makes your existing AI IDE work like a factory.</li>
+      <li><strong>What changed recently and when:</strong> <em>v7.0.1 released Oct 21, 2026</em> (VERIFIED from the repo's release notes): brainstorming retuned to read your project/spec before asking anything, three long skills trimmed so they survive context compaction, and issue/PR templates now require a human-written summary. v7.0.0 (Oct 10, 2026) rebuilt brainstorming entirely. Repo commits Oct 20, 2026 updated README/templates. 686 commits, 38 tags. (VERIFIED from the GitHub repo page.)</li>
+      <li><strong>Why it matters to a vibe coder:</strong> the agent checks for relevant skills before any task — these are mandatory workflows, not suggestions. Your AI IDE stops jumping straight to code and starts producing specs, plans, failing tests first, and review evidence — the exact artifacts Agency OS gates want to consume.</li>
+      <li><strong>License &amp; costs:</strong> MIT (VERIFIED from the repo LICENSE, Jesse Vincent). Free. It drives your existing coding agent, so model/subscription costs are whatever your Claude/Codex/Cursor plan already costs — open source ≠ free model access. Enterprise commercial support exists (sales@primeradiant.com) but is optional.</li>
+      <li><strong>Windows &amp; install:</strong> installs as a plugin into harnesses that run on Windows (Cursor: <code>/add-plugin superpowers</code>; Claude Code: <code>/plugin install superpowers@claude-plugins-official</code>; Codex CLI via <code>/plugins</code>). A Feb 2026 repo commit fixed Windows hook window spawning, showing Windows is a supported target — but <em>plausible, untested on this PC today</em>. Repo test scripts (<code>run-*.sh</code>) are bash-oriented; running the skills themselves needs no bash.</li>
+      <li><strong>Verdict:</strong> TEST NOW — free, local, no new subscription, works with tools you already have.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Test Today: OWASP cve-lite-cli on Windows (~30 min)</h2>
+    <h2>The Factory Map — Superpowers onto the Agency OS Lifecycle</h2>
+    <p class="muted">All skill names and artifacts below are VERIFIED from the repo README (workflow and skills library sections).</p>
+    <table>
+      <tr><th>Agency OS stage</th><th>Superpowers skill</th><th>Artifact it produces</th><th>Which gate consumes it</th></tr>
+      <tr><td>LEAD</td><td>— (not covered)</td><td>—</td><td>—</td></tr>
+      <tr><td>DISCOVERY / PROBLEM_DEFINITION</td><td>brainstorming</td><td>Questions, a played-back understanding, and a written design document for projects (small changes agreed in chat)</td><td>PROBLEM_DEFINITION gate: the design doc is the first evidence a real requirement exists</td></tr>
+      <tr><td>PROPOSAL / SPECIFICATION</td><td>brainstorming (per v7.0.1 notes: lays out 2–3 approaches, recommends one, asks you to pick) + human sign-off</td><td>Approved design document; approach choice recorded</td><td>SPECIFICATION gate: human approval of the design before any build</td></tr>
+      <tr><td>ARCHITECTURE / DEVELOPMENT</td><td>using-git-worktrees → writing-plans → subagent-driven-development (or executing-plans)</td><td>Isolated worktree with verified clean test baseline; plan of 2–5-minute tasks with exact file paths and verification steps; per-task commits</td><td>DEVELOPMENT gate: plan file + task completion evidence per subagent</td></tr>
+      <tr><td>QA</td><td>test-driven-development, requesting-code-review, verification-before-completion</td><td>Failing test → passing test diffs (RED-GREEN-REFACTOR; code written before tests is deleted); review reports by severity where critical issues block progress</td><td>QA gate: test evidence + review report, not agent claims</td></tr>
+      <tr><td>SECURITY</td><td>— (not covered; see Honest Gaps)</td><td>—</td><td>—</td></tr>
+      <tr><td>CEO_REVIEW / RELEASE</td><td>finishing-a-development-branch</td><td>Verified test results + human merge/PR/keep/discard decision</td><td>RELEASE gate: human approval step is built into the skill</td></tr>
+      <tr><td>MAINTENANCE</td><td>systematic-debugging (4-phase root cause), diagnosing-superpowers</td><td>Root-cause traces; session-transcript reports with line-level evidence; scrubbed bug-report bundles</td><td>MAINTENANCE gate: evidence-based incident records</td></tr>
+      <tr><td>REUSABLE_COMPONENT</td><td>writing-skills (partial)</td><td>New reusable skills, tested via the superpowers-evals drill harness</td><td>REUSABLE_COMPONENT gate: a skill is reusable only after its eval passes</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Honest Gaps</h2>
     <ul>
-      <li><strong>Why this one:</strong> the only pick today that runs locally on Windows with zero subscriptions, zero API keys, and zero WSL — and it fills the pipeline's weakest slot (SECURITY evidence).</li>
-      <li><strong>Prerequisites:</strong> Windows PC; Node.js LTS; npm. better-sqlite3 normally ships a prebuilt binary; if npm prompts to approve an install script, that approval belongs to better-sqlite3 (the project defines no install hooks, per its README).</li>
-      <li><strong>Official installation steps:</strong> <code>npm install -g cve-lite-cli</code> (or one-off <code>npx cve-lite-cli .</code>).</li>
-      <li><strong>Practical test:</strong> in a scratch folder, create a demo project (<code>npm init -y</code>), install a known-old dependency, run <code>cve-lite .</code> — expect findings with copy-and-run fix commands. Then <code>cve-lite . --json</code> for machine-readable output, <code>cve-lite . --fail-on high</code> for the exit code that can gate CI, and try the ratcheting mode per the project's Ratcheting docs.</li>
-      <li><strong>Expected results:</strong> a dated findings report, validated fix commands, non-zero exit on high severity, and a JSON artifact a gate engine could parse.</li>
-      <li><strong>Safety precautions:</strong> scan a scratch repo, never a client repo first; review every suggested fix command before running; don't run <code>--fix</code> unattended; never paste real API keys into the test project.</li>
+      <li><strong>Not covered (VERIFIED from the README's skill list):</strong> no LEAD tracking, no SECURITY stage (no dependency scanning, secret detection, or vulnerability auditing), no deployment/RELEASE automation, and no governance layer — nothing like project-state.json or a gate engine. Superpowers disciplines the build; it does not govern the factory.</li>
+      <li><strong>Biggest gap, one verified filler:</strong> SECURITY. <a href="https://github.com/cloudflare/security-audit-skill">cloudflare/security-audit-skill</a> (MIT, VERIFIED from its LICENSE) is a coding-agent skill that runs a six-phase security audit — reconnaissance, coverage-led hunting, candidate validation, structured machine-readable findings (<code>findings.json</code> validated against <code>report-schema.json</code>), independent record verification, target-neutral reporting. It seeds Cloudflare's own vulnerability-discovery harness. Honest note: its latest commit is Sep 14, 2026 — verified to exist and work as documented, but NOT active within the last 7 days. <span class="badge b-invest">INVESTIGATE</span></li>
     </ul>
   </section>
 
   <section>
-    <h2>Agency OS Integration Proposal: cve-lite-cli as the SECURITY-stage dependency-audit evidence producer</h2>
+    <h2>Why It Fits Agency OS</h2>
     <ul>
-      <li><strong>Problem solved:</strong> &quot;dependencies are safe&quot; is currently an agent claim with no dated artifact behind it.</li>
-      <li><strong>Exact workflow/agent it improves:</strong> the security agent's dependency check, complementing (never replacing) gate_engine.py, precommit_check.py, prepush_release_check.ps1.</li>
-      <li><strong>Where in the lifecycle:</strong> SECURITY stage entry; re-run at RELEASE as regression evidence.</li>
-      <li><strong>Inputs:</strong> the project's lockfile; OSV/npm advisory data (or the synced offline DB).</li>
-      <li><strong>Outputs:</strong> JSON/SARIF/SBOM report files + exit code, referenced from project-state.json as VERIFIED evidence.</li>
-      <li><strong>How results are validated:</strong> the artifact is produced by an external tool, not authored by the agent; a pass counts only if the report file exists AND the exit code is 0 — otherwise the claim stays UNVERIFIED.</li>
-      <li><strong>What happens on failure:</strong> non-zero exit blocks SECURITY advancement → fix → re-run; the committed ratchet baseline is the only record of accepted existing findings. This adds one evidence type to the existing gate engine — no replacement of the gate engine or governance is proposed.</li>
-      <li><strong>Blocks a gate or needs human approval?</strong> Rule-based gate-blocking on exit code; any waiver (accepted vulnerability) stays a human-approved exception in project-state.json.</li>
-      <li><strong>Smallest safe experiment:</strong> scan one scratch JS project today; if the JSON output and exit codes behave as documented, wire the command into a copy of prepush_release_check.ps1 on a test branch and observe. Agency OS compatibility: plausible — untested until you run it.</li>
+      <li><strong>No invented facts:</strong> verification-before-completion makes the agent prove it's fixed before declaring success — the same VERIFIED-before-advancing rule Agency OS enforces.</li>
+      <li><strong>Evidence before advancing:</strong> TDD skill deletes code written before tests; code review blocks critical issues — external, checkable evidence, not claims.</li>
+      <li><strong>Human approval points built in:</strong> design sign-off before planning; merge/PR/keep/discard decision at branch finish — matching Agency OS's human-approval rule for scope and release.</li>
+      <li><strong>Isolation:</strong> git worktrees keep every change on a verified-baseline branch, so nothing touches main without evidence.</li>
+      <li><strong>Complements, never replaces:</strong> Superpowers produces the artifacts; gate_engine.py stays the authority over whether a gate advances. Agency OS compatibility: <em>plausible — untested until you run it alongside your scripts.</em></li>
     </ul>
   </section>
 
   <section>
-    <h2>Daily Learning: security ratcheting (baseline suppression)</h2>
+    <h2>Limitations, Risks &amp; Human Review</h2>
     <ul>
-      <li><strong>Concept (simple English):</strong> you commit a baseline file listing every vulnerability currently accepted. CI compares new scans against it: pass if nothing new, fail if the count grows — and the baseline can only shrink, never quietly grow. Progress without requiring perfection on day one.</li>
-      <li><strong>How an AI agent might get it wrong:</strong> it &quot;remembers&quot; dependencies being clean and reports PASS without scanning; or it edits the baseline file to make a failure disappear, inventing an approval nobody granted.</li>
-      <li><strong>How you recognize the failure:</strong> a PASS claim with no dated scan artifact; a baseline file whose diff shows unexplained additions; exit code 0 with no report.</li>
-      <li><strong>Which tool/test detects it:</strong> cve-lite-cli's ratcheting mode + <code>--fail-on high</code> exit code — and a baseline file under version control, so any quiet growth shows up as a diff requiring review.</li>
+      <li><strong>Telemetry:</strong> by default, an optional visual-companion logo is loaded from the project's website, including your Superpowers version (nothing about your project/prompt, per the README). Disable with <code>SUPERPOWERS_DISABLE_TELEMETRY</code> — worth doing for client work.</li>
+      <li><strong>Model costs:</strong> subagent-driven development spawns fresh agents per task — thorough but token-hungry; <code>executing-plans</code> is the cheaper inline mode.</li>
+      <li><strong>Autonomy risk:</strong> the README says sessions can run autonomously for a couple of hours — run in a scratch repo with scoped permissions first; never grant unrestricted computer access; keep human approval for commercial decisions and anything touching client repos.</li>
+      <li><strong>Windows:</strong> hook spawning has Windows-specific fixes in the repo, but plugin behavior on Windows is <em>untested here</em> — verify on a scratch project before client use.</li>
+      <li><strong>Discipline depends on the model:</strong> skills are instructions, not hard enforcement — a weak model can still skip them; that's why gate_engine.py stays in charge.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Test Today: Superpowers in your AI IDE (~45 min)</h2>
+    <ul>
+      <li><strong>Why this one:</strong> installs into the AI IDE you already use on Windows; free, MIT, no new subscription, no API keys beyond your existing plan.</li>
+      <li><strong>Prerequisites:</strong> Windows PC; your existing coding agent (Cursor, Claude Code, or Codex CLI) with a working subscription; git installed; a scratch folder.</li>
+      <li><strong>Official installation (from the README):</strong> Cursor: <code>/add-plugin superpowers</code> in Agent chat. Claude Code: <code>/plugin install superpowers@claude-plugins-official</code>. Codex CLI: <code>/plugins</code> → search "superpowers" → Install. Update later by reinstalling (updates are often automatic).</li>
+      <li><strong>Practical test:</strong> in an empty scratch repo, ask the agent to build a tiny feature (e.g., a CLI tip calculator). Expect it to (1) start brainstorming and ask what you really want, (2) present a design for sign-off, (3) create a worktree, (4) write a task-by-task plan, (5) write a failing test first, then code. Intervene only at the approval points.</li>
+      <li><strong>Expected results:</strong> a written design doc + plan file in the repo, RED→GREEN test commits, a code-review report, and a human merge decision at the end. If the agent skips straight to writing code, the skills didn't load — reinstall.</li>
+      <li><strong>Safety precautions:</strong> scratch repo only; set <code>SUPERPOWERS_DISABLE_TELEMETRY</code> for privacy; keep permissions scoped; do not point it at any client repository during the test; never let the agent run unattended with broad shell access.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Agency OS Integration Proposal: Superpowers as the DEVELOPMENT→QA evidence producer</h2>
+    <ul>
+      <li><strong>Problem solved:</strong> the dev and QA agents currently rely on prompts to behave well; Agency OS has no enforced plan-artifact + test-first evidence chain from the coding IDE itself.</li>
+      <li><strong>Exact workflow/agent it improves:</strong> the dev agent's implementation loop and the QA agent's unit-test evidence — feeding, never replacing, gate_engine.py, precommit_check.py, and prepush_release_check.ps1.</li>
+      <li><strong>Where in the lifecycle:</strong> SPECIFICATION (approved design doc) → DEVELOPMENT (plan file, worktree) → QA (TDD test evidence, review report).</li>
+      <li><strong>Inputs:</strong> your feature request; existing project files (brainstorming reads them first, per v7.0.1).</li>
+      <li><strong>Outputs:</strong> design document, plan file with exact file paths, per-task commits with RED→GREEN tests, severity-ranked review report, merge decision record.</li>
+      <li><strong>How results are validated:</strong> a task counts as done only if the failing-test commit, passing-test commit, and review report exist in the repo — artifacts, not claims. A SUPERPOWERS-sourced claim without its artifact stays UNVERIFIED in project-state.json.</li>
+      <li><strong>What happens on failure:</strong> critical review findings block task progress inside the session; a missing artifact blocks gate advancement in gate_engine.py as it does today.</li>
+      <li><strong>Blocks a gate or needs human approval?</strong> Neither change is proposed: the gate engine keeps its current rules; Superpowers feeds it better evidence. Design sign-off and merge remain human decisions — matching Agency OS governance.</li>
+      <li><strong>Smallest safe experiment:</strong> build one small internal tool with Superpowers in a scratch repo; copy its plan file, test commits, and review report into your project-state.json evidence format; then add one artifact-existence check to a <em>copy</em> of precommit_check.py on a test branch and observe. No gate-engine changes.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Daily Learning: subagent-driven development with fresh-context review</h2>
+    <ul>
+      <li><strong>Concept (simple English):</strong> instead of one agent writing everything, a dispatcher sends each small task to a <em>fresh</em> subagent with no history, then a reviewer subagent inspects the result against the plan. Fresh eyes catch what invested authors miss; two-stage review checks spec compliance first, then code quality.</li>
+      <li><strong>How an AI agent might get it wrong:</strong> the implementer subagent reports "task complete" without ever running the tests, or the reviewer rubber-stamps because the dispatcher shared its own optimistic summary instead of the actual diff.</li>
+      <li><strong>How you recognize the failure:</strong> a "complete" task with no failing→passing test pair in git history; a review report that praises code that doesn't match the plan's file paths.</li>
+      <li><strong>Which tool/test detects it:</strong> Superpowers' test-driven-development skill (deletes code written before tests) and verification-before-completion, plus git history inspection — and at the Agency OS level, the gate engine's existing evidence checks before QA advancement.</li>
     </ul>
   </section>
 
   <section>
     <h2>Final Summary</h2>
     <ul>
-      <li><strong>Best discovery today:</strong> <a href="https://github.com/OWASP/cve-lite-cli">OWASP cve-lite-cli</a> — local, free, MIT, evidence-producing dependency auditing.</li>
-      <li><strong>Best security/reliability improvement:</strong> cve-lite-cli's CI ratchet — turns dependency drift from an opinion into a blocking, dated check.</li>
-      <li><strong>Best Agency OS integration:</strong> cve-lite-cli as the SECURITY-gate dependency-audit evidence producer (gate-blocking on exit code; waivers stay human-approved).</li>
-      <li><strong>One practical action today:</strong> run the 30-minute cve-lite-cli scratch scan on the Windows PC.</li>
+      <li><strong>Best discovery today:</strong> <a href="https://github.com/obra/superpowers">obra/superpowers</a> — a full, MIT-licensed, factory-grade methodology that installs into your existing AI IDE (v7.0.1, Oct 21, 2026).</li>
+      <li><strong>Best security/reliability improvement:</strong> pairing it with <a href="https://github.com/cloudflare/security-audit-skill">cloudflare/security-audit-skill</a> for the SECURITY stage Superpowers lacks — machine-readable, independently verified findings.</li>
+      <li><strong>Best Agency OS integration:</strong> Superpowers as the DEVELOPMENT→QA evidence producer (plan files, RED→GREEN tests, review reports) feeding — never replacing — gate_engine.py.</li>
+      <li><strong>One practical action today:</strong> install Superpowers in Cursor or Claude Code and build one tiny scratch-repo feature with the full brainstorm → plan → TDD → review loop.</li>
     </ul>
   </section>
 </div>
