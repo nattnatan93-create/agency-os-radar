@@ -37,125 +37,128 @@
   <header>
     <h1>Agency OS <span>Radar</span></h1>
     <div class="tagline">Daily open-source discoveries for a one-person AI software agency</div>
-    <div class="tagline date">Report date: Saturday, October 31, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
+    <div class="tagline date">Report date: Sunday, November 1, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
   </header>
 
   <section>
     <h2>Start Here (plain English)</h2>
-    <p><strong>The problem:</strong> AI coding agents say "Done — tests pass" about code they never tested, leak secrets into git history, and skip reviews when nobody checks. A rules file (Cursor Rules, AGENTS.md) only <em>asks</em> them to behave; they can ignore it. As a one-person agency, every fabricated "done" lands on your plate — or your client's production.</p>
-    <p><strong>The solution in today's radar:</strong> <a href="https://github.com/KbWen/agentic-os">KbWen/agentic-os</a> adds the layer a rules file can't be: <strong>checks the agent doesn't control</strong>. A credential scan that fails the commit before a leaked key reaches git history, a validator that fails when a phase or its evidence is missing from the work trail, and a test-run recorder that stores the real exit code plus a fingerprint of the code — so "tests pass" is a machine receipt, not a claim.</p>
-    <p class="muted">Format note: single-featured-factory layout (standing focus set Oct 25, 2026); the Ethiopia business-opportunity section remains removed. Prior reports were available through Oct 30 (most recently nexu-io/looper; earlier: jmanico/grim-prompter, coleam00/ai-software-factory, obra/superpowers, SkillSpector, vercel-labs/skills). agentic-os has not been featured before. All facts below verified today from the repo's README, LICENSE and commit/release history via GitHub; star counts not verified and therefore not reported.</p>
+    <p><strong>The problem:</strong> an AI coding agent can write code, but a one-person agency can't sit and watch it. If nobody is watching, who stops the wrong PR from merging, the same job from being paid for twice, or a customer being told "it shipped" when it didn't? Chat-agent guardrails only work while you're reading the chat.</p>
+    <p><strong>The solution in today's radar:</strong> <a href="https://github.com/cromford-ai/cromford">cromford-ai/cromford</a> is an open-source <em>software factory</em> that runs the whole loop unattended — ticket in, triaged, planned, built, adversarially reviewed, preview-QA'd, merged, deploy-verified, and production-checked. Its whole design idea is: <strong>anything a script can decide, a script decides</strong> — the expensive, unreliable model is only asked the questions that genuinely need reading comprehension. Deterministic gates, per-call cost accounting, and a human tier for anything risky.</p>
+    <p class="muted">Format note: single-featured-factory layout (standing focus set Oct 25, 2026); the Ethiopia business-opportunity section remains removed. Prior reports were available through Oct 31 (most recently KbWen/agentic-os; earlier: nexu-io/looper, jmanico/grim-prompter, coleam00/ai-software-factory, obra/superpowers). Cromford has not been featured before. All facts below verified today from the repo's README and commit history via GitHub; star/fork counts are as returned by the GitHub API today. This is a very young project — treat it as a pattern to study, not a tool to trust blindly.</p>
   </section>
 
   <section>
-    <h2>The Featured Factory: KbWen/agentic-os <span class="badge b-test">TEST NOW</span></h2>
+    <h2>The Featured Factory: cromford-ai/cromford <span class="badge b-invest">INVESTIGATE</span></h2>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/KbWen/agentic-os">github.com/KbWen/agentic-os</a></li>
-      <li><strong>What it is (simple English):</strong> an open-source governance layer for AI coding agents (Claude Code, Codex, Cursor, Copilot, Antigravity, or any Markdown-reading agent). Every task runs a gated workflow — plan → build → review → test → ship — where <strong>nothing counts as done without evidence</strong>: a leaked secret fails the commit, a work trail missing a phase or its evidence fails the validator, and a test claim without a recorded run fails the ship gate. Rigor scales to risk: a typo fix runs a light path; a feature runs the full gauntlet.</li>
-      <li><strong>What changed recently and when (VERIFIED from commit history):</strong> commit <strong>today, Oct 31, 2026</strong> — docs correction of simulation cost figures plus backlog compression (#481); release <strong>v1.8.36 on Oct 29, 2026</strong> — design onboarding and customization (adopt design references and brand conventions without a knowledge base, two copyable templates, design approval guidance). The release notes report the upgrade path validated on Windows through the Windows deploy entrypoint, with full Windows test shards passing (maintainer-reported, not independently verified here).</li>
-      <li><strong>Why it matters to a vibe coder:</strong> it is the closest open-source match to Agency OS's own philosophy — evidence before advancing, risk-scaled gates, human ship approval — in a drop-in form you can test today. Its README is unusually honest about what it can and cannot catch, which is exactly the honesty you need from a governance tool.</li>
-      <li><strong>License &amp; costs (verified):</strong> <strong>MIT License</strong> (read directly from the repo's LICENSE file, Copyright (c) 2026 Kb Wen). The framework is free; real cost is your agent's model tokens — the project publishes a model guide and lifecycle benchmark with token costs, and claims a tiny-fix path costs roughly 5,000 tokens (maintainer claim). Open source ≠ free model access.</li>
-      <li><strong>Windows compatibility &amp; install:</strong> demo ships a PowerShell path (<code>pwsh demo/run.ps1</code>); docs cover a Windows / no-Python install mode; installers include <code>deploy_brain.sh</code> with a <code>--dry-run</code> preview. Windows status: <strong>plausible — partially maintainer-reported</strong> (v1.8.35→v1.8.36 upgrade tested through the Windows deploy entrypoint); the demo itself is testable on your Windows PC today.</li>
-      <li><strong>Verdict:</strong> TEST NOW — the credential-gate demo runs locally on Windows with zero install, zero subscription, zero real secrets.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/cromford-ai/cromford">github.com/cromford-ai/cromford</a> · homepage <a href="https://cromford.dev">cromford.dev</a></li>
+      <li><strong>What it is (simple English):</strong> the "open-source software factory" — you put tickets on a product board (e.g. GitHub Issues); a fleet of watcher boxes picks them up and runs each one through fixed stages: <strong>triage → plan → build → adversarial review → preview QA → merge → deploy-verify → post-merge QA</strong>. It refuses at each stage for concrete reasons (an unanswered customer question, a plan with no failing test, weakened tests, a verify script that doesn't prove its claim, CI not green, no deployment within the window, the shipped behaviour missing in production).</li>
+      <li><strong>What changed recently and when (VERIFIED from commit history):</strong> <strong>7 commits today, Nov 1, 2026</strong> (versioned nightly as "Cromford 2026.11.01"), including a merge-tier fix ("a green verdict carries across" in the pre-queue gate, Oct 31), a spec-trace parser fix, nightly test-tier ratchets, and an honest engineering note that an "Execute" run burned its whole context ceiling with zero file writes. It has no GitHub releases/tags yet — nightly commit versioning is the release mechanism.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> this is the closest public blueprint to Agency OS itself — an unattended pipeline with per-stage models, per-stage budgets, evidence-based refusals, human-tier merges, cost rows for every LLM call, and a rule-miner that turns repeated review findings into CI guardrails. Even if you never run it, its README and docs (SELF-HOST, OPERATING, LESSONS, ARCHITECTURE, CONTEXT-COMPOSITION) are a masterclass in making agent loops safe.</li>
+      <li><strong>License &amp; costs (verified):</strong> <strong>Apache License 2.0</strong> (verified from the GitHub API today). The code is free; running it is not: it calls paid model APIs (a fixed failover ladder: claude → grok → codex-configured openrouter → fireworks), and self-hosting uses your own Cloudflare, GitHub and optionally Fly accounts. Every call is priced into <code>logs/cost.csv</code>; a model missing from <code>catalog/model-prices.json</code> raises a daily alert instead of silently costing $0.</li>
+      <li><strong>Repo stats (GitHub API today):</strong> created Oct 13, 2026 · 28 stars · 12 forks · 3 open issues · primary language Shell. Young — expect churn.</li>
+      <li><strong>Windows compatibility &amp; install:</strong> the README states plainly: <strong>"The suite is written for Linux. On anything else, run it in the container"</strong> (<code>bin/run-tests-in-docker.sh</code>, Debian image, needs Docker + network for the first image pull). Windows is <strong>not mentioned</strong> in the README — running it on your PC means Docker Desktop + WSL2: <strong>plausible, untested</strong>. Self-hosting additionally expects bash, <code>jq</code>, optionally <code>semgrep</code>/<code>codegraph</code>, and a Linux "watcher box" (a VM).</li>
+      <li><strong>Verdict:</strong> INVESTIGATE — exceptional as a design reference and safe to study/run read-only, but a 3-week-old project requiring Linux, cloud accounts and paid models is not something to wire into a client pipeline today.</li>
     </ul>
   </section>
 
   <section>
     <h2>The Factory Map — onto the Agency OS Lifecycle</h2>
-    <p class="muted">Module names, artifacts and behaviors verified from the repo README today.</p>
+    <p class="muted">Stage names, scripts, artifacts and refusal conditions verified from the repo README today.</p>
     <table>
       <tr><th>Agency OS stage</th><th>Factory module</th><th>Artifact it produces</th><th>Which gate consumes it</th></tr>
-      <tr><td>LEAD / PROPOSAL</td><td>— not covered</td><td>—</td><td>—</td></tr>
-      <tr><td>DISCOVERY / PROBLEM_DEFINITION</td><td>Task classification + <code>/audit</code> (read-only repo audit for existing projects)</td><td>Task classification (tiny-fix → architecture-change) + audit findings</td><td>Classification decides which phases the validator requires</td></tr>
-      <tr><td>SPECIFICATION</td><td><code>/spec-intake</code>, spec phase (required for feature &amp; architecture-change paths)</td><td>Spec record in the work trail</td><td><code>validate.sh</code> fails if the spec phase or its evidence is missing</td></tr>
-      <tr><td>ARCHITECTURE</td><td>ADR phase (architecture-change path)</td><td>Architecture decision record</td><td>Validator requires it before implementation counts</td></tr>
-      <tr><td>DEVELOPMENT</td><td>Plan → Implement phases; scope discipline and no-unasked-refactors rules</td><td>Work log entries, decisions, code changes</td><td>Phase order enforced by validator; ship gate blocked until review/test evidence exists</td></tr>
-      <tr><td>QA</td><td>Review + Test phases; <code>record_test_run.py</code> runs the real suite, records exit code + code fingerprint</td><td>Test-run receipt (exit code + fingerprint); review record</td><td>Ship gate fails on a failed/stale run or code changed after the PASS receipt</td></tr>
-      <tr><td>SECURITY</td><td><code>scan_credentials.py</code> — credential gate with redacted output; SAST + dependency audit run in the project's own CI (optional to adopt)</td><td>Secret-free commit; scan receipts</td><td>Pre-commit hook / CI job fails the commit or build on a detected credential</td></tr>
-      <tr><td>CEO_REVIEW</td><td>Ship gate: Verification Before Completion — 5-gate check (Scope → Quality → Evidence → Risk → Communication)</td><td>Ship verdict with missing-evidence list</td><td>Human merge remains the hard stop; gate prints <code>verdict: fail</code> and stops the agent</td></tr>
-      <tr><td>RELEASE</td><td>Partial — ships PRs; no deploy pipeline</td><td>Merged PR</td><td>—</td></tr>
-      <tr><td>MAINTENANCE</td><td>Work logs + <code>/handoff</code> resume blocks; single-writer locking per branch; session identity (model + timestamp)</td><td>Survivable memory across sessions and agents</td><td>Ship guard checks for source-of-truth conflicts before merge</td></tr>
-      <tr><td>REUSABLE_COMPONENT</td><td>— not covered</td><td>—</td><td>—</td></tr>
+      <tr><td>LEAD / PROPOSAL</td><td>— not covered</td><td>—</td><td>— (tickets must already exist on a board)</td></tr>
+      <tr><td>DISCOVERY / PROBLEM_DEFINITION</td><td><strong>triage</strong> — <code>bin/run-triage.sh</code> + deterministic <code>bin/triage-gate.sh</code></td><td>RUN/SKIP decision with reasons</td><td>Refuses to start when the ticket's last word is an unanswered customer question</td></tr>
+      <tr><td>SPECIFICATION</td><td><strong>plan</strong> — <code>bin/run-build.sh</code></td><td>A written change plan ending in named acceptance tests</td><td>Refuses when it cannot name a test that would fail today</td></tr>
+      <tr><td>ARCHITECTURE</td><td>— no separate stage (planning absorbs design; docs cover context composition)</td><td>—</td><td>— (gap)</td></tr>
+      <tr><td>DEVELOPMENT</td><td><strong>build</strong> — <code>bin/run-build.sh</code>, on a watcher box or optional ephemeral Fly machine (<code>bin/fly-pool.sh</code>)</td><td>Implementation against the plan, on its own box/budget</td><td>Refuses when tests were weakened rather than made to pass</td></tr>
+      <tr><td>QA</td><td><strong>review</strong> (adversarial, never the author's session, <code>bin/review-prs.sh</code>), <strong>preview QA</strong> (<code>bin/e2e-smoke.sh</code> clicks the PR's own preview), <strong>post-merge QA</strong> (<code>bin/postmerge-qa.sh</code> drives production)</td><td>Review findings; preview smoke result; production check result</td><td>Refuses when the verify script doesn't prove its claim, the route 404s, or the shipped behaviour isn't there</td></tr>
+      <tr><td>SECURITY</td><td>— no dedicated stage; <code>semgrep</code> only as an optional CI check (<code>SEMGREP_REQUIRED=1</code>), not a merge gate</td><td>—</td><td>— (gap — see Honest Gaps)</td></tr>
+      <tr><td>CEO_REVIEW</td><td><strong>merge tiers</strong> — tier 1 auto-merges when review approves + CI green; tier 2 waits for a human; <code>flags/automerge-disabled</code> forces everything to tier 2 (<code>bin/run-build.sh:1592</code>)</td><td>PR in one named state with an age budget (<code>bin/merge-queue.sh</code>, <code>bin/merge-sweep.sh</code>)</td><td>Refuses to merge when CI is not green, base/head moved after approval, or the tier is wrong</td></tr>
+      <tr><td>RELEASE</td><td><strong>deploy-verify</strong> — <code>bin/deploy-train.sh</code></td><td>Confirmation a production deployment followed the merge</td><td>Refuses when no deployment appeared within the window</td></tr>
+      <tr><td>MAINTENANCE</td><td>Rule-miner (<code>bin/rule-miner.sh</code>) turns repeated review findings into <code>guardrails/</code> that fail next time in CI — "only tightens, never loosens"; restartable stages (state on disk + DB); <code>docs/RESTORE.md</code> box recovery; <code>docs/LESSONS.md</code></td><td>New guardrail rules; recoverable box state</td><td>Load-bearing tests protect the fence (<code>iron-law-guard-test.sh</code>, <code>lane-fence-test.sh</code>, <code>alert-loop-test.sh</code>)</td></tr>
+      <tr><td>REUSABLE_COMPONENT</td><td>Closest analog: guardrails + repo-managed <code>skills/</code> (one <code>SKILL.md</code> per competency, deployed to every box)</td><td>Tested procedures, not a component library</td><td>Partial (gap)</td></tr>
     </table>
   </section>
 
   <section>
     <h2>Honest Gaps</h2>
     <ul>
-      <li><strong>LEAD and PROPOSAL stages</strong> — no client-facing, pricing, or proposal tooling. Agency OS keeps those.</li>
-      <li><strong>Deployment / release automation</strong> — the ship gate ends at merge; no deploy, backup, or rollback stage.</li>
-      <li><strong>Security beyond secrets</strong> — machine-enforced scanning covers credentials; broader SAST/dependency auditing is optional CI adoption, not a gate.</li>
-      <li><strong>The fabrication blind spot (stated openly in the README):</strong> the validator checks the <em>record</em> the agent keeps — it catches a missing phase, not a faked record or a hand-typed "Test run: PASS" line. Only the secret scan and your real CI tests are checks the agent can't talk its way past. This mirrors Agency OS's REAL vs SIMULATED distinction — and it's why your <code>gate_engine.py</code> stays authoritative.</li>
+      <li><strong>No LEAD / PROPOSAL:</strong> it consumes tickets that already exist; client-facing discovery, pricing and proposals stay with Agency OS.</li>
+      <li><strong>No dedicated SECURITY stage:</strong> secret scanning, dependency auditing and authn/authz review are not merge gates — <code>semgrep</code> is an optional CI check only. Biggest gap, and the one that matters most to you.</li>
+      <li><strong>Gap filler (verified):</strong> <a href="https://github.com/Amal-David/keyleak-detector">Amal-David/keyleak-detector</a> — MIT (verified from the GitHub API today), Python CLI + Chrome extension, finds exposed API keys and secrets in JS bundles at runtime and validates Supabase/Firebase RLS misconfigurations; last pushed Oct 30, 2026; 274 stars (API today). Verdict: <span class="badge b-test">TEST NOW</span> — local, free, Windows-friendly (Python CLI), no subscription.</li>
+      <li><strong>Self-host is manual:</strong> the installer's <code>--apply</code> step "is not built yet" (README's own words) — resources are still built by hand; the dry-run only <em>prints</em> what would be created.</li>
+      <li><strong>Platform:</strong> the test suite is Linux-only; the README honestly reports its own macOS failure count (96 pass / 28 fail) and 3 container suites that fail for not-yet-understood reasons. Windows is untested territory.</li>
+      <li><strong>Very young:</strong> created Oct 13, 2026, nightly-versioned, no tagged releases — the project itself says its commits may report "nightly test tier red on main". Do not build a business on it this month.</li>
     </ul>
   </section>
 
   <section>
     <h2>Why It Fits Agency OS</h2>
     <ul>
-      <li><strong>Evidence before advancing:</strong> every phase must leave a record with evidence; a missing one fails the validator — the same principle as Agency OS's validated-evidence rule.</li>
-      <li><strong>Risk-scaled rigor:</strong> tiny-fix vs feature vs architecture-change paths — like Agency OS's QA scope (unit → UI-E2E) scaling to the change.</li>
-      <li><strong>Single source of truth:</strong> a per-project state file carries decisions, evidence and gate receipts across sessions — philosophically the same job as <code>project-state.json</code>. It complements, never replaces it.</li>
-      <li><strong>Human approval at the boundary:</strong> the ship gate stops the agent and hands the merge to you — matching Agency OS's human-approval rule for release.</li>
-      <li><strong>Model-agnostic:</strong> the same Markdown governance works across Claude Code, Codex, Cursor, Copilot — matching a vibe coder's multi-IDE reality.</li>
-      <li><strong>Agency OS compatibility: plausible — untested</strong> alongside your existing <code>gate_engine.py</code>/<code>precommit_check.py</code> stack until you run the experiment below.</li>
+      <li><strong>Deterministic before LLM:</strong> "anything a script can decide, a script decides" — the same principle as Agency OS's gate engine being authoritative instead of trusting the agent's self-report.</li>
+      <li><strong>Evidence before advancing:</strong> each stage has its own definition of done and refuses with a named reason — Agency OS's validated-evidence rule, implemented as pipelines.</li>
+      <li><strong>Human approval at the boundary:</strong> tier-2 merges wait for a human, and <code>flags/automerge-disabled</code> can force every build to human review — matching your rule that release and acceptance need human approval.</li>
+      <li><strong>Living project state:</strong> stages talk through files and a database, not one long conversation; a dead stage is restartable because its inputs are on disk — philosophically the same job as <code>project-state.json</code> being authoritative. It complements, never replaces, your gate engine.</li>
+      <li><strong>Anti-drift tests:</strong> <code>tests/evals-suite-test.sh</code> checks that a prompt change still makes the same triage decisions — an honest answer to "did my agent regress when I changed the prompt?"</li>
+      <li><strong>Agency OS compatibility: plausible — untested.</strong> Nothing here is proven on Windows or alongside your existing <code>gate_engine.py</code> stack; the integration proposal below stays additive.</li>
     </ul>
   </section>
 
   <section>
     <h2>Limitations, Risks &amp; Human Review</h2>
     <ul>
-      <li><strong>Enforcement is opt-in:</strong> a fresh install runs nothing by itself — the git hook and CI job must be switched on (the installer prints both commands). Until then it's just a better rules file.</li>
-      <li><strong>Local hook can be bypassed:</strong> <code>--no-verify</code> skips the pre-commit validator; work logs are gitignored, so CI cannot run phase checks — only the secret scan and your real test suite hold in CI.</li>
-      <li><strong>Records vs reality:</strong> the validator catches gaps, not fabrications — keep human review on the artifacts, not just the trail.</li>
-      <li><strong>Self-reported markers:</strong> the ⚡ ACX runtime marker only says the agent loaded the governance files; the persistent check is the validator warning.</li>
-      <li><strong>Token cost:</strong> full-gauntlet features cost more model tokens; the project benchmarks this — read its model guide before wiring it into every client project.</li>
-      <li><strong>Human review required:</strong> any adoption into a client project is a scope/commercial decision — your CEO_REVIEW approval, not the framework's.</li>
+      <li><strong>Unattended by design:</strong> it opens PRs and can auto-merge tier-1 builds with nobody watching. For client work, keep <code>flags/automerge-disabled</code> on — and treat any auto-merge adoption as a commercial decision requiring your CEO_REVIEW approval.</li>
+      <li><strong>Real money, metered but real:</strong> every LLM call costs; the cost ledger makes it visible but doesn't make it small. Budget stops and provider failover are built in, but you must set the caps in <code>selfhost.conf</code>.</li>
+      <li><strong>Cloud-account surface:</strong> Cloudflare (D1, R2), GitHub and optionally Fly credentials sit in a config file — treat <code>selfhost.conf</code> as a secret; never commit it.</li>
+      <li><strong>It is not a security tool:</strong> nothing in the pipeline scans secrets or dependencies before merge (see gaps). Keep your own security stage.</li>
+      <li><strong>Spoofable self-reports remain possible:</strong> its gates are strong because most are deterministic, but plan/review stages still read text the model wrote; the rule-miner "only tightens" guardrails, which is good, but human review of artifacts stays mandatory.</li>
+      <li><strong>Never run the nightly of a 3-week-old project unattended on accounts you care about.</strong> Read-only study first; scratch experiments only.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Test Today: the credential-gate demo on Windows (~15 min)</h2>
+    <h2>Test Today: the read-only dry-run + suite in a container (~30 min)</h2>
     <ul>
-      <li><strong>Why this one:</strong> free (MIT), local, no subscription, no install — and it demonstrates the single most valuable behavior: a machine gate blocking a leaked secret with the value redacted.</li>
-      <li><strong>Prerequisites:</strong> Windows with git, PowerShell 7 (<code>pwsh</code>), Python available on PATH (the scanner is a Python script; the repo docs also describe a no-Python mode for the full install).</li>
-      <li><strong>Official steps:</strong> <code>git clone https://github.com/KbWen/agentic-os.git</code>, then from the repo root run <code>pwsh demo/run.ps1</code> (bash equivalent: <code>bash demo/run.sh</code>).</li>
-      <li><strong>Practical test:</strong> the demo has an "agent" write a <code>config.env</code> containing a fake <code>aws_access_key_id</code> and report "Done — config added", then runs the credential scan against it.</li>
-      <li><strong>Expected results (per the README's documented demo):</strong> the scan prints <code>CREDENTIAL PATTERN(S) DETECTED (values redacted)</code> naming <code>config.env:2: aws-access-key-id</code>, and the commit is BLOCKED. The key is generated at runtime and redacted in output — the demo never stores a real secret.</li>
-      <li><strong>Safety precautions:</strong> run only in a scratch clone; read <code>demo/run.ps1</code> before executing it (never run untrusted code blindly); nothing installs, nothing hooks, nothing persists.</li>
+      <li><strong>Why this one:</strong> zero cost, zero cloud accounts, zero risk — the self-host installer's <code>--dry-run</code> prints every resource, env line, spend cap and secret name <em>and creates nothing</em>. It's the best available preview of what running an unattended factory actually requires.</li>
+      <li><strong>Prerequisites:</strong> Windows PC with Docker Desktop (WSL2 backend) and Git. The repo is Shell/bash — use the Docker container route the README itself prescribes for non-Linux.</li>
+      <li><strong>Official steps:</strong> <code>gh repo fork cromford-ai/cromford --clone</code> (or plain <code>git clone https://github.com/cromford-ai/cromford.git</code>); <code>cp env-templates/selfhost.conf.example selfhost.conf</code>; then <code>bin/selfhost-install.sh --config selfhost.conf --dry-run</code>. Optionally also <code>bin/run-tests-in-docker.sh</code> to run the project's own 121-test suite in a Debian container.</li>
+      <li><strong>Practical test:</strong> read the dry-run output top to bottom and tick off what Agency OS would demand: spend caps present? secrets named? which stages run unattended? Then run the test suite in the container and watch deterministic gates fail/pass on their own merits.</li>
+      <li><strong>Expected results:</strong> a printed inventory of resources, env lines, spend caps and secret names (nothing created); a container test run with passing suites and honest skips (or failures — the README documents 3 not-yet-understood ones). No network calls from the suite itself, no secrets, no fixtures.</li>
+      <li><strong>Safety precautions:</strong> scratch clone only; never fill in real secrets for a dry-run; do not run the watcher, cron or <code>--apply</code>; do not enable any auto-merge flag; read any script before executing it. The dry-run is read-only by design — keep it that way.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Agency OS Integration Proposal: machine receipts as gate evidence</h2>
+    <h2>Agency OS Integration Proposal: a deterministic triage gate + per-call cost ledger</h2>
     <ul>
-      <li><strong>Problem solved:</strong> your QA gate can accept an agent's claim that tests pass; and nothing today fails a commit that carries a leaked credential before it reaches history.</li>
-      <li><strong>Workflow/agent improved:</strong> QA agent and security agent — adding a machine-checkable evidence format, feeding — never replacing — <code>gate_engine.py</code> and your existing <code>precommit_check.py</code>.</li>
-      <li><strong>Lifecycle stages:</strong> QA and SECURITY.</li>
-      <li><strong>Inputs:</strong> staged diff or changed files at commit time; the project's real test suite at QA time. <strong>Outputs:</strong> a credential-scan verdict with redacted findings, and a test-run receipt (exit code + code fingerprint) recorded as gate evidence in <code>project-state.json</code>.</li>
-      <li><strong>How results are validated:</strong> the scan and the test run are executed by the machine, not reported by the agent; the QA gate advances only on a PASS receipt whose fingerprint matches the code being shipped.</li>
-      <li><strong>What happens on failure:</strong> detected credential → commit blocked, secret rotated, change removed, retry; failed or stale test run → gate stays BLOCKED until a fresh PASS receipt exists.</li>
-      <li><strong>Gate or human approval?</strong> No governance change: the gate engine keeps its current transitions; waivers and scope changes still need your human approval. This only tightens the evidence the existing gates consume.</li>
-      <li><strong>Smallest safe experiment:</strong> run the demo above in a scratch clone; separately run <code>scan_credentials.py --staged</code> on a staged throwaway file containing a fake key in a scratch repo, and wire the result into <code>precommit_check.py</code> as one extra check. One commit, one blocked secret, one receipt — then decide.</li>
+      <li><strong>Problem solved:</strong> today your agents can start work on an under-specified client request, and you have no per-call record of what each stage's LLM usage cost a client project.</li>
+      <li><strong>Workflow/agent improved:</strong> the discovery agent and orchestrator — adding one deterministic check and one log format, feeding — never replacing — <code>gate_engine.py</code>.</li>
+      <li><strong>Lifecycle stage:</strong> DISCOVERY (gate) and MAINTENANCE (cost evidence), with a cost view at CEO_REVIEW.</li>
+      <li><strong>Inputs:</strong> the ticket/request thread (from <code>project-state.json</code>); every agent LLM call (command, model, tokens, stage). <strong>Outputs:</strong> a BLOCKED-with-reason verdict when the last word of a request is an unanswered client question; a CSV row per call into a per-project <code>costs.csv</code> that rolls up per delivery.</li>
+      <li><strong>How results are validated:</strong> both are script-decided, not LLM-decided — a status-field comparison for the unanswered-question gate (testable, like Cromford's <code>triage-gate.sh</code>), and a priced-catalogue lookup that alerts when a model has no price row instead of logging $0 (Cromford's exact pattern).</li>
+      <li><strong>What happens on failure:</strong> unanswered question → DISCOVERY gate returns BLOCKED with the question quoted; unpriced model call → daily alert, cost row marked UNKNOWN rather than silently zero.</li>
+      <li><strong>Gate or human approval?</strong> Neither replaces anything: gate-engine transitions and rollback stay exactly as they are; auto-starting billable work on a client ticket remains a human-approved commercial decision.</li>
+      <li><strong>Smallest safe experiment:</strong> in a scratch Agency OS project, add one PowerShell check to <code>advance_gate.ps1</code>'s DISCOVERY precondition: fail if the latest client-message thread in <code>project-state.json</code> ends in a question with no recorded answer. One fake ticket that ends in a question, one BLOCKED verdict, one passing case — then decide whether to keep it.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Daily Learning: a validator checks the record, not reality</h2>
+    <h2>Daily Learning: deterministic before LLM</h2>
     <ul>
-      <li><strong>Concept (simple English):</strong> a gate can verify two different things — that a record <em>exists</em> (phase done, test logged) or that the thing the record describes <em>actually happened</em>. Most agent-workflow validators do the first; only checks that re-execute the work (a scanner, a real test run) do the second.</li>
-      <li><strong>How an AI agent might get it wrong:</strong> it writes a plausible "Test run: PASS" line into the work trail by hand, or copies last week's receipt for today's changed code.</li>
-      <li><strong>How you recognize the failure:</strong> the record is present and formatted perfectly, but there's no machine receipt — no exit code, no code fingerprint, no timestamp tying the run to the current code.</li>
-      <li><strong>What detects it:</strong> agentic-os's <code>record_test_run.py</code> (stores exit code + code fingerprint; the ship gate fails if the code changed after the PASS receipt) and its credential scan; in Agency OS, the same failure class is caught by <code>prepush_release_check.ps1</code> re-running the suite rather than trusting the log.</li>
+      <li><strong>Concept (simple English):</strong> for any decision, ask first "could a plain script with no AI make this call?" — comparing a status field, counting, checking CI green, looking up a price. If yes, write the script: it costs nothing, never drifts, and can be unit-tested. Save the LLM for the questions that genuinely need reading comprehension.</li>
+      <li><strong>How an AI agent might get it wrong:</strong> when asked "is this ticket ready to build?", it answers with a confident paragraph of judgment — which can differ run to run, costs tokens, and can't be tested. Worse, it may answer "yes" on a ticket whose last line is an unanswered customer question, because the judgment was vibes, not a comparison.</li>
+      <li><strong>How you recognize the failure:</strong> the same input gives different verdicts on different runs; the verdict cites no concrete field or value you can check; gating logic lives in a prompt instead of a script, so there's no test that pins it.</li>
+      <li><strong>What detects it:</strong> Cromford demonstrates the fix and tests it: <code>bin/triage-gate.sh</code> is a status-field comparison, and <code>tests/evals-suite-test.sh</code> fails if a prompt change alters triage decisions. In Agency OS, the same failure class is caught by <code>gate_engine.py</code> making transitions from <code>project-state.json</code> fields — and by your precommit scripts re-running checks instead of trusting the agent's summary.</li>
     </ul>
   </section>
 
   <section>
     <h2>Final Summary</h2>
     <ul>
-      <li><strong>Best discovery today:</strong> <a href="https://github.com/KbWen/agentic-os">KbWen/agentic-os</a> — MIT, commit today (Oct 31), release v1.8.36 on Oct 29; a governance layer that makes AI agents' "done" claims machine-checkable.</li>
-      <li><strong>Best security/reliability improvement:</strong> the pre-commit credential gate with redacted output — a secret can't reach git history, and the failure is a receipt, not an accusation.</li>
-      <li><strong>Best Agency OS integration:</strong> machine receipts (scan verdicts + test-run exit codes with code fingerprints) as required gate evidence for QA and SECURITY — strengthening, never replacing, the gate engine.</li>
-      <li><strong>One practical action today:</strong> clone the repo in a scratch folder and run <code>pwsh demo/run.ps1</code> — watch a fake leaked key get a commit blocked in under a minute.</li>
+      <li><strong>Best discovery today:</strong> <a href="https://github.com/cromford-ai/cromford">cromford-ai/cromford</a> — Apache-2.0, created Oct 13, 2026, 7 commits today (Nov 1): an unattended software factory whose safety comes from deterministic gates, not better prompts. Verdict: INVESTIGATE — study the design, don't adopt the tool yet.</li>
+      <li><strong>Best security/reliability improvement:</strong> Cromford's deterministic refusal conditions (unanswered question → no start; no failing test → no plan; no deployment in window → no "shipped" claim) — plus verified gap-filler <a href="https://github.com/Amal-David/keyleak-detector">keyleak-detector</a> (MIT) for the security stage it lacks.</li>
+      <li><strong>Best Agency OS integration:</strong> a script-decided DISCOVERY gate that blocks tickets ending in unanswered client questions, plus a per-call cost ledger with alerts on unpriced models — additive evidence for <code>gate_engine.py</code>, replacing nothing.</li>
+      <li><strong>One practical action today:</strong> clone Cromford into a scratch folder and run <code>bin/selfhost-install.sh --config selfhost.conf --dry-run</code> (Docker/WSL2) — read what an unattended factory needs before it touches a real account. Then add the one-line unanswered-question check to your DISCOVERY gate.</li>
     </ul>
   </section>
 </div>
