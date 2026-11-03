@@ -37,127 +37,128 @@
   <header>
     <h1>Agency OS <span>Radar</span></h1>
     <div class="tagline">Daily open-source discoveries for a one-person AI software agency</div>
-    <div class="tagline date">Report date: Monday, November 2, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
+    <div class="tagline date">Report date: Tuesday, November 3, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
   </header>
 
   <section>
     <h2>Start Here (plain English)</h2>
-    <p><strong>The problem:</strong> an AI coding agent does different work every run. Ask it to fix a bug twice and you may get a plan one time and a rushed patch the next. A one-person agency cannot supervise every step of every agent, so either quality slips or you become the bottleneck.</p>
-    <p><strong>The solution in today's radar:</strong> <a href="https://github.com/coleam00/Archon">coleam00/Archon</a> is an open-source <em>factory builder</em>: you write your delivery process once as a YAML workflow, and Archon runs it the same way every time — agents supply judgment inside each step, scripts make the mechanical decisions, and a run pauses and comes to <em>you</em> only when it needs a decision you own (approvals, scope changes). It ships with a working software factory (the <code>sdlc</code> pack): issue in, merged pull request out, with approval gates, a full event log and per-run costs stored in your own database.</p>
-    <p class="muted">Format note: single-featured-factory layout (standing focus set Oct 25, 2026); the Ethiopia business-opportunity section remains removed. Prior reports were available through Nov 1 (cromford-ai/cromford, KbWen/agentic-os, nexu-io/looper, jmanico/grim-prompter, coleam00/ai-software-factory, obra/superpowers). Archon itself has not been featured before — note that the previously featured coleam00/ai-software-factory is built on top of Archon, so today is a look at the engine underneath it. All facts below verified today from the repo's README, commit history and LICENSE via GitHub. This is a large, fast-moving project — expect churn.</p>
+    <p><strong>The problem:</strong> your AI coding agents each live in their own window. Claude Code writes the code, another tool drafts the proposal, a third does research — and <em>you</em> are the glue: copying context between them, remembering where work stopped, and chasing every loose end. A one-person agency drowns in that glue work.</p>
+    <p><strong>The solution in today's radar:</strong> <a href="https://github.com/Orkas-AI/Orkas">Orkas-AI/Orkas</a> is an open-source desktop app that puts a "Commander" agent in charge of a <em>team</em>. You give it a goal; it plans the steps, delegates each part to the right specialist agent (16 built-in), and can even drive the coding agents you already use — <strong>Claude Code, Codex, OpenCode</strong> — as local sessions under one plan. Projects hold the goal, rules, memory and files so work continues across days; to-dos and "Auto-advance" keep it moving; finished work always comes back <strong>for your review</strong> before anything leaves your machine.</p>
+    <p class="muted">Format note: single-featured-factory layout (standing focus set Oct 25, 2026); the Ethiopia business-opportunity section remains removed. Prior reports were available through Nov 2 (yesterday featured coleam00/Archon; Orkas has not been featured before). All facts below verified today from the repo's README, LICENSE, release and commit history via GitHub.</p>
   </section>
 
   <section>
-    <h2>The Featured Factory: coleam00/Archon <span class="badge b-test">TEST NOW</span></h2>
+    <h2>The Featured Factory: Orkas-AI/Orkas <span class="badge b-test">TEST NOW</span></h2>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/coleam00/Archon">github.com/coleam00/Archon</a> · docs <a href="https://archon.diy/docs">archon.diy/docs</a></li>
-      <li><strong>What it is (simple English):</strong> you describe how work should get done as YAML workflows; Archon runs them with AI agents (Claude Code, Codex, Pi — through their own CLIs and your own subscriptions), scripts, and human decisions where needed. The bundled SDLC pack is a working factory: you open an issue, <code>archon-intake</code> decides what it needs, the build queue runs <code>archon-ship</code> (plan, implement, review through specialist lenses, fix findings, wait for CI), the merge queue lands clean, review-ready PRs, unclear questions become single "attention items" with recommendations, and side discoveries get filed instead of lost.</li>
-      <li><strong>What changed recently and when (VERIFIED from commit history):</strong> releases <strong>v0.13.0 (Oct 28), v0.13.1 and v0.13.2 (Oct 29, 2026)</strong>, Homebrew formula updated Oct 29, plus commits on <strong>Nov 1–2, 2026</strong> (including "Preserve host workflow results when Docker image inventory fails" and a build-queue fix that stops relaunching a PR that changed nothing). So: recent release wave within the last 5 days, and commits within the last 24 hours.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> this is the engine under the factory featured earlier (ai-software-factory pins an exact Archon revision). Archon gives you the three things Agency OS is built on, as product features: fixed step order (the workflow fixes the steps, checks and gates), evidence (full event log and transcript per run, stored in your own SQLite/PostgreSQL), and human-on-the-loop approvals. The README also reports it builds itself: of 524 PRs merged into the repo Oct 1–19, 2026, Archon runs built 363.</li>
-      <li><strong>License &amp; costs (verified):</strong> <strong>MIT License</strong> (verified from the LICENSE file today). The code is free. Running it is not automatically free: it drives Claude Code / Codex / Pi through your existing accounts and subscriptions, and every agent call costs what your plan/API charges (per-run cost is recorded in Archon's own database). Self-hosted on your machine — no cloud fee, no vendor platform fee.</li>
-      <li><strong>Windows compatibility &amp; install (verified):</strong> official Windows installer published by the project: <code>irm https://archon.diy/install.ps1 | iex</code> (PowerShell), alongside macOS/Linux (<code>curl … | bash</code>) and Homebrew. A Sep 1, 2026 commit specifically fixes Windows console handling ("hide the console for every subprocess exec on Windows"), so Windows is an actively maintained target — but full-factory behavior on Windows is <strong>plausible, untested by us</strong>. Prerequisites: git, and at least one coding-agent CLI (Claude Code or Codex) installed and signed in; SQLite by default.</li>
-      <li><strong>Privacy note:</strong> Archon sends anonymous telemetry (workflow names only for bundled workflows, categorical run shape/outcome, no message content, "No PII, ever" per the README). Keep this in mind for client work; check the config options for opting out.</li>
-      <li><strong>Verdict:</strong> TEST NOW — MIT, official Windows installer, local SQLite, uses the AI subscription you already have, and safely testable in a scratch repo.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/Orkas-AI/Orkas">github.com/Orkas-AI/Orkas</a> · release <a href="https://github.com/Orkas-AI/Orkas/releases/tag/v2026.10.27">v2026.10.27</a></li>
+      <li><strong>What it is (simple English):</strong> an open-source (MIT), local-first multi-agent desktop app. A Commander agent turns your goal into to-dos and coordinates 16 built-in specialist agents — DeepResearcher, ContentWriter, PptMaker, UIDesigner, ProductDeveloper, OfficeWorker, five e-commerce agents and more — plus the CLI agents you already have installed (Claude Code, Codex, OpenCode, plus OpenClaw and Hermes-Agent), running as local sessions under one plan.</li>
+      <li><strong>What changed recently and when (VERIFIED):</strong> release <strong>v2026.10.27</strong> (Oct 27, 2026) — configure public image/video models with your own keys, connect custom models via OpenAI Responses / Chat Completions / Anthropic protocols, create/edit/preview local apps, reliability fixes for CLI agents and voice input. Commits <strong>today, Nov 3, 2026</strong>, including two Windows-specific fixes: "Preserve pinned Whisper bytes on Windows" (Git core.autocrlf license-check fix, validated by the project's own tests: 28 passed) and "Fix Windows data-location selection while preserving existing data" (<a href="https://github.com/Orkas-AI/Orkas/commit/07df32473a1100df0f8ae078772101d350ee6e79">commit 07df324</a>).</li>
+      <li><strong>Why it matters to a vibe coder:</strong> it is the closest open-source thing to Agency OS's orchestrator + specialist-agents model as a working product — local-first, model-agnostic (built-in model, your own keys, or a local OpenAI-compatible endpoint), with per-agent memory and skills, scheduled automations, and connectors that ask before sending anything.</li>
+      <li><strong>License &amp; costs (verified):</strong> <strong>MIT License</strong> (verified from the LICENSE file today). Free download, 500 free credits for the built-in Orkas model; paid plans from $11.99/month add credits, cloud sync, shared projects and web-app publishing. With your own keys (Claude, OpenAI, Gemini, DeepSeek, Kimi, GLM, Qwen, MiniMax, Doubao, or a local endpoint) you pay only your provider — Orkas adds no markup. Open source ≠ free model access.</li>
+      <li><strong>Windows compatibility &amp; install (verified from README):</strong> packaged installer for <strong>Windows 10+</strong> (also macOS 12+). Run from source via <code>run.cmd</code>: Node 22.12+; workspace at <code>&lt;smallest non-system drive&gt;:\.orkas\</code>. Voice transcription downloads a pinned whisper.cpp runtime on first launch. Python 3 and a C/C++ toolchain only needed for rare native-module source-build fallbacks (<code>npm run native:repair</code> if needed).</li>
+      <li><strong>Agency OS compatibility: plausible — untested</strong> alongside the existing gate_engine.py / PowerShell stack on your Windows PC.</li>
+      <li><strong>Verdict:</strong> TEST NOW — MIT, official Windows installer, 500 free credits (no API key needed to start), local-first data.</li>
     </ul>
   </section>
 
   <section>
     <h2>The Factory Map — onto the Agency OS Lifecycle</h2>
-    <p class="muted">Workflow names, artifacts and gate behaviors verified from the repo README today.</p>
+    <p class="muted">Modules, artifacts and behaviors verified from the repo README today.</p>
     <table>
       <tr><th>Agency OS stage</th><th>Factory module</th><th>Artifact it produces</th><th>Which gate consumes it</th></tr>
-      <tr><td>LEAD / PROPOSAL</td><td>— not covered</td><td>—</td><td>— (issues must already exist; client-facing work stays with Agency OS)</td></tr>
-      <tr><td>DISCOVERY / PROBLEM_DEFINITION</td><td><strong>archon-intake</strong> — checks the issue against the code and decides: plan, investigation, straight to delivery, or a maintainer's look</td><td>Classified issue with a chosen route</td><td>Build queue only claims "ready" issues</td></tr>
-      <tr><td>SPECIFICATION</td><td><strong>plan</strong> node of <strong>archon-ship</strong> — brief + written implementation plan</td><td>Implementation plan</td><td>Implementation node depends on the plan; loop runs until the test command passes</td></tr>
-      <tr><td>ARCHITECTURE</td><td>— no dedicated stage (absorbed into planning)</td><td>—</td><td>— (gap)</td></tr>
-      <tr><td>DEVELOPMENT</td><td><strong>archon-ship</strong> implement + build queue; each repository run gets its own <strong>git worktree</strong> so several can work at once</td><td>Implementation on an isolated branch</td><td>Loop node runs until your test command passes (<code>until_bash</code>) or <code>max_iterations</code> stops it</td></tr>
-      <tr><td>QA</td><td>Review through specialist lenses, fix-the-findings rounds, wait for CI; <code>archon-validate</code> runs project checks</td><td>Review verdict, CI status</td><td>Stops at a PR whose review says Ready; merge gate re-checks verdict and CI at the head commit</td></tr>
-      <tr><td>SECURITY</td><td>— no dedicated security stage in the pack (no secret scanning / dependency auditing gate)</td><td>—</td><td>— (gap — see Honest Gaps)</td></tr>
-      <tr><td>CEO_REVIEW</td><td><strong>Approval gates</strong> — any node can <code>wait</code>: the run pauses as one attention item with a recommendation and choices; your answer is written back into the issue as the new scope</td><td>Approve/reject decision, resolved scope</td><td>Reject cancels the run; approve continues it — the decision is a logged event</td></tr>
-      <tr><td>RELEASE</td><td><strong>archon-merge-queue</strong> — merges cleanly-merging, review-ready PRs whose verdict and CI pass at the head commit and whose base branch is not red; conflicting PRs go back to the build queue</td><td>Merged pull request</td><td>Deterministic merge gate; binds to schedules/issue events only if you configure a trigger (pack binds nothing by default)</td></tr>
-      <tr><td>MAINTENANCE</td><td><strong>archon-discoveries</strong> — files what runs noticed outside their task, tracks it on an existing issue, or drops it; full event log, transcript and per-run cost per run</td><td>Discovery issues, audit trail</td><td>Nothing found along the way is lost — it re-enters through intake</td></tr>
-      <tr><td>REUSABLE_COMPONENT</td><td>Workflows are shareable <strong>packs</strong> (YAML + commands + scripts); plugin contract for providers, forges, chat; install with <code>archon plugin add owner/repo</code></td><td>Reusable workflow packs</td><td>Partial — processes, not business components</td></tr>
+      <tr><td>LEAD</td><td>— partial: goals enter as project briefs</td><td>Project with goals &amp; rules</td><td>Commander routes work inside the project</td></tr>
+      <tr><td>DISCOVERY / PROBLEM_DEFINITION</td><td><strong>DeepResearcher</strong> — evidence-grounded research, verified sources, flagged contradictions; <strong>projects &amp; to-dos</strong></td><td>Auditable research report; to-do list split between human and agents</td><td>To-dos assigned per agent/human; nothing advances without your review</td></tr>
+      <tr><td>PROPOSAL</td><td><strong>ContentWriter</strong>, <strong>PptMaker</strong>, <strong>OfficeWorker</strong></td><td>Client-ready articles, decks, DOCX/PPTX/XLSX/PDF</td><td>Human review of the deliverable before sending</td></tr>
+      <tr><td>SPECIFICATION / ARCHITECTURE</td><td><strong>UIDesigner</strong> — HTML-first UI from PRDs, goals, screenshots or Figma; <strong>ProductDeveloper</strong> — repo-aware PRD implementation</td><td>UI designs; implementation plans and code</td><td>ProductDeveloper claims "verifiable results" — evidence quality untested by us</td></tr>
+      <tr><td>DEVELOPMENT</td><td><strong>ProductDeveloper</strong> + external CLI agents (Claude Code, Codex, OpenCode) run as local sessions under one Commander plan</td><td>Code changes, bug fixes, refactors</td><td>Finished work returns for your review</td></tr>
+      <tr><td>QA</td><td>— no dedicated test stage (ProductDeveloper "review" only)</td><td>—</td><td>— (gap)</td></tr>
+      <tr><td>SECURITY</td><td>— none (no secret scanning / dependency auditing)</td><td>—</td><td>— (gap)</td></tr>
+      <tr><td>CEO_REVIEW</td><td><strong>Ask-before-send</strong> connectors — "Orkas asks before it sends, posts or deletes anything"; finished work returns for review</td><td>Approval decisions</td><td>Maps to your human-approval rule</td></tr>
+      <tr><td>RELEASE</td><td>— no deployment/publish stage (local apps only; publishing a web app needs a paid plan)</td><td>—</td><td>— (gap)</td></tr>
+      <tr><td>MAINTENANCE</td><td><strong>Scheduled automations</strong> (hourly→monthly; missed runs catch up within 12h from v1.9) + <strong>background learning reviews</strong> (agents refine their own skills/memory when idle, subject to cooldowns and execution limits)</td><td>Recurring reports; learned skills</td><td>Bounded by execution limits and idle-time cooldowns</td></tr>
+      <tr><td>REUSABLE_COMPONENT</td><td><strong>Agent marketplace + custom agents</strong> — 30+ agents; describe a role and the Commander builds it; per-agent memory and skills</td><td>Custom agents, learned skills</td><td>Partial — agent-level reuse, not business components</td></tr>
     </table>
   </section>
 
   <section>
     <h2>Honest Gaps</h2>
     <ul>
-      <li><strong>No LEAD / PROPOSAL:</strong> it consumes issues that already exist. Client discovery, pricing and proposals remain Agency OS work.</li>
-      <li><strong>No SECURITY stage:</strong> nothing in the SDLC pack scans secrets, dependencies or authn/authz before merge. The biggest gap for a security-gated agency. Yesterday's verified gap-filler still applies: <a href="https://github.com/Amal-David/keyleak-detector">Amal-David/keyleak-detector</a> (MIT, per yesterday's verification) for exposed-key/RLS-misconfig detection; pair it with your existing dependency/secret checks in gate_engine.</li>
-      <li><strong>No runtime/UAT verification by default:</strong> the pack stops at merged PRs + CI. (Driving a running app with recorded evidence is what the separately featured ai-software-factory adds on top, via Archon's runtime-verification workflows.)</li>
-      <li><strong>Forge support today is GitHub-centric:</strong> the pack works through the GitHub CLI (<code>gh</code>); other hosts go through the plugin route.</li>
-      <li><strong>Fast-moving:</strong> three releases in two days (Oct 28–29) and commits landing daily — pin a version before depending on behavior.</li>
+      <li><strong>No QA stage:</strong> no unit/integration/UAT verification loop — "done" can still be an agent's claim.</li>
+      <li><strong>No SECURITY stage:</strong> nothing scans secrets, dependencies, authn/authz. Keep your own security stage and gate_engine checks.</li>
+      <li><strong>No release/deployment stage:</strong> work stops at finished files on your disk.</li>
+      <li><strong>No gate engine / governance:</strong> Auto-advance keeps moving without formal evidence gates — the exact problem gate_engine.py exists to solve. Orkas complements it, never replaces it.</li>
+      <li><strong>Packaged app needs sign-in;</strong> the built-in model runs through Orkas's managed service. The source build has no account layer and can run fully offline against a local endpoint.</li>
+      <li><strong>Third-party security flags:</strong> a third-party automated scan (SkillsLLM, July 2026) reported npm-audit warnings including high-severity hono and vite/launch-editor (Windows NTLMv2) issues — third-party, unverified; a reason to keep it off client-data machines until audited.</li>
     </ul>
   </section>
 
   <section>
     <h2>Why It Fits Agency OS</h2>
     <ul>
-      <li><strong>Fixed process, judgment inside steps:</strong> the workflow fixes the order, checks and gates; the agent only supplies judgment — the same philosophy as Agency OS's gate engine being authoritative over the agents.</li>
-      <li><strong>Human approval at the boundary:</strong> approval-gate nodes pause the run and present one decision with a recommendation — matching your rule that commercial decisions, scope changes and releases need human approval.</li>
-      <li><strong>Evidence before advancing:</strong> every run has a full event log and transcript in your own database; loop nodes decide "done" by running your test command, not by asking the agent. This matches your validated-evidence rule.</li>
-      <li><strong>Living project state:</strong> durable run state, queues, and answers written back into the issue — philosophically aligned with <code>project-state.json</code> being authoritative. It complements, never replaces, your gate engine.</li>
-      <li><strong>Costs visible per run:</strong> every run's cost is recorded — the accountability you want before charging a client project.</li>
-      <li><strong>Agency OS compatibility: plausible — untested.</strong> Nothing here is proven alongside your existing <code>gate_engine.py</code> / PowerShell stack on your Windows PC; the integration proposal below stays additive.</li>
+      <li><strong>Commander = orchestrator; 16 specialists ≈ specialized agents</strong> — the same shape as Agency OS, as a running product.</li>
+      <li><strong>Ask-before-send ≈ your human-approval rule:</strong> irreversible actions require explicit confirmation by default.</li>
+      <li><strong>Local-first data, keys encrypted on disk</strong> ≈ your data-protection rule; with your own keys, model calls go straight from your machine to the provider.</li>
+      <li><strong>Background reviews may conclude "nothing worth saving"</strong> ≈ your no-invented-facts rule — an agent may learn nothing rather than fabricate.</li>
+      <li><strong>Projects with persistent memory and to-dos</strong> parallel project-state.json — philosophically aligned, never a substitute for the authoritative state file.</li>
+      <li><strong>Structured records survive context compaction:</strong> file reads, changes and command executions are recorded durably — evidence, not memory.</li>
     </ul>
   </section>
 
   <section>
     <h2>Limitations, Risks &amp; Human Review</h2>
     <ul>
-      <li><strong>It runs your coding agents with real account spend:</strong> a loop node with <code>max_iterations: 10</code> can make many model calls before it stops. Set iteration caps and start with cheap models/tiers; treat per-run cost reports as mandatory reading.</li>
-      <li><strong>Auto-merge capability exists:</strong> the merge queue can land PRs without you reading them. For client work, keep every merge behind an approval gate or branch protection requiring review — and treat any auto-merge adoption as a commercial decision requiring your CEO_REVIEW approval.</li>
-      <li><strong>Unattended runs are powerful:</strong> isolated worktrees make parallel unattended work safe for the repo, but not for secrets — keep credentials out of scratch repos, and never give any tool unrestricted access to client data.</li>
-      <li><strong>Telemetry is on by default:</strong> anonymous but real; check configuration before using it inside a client engagement, per your own data-protection rules.</li>
-      <li><strong>Script-safety:</strong> the installer is a remote script (<code>irm … | iex</code>). Read the <code>install.ps1</code> first — the same rule you already apply to never execute untrusted code blind.</li>
-      <li><strong>Not a security tool:</strong> keep your own security stage (secrets, dependencies, authn/authz) — see gaps.</li>
+      <li><strong>Computer-on requirement:</strong> Auto-advance and automations only run while your PC is awake and Orkas is open — no server-side execution.</li>
+      <li><strong>Cost creep:</strong> Auto-advance chains agent calls; the 500 free credits run out. Watch credit and provider usage before client work.</li>
+      <li><strong>Auto-advance is semi-autonomous:</strong> keep it off for anything touching client data or connectors until you have observed it.</li>
+      <li><strong>Third-party npm-audit flags</strong> (above) — human review required before adopting inside real client engagements.</li>
+      <li><strong>CLI agents run with their own model settings and spend</strong> your Claude Code / Codex subscriptions.</li>
+      <li><strong>Download from the official site only</strong> (orkas.ai) — several GitHub mirrors of this repo exist; use the official repo and download link.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Test Today: install Archon on Windows and run one investigation workflow (~45 min)</h2>
+    <h2>Test Today: install Orkas on Windows and run one research task (~30 min)</h2>
     <ul>
-      <li><strong>Why this one:</strong> MIT, official Windows PowerShell installer, local SQLite, uses the Claude Code (or Codex) subscription you already have — no new cloud accounts, no fee beyond your existing plan.</li>
-      <li><strong>Prerequisites:</strong> Windows PC, PowerShell, git, and Claude Code (or Codex CLI) installed and signed in.</li>
-      <li><strong>Official installation steps:</strong> first read the installer at <code>https://archon.diy/install.ps1</code> (never pipe a remote script straight into a shell without reading it); then run <code>irm https://archon.diy/install.ps1 | iex</code> in PowerShell and pick your providers when asked; then <code>archon workflow list</code> to confirm the SDLC pack is available.</li>
-      <li><strong>Practical test:</strong> in a throwaway scratch git repo (never a client repo), run <code>archon workflow run archon-investigate "Why does the login test fail?"</code> (the README's own first-run example), then <code>archon serve</code> to watch the run in the web console. Add one trivial two-node workflow from the README example (plan → implement loop with <code>until_bash</code> set to your test command → an approval <code>wait</code>) and reject the approval on purpose to see the run stop cleanly.</li>
-      <li><strong>Expected results:</strong> a completed investigation with a transcript and per-run cost in the console; an approval attention item that pauses and resumes; a rejected run that cancels with a logged reason. No merge, no push to any real remote (scratch repo has none).</li>
-      <li><strong>Safety precautions:</strong> scratch repo only; no real secrets, no client data; keep iteration caps small (<code>max_iterations: 3</code>); do not bind schedules/triggers; do not connect Slack/GitHub webhooks during the test; read the event log afterward to see exactly what the run did.</li>
+      <li><strong>Why this one:</strong> MIT, official Windows 10+ installer, 500 free credits — no API key, no new subscription, no client data needed.</li>
+      <li><strong>Prerequisites:</strong> Windows 10+ (packaged installer); no API key needed for the first test; Claude Code/Codex optional for later CLI-agent tests.</li>
+      <li><strong>Official installation steps (from README):</strong> download at <a href="https://orkas.ai/download/">orkas.ai/download</a> — the link detects your system and starts the right installer; sign in on first launch (500 credits included).</li>
+      <li><strong>Practical test:</strong> create a scratch project; ask the Commander: "Research the top 3 open-source secret-scanning tools and give me a cited report." Watch the Commander delegate to DeepResearcher and the report return for your review. Then add one to-do, enable Auto-advance, and confirm it asks before anything external.</li>
+      <li><strong>Expected results:</strong> a finished, reviewable file with cited sources; a per-agent task trail; nothing sent anywhere without your confirmation.</li>
+      <li><strong>Safety precautions:</strong> no connectors, no client data, no real secrets; throwaway project only; keep Auto-advance off for anything sensitive; review what the app did afterward.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Agency OS Integration Proposal: a "done = the script says so" QA loop + approval attention items</h2>
+    <h2>Agency OS Integration Proposal: a DeepResearcher-fed DISCOVERY stage</h2>
     <ul>
-      <li><strong>Problem solved:</strong> today a dev or QA agent in Agency OS can declare "tests pass" in prose; you have no machine-checked loop bound (implement → verify → fix) and no single place where a run pauses for your decision with the evidence attached.</li>
-      <li><strong>Workflow/agent improved:</strong> the dev agent's build loop and the orchestrator's approval hand-offs — feeding, never replacing, <code>gate_engine.py</code>.</li>
-      <li><strong>Lifecycle stage:</strong> DEVELOPMENT → QA (loop), CEO_REVIEW (approval item).</li>
-      <li><strong>Inputs:</strong> the approved spec/plan from <code>project-state.json</code>; the project's real test command. <strong>Outputs:</strong> a machine-decided loop outcome (test command exit code, iteration count), a full run transcript, per-run cost, and a single approval item with a recommendation.</li>
-      <li><strong>How results are validated:</strong> the loop's "done" is the exit code of your own test command (<code>until_bash</code>) — the agent's claim is irrelevant; the approval decision is a logged event; the gate engine still consumes <code>project-state.json</code> exactly as before.</li>
-      <li><strong>What happens on failure:</strong> tests never pass within <code>max_iterations</code> → the run fails with a categorical failure class and the transcript shows which node failed; a rejected approval cancels the run and nothing advances.</li>
-      <li><strong>Gate or human approval?</strong> Neither replaces anything: gate transitions and rollback stay untouched. Merging anything for a client stays behind your human approval rule — the Archon approval node is the natural place to surface it, but the approval is yours, not Archon's.</li>
-      <li><strong>Smallest safe experiment:</strong> in a scratch Agency OS project, write the README's example <code>build-feature.yaml</code> (plan → implement loop with <code>until_bash</code> = your <code>pytest</code> command, <code>max_iterations: 3</code> → approve <code>wait</code>). Run it once, approve it, run it again and reject it. Compare the two transcripts against what <code>gate_engine.py</code> records for the same work — then decide whether the loop pattern is worth adopting.</li>
+      <li><strong>Problem solved:</strong> discovery reports today depend on whatever the agent asserts; you want verified sources and flagged contradictions before writing project-state.json.</li>
+      <li><strong>Workflow/agent improved:</strong> discovery + PM agents — feeding, never replacing, gate_engine.py.</li>
+      <li><strong>Lifecycle stage:</strong> DISCOVERY → PROBLEM_DEFINITION.</li>
+      <li><strong>Inputs:</strong> client goal + any client documents (added to Orkas's local Library — passages indexed in a local SQLite vector store). <strong>Outputs:</strong> an evidence-grounded discovery report with citations to source passages, feeding the PM agent's problem definition.</li>
+      <li><strong>How results are validated:</strong> you open the cited passages yourself (Library citations link back to the source text); claims are marked VERIFIED only after you check them — matching your REAL/SIMULATED/ASSUMPTION discipline.</li>
+      <li><strong>What happens on failure:</strong> unverifiable claims are marked UNVERIFIED and the gate does not advance to PROPOSAL — no evidence, no transition.</li>
+      <li><strong>Gate or human approval?</strong> No gate is replaced; advancing to PROPOSAL still requires the gate engine plus your human approval.</li>
+      <li><strong>Smallest safe experiment:</strong> one scratch project in Orkas, one DeepResearcher task, then manually copy its findings into a scratch project-state.json and check every citation yourself before marking anything VERIFIED.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Daily Learning: the loop that ends when the script says so</h2>
+    <h2>Daily Learning: context compaction with structured records</h2>
     <ul>
-      <li><strong>Concept (simple English):</strong> an agentic loop should not end when the agent says "done" — it should end when an objective check (a test command, a validator exit code) says so, with a hard iteration cap as the backstop. The agent's judgment chooses <em>what to try next</em>; the script decides <em>when to stop</em>.</li>
-      <li><strong>How an AI agent might get it wrong:</strong> it reports "all tests pass" based on its memory of a previous run, on a partial run, or on tests it quietly weakened — and a human reading the summary cannot tell the difference from a real green run.</li>
-      <li><strong>How you recognize the failure:</strong> the "passing" claim has no fresh command exit code, timestamp or transcript attached; tests fail when you run them yourself; the diff touches test files without a stated reason.</li>
-      <li><strong>What detects it:</strong> Archon's <code>until_bash</code> loop runs the actual test command each round and records the result in the run's event log. In Agency OS today, the same failure class is caught by your precommit/prepush scripts re-running checks — and the fix to copy from Archon is binding the QA exit to a recorded exit code, not the agent's sentence.</li>
+      <li><strong>Concept (simple English):</strong> when a long task outgrows the model's context, older messages are condensed — but Orkas keeps structured records of file reads, file changes and command executions that survive compaction, so key facts aren't lost.</li>
+      <li><strong>How an AI agent might get it wrong:</strong> after compaction it "remembers" an earlier decision wrongly (or not at all) and quietly contradicts it — e.g., re-introducing a fix it had already ruled out.</li>
+      <li><strong>How you recognize the failure:</strong> the agent contradicts an earlier instruction; it can't say where a fact came from; long runs drift from the goal.</li>
+      <li><strong>What detects it:</strong> in Orkas, the surviving structured workspace records; in Agency OS, project-state.json as the authoritative record plus gate evidence checks — durable external state beats the agent's memory.</li>
     </ul>
   </section>
 
   <section>
     <h2>Final Summary</h2>
     <ul>
-      <li><strong>Best discovery today:</strong> <a href="https://github.com/coleam00/Archon">coleam00/Archon</a> — MIT, v0.13.2 released Oct 29, commits landing Nov 1–2. A self-hosted factory builder: fixed YAML workflows, approval gates, event logs, per-run costs, your own agent subscriptions. Verdict: TEST NOW (scratch repo first).</li>
-      <li><strong>Best security/reliability improvement:</strong> the <code>until_bash</code> loop pattern — "done" decided by your test command's exit code with an iteration cap, plus a logged approval item for every human decision. It removes the most common agent self-report failure. (Security scanning remains a gap — keep your own stage.)</li>
-      <li><strong>Best Agency OS integration:</strong> a three-node QA loop for the dev agent (plan → implement-until-tests-pass, capped → approval wait) that feeds validated evidence to the existing gate engine — replacing nothing.</li>
-      <li><strong>One practical action today:</strong> read <code>install.ps1</code>, install Archon on Windows, and run <code>archon workflow run archon-investigate "Why does the login test fail?"</code> in a scratch repo — then write the example <code>build-feature.yaml</code> and watch the approval gate pause for you.</li>
+      <li><strong>Best discovery today:</strong> <a href="https://github.com/Orkas-AI/Orkas">Orkas-AI/Orkas</a> — MIT, release v2026.10.27 (Oct 27) and Windows fixes committed today (Nov 3). A local-first multi-agent desktop factory: a Commander coordinating 16 specialists plus Claude Code, Codex and OpenCode, with projects, to-dos, automations and ask-before-send connectors. Verdict: TEST NOW.</li>
+      <li><strong>Best security/reliability improvement:</strong> the ask-before-send pattern — irreversible actions (send/post/delete) require explicit human confirmation, by default. Cheap to copy into any Agency OS connector or release step.</li>
+      <li><strong>Best Agency OS integration:</strong> a DeepResearcher-powered DISCOVERY stage that feeds cited, checkable evidence into the gate engine's VERIFIED discipline — replacing nothing.</li>
+      <li><strong>One practical action today:</strong> install Orkas on Windows and run one cited research task in a scratch project — then check every citation yourself before trusting it.</li>
     </ul>
   </section>
 </div>
