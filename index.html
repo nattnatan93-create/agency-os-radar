@@ -37,128 +37,149 @@
   <header>
     <h1>Agency OS <span>Radar</span></h1>
     <div class="tagline">Daily open-source discoveries for a one-person AI software agency</div>
-    <div class="tagline date">Report date: Tuesday, November 3, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
+    <div class="tagline date">Report date: Wednesday, November 4, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
   </header>
 
   <section>
     <h2>Start Here (plain English)</h2>
-    <p><strong>The problem:</strong> your AI coding agents each live in their own window. Claude Code writes the code, another tool drafts the proposal, a third does research — and <em>you</em> are the glue: copying context between them, remembering where work stopped, and chasing every loose end. A one-person agency drowns in that glue work.</p>
-    <p><strong>The solution in today's radar:</strong> <a href="https://github.com/Orkas-AI/Orkas">Orkas-AI/Orkas</a> is an open-source desktop app that puts a "Commander" agent in charge of a <em>team</em>. You give it a goal; it plans the steps, delegates each part to the right specialist agent (16 built-in), and can even drive the coding agents you already use — <strong>Claude Code, Codex, OpenCode</strong> — as local sessions under one plan. Projects hold the goal, rules, memory and files so work continues across days; to-dos and "Auto-advance" keep it moving; finished work always comes back <strong>for your review</strong> before anything leaves your machine.</p>
-    <p class="muted">Format note: single-featured-factory layout (standing focus set Oct 25, 2026); the Ethiopia business-opportunity section remains removed. Prior reports were available through Nov 2 (yesterday featured coleam00/Archon; Orkas has not been featured before). All facts below verified today from the repo's README, LICENSE, release and commit history via GitHub.</p>
+    <p><strong>The problem:</strong> a one-person AI agency needs five kinds of help at once — agents that code, orchestration that coordinates them, security checks that prove the work is safe, tests that prove it works, and ready-made UI pieces so client dashboards don't eat your week. Checking all five by hand, every day, is impossible for one person.</p>
+    <p><strong>The solution in today's radar:</strong> five verified open-source finds, one per category. The headline is <a href="https://github.com/deepseek-ai/dsh-superagent-prototype">DeepSeek's dsh-superagent</a> — a just-released (Oct 31) prototype of an agent that watches your GitHub repo, picks up authorized requests, and returns finished pull requests. Alongside it: a computer-use CLI your AI IDE can drive, the Trivy security scanner (updated yesterday and today), Maestro for plain-English E2E tests, and a MIT-licensed React dashboard kit. Every fact below was verified today from the repos' files and commit history; nothing is invented.</p>
+    <p class="muted">Full five-discovery format as requested today. Prior reports were available through Nov 3 (yesterday featured Orkas-AI/Orkas); none of today's five were featured before. Activity numbers are point-in-time snapshots from GitHub at ~14:10 UTC, Nov 4, 2026.</p>
   </section>
 
   <section>
-    <h2>The Featured Factory: Orkas-AI/Orkas <span class="badge b-test">TEST NOW</span></h2>
+    <h2>1. dsh-superagent-prototype (DeepSeek) <span class="badge b-invest">INVESTIGATE</span></h2>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/Orkas-AI/Orkas">github.com/Orkas-AI/Orkas</a> · release <a href="https://github.com/Orkas-AI/Orkas/releases/tag/v2026.10.27">v2026.10.27</a></li>
-      <li><strong>What it is (simple English):</strong> an open-source (MIT), local-first multi-agent desktop app. A Commander agent turns your goal into to-dos and coordinates 16 built-in specialist agents — DeepResearcher, ContentWriter, PptMaker, UIDesigner, ProductDeveloper, OfficeWorker, five e-commerce agents and more — plus the CLI agents you already have installed (Claude Code, Codex, OpenCode, plus OpenClaw and Hermes-Agent), running as local sessions under one plan.</li>
-      <li><strong>What changed recently and when (VERIFIED):</strong> release <strong>v2026.10.27</strong> (Oct 27, 2026) — configure public image/video models with your own keys, connect custom models via OpenAI Responses / Chat Completions / Anthropic protocols, create/edit/preview local apps, reliability fixes for CLI agents and voice input. Commits <strong>today, Nov 3, 2026</strong>, including two Windows-specific fixes: "Preserve pinned Whisper bytes on Windows" (Git core.autocrlf license-check fix, validated by the project's own tests: 28 passed) and "Fix Windows data-location selection while preserving existing data" (<a href="https://github.com/Orkas-AI/Orkas/commit/07df32473a1100df0f8ae078772101d350ee6e79">commit 07df324</a>).</li>
-      <li><strong>Why it matters to a vibe coder:</strong> it is the closest open-source thing to Agency OS's orchestrator + specialist-agents model as a working product — local-first, model-agnostic (built-in model, your own keys, or a local OpenAI-compatible endpoint), with per-agent memory and skills, scheduled automations, and connectors that ask before sending anything.</li>
-      <li><strong>License &amp; costs (verified):</strong> <strong>MIT License</strong> (verified from the LICENSE file today). Free download, 500 free credits for the built-in Orkas model; paid plans from $11.99/month add credits, cloud sync, shared projects and web-app publishing. With your own keys (Claude, OpenAI, Gemini, DeepSeek, Kimi, GLM, Qwen, MiniMax, Doubao, or a local endpoint) you pay only your provider — Orkas adds no markup. Open source ≠ free model access.</li>
-      <li><strong>Windows compatibility &amp; install (verified from README):</strong> packaged installer for <strong>Windows 10+</strong> (also macOS 12+). Run from source via <code>run.cmd</code>: Node 22.12+; workspace at <code>&lt;smallest non-system drive&gt;:\.orkas\</code>. Voice transcription downloads a pinned whisper.cpp runtime on first launch. Python 3 and a C/C++ toolchain only needed for rare native-module source-build fallbacks (<code>npm run native:repair</code> if needed).</li>
-      <li><strong>Agency OS compatibility: plausible — untested</strong> alongside the existing gate_engine.py / PowerShell stack on your Windows PC.</li>
-      <li><strong>Verdict:</strong> TEST NOW — MIT, official Windows installer, 500 free credits (no API key needed to start), local-first data.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/deepseek-ai/dsh-superagent-prototype">github.com/deepseek-ai/dsh-superagent-prototype</a></li>
+      <li><strong>What it does (simple English):</strong> a proactive coding agent that watches one GitHub repository. When an authorized person asks for work (in GitHub, or optionally Feishu), it opens a work item, does the job in its own isolated session and directory, and answers back in the original conversation — for example with a pull request. A web panel shows what needs a human.</li>
+      <li><strong>What changed recently (VERIFIED):</strong> brand-new project — repo created <strong>Oct 31, 2026</strong>, one commit (<em>"feat: add the dsh-superagent research prototype"</em>, Oct 31). Snapshot Nov 4: 18,261 stars, 1,994 forks. DeepSeek's own README calls it a <strong>research prototype, "not production-ready software"</strong>, and notes some designs from the article are not implemented.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> its philosophy — "take as little human attention as possible, give as much value as possible," acting only when asked or when a team-written rule allows — is exactly the Agency OS governance idea (authorized triggers, no unrequested actions), coming from one of the biggest AI labs.</li>
+      <li><strong>License &amp; costs (verified):</strong> <strong>MIT</strong> (verified from the LICENSE file today). Free code — but it requires the DeepSeek Harness (dsh) runtime and model access; those costs and subscription terms are not stated in the repo and remain unverified. Open source ≠ free model access.</li>
+      <li><strong>Windows compatibility &amp; installation:</strong> requirements reported by press coverage include Node.js ≥22.19 or ≥24, Git ≥2.32, Python ≥3.8, GitHub CLI ≥2.48, and <strong>tmux — a Linux/macOS tool, so no native Windows path is documented</strong>. An unofficial third-party Windows fork exists (Check-mj/dsh-superagent-windows, 5 stars) — unverified, do not trust it. DeepSeek states the agent runs with full OS user access and should be isolated.</li>
+      <li><strong>Agency OS fit / agent &amp; stage:</strong> could inform the orchestrator's work-intake design (authorized request → work item → session → answer) at DEVELOPMENT. Agency OS compatibility: <strong>plausible, untested</strong> (and Windows-blocking as documented).</li>
+      <li><strong>Evidence/output it would produce:</strong> work items with an immutable mandate (why the task may proceed), PRs, a human-attention panel — strong parallels to your REAL/VERIFIED discipline.</li>
+      <li><strong>Limitations &amp; risks:</strong> research prototype, one commit, unproven reliability; full OS user access = must run sandboxed/VM only; data-confidentiality risks conceded by DeepSeek; human review required before any client use.</li>
+      <li><strong>Verdict: INVESTIGATE</strong> — study its design docs; do not deploy.</li>
     </ul>
   </section>
 
   <section>
-    <h2>The Factory Map — onto the Agency OS Lifecycle</h2>
-    <p class="muted">Modules, artifacts and behaviors verified from the repo README today.</p>
-    <table>
-      <tr><th>Agency OS stage</th><th>Factory module</th><th>Artifact it produces</th><th>Which gate consumes it</th></tr>
-      <tr><td>LEAD</td><td>— partial: goals enter as project briefs</td><td>Project with goals &amp; rules</td><td>Commander routes work inside the project</td></tr>
-      <tr><td>DISCOVERY / PROBLEM_DEFINITION</td><td><strong>DeepResearcher</strong> — evidence-grounded research, verified sources, flagged contradictions; <strong>projects &amp; to-dos</strong></td><td>Auditable research report; to-do list split between human and agents</td><td>To-dos assigned per agent/human; nothing advances without your review</td></tr>
-      <tr><td>PROPOSAL</td><td><strong>ContentWriter</strong>, <strong>PptMaker</strong>, <strong>OfficeWorker</strong></td><td>Client-ready articles, decks, DOCX/PPTX/XLSX/PDF</td><td>Human review of the deliverable before sending</td></tr>
-      <tr><td>SPECIFICATION / ARCHITECTURE</td><td><strong>UIDesigner</strong> — HTML-first UI from PRDs, goals, screenshots or Figma; <strong>ProductDeveloper</strong> — repo-aware PRD implementation</td><td>UI designs; implementation plans and code</td><td>ProductDeveloper claims "verifiable results" — evidence quality untested by us</td></tr>
-      <tr><td>DEVELOPMENT</td><td><strong>ProductDeveloper</strong> + external CLI agents (Claude Code, Codex, OpenCode) run as local sessions under one Commander plan</td><td>Code changes, bug fixes, refactors</td><td>Finished work returns for your review</td></tr>
-      <tr><td>QA</td><td>— no dedicated test stage (ProductDeveloper "review" only)</td><td>—</td><td>— (gap)</td></tr>
-      <tr><td>SECURITY</td><td>— none (no secret scanning / dependency auditing)</td><td>—</td><td>— (gap)</td></tr>
-      <tr><td>CEO_REVIEW</td><td><strong>Ask-before-send</strong> connectors — "Orkas asks before it sends, posts or deletes anything"; finished work returns for review</td><td>Approval decisions</td><td>Maps to your human-approval rule</td></tr>
-      <tr><td>RELEASE</td><td>— no deployment/publish stage (local apps only; publishing a web app needs a paid plan)</td><td>—</td><td>— (gap)</td></tr>
-      <tr><td>MAINTENANCE</td><td><strong>Scheduled automations</strong> (hourly→monthly; missed runs catch up within 12h from v1.9) + <strong>background learning reviews</strong> (agents refine their own skills/memory when idle, subject to cooldowns and execution limits)</td><td>Recurring reports; learned skills</td><td>Bounded by execution limits and idle-time cooldowns</td></tr>
-      <tr><td>REUSABLE_COMPONENT</td><td><strong>Agent marketplace + custom agents</strong> — 30+ agents; describe a role and the Commander builds it; per-agent memory and skills</td><td>Custom agents, learned skills</td><td>Partial — agent-level reuse, not business components</td></tr>
-    </table>
-  </section>
-
-  <section>
-    <h2>Honest Gaps</h2>
+    <h2>2. agent-desktop (Vercel Labs) <span class="badge b-test">TEST NOW</span></h2>
     <ul>
-      <li><strong>No QA stage:</strong> no unit/integration/UAT verification loop — "done" can still be an agent's claim.</li>
-      <li><strong>No SECURITY stage:</strong> nothing scans secrets, dependencies, authn/authz. Keep your own security stage and gate_engine checks.</li>
-      <li><strong>No release/deployment stage:</strong> work stops at finished files on your disk.</li>
-      <li><strong>No gate engine / governance:</strong> Auto-advance keeps moving without formal evidence gates — the exact problem gate_engine.py exists to solve. Orkas complements it, never replaces it.</li>
-      <li><strong>Packaged app needs sign-in;</strong> the built-in model runs through Orkas's managed service. The source build has no account layer and can run fully offline against a local endpoint.</li>
-      <li><strong>Third-party security flags:</strong> a third-party automated scan (SkillsLLM, July 2026) reported npm-audit warnings including high-severity hono and vite/launch-editor (Windows NTLMv2) issues — third-party, unverified; a reason to keep it off client-data machines until audited.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/vercel-labs/agent-desktop">github.com/vercel-labs/agent-desktop</a></li>
+      <li><strong>What it does (simple English):</strong> a Rust CLI that lets an AI agent use a real computer — clicking, typing, reading windows — via the operating system's accessibility tree instead of guessing from screenshots. Because it uses stable accessibility references, actions stay retry-safe.</li>
+      <li><strong>What changed recently (VERIFIED):</strong> commit <strong>Nov 3, 2026</strong> (<a href="https://github.com/vercel-labs/agent-desktop/commit/6660fbac768dc7e7332837b90ed465684859afa3">#519</a>): a new <code>agent-desktop mcp</code> mode that serves <strong>every CLI command as an MCP tool</strong> your AI IDE can call — with a cap of 8 concurrent calls, a 4 MiB message limit, proper cancellation, and held input released on cancel (Windows paths explicitly handled in the code). Trending on GitHub Nov 3–4. Snapshot Nov 4: 14,205 stars, 970 forks.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> MCP support means Claude Code / Copilot-style IDEs can drive a desktop directly through bounded, documented tools — far safer than free-form "computer use", and ideal for testing desktop or Android-emulator apps your agency builds.</li>
+      <li><strong>License &amp; costs (verified):</strong> <strong>Apache-2.0</strong> (verified from the LICENSE file today). Free and local; you pay only your IDE's model subscription. No hosting or external API required.</li>
+      <li><strong>Windows compatibility &amp; installation:</strong> the code handles Windows paths, but the repo's topics and Homebrew install docs lean macOS/Linux — <strong>Windows support: untested; verify on your machine before relying on it</strong>.</li>
+      <li><strong>Agency OS fit / agent &amp; stage:</strong> QA agent — UI-E2E on desktop apps (and Android via emulator) at the QA stage. Compatibility: <strong>untested</strong>.</li>
+      <li><strong>Evidence/output:</strong> structured command results, MCP tool-call logs with bounded concurrency — usable as QA evidence artifacts.</li>
+      <li><strong>Limitations &amp; risks:</strong> computer-use tooling can act on your real desktop — scope it to test machines, never give it unrestricted access; per-call concurrency limits reduce but do not remove this.</li>
+      <li><strong>Verdict: TEST NOW</strong> (on a non-critical machine or test VM).</li>
     </ul>
   </section>
 
   <section>
-    <h2>Why It Fits Agency OS</h2>
+    <h2>3. Trivy (Aqua Security) <span class="badge b-test">TEST NOW</span></h2>
     <ul>
-      <li><strong>Commander = orchestrator; 16 specialists ≈ specialized agents</strong> — the same shape as Agency OS, as a running product.</li>
-      <li><strong>Ask-before-send ≈ your human-approval rule:</strong> irreversible actions require explicit confirmation by default.</li>
-      <li><strong>Local-first data, keys encrypted on disk</strong> ≈ your data-protection rule; with your own keys, model calls go straight from your machine to the provider.</li>
-      <li><strong>Background reviews may conclude "nothing worth saving"</strong> ≈ your no-invented-facts rule — an agent may learn nothing rather than fabricate.</li>
-      <li><strong>Projects with persistent memory and to-dos</strong> parallel project-state.json — philosophically aligned, never a substitute for the authoritative state file.</li>
-      <li><strong>Structured records survive context compaction:</strong> file reads, changes and command executions are recorded durably — evidence, not memory.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/aquasecurity/trivy">github.com/aquasecurity/trivy</a></li>
+      <li><strong>What it does (simple English):</strong> one binary that scans your code, dependencies, containers and infrastructure files for known vulnerabilities, leaked secrets, and misconfigurations — and can produce an SBOM (a machine-readable list of everything your software contains).</li>
+      <li><strong>What changed recently (VERIFIED):</strong> commits on <strong>Nov 3, 2026</strong> — "report private keys from PKCS#12 and JKS keystores" (#11524) and "categorize MIT-0 as unencumbered" (#11498) — and <strong>Nov 4</strong> documentation clarifying cryptographic asset scanning limits (#11378). Actively maintained, updated daily.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> "tests pass" says nothing about security. Trivy turns "is this safe?" into a repeatable, evidence-producing command — exactly what Agency OS's SECURITY stage needs before RELEASE.</li>
+      <li><strong>License &amp; costs (verified):</strong> <strong>Apache-2.0</strong> (verified from the LICENSE file today). Free; the vulnerability DB downloads free from GitHub on first run; optional paid enterprise/Aqua platform exists but is not needed.</li>
+      <li><strong>Windows compatibility &amp; installation:</strong> Windows binaries are published on the official GitHub releases page; it is a single <code>trivy.exe</code> — no server, no API key. Verify the latest version on the releases page when you download.</li>
+      <li><strong>Agency OS fit / agent &amp; stage:</strong> security agent, SECURITY stage (dependencies, secrets, config, deployment targets — four of your security domains in one tool). Compatibility: <strong>plausible, untested with your gate_engine.py</strong>.</li>
+      <li><strong>Evidence/output:</strong> JSON report (<code>--format json</code>) with CVE IDs and severities, plus an exit code — directly consumable by your gate scripts.</li>
+      <li><strong>Limitations &amp; risks:</strong> can't reason about your business logic (authn/authz design still needs human review); findings include false positives — every waiver needs human approval per your governance rules.</li>
+      <li><strong>Verdict: TEST NOW</strong> — today's test pick, see below.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Limitations, Risks &amp; Human Review</h2>
+    <h2>4. Maestro (mobile-dev-inc) <span class="badge b-invest">INVESTIGATE</span></h2>
     <ul>
-      <li><strong>Computer-on requirement:</strong> Auto-advance and automations only run while your PC is awake and Orkas is open — no server-side execution.</li>
-      <li><strong>Cost creep:</strong> Auto-advance chains agent calls; the 500 free credits run out. Watch credit and provider usage before client work.</li>
-      <li><strong>Auto-advance is semi-autonomous:</strong> keep it off for anything touching client data or connectors until you have observed it.</li>
-      <li><strong>Third-party npm-audit flags</strong> (above) — human review required before adopting inside real client engagements.</li>
-      <li><strong>CLI agents run with their own model settings and spend</strong> your Claude Code / Codex subscriptions.</li>
-      <li><strong>Download from the official site only</strong> (orkas.ai) — several GitHub mirrors of this repo exist; use the official repo and download link.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/mobile-dev-inc/maestro">github.com/mobile-dev-inc/maestro</a></li>
+      <li><strong>What it does (simple English):</strong> end-to-end testing without code: you describe a user flow as a short YAML file ("open app, tap login, expect 'Welcome'"), and Maestro runs it against real apps — Android, iOS, React Native, Flutter, and web. The README notes your AI agent can write these flows too, and they stay in your repo as deterministic CI tests.</li>
+      <li><strong>What changed recently (VERIFIED):</strong> release <strong>v2.12.1</strong> prepared Nov 2, 2026 (commit #3723), plus a Nov 2 analytics fix (#3724) and an Oct 30 fix evaluating a flow's appId before tapping (#3722).</li>
+      <li><strong>Why it matters to a vibe coder:</strong> YAML flows are the format an AI dev agent writes most reliably — deterministic, reviewable, CI-runnable tests for the Android apps your agency delivers.</li>
+      <li><strong>License &amp; costs (verified):</strong> <strong>Apache-2.0</strong> (verified from the LICENSE file today). Free local use; a paid cloud device fleet exists but is not required.</li>
+      <li><strong>Windows compatibility &amp; installation:</strong> install docs target macOS/Linux; Android flows on Windows are <strong>untested by this report — verify before relying on it</strong> (an Android emulator and JDK are needed for mobile flows).</li>
+      <li><strong>Agency OS fit / agent &amp; stage:</strong> QA agent — UI-E2E/UAT for mobile clients at the QA stage. Compatibility: <strong>untested</strong>.</li>
+      <li><strong>Evidence/output:</strong> JUnit XML reports and exit codes per flow — gate-consumable test evidence.</li>
+      <li><strong>Limitations &amp; risks:</strong> mobile toolchains are heavyweight; platform-specific flakiness; human review of any generated flow that touches real accounts.</li>
+      <li><strong>Verdict: INVESTIGATE</strong> — strong if you take Android client work.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Test Today: install Orkas on Windows and run one research task (~30 min)</h2>
+    <h2>5. TailAdmin Free React Dashboard <span class="badge b-invest">INVESTIGATE</span></h2>
     <ul>
-      <li><strong>Why this one:</strong> MIT, official Windows 10+ installer, 500 free credits — no API key, no new subscription, no client data needed.</li>
-      <li><strong>Prerequisites:</strong> Windows 10+ (packaged installer); no API key needed for the first test; Claude Code/Codex optional for later CLI-agent tests.</li>
-      <li><strong>Official installation steps (from README):</strong> download at <a href="https://orkas.ai/download/">orkas.ai/download</a> — the link detects your system and starts the right installer; sign in on first launch (500 credits included).</li>
-      <li><strong>Practical test:</strong> create a scratch project; ask the Commander: "Research the top 3 open-source secret-scanning tools and give me a cited report." Watch the Commander delegate to DeepResearcher and the report return for your review. Then add one to-do, enable Auto-advance, and confirm it asks before anything external.</li>
-      <li><strong>Expected results:</strong> a finished, reviewable file with cited sources; a per-agent task trail; nothing sent anywhere without your confirmation.</li>
-      <li><strong>Safety precautions:</strong> no connectors, no client data, no real secrets; throwaway project only; keep Auto-advance off for anything sensitive; review what the app did afterward.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/TailAdmin/free-react-tailwind-admin-dashboard">github.com/TailAdmin/free-react-tailwind-admin-dashboard</a></li>
+      <li><strong>What it does (simple English):</strong> a ready-made admin dashboard — charts, tables, forms, calendar, kanban, auth and error pages — built with React and Tailwind CSS, so a small-business back-office UI starts 80% done.</li>
+      <li><strong>What changed recently (VERIFIED):</strong> commits <strong>Oct 28–29, 2026</strong> — a 404 page added to the sidebar (Oct 29, <a href="https://github.com/TailAdmin/free-react-tailwind-admin-dashboard/commit/df1e9f37e56e0bf83030e8063f5353da2e0ecf18">df1e9f3</a>) and sidebar-refactor/cleanup commits Oct 28. Snapshot Nov 4: 1,295 stars; actively maintained.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> your REUSABLE_COMPONENT stage needs a vetted dashboard base; an AI agent customizing a known MIT template is faster and safer than generating an entire admin UI from scratch.</li>
+      <li><strong>License &amp; costs (verified):</strong> <strong>MIT</strong> (verified from LICENSE.md today) — commercial client use permitted with attribution per the license; verify attribution wording per project. A paid "Pro" tier exists but is not needed. No external API dependencies.</li>
+      <li><strong>Windows compatibility &amp; installation:</strong> plain Node/npm project — clone, <code>npm install</code>, <code>npm run dev</code>. Works on Windows (standard npm toolchain).</li>
+      <li><strong>Agency OS fit / agent &amp; stage:</strong> dev + spec/UX agents, REUSABLE_COMPONENT and DEVELOPMENT stages. Compatibility: <strong>plausible, untested</strong>.</li>
+      <li><strong>Evidence/output:</strong> a running dashboard your client can click — plus its components feed your reusable library.</li>
+      <li><strong>Limitations &amp; risks:</strong> template code inherited by clients needs the same security review as any code (dependencies, auth); verify the React/Tailwind versions fit your stack before adopting.</li>
+      <li><strong>Verdict: INVESTIGATE</strong> — best candidate for your reusable-component library.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Agency OS Integration Proposal: a DeepResearcher-fed DISCOVERY stage</h2>
+    <h2>Test Today: Trivy on Windows (~20 minutes, no subscription)</h2>
     <ul>
-      <li><strong>Problem solved:</strong> discovery reports today depend on whatever the agent asserts; you want verified sources and flagged contradictions before writing project-state.json.</li>
-      <li><strong>Workflow/agent improved:</strong> discovery + PM agents — feeding, never replacing, gate_engine.py.</li>
-      <li><strong>Lifecycle stage:</strong> DISCOVERY → PROBLEM_DEFINITION.</li>
-      <li><strong>Inputs:</strong> client goal + any client documents (added to Orkas's local Library — passages indexed in a local SQLite vector store). <strong>Outputs:</strong> an evidence-grounded discovery report with citations to source passages, feeding the PM agent's problem definition.</li>
-      <li><strong>How results are validated:</strong> you open the cited passages yourself (Library citations link back to the source text); claims are marked VERIFIED only after you check them — matching your REAL/SIMULATED/ASSUMPTION discipline.</li>
-      <li><strong>What happens on failure:</strong> unverifiable claims are marked UNVERIFIED and the gate does not advance to PROPOSAL — no evidence, no transition.</li>
-      <li><strong>Gate or human approval?</strong> No gate is replaced; advancing to PROPOSAL still requires the gate engine plus your human approval.</li>
-      <li><strong>Smallest safe experiment:</strong> one scratch project in Orkas, one DeepResearcher task, then manually copy its findings into a scratch project-state.json and check every citation yourself before marking anything VERIFIED.</li>
+      <li><strong>Why this one:</strong> one free binary, Apache-2.0, runs 100% locally, no API key, and produces the exact evidence your SECURITY stage lacks.</li>
+      <li><strong>Prerequisites:</strong> Windows PC, ~2 GB free disk for the vulnerability DB, internet only for the first DB download.</li>
+      <li><strong>Official installation steps:</strong> on <a href="https://github.com/aquasecurity/trivy/releases">github.com/aquasecurity/trivy/releases</a> download the latest Windows 64-bit ZIP, extract <code>trivy.exe</code> to a tools folder, and add that folder to PATH.</li>
+      <li><strong>Practical test:</strong> in a scratch project folder (with a <code>requirements.txt</code> or <code>package.json</code> you control, plus one intentionally fake secret like <code>AKIAIOSFODNN7EXAMPLE</code>): <code>trivy fs --scanners vuln,secret,misconfig .</code> then <code>trivy fs --scanners vuln --format json --output trivy-report.json .</code></li>
+      <li><strong>Expected results:</strong> a findings table with CVE IDs and severities, the fake secret flagged, and a JSON report you can hand to a gate script. Zero findings should still produce a clean report — that is your evidence.</li>
+      <li><strong>Safety precautions:</strong> scan only code you own; never paste real secrets into the test; trivy reads files — it does not modify them; keep reports private (they describe weaknesses).</li>
     </ul>
   </section>
 
   <section>
-    <h2>Daily Learning: context compaction with structured records</h2>
+    <h2>Agency OS Integration Proposal: Trivy as SECURITY-gate evidence</h2>
     <ul>
-      <li><strong>Concept (simple English):</strong> when a long task outgrows the model's context, older messages are condensed — but Orkas keeps structured records of file reads, file changes and command executions that survive compaction, so key facts aren't lost.</li>
-      <li><strong>How an AI agent might get it wrong:</strong> after compaction it "remembers" an earlier decision wrongly (or not at all) and quietly contradicts it — e.g., re-introducing a fix it had already ruled out.</li>
-      <li><strong>How you recognize the failure:</strong> the agent contradicts an earlier instruction; it can't say where a fact came from; long runs drift from the goal.</li>
-      <li><strong>What detects it:</strong> in Orkas, the surviving structured workspace records; in Agency OS, project-state.json as the authoritative record plus gate evidence checks — durable external state beats the agent's memory.</li>
+      <li><strong>Problem solved:</strong> your security stage currently has no machine-checkable proof that dependencies, secrets, and config were scanned before RELEASE.</li>
+      <li><strong>Workflow/agent improved:</strong> security agent's scan step, feeding — never replacing — gate_engine.py and prepush_release_check.ps1.</li>
+      <li><strong>Lifecycle stage:</strong> SECURITY → RELEASE.</li>
+      <li><strong>Inputs:</strong> the project folder path and a pinned scanner config. <strong>Outputs:</strong> <code>trivy-report.json</code> (vuln + secret findings) and the exit code.</li>
+      <li><strong>How results are validated:</strong> the gate script parses the JSON, counts critical/high findings, and records the run in project-state evidence. Only VERIFIED scan output counts; an agent's claim of "scan passed" without the artifact does not.</li>
+      <li><strong>What happens on failure:</strong> findings present (or scanner error) → marked BLOCKED, report attached, no transition to RELEASE.</li>
+      <li><strong>Gate or human approval?</strong> blocks the gate automatically on critical/high findings; accepting any finding as a waiver always requires human approval per your governance.</li>
+      <li><strong>Smallest safe experiment:</strong> add one <code>trivy</code> invocation with JSON output to prepush_release_check.ps1 in a scratch project, plant one known-vulnerable dependency, and confirm the check blocks. Do not change any existing gate logic — only add the evidence step.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Business Opportunity: website security health-checks for Addis Ababa small businesses</h2>
+    <ul>
+      <li><strong>Customer problem:</strong> hotels, importers, clinics and shops in Addis have websites and admin panels built years ago on unmonitored plugins and dependencies. Nobody has ever checked whether they contain known vulnerabilities or leaked credentials — until the site is defaced or a payment page is tampered with.</li>
+      <li><strong>Minimum viable service:</strong> a one-day "security health check": with the owner's written permission, scan their site's codebase/deployment files with Trivy (secrets, dependencies, misconfigurations), manually verify the top findings, and deliver a plain-language Amharic/English report with a prioritized fix list and a rescan date. No revenue projections — price it against a day of your time and local rates.</li>
+      <li><strong>Delivery workflow:</strong> DISCOVERY (intake + permission form) → SECURITY (Trivy scan) → human verification of each finding → CEO_REVIEW (your review of the report) → client briefing. Every claim in the report traces to scan output you personally checked.</li>
+      <li><strong>Main risks:</strong> clients without code access (limits scanning to deployment files); false positives damage trust — verify before reporting; never scan systems you lack written authorization for; reports describe weaknesses — deliver them privately.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Daily Learning: known vulnerabilities (CVEs) and why a scanner beats an opinion</h2>
+    <ul>
+      <li><strong>Concept (simple English):</strong> when a security flaw is discovered in a library, it gets a public ID (a CVE) and a severity. Your app inherits every CVE of every library it uses — a scanner matches your dependency list against that public database.</li>
+      <li><strong>How an AI agent might get it wrong:</strong> it confidently declares "this dependency is safe" from memory — because it recalls no issue, or confuses versions — without ever consulting the CVE database or the right version.</li>
+      <li><strong>How you recognize the failure:</strong> the agent gives a safety verdict with no scan artifact behind it, or cites a CVE ID that doesn't match the installed version.</li>
+      <li><strong>What detects it:</strong> today's test — run Trivy and compare its JSON findings against the agent's claim. In Agency OS terms: security claims are UNVERIFIED until a scan artifact exists.</li>
     </ul>
   </section>
 
   <section>
     <h2>Final Summary</h2>
     <ul>
-      <li><strong>Best discovery today:</strong> <a href="https://github.com/Orkas-AI/Orkas">Orkas-AI/Orkas</a> — MIT, release v2026.10.27 (Oct 27) and Windows fixes committed today (Nov 3). A local-first multi-agent desktop factory: a Commander coordinating 16 specialists plus Claude Code, Codex and OpenCode, with projects, to-dos, automations and ask-before-send connectors. Verdict: TEST NOW.</li>
-      <li><strong>Best security/reliability improvement:</strong> the ask-before-send pattern — irreversible actions (send/post/delete) require explicit human confirmation, by default. Cheap to copy into any Agency OS connector or release step.</li>
-      <li><strong>Best Agency OS integration:</strong> a DeepResearcher-powered DISCOVERY stage that feeds cited, checkable evidence into the gate engine's VERIFIED discipline — replacing nothing.</li>
-      <li><strong>One practical action today:</strong> install Orkas on Windows and run one cited research task in a scratch project — then check every citation yourself before trusting it.</li>
+      <li><strong>Best discovery today:</strong> <a href="https://github.com/deepseek-ai/dsh-superagent-prototype">deepseek-ai/dsh-superagent-prototype</a> — MIT, released Oct 31, one of the most-watched agent releases of the year (18.2k stars by Nov 4); a governance-shaped proactive coding agent worth studying, not yet deploying. Verdict: INVESTIGATE.</li>
+      <li><strong>Best security/reliability improvement:</strong> Trivy (Apache-2.0, updated Nov 3–4) — one local command that turns security claims into checkable evidence.</li>
+      <li><strong>Best Agency OS integration:</strong> Trivy JSON as SECURITY-stage evidence consumed by the existing gate engine before RELEASE — additive only, waivers stay human-approved.</li>
+      <li><strong>One practical action today:</strong> install trivy.exe and run a vuln+secret scan on a scratch project — then wire the JSON report into prepush_release_check.ps1 as a blocking evidence step.</li>
     </ul>
   </section>
 </div>
