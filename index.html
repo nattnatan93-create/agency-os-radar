@@ -24,7 +24,6 @@
   .badge { display:inline-block; padding:2px 10px; border-radius:12px; font-size:0.78rem; font-weight:700; letter-spacing:0.5px; }
   .b-test { background:rgba(63,185,80,0.18); color:var(--green); border:1px solid rgba(63,185,80,0.5); }
   .b-invest { background:rgba(88,166,255,0.15); color:var(--accent); border:1px solid rgba(88,166,255,0.5); }
-  .b-skip { background:rgba(248,81,73,0.15); color:#f85149; border:1px solid rgba(248,81,73,0.5); }
   .muted { color:var(--muted); font-size:0.9rem; }
   code { background:#0d1117; border:1px solid #21262d; border-radius:4px; padding:1px 6px; font-size:0.88em; }
   table { width:100%; border-collapse:collapse; margin:10px 0; font-size:0.92rem; }
@@ -42,100 +41,73 @@
 
   <section>
     <h2>Start Here (plain English)</h2>
-    <p><strong>The problem:</strong> a one-person AI agency has one scarce resource: attention. You need agents that code, orchestration that keeps them honest, proof that no secrets leaked, safe ways to run agents in parallel, and reliable data answers for clients — and you need it all verified, not guessed.</p>
-    <p><strong>The solution in today's radar:</strong> five verified open-source finds, one per category. The headline is <a href="https://github.com/leaktk/betterleaks">Betterleaks</a> — the new secrets scanner from the original Gitleaks author, whose v2 release candidate just shipped. It doesn't just find leaked keys; it can prove whether they are actually live and what they can access. Alongside it: a guardrails-first coding agent (Octomind), parallel-agent git worktrees (Worktrunk), composable engineering skills (mattpocock/skills), and NVIDIA's semantic data layer (Auto Ontology).</p>
-    <p class="muted">Full five-discovery format. Prior reports were available through Nov 4 (yesterday featured dsh-superagent, agent-desktop, Trivy, Maestro, TailAdmin); none of today's five were featured before. All links and licenses were verified from the repos' own files on Nov 5, 2026. Star counts are point-in-time snapshots from public trackers, not invented; anything unverifiable is marked UNVERIFIED.</p>
+    <p><strong>The problem:</strong> vibe coders ship fast — and speed is exactly how real API keys, passwords and tokens end up in code, commit history, or client deployments. Worse, "I'm pretty sure nothing leaked" is not proof. A one-person agency that can't show security evidence loses clients' trust the moment something goes wrong.</p>
+    <p><strong>The solution in today's radar:</strong> one tool, one job, done properly. <a href="https://github.com/leaktk/betterleaks">Betterleaks</a> — the new secrets scanner from the original Gitleaks author — doesn't just find leaked credentials; it can validate whether they are actually live and analyze what identity and permissions they grant. That turns "trust me, it's safe" into a checkable artifact your gate engine can consume before release.</p>
+    <p class="muted">One featured repo per day, focused on a main vibe-coder struggle. All links and the license were verified from the repo's own files on Nov 5, 2026; star counts are point-in-time snapshots from public trackers, not invented; anything unverifiable is marked UNVERIFIED. The business-opportunity section is retired from this format.</p>
   </section>
 
   <section>
-    <h2>1. Octomind <span class="badge b-invest">INVESTIGATE</span></h2>
+    <h2>The Featured Tool: Betterleaks <span class="badge b-test">TEST NOW</span></h2>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/Muvon/octomind">github.com/Muvon/octomind</a></li>
-      <li><strong>What it does (simple English):</strong> an open-source coding agent and agent runtime in one Rust binary — "one binary, any model, MCP-native. Runs in terminal, CI, or as a daemon." Its distinctive idea: policy lives in TOML guardrails, not in approval prompts.</li>
-      <li><strong>What changed recently (VERIFIED):</strong> new project trending Nov 3–4, 2026 (GitHub trending + 52 HN points per daily trackers; roughly 130–400 stars across snapshots — small but fast-moving). Active releases: 0.50.x → 0.51.1, including new tool-authorization control over agent actions.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> your governance lives in gate_engine.py and project-state.json; Octomind demonstrates the same principle — policy as code the agent reads before acting — inside the agent harness itself.</li>
-      <li><strong>License &amp; costs (verified):</strong> <strong>Apache-2.0</strong> (verified from the LICENSE file today). Free code; you supply the model (any OpenAI-compatible key, or Octomind Cloud which is a paid service) — open source ≠ free model access.</li>
-      <li><strong>Windows compatibility &amp; installation:</strong> the README documents a PowerShell installer (<code>irm .../install.ps1 | iex</code>) — a remote script: review the source before running it, per your own safety rules. macOS/Linux have curl and Homebrew paths.</li>
-      <li><strong>Agency OS fit / agent &amp; stage:</strong> orchestrator / dev agent, DEVELOPMENT. Compatibility: <strong>plausible, untested</strong>.</li>
-      <li><strong>Evidence/output:</strong> run records; the vendor's benchmark (24/25 tasks vs OpenCode's 19 at ~2× cost) is the author's own figure, not independently verified.</li>
-      <li><strong>Limitations &amp; risks:</strong> young project, small community, vendor-run benchmarks, curl-to-shell install pattern; human review of generated code stays mandatory.</li>
-      <li><strong>Verdict: INVESTIGATE.</strong></li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>2. Betterleaks <span class="badge b-test">TEST NOW</span></h2>
-    <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/leaktk/betterleaks">github.com/leaktk/betterleaks</a> (README references the canonical org, betterleaks/betterleaks)</li>
+      <li><strong>Link:</strong> <a href="https://github.com/leaktk/betterleaks">github.com/leaktk/betterleaks</a> (the README references the canonical org, betterleaks/betterleaks)</li>
+      <li><strong>License (verified):</strong> MIT — verified from the LICENSE file today.</li>
       <li><strong>What it does (simple English):</strong> a fast, configurable secrets scanner — API keys, passwords, tokens — for filesystems, git repos, URLs and GitHub orgs. Maintained by the folks who made Gitleaks, including the original author.</li>
-      <li><strong>What changed recently (VERIFIED):</strong> <strong>v2.0.0-rc.5 released Oct 28, 2026</strong> (v1.9.0 was the Sep 29 stable); v2 stable looks close. Trending in security discussions Nov 3–4. Ships in MegaLinter; used by Aikido Security and others (per README).</li>
-      <li><strong>Why it matters to a vibe coder:</strong> fast shipping is exactly how real keys land in git history. Betterleaks adds what Gitleaks lacked: <strong>validation</strong> (is the secret actually live?) and <strong>analysis</strong> (what identity and permissions does it grant?) — turning "we found something" into "here is the blast radius."</li>
-      <li><strong>License &amp; costs (verified):</strong> <strong>MIT</strong> (verified from the LICENSE file today). Free. Detection-only by default — no outbound requests unless you pass <code>-v</code>/<code>-a</code>. No subscription.</li>
-      <li><strong>Windows compatibility &amp; installation:</strong> verified paths: <code>go install github.com/betterleaks/betterleaks/v2@latest</code> (needs Go) or Docker (<code>ghcr.io/betterleaks/betterleaks:latest</code>); brew/dnf cover macOS/Linux. Prebuilt Windows binaries UNVERIFIED today.</li>
-      <li><strong>Agency OS fit / agent &amp; stage:</strong> security agent, SECURITY stage (secrets domain). Compatibility: <strong>plausible, untested with your scripts</strong>.</li>
-      <li><strong>Evidence/output:</strong> findings with rule IDs, validation status and severity; exit codes your gate scripts can consume.</li>
-      <li><strong>Limitations &amp; risks:</strong> v2 is a release candidate; validation makes real HTTP requests to providers (deliberate, opt-in); revocation can destroy credentials — never run it without human approval.</li>
-      <li><strong>Verdict: TEST NOW.</strong></li>
+      <li><strong>What changed recently (verified):</strong> <strong>v2.0.0-rc.5 released Oct 28, 2026</strong> (v1.9.0 was the Sep 29 stable); v2 stable looks close. Trending in security discussions Nov 3–4. Ships in MegaLinter; used by Aikido Security and others (per README). Roughly 2.7k stars (tracker snapshot, Nov 3).</li>
+      <li><strong>Why it matters to a vibe coder:</strong> Betterleaks adds what Gitleaks lacked: <strong>validation</strong> (is the secret actually live?) and <strong>analysis</strong> (what identity and permissions does it grant?) — plus optional revocation and Expr-based filtering to cut false positives on generic strings like <code>password = "..."</code>. It turns "we found something" into "here is the blast radius."</li>
+      <li><strong>Costs:</strong> MIT, free, no subscription. Detection-only by default — no outbound requests unless you pass <code>-v</code>/<code>-a</code>. Open source ≠ free model access, but this tool needs no model at all.</li>
+      <li><strong>Windows compatibility &amp; installation (verified paths):</strong> <code>go install github.com/betterleaks/betterleaks/v2@latest</code> (needs Go) or Docker (<code>ghcr.io/betterleaks/betterleaks:latest</code>); brew/dnf cover macOS/Linux. Prebuilt Windows binaries UNVERIFIED today. No special hardware.</li>
     </ul>
   </section>
 
   <section>
-    <h2>3. Worktrunk <span class="badge b-test">TEST NOW</span></h2>
+    <h2>The Task Map: proving no secrets leaked, mapped to Agency OS</h2>
+    <table>
+      <tr><th>Lifecycle stage</th><th>What Betterleaks does here</th><th>Artifact produced</th><th>Which gate consumes it</th></tr>
+      <tr><td>SECURITY (secrets domain)</td><td>Scan source + git history for credentials; optionally validate liveness and analyze blast radius</td><td>Findings with rule IDs, validation status, severity + exit code</td><td>gate engine SECURITY → RELEASE transition (additive)</td></tr>
+      <tr><td>RELEASE</td><td>Blocking pre-push check: no release with unreviewed findings</td><td>prepush_release_check.ps1 exit code + findings report</td><td>RELEASE gate</td></tr>
+      <tr><td>MAINTENANCE</td><td>Recurring scans of the repo and its full git history on client projects</td><td>Scheduled scan reports; diff against last clean scan</td><td>Maintenance evidence log</td></tr>
+      <tr><td>LEAD → DEVELOPMENT</td><td>Not covered by this tool (honest gap)</td><td>—</td><td>—</td></tr>
+    </table>
+    <p class="muted">A focused tool, not a factory: it strengthens the SECURITY → RELEASE → MAINTENANCE slice of the lifecycle and leaves every other stage untouched. It complements gate_engine.py; it never replaces it.</p>
+  </section>
+
+  <section>
+    <h2>Honest Gaps</h2>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/max-sixty/worktrunk">github.com/max-sixty/worktrunk</a></li>
-      <li><strong>What it does (simple English):</strong> a Rust CLI that makes git worktrees as easy as branches, so several AI agents can work on the same repo at once without stomping each other's files. Three core commands, plus hooks and copy-on-write build caches.</li>
-      <li><strong>What changed recently (VERIFIED):</strong> trending hard Nov 3–5 (~11.3k stars per a public directory snapshot; +438 in a day on Nov 4); the README carries a November 2026 note from the author on active maintenance.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> running discovery, dev and QA agents in parallel on one client project is the one-person agency's dream; worktrees are the safe, isolated way to do it — each agent gets its own checkout.</li>
-      <li><strong>License &amp; costs (verified):</strong> <strong>MIT OR Apache-2.0, your choice</strong> (verified from the LICENSE file today). Free, no external APIs, no subscription.</li>
-      <li><strong>Windows compatibility &amp; installation:</strong> verified: <code>cargo install worktrunk</code> (needs Rust), and a <strong>Winget package exists</strong> — installed as <code>git-wt</code> to avoid colliding with Windows Terminal's <code>wt</code> command.</li>
-      <li><strong>Agency OS fit / agent &amp; stage:</strong> orchestrator/dev/QA agents, DEVELOPMENT + QA. Compatibility: <strong>plausible, untested</strong>.</li>
-      <li><strong>Evidence/output:</strong> isolated worktrees per branch; hooks can enforce precommit_check.py per worktree.</li>
-      <li><strong>Limitations &amp; risks:</strong> parallel work multiplies merge effort; keep project-state.json the single source of truth — two agents must never edit it from two worktrees without the gate engine mediating.</li>
-      <li><strong>Verdict: TEST NOW.</strong></li>
+      <li><strong>Not covered:</strong> dependency auditing, code vulnerabilities, authn/authz review, config review — Betterleaks is secrets-only. Your existing security checks (pip-audit, npm audit, Trivy) remain needed for those domains.</li>
+      <li><strong>Agency OS compatibility:</strong> plausible, untested with your scripts — marked as such until you run the experiment below.</li>
+      <li><strong>v2 is a release candidate:</strong> pin the exact version in your pipeline so a moving RC can't change gate behavior overnight.</li>
     </ul>
   </section>
 
   <section>
-    <h2>4. Skills for Real Engineers (mattpocock/skills) <span class="badge b-test">TEST NOW</span></h2>
+    <h2>Why It Fits Agency OS</h2>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/mattpocock/skills">github.com/mattpocock/skills</a></li>
-      <li><strong>What it does (simple English):</strong> a library of small, composable agent skills for real engineering — deliberately not a process-locking framework. Designed to be adapted and hacked; works with any model. Installs into Claude Code, Codex, Copilot, Gemini CLI, or any agent via <code>npx skills@latest add mattpocock/skills</code>.</li>
-      <li><strong>What changed recently (VERIFIED):</strong> trending Nov 3–5 (+1,164 stars in a day on Nov 4; 311k+ total per daily trackers); repo state verified today (553 commits, active changelog).</li>
-      <li><strong>Why it matters to a vibe coder:</strong> unlike frameworks that "own the process," these skills keep you in control — the same philosophy as your gate engine: composable process pieces, no vendor takeover.</li>
-      <li><strong>License &amp; costs (verified):</strong> <strong>MIT</strong> (verified from the LICENSE file today). Free; skills drive your existing model subscription, nothing extra.</li>
-      <li><strong>Windows compatibility &amp; installation:</strong> pure markdown/config skills — no OS dependencies; works anywhere your IDE runs (UNTESTED on your specific setup).</li>
-      <li><strong>Agency OS fit / agent &amp; stage:</strong> all specialized agents; SPECIFICATION → QA habits. Compatibility: <strong>plausible, untested</strong>.</li>
-      <li><strong>Evidence/output:</strong> better agent working habits; no artifacts by itself.</li>
-      <li><strong>Limitations &amp; risks:</strong> community skills are third-party text that steers your agents — read each skill before installing, and never let a skill override governance rules.</li>
-      <li><strong>Verdict: TEST NOW</strong> (read first, install selectively).</li>
+      <li><strong>No invented facts:</strong> detection-only by default; validation status is a first-class field, so "live" vs "detected-only" is explicit, matching your REAL/SIMULATED/VERIFIED/UNVERIFIED discipline.</li>
+      <li><strong>Evidence before advancing:</strong> the scanner's exit code and findings list is exactly the machine-checkable artifact a gate needs; a "clean" claim without it stays UNVERIFIED.</li>
+      <li><strong>Human approval points:</strong> waivers of findings and any validation/revocation runs require explicit human approval — the tool keeps dangerous actions opt-in.</li>
+      <li><strong>Local-first:</strong> runs on your Windows PC, no cloud dependency, no data leaving your machine during detection scans.</li>
     </ul>
   </section>
 
   <section>
-    <h2>5. NVIDIA Auto Ontology <span class="badge b-invest">INVESTIGATE</span></h2>
+    <h2>Limitations, Risks &amp; Human Review</h2>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/NVIDIA/auto-ontology">github.com/NVIDIA/auto-ontology</a></li>
-      <li><strong>What it does (simple English):</strong> a Python framework that builds a semantic layer over business databases — it records what each metric <em>means</em> (e.g. which "revenue" is the real one) and serves it to agents through 9 read-only MCP tools, a CLI and a REST API. Agents get validated SQL with provenance instead of guessing from column names.</li>
-      <li><strong>What changed recently (VERIFIED):</strong> released publicly and trending Nov 3–4, 2026 (3,130 stars, 263 HN points per daily trackers); part of NVIDIA's late-October Agent Knowledge Foundation announcement.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> small-business clients live in dashboards and reports; when an AI agent writes the SQL, wrong-but-valid SQL is the silent killer. This makes data definitions certified and machine-checkable.</li>
-      <li><strong>License &amp; costs (verified):</strong> <strong>Apache-2.0</strong> (per repo LICENSE, confirmed by multiple sources) — but it defaults to NVIDIA NIM models and <strong>requires an NVIDIA API key</strong> (build.nvidia.com); accepts any OpenAI-compatible endpoint. Open source ≠ free inference.</li>
-      <li><strong>Windows compatibility &amp; installation:</strong> deploys via Docker Compose or Kubernetes/Helm — Docker Desktop on Windows can run the local stack; no native-Windows path documented. Hardware needs are meaningful (Postgres+pgvector, ingestion worker).</li>
-      <li><strong>Agency OS fit / agent &amp; stage:</strong> discovery/spec agents on data-heavy projects; REUSABLE_COMPONENT. Compatibility: <strong>untested</strong>.</li>
-      <li><strong>Evidence/output:</strong> answers with SQL + provenance; <code>check_readiness</code> confirms a live certified layer before agents query.</li>
-      <li><strong>Limitations &amp; risks:</strong> heavy stack (Docker, Postgres, inference) for a one-person shop; NVIDIA's "90% faster ontology creation" is the vendor's own figure, not independently verified; no external contributions accepted.</li>
-      <li><strong>Verdict: INVESTIGATE</strong> — revisit when a client project justifies the stack.</li>
+      <li>Validation (<code>-v</code>) makes real HTTP requests to credential providers — only run it against credentials you own, with authorization.</li>
+      <li>Revocation can destroy credentials — never run it without explicit human approval.</li>
+      <li>Findings describe weaknesses: keep reports private; false positives are possible — verify before reporting to a client.</li>
+      <li>Scanning a repo's full history needs read access to that history — only scan code you own or are authorized to scan.</li>
     </ul>
   </section>
 
   <section>
     <h2>Test Today: Betterleaks on Windows (~20 minutes, no subscription)</h2>
     <ul>
-      <li><strong>Why this one:</strong> MIT, free, runs 100% locally, no API keys or model access needed, and produces exactly the evidence your SECURITY stage lacks.</li>
-      <li><strong>Prerequisites:</strong> Windows PC with <strong>Go</strong> (go.dev) or Docker Desktop; ~500 MB free space. Internet only for install.</li>
+      <li><strong>Prerequisites:</strong> Windows PC with <strong>Go</strong> (go.dev) or Docker Desktop; ~500 MB free space. Internet only for install. No API keys, no model access.</li>
       <li><strong>Official installation steps</strong> (from the README): <code>go install github.com/betterleaks/betterleaks/v2@latest</code> — or <code>docker pull ghcr.io/betterleaks/betterleaks:latest</code>.</li>
       <li><strong>Practical test:</strong> in a scratch git repo you own, plant a well-known fake key (e.g. <code>AKIAIOSFODNN7EXAMPLE</code> — the AWS docs example, never a real one) plus a realistic <code>DB_PASSWORD=...</code>. Then run <code>betterleaks fs .</code> and <code>betterleaks git .</code> (full history). Do <strong>not</strong> add <code>-v</code>/<code>-a</code> in the first run — detection-only is the safe default.</li>
       <li><strong>Expected results:</strong> both planted secrets flagged with rule IDs and severity; a clean exit code on a clean folder. That output is your SECURITY-stage evidence.</li>
-      <li><strong>Safety precautions:</strong> scan only code you own; never validate (<code>-v</code>) credentials you don't control — it contacts the provider; never run revocation; keep reports private (they describe weaknesses).</li>
+      <li><strong>Safety precautions:</strong> scan only code you own; never validate credentials you don't control; never run revocation; keep reports private.</li>
     </ul>
   </section>
 
@@ -146,20 +118,10 @@
       <li><strong>Workflow/agent improved:</strong> security agent's scan step, feeding — never replacing — gate_engine.py and prepush_release_check.ps1.</li>
       <li><strong>Lifecycle stage:</strong> SECURITY → RELEASE.</li>
       <li><strong>Inputs:</strong> project folder + git history. <strong>Outputs:</strong> findings with rule IDs + exit code.</li>
-      <li><strong>How results are validated:</strong> the gate script counts findings and records the run in project-state evidence; a verdict of "clean" without a scan artifact stays UNVERIFIED by your own rules.</li>
+      <li><strong>How results are validated:</strong> the gate script counts findings and records the run as evidence in project-state; a verdict of "clean" without a scan artifact stays UNVERIFIED by your own rules.</li>
       <li><strong>What happens on failure:</strong> findings present → marked BLOCKED, report attached, no transition to RELEASE.</li>
-      <li><strong>Gate or human approval?</strong> blocks the gate automatically on findings; any waiver requires human approval; validation/revocation steps require explicit human authorization (they make live provider requests).</li>
+      <li><strong>Gate or human approval?</strong> blocks the gate automatically on findings; any waiver requires human approval; validation/revocation steps require explicit human authorization.</li>
       <li><strong>Smallest safe experiment:</strong> in a scratch project, add one <code>betterleaks</code> invocation to prepush_release_check.ps1, plant the fake AWS key, and confirm the check blocks. Additive only — no existing gate logic changes.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Business Opportunity: secret-leak audits for Addis Ababa small businesses</h2>
-    <ul>
-      <li><strong>Customer problem:</strong> Addis shops, hotels, clinics and payment-enabled sites are often built by rotating freelancers; API keys, payment-gateway secrets and DB passwords end up committed in repos or bundled into deployed files. Nobody notices until money or data goes missing.</li>
-      <li><strong>Minimum viable service:</strong> a one-day "leaked-secrets audit" with the owner's written authorization: scan their codebase/deployment package and git history with Betterleaks (detection-only), manually verify each finding, and deliver a plain-language Amharic/English report with a credential-rotation plan. Price against a day of your time; no invented revenue projections.</li>
-      <li><strong>Delivery workflow:</strong> DISCOVERY (permission + scope form) → SECURITY (scan) → human verification of each finding → CEO_REVIEW (your review of the report) → client briefing. Every claim traces to scan output you personally checked.</li>
-      <li><strong>Main risks:</strong> never scan without written authorization; never run live validation against payment providers without explicit approval; false positives damage trust — verify before reporting; reports describe weaknesses — deliver them privately.</li>
     </ul>
   </section>
 
@@ -170,6 +132,16 @@
       <li><strong>How an AI agent might get it wrong:</strong> it declares "this leaked key is critical!" (no validation — maybe it's revoked) or "that finding is a false positive" (no evidence), or worse, runs validation/revocation on credentials it doesn't own.</li>
       <li><strong>How you recognize the failure:</strong> a severity claim with no validation status or scan artifact behind it; unauthorized outbound validation attempts in logs.</li>
       <li><strong>What detects it:</strong> Betterleaks' detection-only default plus opt-in validation — the artifact shows which stage produced each claim. Agency OS rule: security claims are UNVERIFIED until a scan artifact exists.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Also on the Radar This Week (verified links, brief)</h2>
+    <ul>
+      <li><a href="https://github.com/Muvon/octomind">Octomind</a> (Apache-2.0, trending Nov 3–4) — Rust coding-agent runtime with TOML guardrails; policy-as-code inside the agent harness. Windows installer is a remote script — review before running. INVESTIGATE.</li>
+      <li><a href="https://github.com/max-sixty/worktrunk">Worktrunk</a> (MIT/Apache-2.0, trending Nov 3–5) — git worktrees for parallel AI agents; Winget installs it as <code>git-wt</code>. TEST NOW.</li>
+      <li><a href="https://github.com/mattpocock/skills">mattpocock/skills</a> (MIT, trending Nov 3–5) — small, composable engineering skills; no process takeover. TEST NOW (read first).</li>
+      <li><a href="https://github.com/NVIDIA/auto-ontology">NVIDIA Auto Ontology</a> (Apache-2.0, trending Nov 3–4) — semantic layer so agents query the right data; needs NVIDIA NIM key + Docker. INVESTIGATE.</li>
     </ul>
   </section>
 
