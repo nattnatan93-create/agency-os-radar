@@ -37,149 +37,149 @@
   <header>
     <h1>Agency OS <span>Radar</span></h1>
     <div class="tagline">Daily open-source discoveries for a one-person AI software agency</div>
-    <div class="tagline date">Report date: Wednesday, November 4, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
+    <div class="tagline date">Report date: Thursday, November 5, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
   </header>
 
   <section>
     <h2>Start Here (plain English)</h2>
-    <p><strong>The problem:</strong> a one-person AI agency needs five kinds of help at once — agents that code, orchestration that coordinates them, security checks that prove the work is safe, tests that prove it works, and ready-made UI pieces so client dashboards don't eat your week. Checking all five by hand, every day, is impossible for one person.</p>
-    <p><strong>The solution in today's radar:</strong> five verified open-source finds, one per category. The headline is <a href="https://github.com/deepseek-ai/dsh-superagent-prototype">DeepSeek's dsh-superagent</a> — a just-released (Oct 31) prototype of an agent that watches your GitHub repo, picks up authorized requests, and returns finished pull requests. Alongside it: a computer-use CLI your AI IDE can drive, the Trivy security scanner (updated yesterday and today), Maestro for plain-English E2E tests, and a MIT-licensed React dashboard kit. Every fact below was verified today from the repos' files and commit history; nothing is invented.</p>
-    <p class="muted">Full five-discovery format as requested today. Prior reports were available through Nov 3 (yesterday featured Orkas-AI/Orkas); none of today's five were featured before. Activity numbers are point-in-time snapshots from GitHub at ~14:10 UTC, Nov 4, 2026.</p>
+    <p><strong>The problem:</strong> a one-person AI agency has one scarce resource: attention. You need agents that code, orchestration that keeps them honest, proof that no secrets leaked, safe ways to run agents in parallel, and reliable data answers for clients — and you need it all verified, not guessed.</p>
+    <p><strong>The solution in today's radar:</strong> five verified open-source finds, one per category. The headline is <a href="https://github.com/leaktk/betterleaks">Betterleaks</a> — the new secrets scanner from the original Gitleaks author, whose v2 release candidate just shipped. It doesn't just find leaked keys; it can prove whether they are actually live and what they can access. Alongside it: a guardrails-first coding agent (Octomind), parallel-agent git worktrees (Worktrunk), composable engineering skills (mattpocock/skills), and NVIDIA's semantic data layer (Auto Ontology).</p>
+    <p class="muted">Full five-discovery format. Prior reports were available through Nov 4 (yesterday featured dsh-superagent, agent-desktop, Trivy, Maestro, TailAdmin); none of today's five were featured before. All links and licenses were verified from the repos' own files on Nov 5, 2026. Star counts are point-in-time snapshots from public trackers, not invented; anything unverifiable is marked UNVERIFIED.</p>
   </section>
 
   <section>
-    <h2>1. dsh-superagent-prototype (DeepSeek) <span class="badge b-invest">INVESTIGATE</span></h2>
+    <h2>1. Octomind <span class="badge b-invest">INVESTIGATE</span></h2>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/deepseek-ai/dsh-superagent-prototype">github.com/deepseek-ai/dsh-superagent-prototype</a></li>
-      <li><strong>What it does (simple English):</strong> a proactive coding agent that watches one GitHub repository. When an authorized person asks for work (in GitHub, or optionally Feishu), it opens a work item, does the job in its own isolated session and directory, and answers back in the original conversation — for example with a pull request. A web panel shows what needs a human.</li>
-      <li><strong>What changed recently (VERIFIED):</strong> brand-new project — repo created <strong>Oct 31, 2026</strong>, one commit (<em>"feat: add the dsh-superagent research prototype"</em>, Oct 31). Snapshot Nov 4: 18,261 stars, 1,994 forks. DeepSeek's own README calls it a <strong>research prototype, "not production-ready software"</strong>, and notes some designs from the article are not implemented.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> its philosophy — "take as little human attention as possible, give as much value as possible," acting only when asked or when a team-written rule allows — is exactly the Agency OS governance idea (authorized triggers, no unrequested actions), coming from one of the biggest AI labs.</li>
-      <li><strong>License &amp; costs (verified):</strong> <strong>MIT</strong> (verified from the LICENSE file today). Free code — but it requires the DeepSeek Harness (dsh) runtime and model access; those costs and subscription terms are not stated in the repo and remain unverified. Open source ≠ free model access.</li>
-      <li><strong>Windows compatibility &amp; installation:</strong> requirements reported by press coverage include Node.js ≥22.19 or ≥24, Git ≥2.32, Python ≥3.8, GitHub CLI ≥2.48, and <strong>tmux — a Linux/macOS tool, so no native Windows path is documented</strong>. An unofficial third-party Windows fork exists (Check-mj/dsh-superagent-windows, 5 stars) — unverified, do not trust it. DeepSeek states the agent runs with full OS user access and should be isolated.</li>
-      <li><strong>Agency OS fit / agent &amp; stage:</strong> could inform the orchestrator's work-intake design (authorized request → work item → session → answer) at DEVELOPMENT. Agency OS compatibility: <strong>plausible, untested</strong> (and Windows-blocking as documented).</li>
-      <li><strong>Evidence/output it would produce:</strong> work items with an immutable mandate (why the task may proceed), PRs, a human-attention panel — strong parallels to your REAL/VERIFIED discipline.</li>
-      <li><strong>Limitations &amp; risks:</strong> research prototype, one commit, unproven reliability; full OS user access = must run sandboxed/VM only; data-confidentiality risks conceded by DeepSeek; human review required before any client use.</li>
-      <li><strong>Verdict: INVESTIGATE</strong> — study its design docs; do not deploy.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/Muvon/octomind">github.com/Muvon/octomind</a></li>
+      <li><strong>What it does (simple English):</strong> an open-source coding agent and agent runtime in one Rust binary — "one binary, any model, MCP-native. Runs in terminal, CI, or as a daemon." Its distinctive idea: policy lives in TOML guardrails, not in approval prompts.</li>
+      <li><strong>What changed recently (VERIFIED):</strong> new project trending Nov 3–4, 2026 (GitHub trending + 52 HN points per daily trackers; roughly 130–400 stars across snapshots — small but fast-moving). Active releases: 0.50.x → 0.51.1, including new tool-authorization control over agent actions.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> your governance lives in gate_engine.py and project-state.json; Octomind demonstrates the same principle — policy as code the agent reads before acting — inside the agent harness itself.</li>
+      <li><strong>License &amp; costs (verified):</strong> <strong>Apache-2.0</strong> (verified from the LICENSE file today). Free code; you supply the model (any OpenAI-compatible key, or Octomind Cloud which is a paid service) — open source ≠ free model access.</li>
+      <li><strong>Windows compatibility &amp; installation:</strong> the README documents a PowerShell installer (<code>irm .../install.ps1 | iex</code>) — a remote script: review the source before running it, per your own safety rules. macOS/Linux have curl and Homebrew paths.</li>
+      <li><strong>Agency OS fit / agent &amp; stage:</strong> orchestrator / dev agent, DEVELOPMENT. Compatibility: <strong>plausible, untested</strong>.</li>
+      <li><strong>Evidence/output:</strong> run records; the vendor's benchmark (24/25 tasks vs OpenCode's 19 at ~2× cost) is the author's own figure, not independently verified.</li>
+      <li><strong>Limitations &amp; risks:</strong> young project, small community, vendor-run benchmarks, curl-to-shell install pattern; human review of generated code stays mandatory.</li>
+      <li><strong>Verdict: INVESTIGATE.</strong></li>
     </ul>
   </section>
 
   <section>
-    <h2>2. agent-desktop (Vercel Labs) <span class="badge b-test">TEST NOW</span></h2>
+    <h2>2. Betterleaks <span class="badge b-test">TEST NOW</span></h2>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/vercel-labs/agent-desktop">github.com/vercel-labs/agent-desktop</a></li>
-      <li><strong>What it does (simple English):</strong> a Rust CLI that lets an AI agent use a real computer — clicking, typing, reading windows — via the operating system's accessibility tree instead of guessing from screenshots. Because it uses stable accessibility references, actions stay retry-safe.</li>
-      <li><strong>What changed recently (VERIFIED):</strong> commit <strong>Nov 3, 2026</strong> (<a href="https://github.com/vercel-labs/agent-desktop/commit/6660fbac768dc7e7332837b90ed465684859afa3">#519</a>): a new <code>agent-desktop mcp</code> mode that serves <strong>every CLI command as an MCP tool</strong> your AI IDE can call — with a cap of 8 concurrent calls, a 4 MiB message limit, proper cancellation, and held input released on cancel (Windows paths explicitly handled in the code). Trending on GitHub Nov 3–4. Snapshot Nov 4: 14,205 stars, 970 forks.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> MCP support means Claude Code / Copilot-style IDEs can drive a desktop directly through bounded, documented tools — far safer than free-form "computer use", and ideal for testing desktop or Android-emulator apps your agency builds.</li>
-      <li><strong>License &amp; costs (verified):</strong> <strong>Apache-2.0</strong> (verified from the LICENSE file today). Free and local; you pay only your IDE's model subscription. No hosting or external API required.</li>
-      <li><strong>Windows compatibility &amp; installation:</strong> the code handles Windows paths, but the repo's topics and Homebrew install docs lean macOS/Linux — <strong>Windows support: untested; verify on your machine before relying on it</strong>.</li>
-      <li><strong>Agency OS fit / agent &amp; stage:</strong> QA agent — UI-E2E on desktop apps (and Android via emulator) at the QA stage. Compatibility: <strong>untested</strong>.</li>
-      <li><strong>Evidence/output:</strong> structured command results, MCP tool-call logs with bounded concurrency — usable as QA evidence artifacts.</li>
-      <li><strong>Limitations &amp; risks:</strong> computer-use tooling can act on your real desktop — scope it to test machines, never give it unrestricted access; per-call concurrency limits reduce but do not remove this.</li>
-      <li><strong>Verdict: TEST NOW</strong> (on a non-critical machine or test VM).</li>
+      <li><strong>Link:</strong> <a href="https://github.com/leaktk/betterleaks">github.com/leaktk/betterleaks</a> (README references the canonical org, betterleaks/betterleaks)</li>
+      <li><strong>What it does (simple English):</strong> a fast, configurable secrets scanner — API keys, passwords, tokens — for filesystems, git repos, URLs and GitHub orgs. Maintained by the folks who made Gitleaks, including the original author.</li>
+      <li><strong>What changed recently (VERIFIED):</strong> <strong>v2.0.0-rc.5 released Oct 28, 2026</strong> (v1.9.0 was the Sep 29 stable); v2 stable looks close. Trending in security discussions Nov 3–4. Ships in MegaLinter; used by Aikido Security and others (per README).</li>
+      <li><strong>Why it matters to a vibe coder:</strong> fast shipping is exactly how real keys land in git history. Betterleaks adds what Gitleaks lacked: <strong>validation</strong> (is the secret actually live?) and <strong>analysis</strong> (what identity and permissions does it grant?) — turning "we found something" into "here is the blast radius."</li>
+      <li><strong>License &amp; costs (verified):</strong> <strong>MIT</strong> (verified from the LICENSE file today). Free. Detection-only by default — no outbound requests unless you pass <code>-v</code>/<code>-a</code>. No subscription.</li>
+      <li><strong>Windows compatibility &amp; installation:</strong> verified paths: <code>go install github.com/betterleaks/betterleaks/v2@latest</code> (needs Go) or Docker (<code>ghcr.io/betterleaks/betterleaks:latest</code>); brew/dnf cover macOS/Linux. Prebuilt Windows binaries UNVERIFIED today.</li>
+      <li><strong>Agency OS fit / agent &amp; stage:</strong> security agent, SECURITY stage (secrets domain). Compatibility: <strong>plausible, untested with your scripts</strong>.</li>
+      <li><strong>Evidence/output:</strong> findings with rule IDs, validation status and severity; exit codes your gate scripts can consume.</li>
+      <li><strong>Limitations &amp; risks:</strong> v2 is a release candidate; validation makes real HTTP requests to providers (deliberate, opt-in); revocation can destroy credentials — never run it without human approval.</li>
+      <li><strong>Verdict: TEST NOW.</strong></li>
     </ul>
   </section>
 
   <section>
-    <h2>3. Trivy (Aqua Security) <span class="badge b-test">TEST NOW</span></h2>
+    <h2>3. Worktrunk <span class="badge b-test">TEST NOW</span></h2>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/aquasecurity/trivy">github.com/aquasecurity/trivy</a></li>
-      <li><strong>What it does (simple English):</strong> one binary that scans your code, dependencies, containers and infrastructure files for known vulnerabilities, leaked secrets, and misconfigurations — and can produce an SBOM (a machine-readable list of everything your software contains).</li>
-      <li><strong>What changed recently (VERIFIED):</strong> commits on <strong>Nov 3, 2026</strong> — "report private keys from PKCS#12 and JKS keystores" (#11524) and "categorize MIT-0 as unencumbered" (#11498) — and <strong>Nov 4</strong> documentation clarifying cryptographic asset scanning limits (#11378). Actively maintained, updated daily.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> "tests pass" says nothing about security. Trivy turns "is this safe?" into a repeatable, evidence-producing command — exactly what Agency OS's SECURITY stage needs before RELEASE.</li>
-      <li><strong>License &amp; costs (verified):</strong> <strong>Apache-2.0</strong> (verified from the LICENSE file today). Free; the vulnerability DB downloads free from GitHub on first run; optional paid enterprise/Aqua platform exists but is not needed.</li>
-      <li><strong>Windows compatibility &amp; installation:</strong> Windows binaries are published on the official GitHub releases page; it is a single <code>trivy.exe</code> — no server, no API key. Verify the latest version on the releases page when you download.</li>
-      <li><strong>Agency OS fit / agent &amp; stage:</strong> security agent, SECURITY stage (dependencies, secrets, config, deployment targets — four of your security domains in one tool). Compatibility: <strong>plausible, untested with your gate_engine.py</strong>.</li>
-      <li><strong>Evidence/output:</strong> JSON report (<code>--format json</code>) with CVE IDs and severities, plus an exit code — directly consumable by your gate scripts.</li>
-      <li><strong>Limitations &amp; risks:</strong> can't reason about your business logic (authn/authz design still needs human review); findings include false positives — every waiver needs human approval per your governance rules.</li>
-      <li><strong>Verdict: TEST NOW</strong> — today's test pick, see below.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/max-sixty/worktrunk">github.com/max-sixty/worktrunk</a></li>
+      <li><strong>What it does (simple English):</strong> a Rust CLI that makes git worktrees as easy as branches, so several AI agents can work on the same repo at once without stomping each other's files. Three core commands, plus hooks and copy-on-write build caches.</li>
+      <li><strong>What changed recently (VERIFIED):</strong> trending hard Nov 3–5 (~11.3k stars per a public directory snapshot; +438 in a day on Nov 4); the README carries a November 2026 note from the author on active maintenance.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> running discovery, dev and QA agents in parallel on one client project is the one-person agency's dream; worktrees are the safe, isolated way to do it — each agent gets its own checkout.</li>
+      <li><strong>License &amp; costs (verified):</strong> <strong>MIT OR Apache-2.0, your choice</strong> (verified from the LICENSE file today). Free, no external APIs, no subscription.</li>
+      <li><strong>Windows compatibility &amp; installation:</strong> verified: <code>cargo install worktrunk</code> (needs Rust), and a <strong>Winget package exists</strong> — installed as <code>git-wt</code> to avoid colliding with Windows Terminal's <code>wt</code> command.</li>
+      <li><strong>Agency OS fit / agent &amp; stage:</strong> orchestrator/dev/QA agents, DEVELOPMENT + QA. Compatibility: <strong>plausible, untested</strong>.</li>
+      <li><strong>Evidence/output:</strong> isolated worktrees per branch; hooks can enforce precommit_check.py per worktree.</li>
+      <li><strong>Limitations &amp; risks:</strong> parallel work multiplies merge effort; keep project-state.json the single source of truth — two agents must never edit it from two worktrees without the gate engine mediating.</li>
+      <li><strong>Verdict: TEST NOW.</strong></li>
     </ul>
   </section>
 
   <section>
-    <h2>4. Maestro (mobile-dev-inc) <span class="badge b-invest">INVESTIGATE</span></h2>
+    <h2>4. Skills for Real Engineers (mattpocock/skills) <span class="badge b-test">TEST NOW</span></h2>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/mobile-dev-inc/maestro">github.com/mobile-dev-inc/maestro</a></li>
-      <li><strong>What it does (simple English):</strong> end-to-end testing without code: you describe a user flow as a short YAML file ("open app, tap login, expect 'Welcome'"), and Maestro runs it against real apps — Android, iOS, React Native, Flutter, and web. The README notes your AI agent can write these flows too, and they stay in your repo as deterministic CI tests.</li>
-      <li><strong>What changed recently (VERIFIED):</strong> release <strong>v2.12.1</strong> prepared Nov 2, 2026 (commit #3723), plus a Nov 2 analytics fix (#3724) and an Oct 30 fix evaluating a flow's appId before tapping (#3722).</li>
-      <li><strong>Why it matters to a vibe coder:</strong> YAML flows are the format an AI dev agent writes most reliably — deterministic, reviewable, CI-runnable tests for the Android apps your agency delivers.</li>
-      <li><strong>License &amp; costs (verified):</strong> <strong>Apache-2.0</strong> (verified from the LICENSE file today). Free local use; a paid cloud device fleet exists but is not required.</li>
-      <li><strong>Windows compatibility &amp; installation:</strong> install docs target macOS/Linux; Android flows on Windows are <strong>untested by this report — verify before relying on it</strong> (an Android emulator and JDK are needed for mobile flows).</li>
-      <li><strong>Agency OS fit / agent &amp; stage:</strong> QA agent — UI-E2E/UAT for mobile clients at the QA stage. Compatibility: <strong>untested</strong>.</li>
-      <li><strong>Evidence/output:</strong> JUnit XML reports and exit codes per flow — gate-consumable test evidence.</li>
-      <li><strong>Limitations &amp; risks:</strong> mobile toolchains are heavyweight; platform-specific flakiness; human review of any generated flow that touches real accounts.</li>
-      <li><strong>Verdict: INVESTIGATE</strong> — strong if you take Android client work.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/mattpocock/skills">github.com/mattpocock/skills</a></li>
+      <li><strong>What it does (simple English):</strong> a library of small, composable agent skills for real engineering — deliberately not a process-locking framework. Designed to be adapted and hacked; works with any model. Installs into Claude Code, Codex, Copilot, Gemini CLI, or any agent via <code>npx skills@latest add mattpocock/skills</code>.</li>
+      <li><strong>What changed recently (VERIFIED):</strong> trending Nov 3–5 (+1,164 stars in a day on Nov 4; 311k+ total per daily trackers); repo state verified today (553 commits, active changelog).</li>
+      <li><strong>Why it matters to a vibe coder:</strong> unlike frameworks that "own the process," these skills keep you in control — the same philosophy as your gate engine: composable process pieces, no vendor takeover.</li>
+      <li><strong>License &amp; costs (verified):</strong> <strong>MIT</strong> (verified from the LICENSE file today). Free; skills drive your existing model subscription, nothing extra.</li>
+      <li><strong>Windows compatibility &amp; installation:</strong> pure markdown/config skills — no OS dependencies; works anywhere your IDE runs (UNTESTED on your specific setup).</li>
+      <li><strong>Agency OS fit / agent &amp; stage:</strong> all specialized agents; SPECIFICATION → QA habits. Compatibility: <strong>plausible, untested</strong>.</li>
+      <li><strong>Evidence/output:</strong> better agent working habits; no artifacts by itself.</li>
+      <li><strong>Limitations &amp; risks:</strong> community skills are third-party text that steers your agents — read each skill before installing, and never let a skill override governance rules.</li>
+      <li><strong>Verdict: TEST NOW</strong> (read first, install selectively).</li>
     </ul>
   </section>
 
   <section>
-    <h2>5. TailAdmin Free React Dashboard <span class="badge b-invest">INVESTIGATE</span></h2>
+    <h2>5. NVIDIA Auto Ontology <span class="badge b-invest">INVESTIGATE</span></h2>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/TailAdmin/free-react-tailwind-admin-dashboard">github.com/TailAdmin/free-react-tailwind-admin-dashboard</a></li>
-      <li><strong>What it does (simple English):</strong> a ready-made admin dashboard — charts, tables, forms, calendar, kanban, auth and error pages — built with React and Tailwind CSS, so a small-business back-office UI starts 80% done.</li>
-      <li><strong>What changed recently (VERIFIED):</strong> commits <strong>Oct 28–29, 2026</strong> — a 404 page added to the sidebar (Oct 29, <a href="https://github.com/TailAdmin/free-react-tailwind-admin-dashboard/commit/df1e9f37e56e0bf83030e8063f5353da2e0ecf18">df1e9f3</a>) and sidebar-refactor/cleanup commits Oct 28. Snapshot Nov 4: 1,295 stars; actively maintained.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> your REUSABLE_COMPONENT stage needs a vetted dashboard base; an AI agent customizing a known MIT template is faster and safer than generating an entire admin UI from scratch.</li>
-      <li><strong>License &amp; costs (verified):</strong> <strong>MIT</strong> (verified from LICENSE.md today) — commercial client use permitted with attribution per the license; verify attribution wording per project. A paid "Pro" tier exists but is not needed. No external API dependencies.</li>
-      <li><strong>Windows compatibility &amp; installation:</strong> plain Node/npm project — clone, <code>npm install</code>, <code>npm run dev</code>. Works on Windows (standard npm toolchain).</li>
-      <li><strong>Agency OS fit / agent &amp; stage:</strong> dev + spec/UX agents, REUSABLE_COMPONENT and DEVELOPMENT stages. Compatibility: <strong>plausible, untested</strong>.</li>
-      <li><strong>Evidence/output:</strong> a running dashboard your client can click — plus its components feed your reusable library.</li>
-      <li><strong>Limitations &amp; risks:</strong> template code inherited by clients needs the same security review as any code (dependencies, auth); verify the React/Tailwind versions fit your stack before adopting.</li>
-      <li><strong>Verdict: INVESTIGATE</strong> — best candidate for your reusable-component library.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/NVIDIA/auto-ontology">github.com/NVIDIA/auto-ontology</a></li>
+      <li><strong>What it does (simple English):</strong> a Python framework that builds a semantic layer over business databases — it records what each metric <em>means</em> (e.g. which "revenue" is the real one) and serves it to agents through 9 read-only MCP tools, a CLI and a REST API. Agents get validated SQL with provenance instead of guessing from column names.</li>
+      <li><strong>What changed recently (VERIFIED):</strong> released publicly and trending Nov 3–4, 2026 (3,130 stars, 263 HN points per daily trackers); part of NVIDIA's late-October Agent Knowledge Foundation announcement.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> small-business clients live in dashboards and reports; when an AI agent writes the SQL, wrong-but-valid SQL is the silent killer. This makes data definitions certified and machine-checkable.</li>
+      <li><strong>License &amp; costs (verified):</strong> <strong>Apache-2.0</strong> (per repo LICENSE, confirmed by multiple sources) — but it defaults to NVIDIA NIM models and <strong>requires an NVIDIA API key</strong> (build.nvidia.com); accepts any OpenAI-compatible endpoint. Open source ≠ free inference.</li>
+      <li><strong>Windows compatibility &amp; installation:</strong> deploys via Docker Compose or Kubernetes/Helm — Docker Desktop on Windows can run the local stack; no native-Windows path documented. Hardware needs are meaningful (Postgres+pgvector, ingestion worker).</li>
+      <li><strong>Agency OS fit / agent &amp; stage:</strong> discovery/spec agents on data-heavy projects; REUSABLE_COMPONENT. Compatibility: <strong>untested</strong>.</li>
+      <li><strong>Evidence/output:</strong> answers with SQL + provenance; <code>check_readiness</code> confirms a live certified layer before agents query.</li>
+      <li><strong>Limitations &amp; risks:</strong> heavy stack (Docker, Postgres, inference) for a one-person shop; NVIDIA's "90% faster ontology creation" is the vendor's own figure, not independently verified; no external contributions accepted.</li>
+      <li><strong>Verdict: INVESTIGATE</strong> — revisit when a client project justifies the stack.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Test Today: Trivy on Windows (~20 minutes, no subscription)</h2>
+    <h2>Test Today: Betterleaks on Windows (~20 minutes, no subscription)</h2>
     <ul>
-      <li><strong>Why this one:</strong> one free binary, Apache-2.0, runs 100% locally, no API key, and produces the exact evidence your SECURITY stage lacks.</li>
-      <li><strong>Prerequisites:</strong> Windows PC, ~2 GB free disk for the vulnerability DB, internet only for the first DB download.</li>
-      <li><strong>Official installation steps:</strong> on <a href="https://github.com/aquasecurity/trivy/releases">github.com/aquasecurity/trivy/releases</a> download the latest Windows 64-bit ZIP, extract <code>trivy.exe</code> to a tools folder, and add that folder to PATH.</li>
-      <li><strong>Practical test:</strong> in a scratch project folder (with a <code>requirements.txt</code> or <code>package.json</code> you control, plus one intentionally fake secret like <code>AKIAIOSFODNN7EXAMPLE</code>): <code>trivy fs --scanners vuln,secret,misconfig .</code> then <code>trivy fs --scanners vuln --format json --output trivy-report.json .</code></li>
-      <li><strong>Expected results:</strong> a findings table with CVE IDs and severities, the fake secret flagged, and a JSON report you can hand to a gate script. Zero findings should still produce a clean report — that is your evidence.</li>
-      <li><strong>Safety precautions:</strong> scan only code you own; never paste real secrets into the test; trivy reads files — it does not modify them; keep reports private (they describe weaknesses).</li>
+      <li><strong>Why this one:</strong> MIT, free, runs 100% locally, no API keys or model access needed, and produces exactly the evidence your SECURITY stage lacks.</li>
+      <li><strong>Prerequisites:</strong> Windows PC with <strong>Go</strong> (go.dev) or Docker Desktop; ~500 MB free space. Internet only for install.</li>
+      <li><strong>Official installation steps</strong> (from the README): <code>go install github.com/betterleaks/betterleaks/v2@latest</code> — or <code>docker pull ghcr.io/betterleaks/betterleaks:latest</code>.</li>
+      <li><strong>Practical test:</strong> in a scratch git repo you own, plant a well-known fake key (e.g. <code>AKIAIOSFODNN7EXAMPLE</code> — the AWS docs example, never a real one) plus a realistic <code>DB_PASSWORD=...</code>. Then run <code>betterleaks fs .</code> and <code>betterleaks git .</code> (full history). Do <strong>not</strong> add <code>-v</code>/<code>-a</code> in the first run — detection-only is the safe default.</li>
+      <li><strong>Expected results:</strong> both planted secrets flagged with rule IDs and severity; a clean exit code on a clean folder. That output is your SECURITY-stage evidence.</li>
+      <li><strong>Safety precautions:</strong> scan only code you own; never validate (<code>-v</code>) credentials you don't control — it contacts the provider; never run revocation; keep reports private (they describe weaknesses).</li>
     </ul>
   </section>
 
   <section>
-    <h2>Agency OS Integration Proposal: Trivy as SECURITY-gate evidence</h2>
+    <h2>Agency OS Integration Proposal: Betterleaks as SECURITY-gate evidence</h2>
     <ul>
-      <li><strong>Problem solved:</strong> your security stage currently has no machine-checkable proof that dependencies, secrets, and config were scanned before RELEASE.</li>
+      <li><strong>Problem solved:</strong> the SECURITY stage has no machine-checkable proof that secrets were scanned before RELEASE.</li>
       <li><strong>Workflow/agent improved:</strong> security agent's scan step, feeding — never replacing — gate_engine.py and prepush_release_check.ps1.</li>
       <li><strong>Lifecycle stage:</strong> SECURITY → RELEASE.</li>
-      <li><strong>Inputs:</strong> the project folder path and a pinned scanner config. <strong>Outputs:</strong> <code>trivy-report.json</code> (vuln + secret findings) and the exit code.</li>
-      <li><strong>How results are validated:</strong> the gate script parses the JSON, counts critical/high findings, and records the run in project-state evidence. Only VERIFIED scan output counts; an agent's claim of "scan passed" without the artifact does not.</li>
-      <li><strong>What happens on failure:</strong> findings present (or scanner error) → marked BLOCKED, report attached, no transition to RELEASE.</li>
-      <li><strong>Gate or human approval?</strong> blocks the gate automatically on critical/high findings; accepting any finding as a waiver always requires human approval per your governance.</li>
-      <li><strong>Smallest safe experiment:</strong> add one <code>trivy</code> invocation with JSON output to prepush_release_check.ps1 in a scratch project, plant one known-vulnerable dependency, and confirm the check blocks. Do not change any existing gate logic — only add the evidence step.</li>
+      <li><strong>Inputs:</strong> project folder + git history. <strong>Outputs:</strong> findings with rule IDs + exit code.</li>
+      <li><strong>How results are validated:</strong> the gate script counts findings and records the run in project-state evidence; a verdict of "clean" without a scan artifact stays UNVERIFIED by your own rules.</li>
+      <li><strong>What happens on failure:</strong> findings present → marked BLOCKED, report attached, no transition to RELEASE.</li>
+      <li><strong>Gate or human approval?</strong> blocks the gate automatically on findings; any waiver requires human approval; validation/revocation steps require explicit human authorization (they make live provider requests).</li>
+      <li><strong>Smallest safe experiment:</strong> in a scratch project, add one <code>betterleaks</code> invocation to prepush_release_check.ps1, plant the fake AWS key, and confirm the check blocks. Additive only — no existing gate logic changes.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Business Opportunity: website security health-checks for Addis Ababa small businesses</h2>
+    <h2>Business Opportunity: secret-leak audits for Addis Ababa small businesses</h2>
     <ul>
-      <li><strong>Customer problem:</strong> hotels, importers, clinics and shops in Addis have websites and admin panels built years ago on unmonitored plugins and dependencies. Nobody has ever checked whether they contain known vulnerabilities or leaked credentials — until the site is defaced or a payment page is tampered with.</li>
-      <li><strong>Minimum viable service:</strong> a one-day "security health check": with the owner's written permission, scan their site's codebase/deployment files with Trivy (secrets, dependencies, misconfigurations), manually verify the top findings, and deliver a plain-language Amharic/English report with a prioritized fix list and a rescan date. No revenue projections — price it against a day of your time and local rates.</li>
-      <li><strong>Delivery workflow:</strong> DISCOVERY (intake + permission form) → SECURITY (Trivy scan) → human verification of each finding → CEO_REVIEW (your review of the report) → client briefing. Every claim in the report traces to scan output you personally checked.</li>
-      <li><strong>Main risks:</strong> clients without code access (limits scanning to deployment files); false positives damage trust — verify before reporting; never scan systems you lack written authorization for; reports describe weaknesses — deliver them privately.</li>
+      <li><strong>Customer problem:</strong> Addis shops, hotels, clinics and payment-enabled sites are often built by rotating freelancers; API keys, payment-gateway secrets and DB passwords end up committed in repos or bundled into deployed files. Nobody notices until money or data goes missing.</li>
+      <li><strong>Minimum viable service:</strong> a one-day "leaked-secrets audit" with the owner's written authorization: scan their codebase/deployment package and git history with Betterleaks (detection-only), manually verify each finding, and deliver a plain-language Amharic/English report with a credential-rotation plan. Price against a day of your time; no invented revenue projections.</li>
+      <li><strong>Delivery workflow:</strong> DISCOVERY (permission + scope form) → SECURITY (scan) → human verification of each finding → CEO_REVIEW (your review of the report) → client briefing. Every claim traces to scan output you personally checked.</li>
+      <li><strong>Main risks:</strong> never scan without written authorization; never run live validation against payment providers without explicit approval; false positives damage trust — verify before reporting; reports describe weaknesses — deliver them privately.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Daily Learning: known vulnerabilities (CVEs) and why a scanner beats an opinion</h2>
+    <h2>Daily Learning: detection vs validation of secrets</h2>
     <ul>
-      <li><strong>Concept (simple English):</strong> when a security flaw is discovered in a library, it gets a public ID (a CVE) and a severity. Your app inherits every CVE of every library it uses — a scanner matches your dependency list against that public database.</li>
-      <li><strong>How an AI agent might get it wrong:</strong> it confidently declares "this dependency is safe" from memory — because it recalls no issue, or confuses versions — without ever consulting the CVE database or the right version.</li>
-      <li><strong>How you recognize the failure:</strong> the agent gives a safety verdict with no scan artifact behind it, or cites a CVE ID that doesn't match the installed version.</li>
-      <li><strong>What detects it:</strong> today's test — run Trivy and compare its JSON findings against the agent's claim. In Agency OS terms: security claims are UNVERIFIED until a scan artifact exists.</li>
+      <li><strong>Concept (simple English):</strong> a scanner <em>detects</em> that a string looks like a key (pattern/entropy). <em>Validation</em> checks with the provider whether it still works. Detection is safe and offline; validation is a live network request that reveals what the credential can do.</li>
+      <li><strong>How an AI agent might get it wrong:</strong> it declares "this leaked key is critical!" (no validation — maybe it's revoked) or "that finding is a false positive" (no evidence), or worse, runs validation/revocation on credentials it doesn't own.</li>
+      <li><strong>How you recognize the failure:</strong> a severity claim with no validation status or scan artifact behind it; unauthorized outbound validation attempts in logs.</li>
+      <li><strong>What detects it:</strong> Betterleaks' detection-only default plus opt-in validation — the artifact shows which stage produced each claim. Agency OS rule: security claims are UNVERIFIED until a scan artifact exists.</li>
     </ul>
   </section>
 
   <section>
     <h2>Final Summary</h2>
     <ul>
-      <li><strong>Best discovery today:</strong> <a href="https://github.com/deepseek-ai/dsh-superagent-prototype">deepseek-ai/dsh-superagent-prototype</a> — MIT, released Oct 31, one of the most-watched agent releases of the year (18.2k stars by Nov 4); a governance-shaped proactive coding agent worth studying, not yet deploying. Verdict: INVESTIGATE.</li>
-      <li><strong>Best security/reliability improvement:</strong> Trivy (Apache-2.0, updated Nov 3–4) — one local command that turns security claims into checkable evidence.</li>
-      <li><strong>Best Agency OS integration:</strong> Trivy JSON as SECURITY-stage evidence consumed by the existing gate engine before RELEASE — additive only, waivers stay human-approved.</li>
-      <li><strong>One practical action today:</strong> install trivy.exe and run a vuln+secret scan on a scratch project — then wire the JSON report into prepush_release_check.ps1 as a blocking evidence step.</li>
+      <li><strong>Best discovery today:</strong> <a href="https://github.com/leaktk/betterleaks">Betterleaks</a> (MIT, v2.0.0-rc.5 on Oct 28) — secrets scanning with built-in liveness validation, from the original Gitleaks author. Verdict: TEST NOW.</li>
+      <li><strong>Best security/reliability improvement:</strong> Betterleaks' validate/analyze pipeline — proof, not guesses, about leaked credentials.</li>
+      <li><strong>Best Agency OS integration:</strong> Betterleaks findings + exit code as SECURITY-stage evidence blocking RELEASE via the existing gate engine — additive only, waivers stay human-approved.</li>
+      <li><strong>One practical action today:</strong> install Betterleaks, run a detection-only scan over your Agency OS repo's git history, then wire the check into prepush_release_check.ps1.</li>
     </ul>
   </section>
 </div>
