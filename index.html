@@ -36,122 +36,117 @@
   <header>
     <h1>Agency OS <span>Radar</span></h1>
     <div class="tagline">Daily open-source discoveries for a one-person AI software agency</div>
-    <div class="tagline date">Report date: Thursday, November 5, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
+    <div class="tagline date">Report date: Friday, November 6, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
   </header>
 
   <section>
     <h2>Start Here (plain English)</h2>
-    <p><strong>The problem:</strong> vibe coders ship fast — and speed is exactly how real API keys, passwords and tokens end up in code, commit history, or client deployments. Worse, "I'm pretty sure nothing leaked" is not proof. A one-person agency that can't show security evidence loses clients' trust the moment something goes wrong.</p>
-    <p><strong>The solution in today's radar:</strong> one tool, one job, done properly. <a href="https://github.com/leaktk/betterleaks">Betterleaks</a> — the new secrets scanner from the original Gitleaks author — doesn't just find leaked credentials; it can validate whether they are actually live and analyze what identity and permissions they grant. That turns "trust me, it's safe" into a checkable artifact your gate engine can consume before release.</p>
-    <p class="muted">One featured repo per day, focused on a main vibe-coder struggle. All links and the license were verified from the repo's own files on Nov 5, 2026; star counts are point-in-time snapshots from public trackers, not invented; anything unverifiable is marked UNVERIFIED. The business-opportunity section is retired from this format.</p>
+    <p><strong>The problem:</strong> a solo AI agency fails the same way every time — the coding agent starts writing code before anyone agrees on <em>what</em> is being built, and later "it runs" gets mistaken for "it's ready." What you need is not another toolbox; it's one connected pipeline where the agent must write down the spec, the plan and the tasks before touching code, and where each artifact can be checked by a human.</p>
+    <p><strong>The solution in today's radar:</strong> one factory, one pipeline. <a href="https://github.com/github/spec-kit">GitHub Spec Kit</a> installs slash commands into your AI coding agent that force a spec-driven workflow — constitution, specify, clarify, plan, tasks, implement, converge — with a human review point at every step.</p>
+    <p class="muted">One featured factory per day, per the format confirmed Nov 5, 2026. All links and the release details were verified from the repo's official pages on Nov 6, 2026; anything unverifiable is marked UNVERIFIED. The business-opportunity section is retired from this format. Prior daily reports were unavailable to this session, so repeat-coverage could not be checked; the v1.3.1 release (Nov 5) is a meaningful, verified update in any case.</p>
   </section>
 
   <section>
-    <h2>The Featured Tool: Betterleaks <span class="badge b-test">TEST NOW</span></h2>
+    <h2>The Featured Factory: GitHub Spec Kit <span class="badge b-test">TEST NOW</span></h2>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/leaktk/betterleaks">github.com/leaktk/betterleaks</a> (the README references the canonical org, betterleaks/betterleaks)</li>
-      <li><strong>License (verified):</strong> MIT — verified from the LICENSE file today.</li>
-      <li><strong>What it does (simple English):</strong> a fast, configurable secrets scanner — API keys, passwords, tokens — for filesystems, git repos, URLs and GitHub orgs. Maintained by the folks who made Gitleaks, including the original author.</li>
-      <li><strong>What changed recently (verified):</strong> <strong>v2.0.0-rc.5 released Oct 28, 2026</strong> (v1.9.0 was the Sep 29 stable); v2 stable looks close. Trending in security discussions Nov 3–4. Ships in MegaLinter; used by Aikido Security and others (per README). Roughly 2.7k stars (tracker snapshot, Nov 3).</li>
-      <li><strong>Why it matters to a vibe coder:</strong> Betterleaks adds what Gitleaks lacked: <strong>validation</strong> (is the secret actually live?) and <strong>analysis</strong> (what identity and permissions does it grant?) — plus optional revocation and Expr-based filtering to cut false positives on generic strings like <code>password = "..."</code>. It turns "we found something" into "here is the blast radius."</li>
-      <li><strong>Costs:</strong> MIT, free, no subscription. Detection-only by default — no outbound requests unless you pass <code>-v</code>/<code>-a</code>. Open source ≠ free model access, but this tool needs no model at all.</li>
-      <li><strong>Windows compatibility &amp; installation (verified paths):</strong> <code>go install github.com/betterleaks/betterleaks/v2@latest</code> (needs Go) or Docker (<code>ghcr.io/betterleaks/betterleaks:latest</code>); brew/dnf cover macOS/Linux. Prebuilt Windows binaries UNVERIFIED today. No special hardware.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/github/spec-kit">github.com/github/spec-kit</a> · official docs: <a href="https://github.github.com/spec-kit/">github.github.com/spec-kit</a></li>
+      <li><strong>License (verified):</strong> MIT.</li>
+      <li><strong>What it does (simple English):</strong> a toolkit (Specify CLI + templates) that bootstraps spec-driven development inside your AI coding agent (Claude Code, Copilot, Cursor, Codex, OpenCode and others). Slash commands make the agent write a specification, a technical plan and a task list <em>before</em> it writes code.</li>
+      <li><strong>What changed recently (verified):</strong> <strong>v1.3.1 released 05 Nov 2026</strong> (yesterday), including fixes so git warnings no longer break initialization on Windows PowerShell 5.1 and uv tool installs no longer self-upgrade on Windows; also Quality Gates extension update, DocGuard CDD enforcement update, and workflow fixes. v1.3.0 shipped Nov 3, 2026.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> it turns vibe coding into an auditable pipeline. The <code>/speckit-clarify</code> step alone kills the biggest failure mode: the agent guessing what you meant. Every command has a defined human-review point (spec approval, plan approval, code/test evidence review).</li>
+      <li><strong>Costs:</strong> MIT, free, no subscription for the toolkit. You still pay for your AI IDE/model access as usual — open source ≠ free model access. No hosting needed; templates are local.</li>
+      <li><strong>Windows compatibility &amp; installation (verified):</strong> works on Windows — v1.3.1 specifically fixed Windows PowerShell 5.1 and uv-on-Windows issues. Requires <strong>Python 3.11+</strong> and the <code>uv</code> installer. No special hardware.</li>
     </ul>
   </section>
 
   <section>
-    <h2>The Task Map: proving no secrets leaked, mapped to Agency OS</h2>
+    <h2>The Factory Map: Spec Kit mapped onto the Agency OS lifecycle</h2>
     <table>
-      <tr><th>Lifecycle stage</th><th>What Betterleaks does here</th><th>Artifact produced</th><th>Which gate consumes it</th></tr>
-      <tr><td>SECURITY (secrets domain)</td><td>Scan source + git history for credentials; optionally validate liveness and analyze blast radius</td><td>Findings with rule IDs, validation status, severity + exit code</td><td>gate engine SECURITY → RELEASE transition (additive)</td></tr>
-      <tr><td>RELEASE</td><td>Blocking pre-push check: no release with unreviewed findings</td><td>prepush_release_check.ps1 exit code + findings report</td><td>RELEASE gate</td></tr>
-      <tr><td>MAINTENANCE</td><td>Recurring scans of the repo and its full git history on client projects</td><td>Scheduled scan reports; diff against last clean scan</td><td>Maintenance evidence log</td></tr>
-      <tr><td>LEAD → DEVELOPMENT</td><td>Not covered by this tool (honest gap)</td><td>—</td><td>—</td></tr>
+      <tr><th>Agency OS stage</th><th>Spec Kit skill/module</th><th>Artifact produced</th><th>Which gate consumes it</th></tr>
+      <tr><td>PROBLEM_DEFINITION</td><td>/speckit.constitution</td><td>constitution.md (non-negotiable principles)</td><td>All later gates evaluate against it</td></tr>
+      <tr><td>SPECIFICATION</td><td>/speckit.specify + /speckit.clarify</td><td>feature spec + answered questions</td><td>Human/spec-approval gate before planning</td></tr>
+      <tr><td>ARCHITECTURE</td><td>/speckit.plan</td><td>technical plan (stack, interfaces, data model)</td><td>Human review of stack and constraints</td></tr>
+      <tr><td>QA (planning side)</td><td>/speckit.checklist + /speckit.analyze</td><td>"unit tests for English", consistency report</td><td>Gate before implementation</td></tr>
+      <tr><td>DEVELOPMENT</td><td>/speckit.tasks + /speckit.implement</td><td>dependency-ordered tasks, code diffs</td><td>Reviewer approves diffs and test evidence</td></tr>
+      <tr><td>MAINTENANCE</td><td>/speckit.converge</td><td>reconciliation of implemented reality vs spec</td><td>Post-implementation check</td></tr>
+      <tr><td>LEAD / DISCOVERY / PROPOSAL</td><td>No direct skill (honest gap)</td><td>—</td><td>—</td></tr>
+      <tr><td>SECURITY / RELEASE</td><td>No direct skill (honest gap)</td><td>—</td><td>—</td></tr>
     </table>
-    <p class="muted">A focused tool, not a factory: it strengthens the SECURITY → RELEASE → MAINTENANCE slice of the lifecycle and leaves every other stage untouched. It complements gate_engine.py; it never replaces it.</p>
+    <p class="muted">Spec Kit is the upstream half of a factory: problem definition through development and spec reconciliation. It complements gate_engine.py and never replaces it.</p>
   </section>
 
   <section>
     <h2>Honest Gaps</h2>
     <ul>
-      <li><strong>Not covered:</strong> dependency auditing, code vulnerabilities, authn/authz review, config review — Betterleaks is secrets-only. Your existing security checks (pip-audit, npm audit, Trivy) remain needed for those domains.</li>
-      <li><strong>Agency OS compatibility:</strong> plausible, untested with your scripts — marked as such until you run the experiment below.</li>
-      <li><strong>v2 is a release candidate:</strong> pin the exact version in your pipeline so a moving RC can't change gate behavior overnight.</li>
+      <li><strong>Not covered:</strong> security scanning (no dependency/secret/vuln checks), release/deployment automation, a persistent project-state authority, and a mechanical gate/rollback engine. Its templates and PowerShell scripts are helpers, not governance.</li>
+      <li><strong>Gap-filler for security (external, verified separately):</strong> a scanner such as Trivy or Gitleaks run at the SECURITY stage remains necessary; Spec Kit does not add one.</li>
+      <li><strong>Agency OS compatibility:</strong> plausible, untested — same philosophy (evidence before advancing, questions instead of assumptions), but no evidence yet that it integrates with project-state.json.</li>
     </ul>
   </section>
 
   <section>
     <h2>Why It Fits Agency OS</h2>
     <ul>
-      <li><strong>No invented facts:</strong> detection-only by default; validation status is a first-class field, so "live" vs "detected-only" is explicit, matching your REAL/SIMULATED/VERIFIED/UNVERIFIED discipline.</li>
-      <li><strong>Evidence before advancing:</strong> the scanner's exit code and findings list is exactly the machine-checkable artifact a gate needs; a "clean" claim without it stays UNVERIFIED.</li>
-      <li><strong>Human approval points:</strong> waivers of findings and any validation/revocation runs require explicit human approval — the tool keeps dangerous actions opt-in.</li>
-      <li><strong>Local-first:</strong> runs on your Windows PC, no cloud dependency, no data leaving your machine during detection scans.</li>
+      <li><strong>No invented facts:</strong> /speckit-clarify forces the agent to ask instead of assume — the same discipline as your REAL/SIMULATED/ASSUMPTION/VERIFIED/UNVERIFIED rules.</li>
+      <li><strong>Evidence before advancing:</strong> every command produces a reviewable file (spec, plan, task list, checklist) that can be attached as gate evidence.</li>
+      <li><strong>Constitution = governance rules:</strong> your non-negotiable Agency OS rules can be imported once per project and every later step is evaluated against them.</li>
+      <li><strong>Human approval points:</strong> production guides recommend human gates at spec, plan and code review — matching your governance.</li>
     </ul>
   </section>
 
   <section>
     <h2>Limitations, Risks &amp; Human Review</h2>
     <ul>
-      <li>Validation (<code>-v</code>) makes real HTTP requests to credential providers — only run it against credentials you own, with authorization.</li>
-      <li>Revocation can destroy credentials — never run it without explicit human approval.</li>
-      <li>Findings describe weaknesses: keep reports private; false positives are possible — verify before reporting to a client.</li>
-      <li>Scanning a repo's full history needs read access to that history — only scan code you own or are authorized to scan.</li>
+      <li>No security stage and no gate engine: never treat <code>/speckit.implement</code> output as production-ready.</li>
+      <li>Model/subscription costs: the toolkit is free; your AI IDE subscription is unchanged.</li>
+      <li>Never run <code>specify init</code> in a client repo without reviewing what it scaffolds; keep experiments in a scratch repo.</li>
+      <li>Don't grant the agent unrestricted machine access; review everything before running implement.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Test Today: Betterleaks on Windows (~20 minutes, no subscription)</h2>
+    <h2>Test Today: Spec Kit v1.3.1 on Windows (~30 minutes, free)</h2>
     <ul>
-      <li><strong>Prerequisites:</strong> Windows PC with <strong>Go</strong> (go.dev) or Docker Desktop; ~500 MB free space. Internet only for install. No API keys, no model access.</li>
-      <li><strong>Official installation steps</strong> (from the README): <code>go install github.com/betterleaks/betterleaks/v2@latest</code> — or <code>docker pull ghcr.io/betterleaks/betterleaks:latest</code>.</li>
-      <li><strong>Practical test:</strong> in a scratch git repo you own, plant a well-known fake key (e.g. <code>AKIAIOSFODNN7EXAMPLE</code> — the AWS docs example, never a real one) plus a realistic <code>DB_PASSWORD=...</code>. Then run <code>betterleaks fs .</code> and <code>betterleaks git .</code> (full history). Do <strong>not</strong> add <code>-v</code>/<code>-a</code> in the first run — detection-only is the safe default.</li>
-      <li><strong>Expected results:</strong> both planted secrets flagged with rule IDs and severity; a clean exit code on a clean folder. That output is your SECURITY-stage evidence.</li>
-      <li><strong>Safety precautions:</strong> scan only code you own; never validate credentials you don't control; never run revocation; keep reports private.</li>
+      <li><strong>Prerequisites:</strong> Windows PC with Python 3.11+ and <code>uv</code>. Internet only for install. No API keys beyond your usual AI IDE subscription.</li>
+      <li><strong>Official installation steps</strong> (from the release page): <code>uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@v1.3.1</code></li>
+      <li><strong>Init (scratch repo only):</strong> <code>specify init demo-speckit</code> — or inside an existing scratch repo: <code>specify init --here --integration claude</code> (choose your AI IDE integration).</li>
+      <li><strong>Practical test:</strong> run <code>/speckit.constitution</code> with 3 of your Agency OS governance rules, then <code>/speckit.specify</code> for one tiny feature, then <code>/speckit-clarify</code>. Confirm the agent <em>asks questions</em> instead of assuming.</li>
+      <li><strong>Expected results:</strong> a <code>.specify/</code> folder with constitution.md, a spec doc, and a clarify transcript you can attach as evidence.</li>
+      <li><strong>Safety precautions:</strong> scratch repo, no client data, review everything before running implement; never run it directly in a client repository.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Agency OS Integration Proposal: Betterleaks as SECURITY-gate evidence</h2>
+    <h2>Agency OS Integration Proposal: Spec Kit as SPECIFICATION-gate evidence</h2>
     <ul>
-      <li><strong>Problem solved:</strong> the SECURITY stage has no machine-checkable proof that secrets were scanned before RELEASE.</li>
-      <li><strong>Workflow/agent improved:</strong> security agent's scan step, feeding — never replacing — gate_engine.py and prepush_release_check.ps1.</li>
-      <li><strong>Lifecycle stage:</strong> SECURITY → RELEASE.</li>
-      <li><strong>Inputs:</strong> project folder + git history. <strong>Outputs:</strong> findings with rule IDs + exit code.</li>
-      <li><strong>How results are validated:</strong> the gate script counts findings and records the run as evidence in project-state; a verdict of "clean" without a scan artifact stays UNVERIFIED by your own rules.</li>
-      <li><strong>What happens on failure:</strong> findings present → marked BLOCKED, report attached, no transition to RELEASE.</li>
-      <li><strong>Gate or human approval?</strong> blocks the gate automatically on findings; any waiver requires human approval; validation/revocation steps require explicit human authorization.</li>
-      <li><strong>Smallest safe experiment:</strong> in a scratch project, add one <code>betterleaks</code> invocation to prepush_release_check.ps1, plant the fake AWS key, and confirm the check blocks. Additive only — no existing gate logic changes.</li>
+      <li><strong>Problem solved:</strong> agents inventing requirements and skipping straight to code at PROBLEM_DEFINITION/SPECIFICATION.</li>
+      <li><strong>Workflow/agent improved:</strong> the spec/UX agent, at the PROBLEM_DEFINITION → SPECIFICATION transition.</li>
+      <li><strong>Lifecycle stage:</strong> SPECIFICATION (feeding the existing gate, never replacing it).</li>
+      <li><strong>Inputs:</strong> client brief + Agency OS governance rules (imported into spec-kit's constitution.md). <strong>Outputs:</strong> spec.md + clarify Q&amp;A transcript.</li>
+      <li><strong>How results are validated:</strong> the orchestrator checks the artifacts exist and the clarify transcript has no unanswered questions before calling <code>advance_gate.ps1</code>; evidence is marked VERIFIED only after a human read.</li>
+      <li><strong>What happens on failure:</strong> missing spec or unanswered questions → stage stays BLOCKED, no gate advance.</li>
+      <li><strong>Gate or human approval?</strong> It feeds the existing SPECIFICATION gate; it adds no gates and replaces none. Human approval still required as today.</li>
+      <li><strong>Smallest safe experiment:</strong> one toy feature in a scratch repo, today, 30 minutes — no changes to any Agency OS script.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Daily Learning: detection vs validation of secrets</h2>
+    <h2>Daily Learning: "unit tests for English" (the /speckit.checklist idea)</h2>
     <ul>
-      <li><strong>Concept (simple English):</strong> a scanner <em>detects</em> that a string looks like a key (pattern/entropy). <em>Validation</em> checks with the provider whether it still works. Detection is safe and offline; validation is a live network request that reveals what the credential can do.</li>
-      <li><strong>How an AI agent might get it wrong:</strong> it declares "this leaked key is critical!" (no validation — maybe it's revoked) or "that finding is a false positive" (no evidence), or worse, runs validation/revocation on credentials it doesn't own.</li>
-      <li><strong>How you recognize the failure:</strong> a severity claim with no validation status or scan artifact behind it; unauthorized outbound validation attempts in logs.</li>
-      <li><strong>What detects it:</strong> Betterleaks' detection-only default plus opt-in validation — the artifact shows which stage produced each claim. Agency OS rule: security claims are UNVERIFIED until a scan artifact exists.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Also on the Radar This Week (verified links, brief)</h2>
-    <ul>
-      <li><a href="https://github.com/Muvon/octomind">Octomind</a> (Apache-2.0, trending Nov 3–4) — Rust coding-agent runtime with TOML guardrails; policy-as-code inside the agent harness. Windows installer is a remote script — review before running. INVESTIGATE.</li>
-      <li><a href="https://github.com/max-sixty/worktrunk">Worktrunk</a> (MIT/Apache-2.0, trending Nov 3–5) — git worktrees for parallel AI agents; Winget installs it as <code>git-wt</code>. TEST NOW.</li>
-      <li><a href="https://github.com/mattpocock/skills">mattpocock/skills</a> (MIT, trending Nov 3–5) — small, composable engineering skills; no process takeover. TEST NOW (read first).</li>
-      <li><a href="https://github.com/NVIDIA/auto-ontology">NVIDIA Auto Ontology</a> (Apache-2.0, trending Nov 3–4) — semantic layer so agents query the right data; needs NVIDIA NIM key + Docker. INVESTIGATE.</li>
+      <li><strong>Concept (simple English):</strong> before code, turn the spec into checkable statements ("only signed-in admins can delete records") so gaps in thinking surface as failing statements, not failing software.</li>
+      <li><strong>How an AI agent might get it wrong:</strong> it writes the checklist from its own assumptions, so the checklist passes even when the spec was wrong — self-grading its own homework.</li>
+      <li><strong>How you recognize the failure:</strong> checklist items that exactly mirror the spec wording, no challenge questions, everything green on the first pass.</li>
+      <li><strong>What detects it:</strong> ask for one checklist item the spec does <em>not</em> answer; if none exists, the spec has blind spots. Agency OS rule: spec claims are UNVERIFIED until the clarify transcript and checklist artifacts exist.</li>
     </ul>
   </section>
 
   <section>
     <h2>Final Summary</h2>
     <ul>
-      <li><strong>Best discovery today:</strong> <a href="https://github.com/leaktk/betterleaks">Betterleaks</a> (MIT, v2.0.0-rc.5 on Oct 28) — secrets scanning with built-in liveness validation, from the original Gitleaks author. Verdict: TEST NOW.</li>
-      <li><strong>Best security/reliability improvement:</strong> Betterleaks' validate/analyze pipeline — proof, not guesses, about leaked credentials.</li>
-      <li><strong>Best Agency OS integration:</strong> Betterleaks findings + exit code as SECURITY-stage evidence blocking RELEASE via the existing gate engine — additive only, waivers stay human-approved.</li>
-      <li><strong>One practical action today:</strong> install Betterleaks, run a detection-only scan over your Agency OS repo's git history, then wire the check into prepush_release_check.ps1.</li>
+      <li><strong>Best discovery today:</strong> <a href="https://github.com/github/spec-kit">GitHub Spec Kit</a> (MIT, v1.3.1 released Nov 5, 2026) — the open-source spec-driven factory for AI coding agents. Verdict: TEST NOW.</li>
+      <li><strong>Best security/reliability improvement:</strong> Spec Kit's clarify + analyze + checklist quality gates stop requirement errors before they become production bugs; pair it with an existing secrets/dependency scanner for the SECURITY stage it does not cover.</li>
+      <li><strong>Best Agency OS integration:</strong> constitution + specify + clarify artifacts as evidence inputs to the existing SPECIFICATION gate — additive only, gate engine untouched.</li>
+      <li><strong>One practical action today:</strong> install specify-cli v1.3.1 and run specify → clarify on one scratch feature.</li>
     </ul>
   </section>
 </div>
