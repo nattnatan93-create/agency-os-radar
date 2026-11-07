@@ -36,117 +36,120 @@
   <header>
     <h1>Agency OS <span>Radar</span></h1>
     <div class="tagline">Daily open-source discoveries for a one-person AI software agency</div>
-    <div class="tagline date">Report date: Friday, November 6, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
+    <div class="tagline date">Report date: Saturday, November 7, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
   </header>
 
   <section>
     <h2>Start Here (plain English)</h2>
-    <p><strong>The problem:</strong> a solo AI agency fails the same way every time — the coding agent starts writing code before anyone agrees on <em>what</em> is being built, and later "it runs" gets mistaken for "it's ready." What you need is not another toolbox; it's one connected pipeline where the agent must write down the spec, the plan and the tasks before touching code, and where each artifact can be checked by a human.</p>
-    <p><strong>The solution in today's radar:</strong> one factory, one pipeline. <a href="https://github.com/github/spec-kit">GitHub Spec Kit</a> installs slash commands into your AI coding agent that force a spec-driven workflow — constitution, specify, clarify, plan, tasks, implement, converge — with a human review point at every step.</p>
-    <p class="muted">One featured factory per day, per the format confirmed Nov 5, 2026. All links and the release details were verified from the repo's official pages on Nov 6, 2026; anything unverifiable is marked UNVERIFIED. The business-opportunity section is retired from this format. Prior daily reports were unavailable to this session, so repeat-coverage could not be checked; the v1.3.1 release (Nov 5) is a meaningful, verified update in any case.</p>
+    <p><strong>The problem:</strong> running an AI agency alone means juggling several agent terminals, remembering which project is in which window, checking whether each task's tests actually passed, and stopping everything the moment you look away. The scheduling, checking and merging all stay with you, and that is exactly where mistakes slip through.</p>
+    <p><strong>The solution in today's radar:</strong> one factory window. <a href="https://github.com/Agent-Field/CodeAF">CodeAF</a> is an open-source coding harness for open models that does the middle of the work: it splits what you say into tasks, runs each task in its own copy of the repository on its own branch, tests what comes back, merges only what passes its check onto your branch (never main), parks questions in a "needs you" queue and unchecked work in an "unread" queue for your explicit accept/reject.</p>
+    <p class="muted">One featured factory per day, per the format confirmed Nov 5, 2026. Links, license, stars, commits and releases verified from GitHub and the repo's own pages on Nov 7, 2026; project-made claims (benchmarks, performance) are labeled as project claims, not independently verified. The business-opportunity section is retired from this format. Not previously featured in the Nov 3-6 reports (Orkas, dsh-superagent, Betterleaks, Spec Kit).</p>
   </section>
 
   <section>
-    <h2>The Featured Factory: GitHub Spec Kit <span class="badge b-test">TEST NOW</span></h2>
+    <h2>The Featured Factory: CodeAF <span class="badge b-invest">INVESTIGATE</span></h2>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/github/spec-kit">github.com/github/spec-kit</a> · official docs: <a href="https://github.github.com/spec-kit/">github.github.com/spec-kit</a></li>
-      <li><strong>License (verified):</strong> MIT.</li>
-      <li><strong>What it does (simple English):</strong> a toolkit (Specify CLI + templates) that bootstraps spec-driven development inside your AI coding agent (Claude Code, Copilot, Cursor, Codex, OpenCode and others). Slash commands make the agent write a specification, a technical plan and a task list <em>before</em> it writes code.</li>
-      <li><strong>What changed recently (verified):</strong> <strong>v1.3.1 released 05 Nov 2026</strong> (yesterday), including fixes so git warnings no longer break initialization on Windows PowerShell 5.1 and uv tool installs no longer self-upgrade on Windows; also Quality Gates extension update, DocGuard CDD enforcement update, and workflow fixes. v1.3.0 shipped Nov 3, 2026.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> it turns vibe coding into an auditable pipeline. The <code>/speckit-clarify</code> step alone kills the biggest failure mode: the agent guessing what you meant. Every command has a defined human-review point (spec approval, plan approval, code/test evidence review).</li>
-      <li><strong>Costs:</strong> MIT, free, no subscription for the toolkit. You still pay for your AI IDE/model access as usual — open source ≠ free model access. No hosting needed; templates are local.</li>
-      <li><strong>Windows compatibility &amp; installation (verified):</strong> works on Windows — v1.3.1 specifically fixed Windows PowerShell 5.1 and uv-on-Windows issues. Requires <strong>Python 3.11+</strong> and the <code>uv</code> installer. No special hardware.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/Agent-Field/CodeAF">github.com/Agent-Field/CodeAF</a> · homepage: <a href="https://agentfield.ai/codeaf">agentfield.ai/codeaf</a></li>
+      <li><strong>License (verified from the LICENSE file):</strong> Apache 2.0.</li>
+      <li><strong>Verified repo facts (GitHub, Nov 7, 2026):</strong> 649 stars, 77 forks, written in Go, created Aug 5, 2026, last push Nov 7, 2026 (today). Self-described "Open-Source Software factory for Open Models", by AgentField AI.</li>
+      <li><strong>What it does (simple English):</strong> one small binary that turns your plain-English requests into parallel coding tasks. Each task works in its own copy of the repo on its own branch; work that passes its check lands on your branch by itself; work nothing could check waits under "unread" for you to accept (1) or reject (2); questions wait under "needs you". It also has specialist sub-agents (e.g. a senior-dev change builder, a PR reviewer, a local-code auditor), runs headless with standing orders, and can drive a remote machine over SSH.</li>
+      <li><strong>What changed recently (verified):</strong> <strong>commit today, Nov 7, 2026</strong> ("Show how much sync space is used in /status", #2491), and <strong>two dev-channel releases published today by CI</strong> (dev-20261107-92bf4744b54a and dev-20261107-9eefa142f18e, GitHub-signed). Earlier this week: team sharing on paired computers (Nov 3), Relay coordination as a Raft group (Oct 26), "Wormhole" sync of your codeaf between computers, on by default (Oct 24).</li>
+      <li><strong>Why it matters to a vibe coder:</strong> it industrializes the vibe. Instead of watching one agent type, you describe work, answer only what needs you, and decide what lands. The "unchecked work waits for human accept" queue is the single best guardrail in any harness this radar has covered: nothing reaches your branch just because the agent felt done.</li>
+      <li><strong>Costs (verified):</strong> the tool is free (Apache 2.0). Models are not: it connects to OpenRouter (browser or key), or takes keys for DeepSeek, GLM, Kimi, MiniMax and Qwen; Codex signs in with a ChatGPT plan; Ollama runs local models with no key (free but needs your hardware). Per-token API costs apply — open source ≠ free model access. Anonymous telemetry is on by default (counts only, no prompts/code/paths; turn off with CODEAF_TELEMETRY=off or DO_NOT_TRACK=1).</li>
+      <li><strong>Windows compatibility &amp; installation (verified status):</strong> the documented install is a bash script (curl … | bash) and the built-in specialists are documented for macOS and Linux. No native Windows path is documented in the README; a Windows binary was not verified. WSL2 is the plausible route on your Windows PC but is UNTESTED — that is why the verdict is INVESTIGATE, not TEST NOW. Hardware: any modern PC for the harness itself; local models via Ollama need a reasonably strong CPU/GPU.</li>
     </ul>
   </section>
 
   <section>
-    <h2>The Factory Map: Spec Kit mapped onto the Agency OS lifecycle</h2>
+    <h2>The Factory Map: CodeAF mapped onto the Agency OS lifecycle</h2>
     <table>
-      <tr><th>Agency OS stage</th><th>Spec Kit skill/module</th><th>Artifact produced</th><th>Which gate consumes it</th></tr>
-      <tr><td>PROBLEM_DEFINITION</td><td>/speckit.constitution</td><td>constitution.md (non-negotiable principles)</td><td>All later gates evaluate against it</td></tr>
-      <tr><td>SPECIFICATION</td><td>/speckit.specify + /speckit.clarify</td><td>feature spec + answered questions</td><td>Human/spec-approval gate before planning</td></tr>
-      <tr><td>ARCHITECTURE</td><td>/speckit.plan</td><td>technical plan (stack, interfaces, data model)</td><td>Human review of stack and constraints</td></tr>
-      <tr><td>QA (planning side)</td><td>/speckit.checklist + /speckit.analyze</td><td>"unit tests for English", consistency report</td><td>Gate before implementation</td></tr>
-      <tr><td>DEVELOPMENT</td><td>/speckit.tasks + /speckit.implement</td><td>dependency-ordered tasks, code diffs</td><td>Reviewer approves diffs and test evidence</td></tr>
-      <tr><td>MAINTENANCE</td><td>/speckit.converge</td><td>reconciliation of implemented reality vs spec</td><td>Post-implementation check</td></tr>
-      <tr><td>LEAD / DISCOVERY / PROPOSAL</td><td>No direct skill (honest gap)</td><td>—</td><td>—</td></tr>
-      <tr><td>SECURITY / RELEASE</td><td>No direct skill (honest gap)</td><td>—</td><td>—</td></tr>
+      <tr><th>Agency OS stage</th><th>CodeAF skill/module</th><th>Artifact produced</th><th>Which gate consumes it</th></tr>
+      <tr><td>LEAD / DISCOVERY</td><td>home dashboard + needs-you queue (all projects on the machine)</td><td>machine-wide status: running, unread, costs</td><td>Orchestrator intake / discovery scan</td></tr>
+      <tr><td>PROBLEM_DEFINITION / PROPOSAL</td><td>conversation; questions wait under "needs you"</td><td>answered question queue</td><td>Human answers = approval evidence</td></tr>
+      <tr><td>DEVELOPMENT</td><td>task splitting: each named issue becomes its own task, repo copy and branch; /senior-dev subharness</td><td>feature branches with diffs</td><td>DEVELOPMENT gate evidence (reviewed diffs)</td></tr>
+      <tr><td>QA</td><td>built-in check: only work that passes its check lands; PR-review subharness</td><td>check results per task</td><td>QA gate (never replaces your own checks)</td></tr>
+      <tr><td>CEO_REVIEW</td><td>"unread" queue: unchecked work waits for 1 accept / 2 not right</td><td>accept/reject decisions</td><td>Explicit human approval point</td></tr>
+      <tr><td>MAINTENANCE</td><td>headless mode + standing orders / scheduled work</td><td>standing-order execution log</td><td>Maintenance review</td></tr>
+      <tr><td>SECURITY (partial)</td><td>"audit local code" subharness</td><td>audit findings</td><td>SECURITY gate input (no dep/secret scanning)</td></tr>
+      <tr><td>SPECIFICATION / ARCHITECTURE / REUSABLE_COMPONENT</td><td>No direct skill (honest gap)</td><td>—</td><td>—</td></tr>
     </table>
-    <p class="muted">Spec Kit is the upstream half of a factory: problem definition through development and spec reconciliation. It complements gate_engine.py and never replaces it.</p>
+    <p class="muted">CodeAF is the middle of a factory: task splitting through checked merges, with human accept/reject at the end. It complements Spec Kit (Nov 6, specification side) and gate_engine.py — it never replaces governance.</p>
   </section>
 
   <section>
     <h2>Honest Gaps</h2>
     <ul>
-      <li><strong>Not covered:</strong> security scanning (no dependency/secret/vuln checks), release/deployment automation, a persistent project-state authority, and a mechanical gate/rollback engine. Its templates and PowerShell scripts are helpers, not governance.</li>
-      <li><strong>Gap-filler for security (external, verified separately):</strong> a scanner such as Trivy or Gitleaks run at the SECURITY stage remains necessary; Spec Kit does not add one.</li>
-      <li><strong>Agency OS compatibility:</strong> plausible, untested — same philosophy (evidence before advancing, questions instead of assumptions), but no evidence yet that it integrates with project-state.json.</li>
+      <li><strong>Not covered:</strong> no specification/clarify step (Spec Kit, featured Nov 6, fills that), no dependency/secret/vulnerability scanning (the audit subharness is code review, not a scanner; Trivy/Gitleaks remain necessary), no persistent project-state authority, no formal gate/rollback engine, and no REUSABLE_COMPONENT harvesting.</li>
+      <li><strong>Project claims, not independently verified:</strong> the "#1 on DeepSWE of ten harnesses" ranking and the performance table (53 MB binary, RAM per session) are the project's own benchmarks. Treat as UNVERIFIED until reproduced.</li>
+      <li><strong>Maturity:</strong> the project labels itself an "early preview" with rough edges; releases on the dev channel are pre-releases published by CI.</li>
+      <li><strong>Agency OS compatibility:</strong> plausible, untested — the needs-you/unread pattern matches your governance philosophy (ask instead of assume, human approval before landing), but there is no evidence it reads project-state.json, and it would sit behind your gates, not inside them.</li>
     </ul>
   </section>
 
   <section>
     <h2>Why It Fits Agency OS</h2>
     <ul>
-      <li><strong>No invented facts:</strong> /speckit-clarify forces the agent to ask instead of assume — the same discipline as your REAL/SIMULATED/ASSUMPTION/VERIFIED/UNVERIFIED rules.</li>
-      <li><strong>Evidence before advancing:</strong> every command produces a reviewable file (spec, plan, task list, checklist) that can be attached as gate evidence.</li>
-      <li><strong>Constitution = governance rules:</strong> your non-negotiable Agency OS rules can be imported once per project and every later step is evaluated against them.</li>
-      <li><strong>Human approval points:</strong> production guides recommend human gates at spec, plan and code review — matching your governance.</li>
+      <li><strong>Ask instead of assume:</strong> questions queue under "needs you" from every project at once — the same discipline as your REAL/SIMULATED/ASSUMPTION rules.</li>
+      <li><strong>Human approval point:</strong> unchecked work cannot land; it waits under "unread" for an explicit accept — a built-in CEO_REVIEW-style gate before anything reaches your branch.</li>
+      <li><strong>Never touches main:</strong> passing work lands on your branch, never main, dev or a release branch — rollback boundaries stay clean.</li>
+      <li><strong>It decides, writes down, and carries on:</strong> the project's own description says it records what it decides; those records are exactly the evidence trails Agency OS gates want.</li>
     </ul>
   </section>
 
   <section>
     <h2>Limitations, Risks &amp; Human Review</h2>
     <ul>
-      <li>No security stage and no gate engine: never treat <code>/speckit.implement</code> output as production-ready.</li>
-      <li>Model/subscription costs: the toolkit is free; your AI IDE subscription is unchanged.</li>
-      <li>Never run <code>specify init</code> in a client repo without reviewing what it scaffolds; keep experiments in a scratch repo.</li>
-      <li>Don't grant the agent unrestricted machine access; review everything before running implement.</li>
+      <li>No security scanning stage and no gate engine: never treat a merged CodeAF branch as production-ready; run your SECURITY and QA gates unchanged.</li>
+      <li>Model/API costs per token, or local hardware demands if you use Ollama; set a spend limit per conversation (the tool supports per-conversation spend limits).</li>
+      <li>Telemetry is on by default — turn it off in /settings if that matters to you or a client.</li>
+      <li>The install is a curl-pipe-to-bash script: read it before running it; never pipe unreviewed scripts to a shell on a machine with client data.</li>
+      <li>Young project, pre-release dev channel: pin a version; expect rough edges; human review required before accepting anything from "unread".</li>
     </ul>
   </section>
 
   <section>
-    <h2>Test Today: Spec Kit v1.3.1 on Windows (~30 minutes, free)</h2>
+    <h2>Test Today: CodeAF inside WSL2 on your Windows PC (~45 minutes, free with Ollama)</h2>
     <ul>
-      <li><strong>Prerequisites:</strong> Windows PC with Python 3.11+ and <code>uv</code>. Internet only for install. No API keys beyond your usual AI IDE subscription.</li>
-      <li><strong>Official installation steps</strong> (from the release page): <code>uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@v1.3.1</code></li>
-      <li><strong>Init (scratch repo only):</strong> <code>specify init demo-speckit</code> — or inside an existing scratch repo: <code>specify init --here --integration claude</code> (choose your AI IDE integration).</li>
-      <li><strong>Practical test:</strong> run <code>/speckit.constitution</code> with 3 of your Agency OS governance rules, then <code>/speckit.specify</code> for one tiny feature, then <code>/speckit-clarify</code>. Confirm the agent <em>asks questions</em> instead of assuming.</li>
-      <li><strong>Expected results:</strong> a <code>.specify/</code> folder with constitution.md, a spec doc, and a clarify transcript you can attach as evidence.</li>
-      <li><strong>Safety precautions:</strong> scratch repo, no client data, review everything before running implement; never run it directly in a client repository.</li>
+      <li><strong>Prerequisites:</strong> Windows 10/11 with WSL2 (Ubuntu), Git inside WSL, and either Ollama in WSL with a small coding model (no API key, free) or a small OpenRouter budget. No subscription beyond that.</li>
+      <li><strong>Official installation steps (from the repo):</strong> read the script first: download <code>https://agentfield.ai/get/codeaf</code> and inspect it, then run <code>curl -fsSL https://agentfield.ai/get/codeaf | bash</code> inside WSL, or build from source with <code>git clone</code> + <code>make build</code>. The script puts the binary in <code>~/.codeaf/bin</code>.</li>
+      <li><strong>Set up:</strong> create a scratch repo in WSL, run <code>codeaf</code> there, connect Ollama (no key) or paste an OpenRouter key, set a spend limit, and turn telemetry off in /settings (or export CODEAF_TELEMETRY=off).</li>
+      <li><strong>Practical test:</strong> in one message, name three tiny issues in the scratch repo (like the README's example). Watch each become its own task on its own branch; answer one "needs you" question; leave one task with no checkable outcome and confirm it waits under "unread".</li>
+      <li><strong>Expected results:</strong> three branches with changes, a task rail per conversation, and at least one item parked in "unread" — proof that unchecked work cannot land on your branch.</li>
+      <li><strong>Safety precautions:</strong> scratch repo only, no client data, WSL confines the blast radius, review every diff before pressing 1 (accept), keep telemetry off for the experiment, and pin the version instead of tracking the dev channel.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Agency OS Integration Proposal: Spec Kit as SPECIFICATION-gate evidence</h2>
+    <h2>Agency OS Integration Proposal: CodeAF as a DEVELOPMENT-stage task runner, behind your gates</h2>
     <ul>
-      <li><strong>Problem solved:</strong> agents inventing requirements and skipping straight to code at PROBLEM_DEFINITION/SPECIFICATION.</li>
-      <li><strong>Workflow/agent improved:</strong> the spec/UX agent, at the PROBLEM_DEFINITION → SPECIFICATION transition.</li>
-      <li><strong>Lifecycle stage:</strong> SPECIFICATION (feeding the existing gate, never replacing it).</li>
-      <li><strong>Inputs:</strong> client brief + Agency OS governance rules (imported into spec-kit's constitution.md). <strong>Outputs:</strong> spec.md + clarify Q&amp;A transcript.</li>
-      <li><strong>How results are validated:</strong> the orchestrator checks the artifacts exist and the clarify transcript has no unanswered questions before calling <code>advance_gate.ps1</code>; evidence is marked VERIFIED only after a human read.</li>
-      <li><strong>What happens on failure:</strong> missing spec or unanswered questions → stage stays BLOCKED, no gate advance.</li>
-      <li><strong>Gate or human approval?</strong> It feeds the existing SPECIFICATION gate; it adds no gates and replaces none. Human approval still required as today.</li>
-      <li><strong>Smallest safe experiment:</strong> one toy feature in a scratch repo, today, 30 minutes — no changes to any Agency OS script.</li>
+      <li><strong>Problem solved:</strong> development tasks are run and merged by hand today; test evidence is assembled manually and nothing stops a half-checked change from being treated as done.</li>
+      <li><strong>Workflow/agent improved:</strong> the dev agent's execution loop, at the DEVELOPMENT stage (tasks handed over from the spec/plan artifacts).</li>
+      <li><strong>Lifecycle stage:</strong> DEVELOPMENT, feeding the existing DEVELOPMENT → QA transition. Additive only.</li>
+      <li><strong>Inputs:</strong> dependency-ordered task list from the spec/plan stage + repo branch. <strong>Outputs:</strong> per-task branches, per-task check results, and the needs-you/unread queues as evidence artifacts.</li>
+      <li><strong>How results are validated:</strong> unchanged — precommit_check.py and prepush_release_check.ps1 run on every CodeAF branch; an item is marked VERIFIED only after the independent re-run output exists and a human reads the diff. project-state.json stays authoritative.</li>
+      <li><strong>What happens on failure:</strong> a failing or unchecked task stays unmerged in "unread"; the DEVELOPMENT gate simply does not advance (BLOCKED). Nothing auto-advances Agency OS state.</li>
+      <li><strong>Gate or human approval?</strong> It feeds the existing gates; it adds none and replaces none. Accepting unread work is an explicit human decision — your CEO_REVIEW approval requirement is untouched.</li>
+      <li><strong>Smallest safe experiment:</strong> today's WSL2 scratch test, above — zero changes to any Agency OS script; decide adoption only after the unread-queue behavior is confirmed.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Daily Learning: "unit tests for English" (the /speckit.checklist idea)</h2>
+    <h2>Daily Learning: check-gated auto-merge ("work that passes its check lands by itself")</h2>
     <ul>
-      <li><strong>Concept (simple English):</strong> before code, turn the spec into checkable statements ("only signed-in admins can delete records") so gaps in thinking surface as failing statements, not failing software.</li>
-      <li><strong>How an AI agent might get it wrong:</strong> it writes the checklist from its own assumptions, so the checklist passes even when the spec was wrong — self-grading its own homework.</li>
-      <li><strong>How you recognize the failure:</strong> checklist items that exactly mirror the spec wording, no challenge questions, everything green on the first pass.</li>
-      <li><strong>What detects it:</strong> ask for one checklist item the spec does <em>not</em> answer; if none exists, the spec has blind spots. Agency OS rule: spec claims are UNVERIFIED until the clarify transcript and checklist artifacts exist.</li>
+      <li><strong>Concept (simple English):</strong> a change earns its way into your branch by passing a real check, not by the agent claiming it is done. Merging becomes a reward for evidence, not a default.</li>
+      <li><strong>How an AI agent might get it wrong:</strong> it reports "tests pass" from memory, assumption, or a partial run, so unchecked work gets the same confidence as checked work — the failure CodeAF's unread queue exists to prevent.</li>
+      <li><strong>How you recognize the failure:</strong> no command transcript or output file behind the claim, suspiciously instant "passes", no branch created, or an accept prompt arriving with no check result attached.</li>
+      <li><strong>What detects it:</strong> re-run prepush_release_check.ps1 yourself on the branch; under Agency OS rules the agent's test claim stays UNVERIFIED until your independent run's output exists.</li>
     </ul>
   </section>
 
   <section>
     <h2>Final Summary</h2>
     <ul>
-      <li><strong>Best discovery today:</strong> <a href="https://github.com/github/spec-kit">GitHub Spec Kit</a> (MIT, v1.3.1 released Nov 5, 2026) — the open-source spec-driven factory for AI coding agents. Verdict: TEST NOW.</li>
-      <li><strong>Best security/reliability improvement:</strong> Spec Kit's clarify + analyze + checklist quality gates stop requirement errors before they become production bugs; pair it with an existing secrets/dependency scanner for the SECURITY stage it does not cover.</li>
-      <li><strong>Best Agency OS integration:</strong> constitution + specify + clarify artifacts as evidence inputs to the existing SPECIFICATION gate — additive only, gate engine untouched.</li>
-      <li><strong>One practical action today:</strong> install specify-cli v1.3.1 and run specify → clarify on one scratch feature.</li>
+      <li><strong>Best discovery today:</strong> <a href="https://github.com/Agent-Field/CodeAF">CodeAF</a> (Apache 2.0, active today Nov 7, 2026) — an open-source software factory for open models whose needs-you/unread queues build human approval into the merge itself. Verdict: INVESTIGATE (Windows native unverified; test via WSL2).</li>
+      <li><strong>Best security/reliability improvement:</strong> check-gated auto-merge plus the explicit unread accept/reject queue — it blocks the classic "agent says done" failure at the point of landing. Pair with your existing scanners; CodeAF adds no security scanning of its own.</li>
+      <li><strong>Best Agency OS integration:</strong> run CodeAF headless as the DEVELOPMENT-stage task runner behind your existing gates — branches and check evidence in, your validation scripts and human approvals unchanged.</li>
+      <li><strong>One practical action today:</strong> install CodeAF in WSL2 on a scratch repo with Ollama, name three tiny issues, and verify that unchecked work waits under "unread" instead of landing.</li>
     </ul>
   </section>
 </div>
