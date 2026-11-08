@@ -36,120 +36,121 @@
   <header>
     <h1>Agency OS <span>Radar</span></h1>
     <div class="tagline">Daily open-source discoveries for a one-person AI software agency</div>
-    <div class="tagline date">Report date: Saturday, November 7, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
+    <div class="tagline date">Report date: Sunday, November 8, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
   </header>
 
   <section>
     <h2>Start Here (plain English)</h2>
-    <p><strong>The problem:</strong> running an AI agency alone means juggling several agent terminals, remembering which project is in which window, checking whether each task's tests actually passed, and stopping everything the moment you look away. The scheduling, checking and merging all stay with you, and that is exactly where mistakes slip through.</p>
-    <p><strong>The solution in today's radar:</strong> one factory window. <a href="https://github.com/Agent-Field/CodeAF">CodeAF</a> is an open-source coding harness for open models that does the middle of the work: it splits what you say into tasks, runs each task in its own copy of the repository on its own branch, tests what comes back, merges only what passes its check onto your branch (never main), parks questions in a "needs you" queue and unchecked work in an "unread" queue for your explicit accept/reject.</p>
-    <p class="muted">One featured factory per day, per the format confirmed Nov 5, 2026. Links, license, stars, commits and releases verified from GitHub and the repo's own pages on Nov 7, 2026; project-made claims (benchmarks, performance) are labeled as project claims, not independently verified. The business-opportunity section is retired from this format. Not previously featured in the Nov 3-6 reports (Orkas, dsh-superagent, Betterleaks, Spec Kit).</p>
+    <p><strong>The problem:</strong> for a vibe coder, the hardest question before shipping to a client is not "does it run?" or "do tests pass?" but "is this actually secure?" AI-written code can look clean and still leak secrets, trust user input, or break authorization. A single prompt asking your agent to "check security" produces one guess at a time, with no coverage and no proof.</p>
+    <p><strong>The solution in today's radar:</strong> <a href="https://github.com/cloudflare/security-audit-skill">cloudflare/security-audit-skill</a>. Cloudflare open-sourced the agent skill that seeded its own internal vulnerability discovery harness. It turns the coding agent you already use (Claude Code, Codex, Cursor, others) into a disciplined six-phase security auditor: it maps the codebase, assigns isolated hunter agents from a coverage ledger, forces a <em>different</em> agent to try to disprove every finding, and writes machine-readable results (<code>findings.json</code>) validated by schema-checking scripts. Nothing is "confirmed" until an independent verifier failed to knock it down.</p>
+    <p class="muted">One featured discovery per day, per the format confirmed Nov 5, 2026. Links, license and repo history verified from GitHub directly on Nov 8, 2026; star counts and trending figures are reported by third-party trackers and not independently verified; Cloudflare's own claims (harness results, "one run finds roughly half") are labeled as project claims. The business-opportunity section is retired from this format. Not previously featured in the Nov 3-7 reports (Orkas, dsh-superagent, Betterleaks, Spec Kit, CodeAF).</p>
   </section>
 
   <section>
-    <h2>The Featured Factory: CodeAF <span class="badge b-invest">INVESTIGATE</span></h2>
+    <h2>The Featured Discovery: Cloudflare security-audit-skill <span class="badge b-test">TEST NOW</span></h2>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/Agent-Field/CodeAF">github.com/Agent-Field/CodeAF</a> · homepage: <a href="https://agentfield.ai/codeaf">agentfield.ai/codeaf</a></li>
-      <li><strong>License (verified from the LICENSE file):</strong> Apache 2.0.</li>
-      <li><strong>Verified repo facts (GitHub, Nov 7, 2026):</strong> 649 stars, 77 forks, written in Go, created Aug 5, 2026, last push Nov 7, 2026 (today). Self-described "Open-Source Software factory for Open Models", by AgentField AI.</li>
-      <li><strong>What it does (simple English):</strong> one small binary that turns your plain-English requests into parallel coding tasks. Each task works in its own copy of the repo on its own branch; work that passes its check lands on your branch by itself; work nothing could check waits under "unread" for you to accept (1) or reject (2); questions wait under "needs you". It also has specialist sub-agents (e.g. a senior-dev change builder, a PR reviewer, a local-code auditor), runs headless with standing orders, and can drive a remote machine over SSH.</li>
-      <li><strong>What changed recently (verified):</strong> <strong>commit today, Nov 7, 2026</strong> ("Show how much sync space is used in /status", #2491), and <strong>two dev-channel releases published today by CI</strong> (dev-20261107-92bf4744b54a and dev-20261107-9eefa142f18e, GitHub-signed). Earlier this week: team sharing on paired computers (Nov 3), Relay coordination as a Raft group (Oct 26), "Wormhole" sync of your codeaf between computers, on by default (Oct 24).</li>
-      <li><strong>Why it matters to a vibe coder:</strong> it industrializes the vibe. Instead of watching one agent type, you describe work, answer only what needs you, and decide what lands. The "unchecked work waits for human accept" queue is the single best guardrail in any harness this radar has covered: nothing reaches your branch just because the agent felt done.</li>
-      <li><strong>Costs (verified):</strong> the tool is free (Apache 2.0). Models are not: it connects to OpenRouter (browser or key), or takes keys for DeepSeek, GLM, Kimi, MiniMax and Qwen; Codex signs in with a ChatGPT plan; Ollama runs local models with no key (free but needs your hardware). Per-token API costs apply, open source ≠ free model access. Anonymous telemetry is on by default (counts only, no prompts/code/paths; turn off with CODEAF_TELEMETRY=off or DO_NOT_TRACK=1).</li>
-      <li><strong>Windows compatibility &amp; installation (verified status):</strong> the documented install is a bash script (curl … | bash) and the built-in specialists are documented for macOS and Linux. No native Windows path is documented in the README; a Windows binary was not verified. WSL2 is the plausible route on your Windows PC but is UNTESTED, that is why the verdict is INVESTIGATE, not TEST NOW. Hardware: any modern PC for the harness itself; local models via Ollama need a reasonably strong CPU/GPU.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/cloudflare/security-audit-skill">github.com/cloudflare/security-audit-skill</a> · background post: <a href="https://blog.cloudflare.com/build-your-own-vulnerability-harness">Build your own vulnerability harness</a> (Cloudflare blog, June 2026)</li>
+      <li><strong>License (verified from the LICENSE file on GitHub):</strong> MIT.</li>
+      <li><strong>Verified repo facts (GitHub, Nov 8, 2026):</strong> created June 18, 2026; 14 commits; latest commit Sep 14, 2026 ("Clarify guidance and full audit modes", c1c8a8c); no tagged releases. Roughly 62,000 stars as of Nov 6, 2026 and the day's highest star growth (+2,085) on GitHub trending today, Nov 8, per third-party trackers (reported, not independently verified). This is a published artifact that changes rarely, not a busy codebase.</li>
+      <li><strong>What it is (simple English):</strong> not a scanner and not a program that runs by itself. It is a skill: a pack of instructions, attack-class playbooks (web/auth, client-side, supply chain, cloud/deployment, memory safety, AI/LLM prompt injection, data isolation, and more) and two tiny zero-dependency Node.js validators your coding agent loads when you ask for a security audit.</li>
+      <li><strong>The six phases (from the README, verified):</strong> 1) Reconnaissance maps architecture, trust boundaries and input surfaces into <code>architecture.md</code> and <code>coverage-ledger.json</code>; 2) coverage-led hunting sends isolated hunter agents after ledger units; 3) candidate validation gives every candidate to a fresh verifier agent that tries to disprove it; 4) structured output writes <code>confirmed</code>, <code>needs_validation</code> and <code>rejected</code> records to <code>findings.json</code>, checked against <code>report-schema.json</code>; 5) independent record verification re-checks final source claims; 6) target-neutral reporting derives <code>REPORT.md</code>, <code>FINDINGS-DETAIL.md</code> and <code>NEEDS-VALIDATION.md</code>.</li>
+      <li><strong>What changed recently (honest disclosure):</strong> no code change in the last 7 days; the last commit was Sep 14, 2026. Today's discovery signal is community: the repo is on GitHub trending on Nov 8, 2026 with the day's highest star growth (per trackers). Runs are additive: a second run reads the prior ledger and findings and targets the gaps.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> it converts "please check my code is secure" from a hope into a process with coverage accounting and adversarial proof. Its three verdicts match your epistemology: <code>confirmed</code> = VERIFIED, <code>needs_validation</code> = UNVERIFIED/BLOCKED with the exact unresolved fact recorded, <code>rejected</code> = disproved candidate. Severity requires demonstrated impact, not checklist deviation.</li>
+      <li><strong>Costs (verified status):</strong> the skill is free (MIT). The spend is your agent's tokens: a full audit spawns many sub-agents across six phases, and Cloudflare publishes no token cost; community reports describe full runs as expensive. Guidance mode (security questions, focused work) is cheaper. Open source ≠ free model access; your agent's model/API costs still apply.</li>
+      <li><strong>Windows compatibility (verified/plausible):</strong> agent-neutral by design; the only runtime requirement is Node.js for the two validators (cross-platform, zero dependencies), plus a coding agent whose model supports tool use and parallel sub-agents (Claude Code, Codex CLI and similar run on Windows). Full audit mode defaults output to <code>~/security-audit-skill/&lt;repo-name&gt;/run-&lt;N&gt;</code>. Windows compatibility: PLASIBLE, not yet tested by this radar; that is part of today's test.</li>
     </ul>
   </section>
 
   <section>
-    <h2>The Factory Map: CodeAF mapped onto the Agency OS lifecycle</h2>
+    <h2>The Map: security-audit-skill mapped onto the Agency OS lifecycle</h2>
     <table>
-      <tr><th>Agency OS stage</th><th>CodeAF skill/module</th><th>Artifact produced</th><th>Which gate consumes it</th></tr>
-      <tr><td>LEAD / DISCOVERY</td><td>home dashboard + needs-you queue (all projects on the machine)</td><td>machine-wide status: running, unread, costs</td><td>Orchestrator intake / discovery scan</td></tr>
-      <tr><td>PROBLEM_DEFINITION / PROPOSAL</td><td>conversation; questions wait under "needs you"</td><td>answered question queue</td><td>Human answers = approval evidence</td></tr>
-      <tr><td>DEVELOPMENT</td><td>task splitting: each named issue becomes its own task, repo copy and branch; /senior-dev subharness</td><td>feature branches with diffs</td><td>DEVELOPMENT gate evidence (reviewed diffs)</td></tr>
-      <tr><td>QA</td><td>built-in check: only work that passes its check lands; PR-review subharness</td><td>check results per task</td><td>QA gate (never replaces your own checks)</td></tr>
-      <tr><td>CEO_REVIEW</td><td>"unread" queue: unchecked work waits for 1 accept / 2 not right</td><td>accept/reject decisions</td><td>Explicit human approval point</td></tr>
-      <tr><td>MAINTENANCE</td><td>headless mode + standing orders / scheduled work</td><td>standing-order execution log</td><td>Maintenance review</td></tr>
-      <tr><td>SECURITY (partial)</td><td>"audit local code" subharness</td><td>audit findings</td><td>SECURITY gate input (no dep/secret scanning)</td></tr>
-      <tr><td>SPECIFICATION / ARCHITECTURE / REUSABLE_COMPONENT</td><td>No direct skill (honest gap)</td><td>, </td><td>, </td></tr>
+      <tr><th>Agency OS stage</th><th>Skill phase</th><th>Artifact produced</th><th>Which gate consumes it</th></tr>
+      <tr><td>ARCHITECTURE (evidence)</td><td>Phase 1 reconnaissance</td><td>architecture.md, coverage-ledger.json</td><td>SECURITY gate input (trust boundaries, input surfaces)</td></tr>
+      <tr><td>SECURITY (core)</td><td>Phases 2-3: coverage-led hunting + adversarial candidate validation</td><td>candidate records with verdicts</td><td>SECURITY gate: only adversarially validated evidence counts</td></tr>
+      <tr><td>SECURITY (output)</td><td>Phase 4: structured output</td><td>findings.json validated against report-schema.json</td><td>SECURITY gate: machine-readable evidence file</td></tr>
+      <tr><td>SECURITY (verification)</td><td>Phase 5: independent record verification</td><td>re-verified source claims</td><td>SECURITY gate: VERIFIED vs UNVERIFIED marking</td></tr>
+      <tr><td>CEO_REVIEW</td><td>Phase 6: target-neutral reporting</td><td>REPORT.md, FINDINGS-DETAIL.md, NEEDS-VALIDATION.md</td><td>Human review artifact before release decisions</td></tr>
+      <tr><td>MAINTENANCE</td><td>Additive re-runs on changed source</td><td>updated ledger + carried-forward findings</td><td>Maintenance security re-check</td></tr>
+      <tr><td>LEAD / DISCOVERY / PROBLEM_DEFINITION / PROPOSAL / SPECIFICATION / DEVELOPMENT / QA / RELEASE / REUSABLE_COMPONENT</td><td>No coverage (honest gap)</td><td>—</td><td>—</td></tr>
     </table>
-    <p class="muted">CodeAF is the middle of a factory: task splitting through checked merges, with human accept/reject at the end. It complements Spec Kit (Nov 6, specification side) and gate_engine.py, it never replaces governance.</p>
+    <p class="muted">It is a SECURITY-stage instrument, not a factory: it slots in behind your gate engine as an evidence generator, never as the gate itself.</p>
   </section>
 
   <section>
     <h2>Honest Gaps</h2>
     <ul>
-      <li><strong>Not covered:</strong> no specification/clarify step (Spec Kit, featured Nov 6, fills that), no dependency/secret/vulnerability scanning (the audit subharness is code review, not a scanner; Trivy/Gitleaks remain necessary), no persistent project-state authority, no formal gate/rollback engine, and no REUSABLE_COMPONENT harvesting.</li>
-      <li><strong>Project claims, not independently verified:</strong> the "#1 on DeepSWE of ten harnesses" ranking and the performance table (53 MB binary, RAM per session) are the project's own benchmarks. Treat as UNVERIFIED until reproduced.</li>
-      <li><strong>Maturity:</strong> the project labels itself an "early preview" with rough edges; releases on the dev channel are pre-releases published by CI.</li>
-      <li><strong>Agency OS compatibility:</strong> plausible, untested, the needs-you/unread pattern matches your governance philosophy (ask instead of assume, human approval before landing), but there is no evidence it reads project-state.json, and it would sit behind your gates, not inside them.</li>
+      <li><strong>Not covered:</strong> no dependency-CVE scanning (the skill verifies from source only, pair it with pip-audit / npm audit / Trivy), no secret detection (pair with Gitleaks), no CI integration or gate engine, no running-app testing unless you provide an OS-enforced sandbox, single-repository scope, no specification, QA, release or reusable-component stages.</li>
+      <li><strong>One run is half a run (project claim):</strong> Cloudflare's own testing found a single run surfaced roughly half of what repeated runs found; the skill is built to be run more than once.</li>
+      <li><strong>The fleet harness is not released:</strong> the multi-repo system Cloudflare describes (128 repos, judgment stage, cross-repo tracing) remains internal; this skill is the single-repo seed.</li>
+      <li><strong>Unverified:</strong> precision/false-positive rates, token cost per run, and best-performing models are not published by Cloudflare.</li>
+      <li><strong>Agency OS compatibility:</strong> plausible, untested. The verdict taxonomy and adversarial validation match your governance rules, but there is no evidence it reads project-state.json; it would produce evidence for the SECURITY gate, not enforce it.</li>
     </ul>
   </section>
 
   <section>
     <h2>Why It Fits Agency OS</h2>
     <ul>
-      <li><strong>Ask instead of assume:</strong> questions queue under "needs you" from every project at once, the same discipline as your REAL/SIMULATED/ASSUMPTION rules.</li>
-      <li><strong>Human approval point:</strong> unchecked work cannot land; it waits under "unread" for an explicit accept, a built-in CEO_REVIEW-style gate before anything reaches your branch.</li>
-      <li><strong>Never touches main:</strong> passing work lands on your branch, never main, dev or a release branch, rollback boundaries stay clean.</li>
-      <li><strong>It decides, writes down, and carries on:</strong> the project's own description says it records what it decides; those records are exactly the evidence trails Agency OS gates want.</li>
+      <li><strong>Adversarial validation:</strong> the agent that checks a finding is never the agent that found it, the same separation your evidence rules demand before anything advances.</li>
+      <li><strong>needs_validation, not fake certainty:</strong> a lead that cannot be proven keeps its exact unresolved fact and gets no severity, your UNVERIFIED/BLOCKED discipline, built in.</li>
+      <li><strong>Machine-readable evidence:</strong> findings.json is schema-validated by deterministic scripts (validate-findings.cjs, validate-coverage-ledger.cjs), so a gate can consume it without trusting prose.</li>
+      <li><strong>Severity requires impact:</strong> likelihood × impact, not deviation from a checklist, and a missing second layer of defense is a hardening note, not a vulnerability. No inflated findings.</li>
+      <li><strong>Additive coverage ledger:</strong> repeated runs target gaps and revalidate changed source instead of starting over, the same way project-state.json carries evidence forward.</li>
     </ul>
   </section>
 
   <section>
     <h2>Limitations, Risks &amp; Human Review</h2>
     <ul>
-      <li>No security scanning stage and no gate engine: never treat a merged CodeAF branch as production-ready; run your SECURITY and QA gates unchanged.</li>
-      <li>Model/API costs per token, or local hardware demands if you use Ollama; set a spend limit per conversation (the tool supports per-conversation spend limits).</li>
-      <li>Telemetry is on by default, turn it off in /settings if that matters to you or a client.</li>
-      <li>The install is a curl-pipe-to-bash script: read it before running it; never pipe unreviewed scripts to a shell on a machine with client data.</li>
-      <li>Young project, pre-release dev channel: pin a version; expect rough edges; human review required before accepting anything from "unread".</li>
+      <li>Token-heavy on large codebases; use guidance mode for focused questions and budget caps where your agent supports them; Cloudflare publishes no cost figures.</li>
+      <li>Without an OS-enforced sandbox, the skill keeps execution-dependent leads as needs_validation instead of running target code, which is the safe default, but it means dynamic vulnerabilities stay unproven unless you sandbox.</li>
+      <li>It does not replace dependency/secret scanners or your QA gate; a clean audit is necessary, never sufficient, and a project is not production-ready because the audit came back clean.</li>
+      <li>Few commits and no tagged releases: pin the exact commit you install; review the skill's prompt files before pointing them at client code.</li>
+      <li>Human review required: every confirmed finding needs a human read before client or release decisions; needs_validation items are open questions, not evidence of security.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Test Today: CodeAF inside WSL2 on your Windows PC (~45 minutes, free with Ollama)</h2>
+    <h2>Test Today: run a guidance-mode audit on a small scratch repo (~30-60 minutes, Windows-friendly)</h2>
     <ul>
-      <li><strong>Prerequisites:</strong> Windows 10/11 with WSL2 (Ubuntu), Git inside WSL, and either Ollama in WSL with a small coding model (no API key, free) or a small OpenRouter budget. No subscription beyond that.</li>
-      <li><strong>Official installation steps (from the repo):</strong> read the script first: download <code>https://agentfield.ai/get/codeaf</code> and inspect it, then run <code>curl -fsSL https://agentfield.ai/get/codeaf | bash</code> inside WSL, or build from source with <code>git clone</code> + <code>make build</code>. The script puts the binary in <code>~/.codeaf/bin</code>.</li>
-      <li><strong>Set up:</strong> create a scratch repo in WSL, run <code>codeaf</code> there, connect Ollama (no key) or paste an OpenRouter key, set a spend limit, and turn telemetry off in /settings (or export CODEAF_TELEMETRY=off).</li>
-      <li><strong>Practical test:</strong> in one message, name three tiny issues in the scratch repo (like the README's example). Watch each become its own task on its own branch; answer one "needs you" question; leave one task with no checkable outcome and confirm it waits under "unread".</li>
-      <li><strong>Expected results:</strong> three branches with changes, a task rail per conversation, and at least one item parked in "unread", proof that unchecked work cannot land on your branch.</li>
-      <li><strong>Safety precautions:</strong> scratch repo only, no client data, WSL confines the blast radius, review every diff before pressing 1 (accept), keep telemetry off for the experiment, and pin the version instead of tracking the dev channel.</li>
+      <li><strong>Prerequisites:</strong> Windows 10/11, Node.js (LTS), and an AI coding agent that supports tool use and parallel sub-agents (Claude Code, Codex CLI, Cursor, etc.) with the model access you already have. No new subscription required.</li>
+      <li><strong>Official installation steps (from the README):</strong> <code>npx skills add https://github.com/cloudflare/security-audit-skill --skill security-audit</code> (add <code>--global</code> for a user-level install). The Skills CLI handles agent selection; run <code>npx skills --help</code> for non-interactive options.</li>
+      <li><strong>Practical test:</strong> create a small scratch repo with a deliberately unsafe pattern (e.g. a Flask/Express endpoint that concatenates user input into a query or shell command, plus a hardcoded API key). Start your agent in that repo and ask a guidance-mode question first ("is the input handling in ./src safe?"), then request a full audit: "security audit this codebase, output to ~/audits/scratch".</li>
+      <li><strong>Expected results:</strong> an output directory with <code>coverage-ledger.json</code>, <code>findings.json</code> (schema-validated), and REPORT.md / FINDINGS-DETAIL.md / NEEDS-VALIDATION.md; the injection and hardcoded-secret patterns should appear as candidates, with at least one surviving adversarial validation and others marked rejected or needs_validation.</li>
+      <li><strong>Safety precautions:</strong> scratch repo only, never client data; do not let the agent build or execute the target code (or do it only inside Windows Sandbox with networking off); expect a long run on big repos, so keep the target small; pin the commit; read the skill's files before installing.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Agency OS Integration Proposal: CodeAF as a DEVELOPMENT-stage task runner, behind your gates</h2>
+    <h2>Agency OS Integration Proposal: the skill as the SECURITY stage's evidence generator</h2>
     <ul>
-      <li><strong>Problem solved:</strong> development tasks are run and merged by hand today; test evidence is assembled manually and nothing stops a half-checked change from being treated as done.</li>
-      <li><strong>Workflow/agent improved:</strong> the dev agent's execution loop, at the DEVELOPMENT stage (tasks handed over from the spec/plan artifacts).</li>
-      <li><strong>Lifecycle stage:</strong> DEVELOPMENT, feeding the existing DEVELOPMENT → QA transition. Additive only.</li>
-      <li><strong>Inputs:</strong> dependency-ordered task list from the spec/plan stage + repo branch. <strong>Outputs:</strong> per-task branches, per-task check results, and the needs-you/unread queues as evidence artifacts.</li>
-      <li><strong>How results are validated:</strong> unchanged, precommit_check.py and prepush_release_check.ps1 run on every CodeAF branch; an item is marked VERIFIED only after the independent re-run output exists and a human reads the diff. project-state.json stays authoritative.</li>
-      <li><strong>What happens on failure:</strong> a failing or unchecked task stays unmerged in "unread"; the DEVELOPMENT gate simply does not advance (BLOCKED). Nothing auto-advances Agency OS state.</li>
-      <li><strong>Gate or human approval?</strong> It feeds the existing gates; it adds none and replaces none. Accepting unread work is an explicit human decision, your CEO_REVIEW approval requirement is untouched.</li>
-      <li><strong>Smallest safe experiment:</strong> today's WSL2 scratch test, above, zero changes to any Agency OS script; decide adoption only after the unread-queue behavior is confirmed.</li>
+      <li><strong>Problem solved:</strong> the security agent currently produces prose opinions with no coverage accounting and no independent check, so SECURITY gate evidence is uneven and unauditable.</li>
+      <li><strong>Workflow/agent improved:</strong> the security agent's audit step, at the SECURITY stage, fed by artifacts from SPECIFICATION/ARCHITECTURE and feeding CEO_REVIEW.</li>
+      <li><strong>Lifecycle stage:</strong> SECURITY (with reconnaissance evidence reusable at ARCHITECTURE and reports consumed at CEO_REVIEW). Additive only.</li>
+      <li><strong>Inputs:</strong> the repository at the SECURITY gate. <strong>Outputs:</strong> architecture.md, coverage-ledger.json, findings.json (confirmed / needs_validation / rejected), and the three report files.</li>
+      <li><strong>How results are validated:</strong> the skill's own deterministic validators check schema and coverage; under Agency OS rules, confirmed findings are marked VERIFIED only after the independent verifier's transcript exists, needs_validation items are UNVERIFIED/BLOCKED, and a human re-reads REPORT.md before the gate advances. project-state.json stays authoritative.</li>
+      <li><strong>What happens on failure:</strong> unproven leads stay needs_validation and the SECURITY gate stays BLOCKED; nothing auto-advances, and open needs_validation items must be resolved or explicitly waived by a human.</li>
+      <li><strong>Gate or human approval?</strong> It feeds the existing SECURITY gate; it adds no gate and replaces none (gate_engine.py and advance_gate.ps1 unchanged). Human approval is still required to waive findings and accept client delivery.</li>
+      <li><strong>Smallest safe experiment:</strong> today's scratch-repo test above, zero changes to any Agency OS script; adopt into the security agent's runbook only after findings.json quality is confirmed on your own code.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Daily Learning: check-gated auto-merge ("work that passes its check lands by itself")</h2>
+    <h2>Daily Learning: adversarial validation ("the agent that checks a finding is never the agent that found it")</h2>
     <ul>
-      <li><strong>Concept (simple English):</strong> a change earns its way into your branch by passing a real check, not by the agent claiming it is done. Merging becomes a reward for evidence, not a default.</li>
-      <li><strong>How an AI agent might get it wrong:</strong> it reports "tests pass" from memory, assumption, or a partial run, so unchecked work gets the same confidence as checked work, the failure CodeAF's unread queue exists to prevent.</li>
-      <li><strong>How you recognize the failure:</strong> no command transcript or output file behind the claim, suspiciously instant "passes", no branch created, or an accept prompt arriving with no check result attached.</li>
-      <li><strong>What detects it:</strong> re-run prepush_release_check.ps1 yourself on the branch; under Agency OS rules the agent's test claim stays UNVERIFIED until your independent run's output exists.</li>
+      <li><strong>Concept (simple English):</strong> an agent that discovers a bug is invested in it; it tends to confirm its own discovery. Adversarial validation hands each candidate to a fresh agent whose only job is to disprove it, so only findings that survive a hostile check are reported as real.</li>
+      <li><strong>How an AI agent might get it wrong:</strong> it "verifies" its own finding in the same session, recycling its own reasoning as proof, so a hallucinated vulnerability gets labeled confirmed, or a real one gets waved away.</li>
+      <li><strong>How you recognize the failure:</strong> the finding and its confirmation come from one context (no separate verifier transcript), the confirmation restates the claim instead of testing it, or no needs_validation/rejected records exist at all (a red flag: nothing was ever disproven).</li>
+      <li><strong>What detects it:</strong> the skill's Phase 3/5 structure plus its deterministic validators; under Agency OS rules, any security claim without an independent verifier's output stays UNVERIFIED, and the SECURITY gate stays BLOCKED.</li>
     </ul>
   </section>
 
   <section>
     <h2>Final Summary</h2>
     <ul>
-      <li><strong>Best discovery today:</strong> <a href="https://github.com/Agent-Field/CodeAF">CodeAF</a> (Apache 2.0, active today Nov 7, 2026), an open-source software factory for open models whose needs-you/unread queues build human approval into the merge itself. Verdict: INVESTIGATE (Windows native unverified; test via WSL2).</li>
-      <li><strong>Best security/reliability improvement:</strong> check-gated auto-merge plus the explicit unread accept/reject queue, it blocks the classic "agent says done" failure at the point of landing. Pair with your existing scanners; CodeAF adds no security scanning of its own.</li>
-      <li><strong>Best Agency OS integration:</strong> run CodeAF headless as the DEVELOPMENT-stage task runner behind your existing gates, branches and check evidence in, your validation scripts and human approvals unchanged.</li>
-      <li><strong>One practical action today:</strong> install CodeAF in WSL2 on a scratch repo with Ollama, name three tiny issues, and verify that unchecked work waits under "unread" instead of landing.</li>
+      <li><strong>Best discovery today:</strong> <a href="https://github.com/cloudflare/security-audit-skill">cloudflare/security-audit-skill</a> (MIT), Cloudflare's open-sourced six-phase security audit skill for coding agents, trending today Nov 8, 2026. Verdict: TEST NOW (Windows plausible; only needs Node.js plus your existing agent).</li>
+      <li><strong>Best security/reliability improvement:</strong> adversarially validated, machine-readable security findings (findings.json + coverage ledger) that make the SECURITY gate's evidence auditable instead of a prose opinion; pair it with your existing dependency and secret scanners, it does not replace them.</li>
+      <li><strong>Best Agency OS integration:</strong> use the skill as the security agent's evidence generator at the SECURITY stage, findings.json in, gate engine and human approvals unchanged, needs_validation items keep the gate BLOCKED until resolved or waived.</li>
+      <li><strong>One practical action today:</strong> install the skill with the Skills CLI and run a guidance-mode security question plus one full audit on a small scratch repo on your Windows PC, then read findings.json and check that every confirmed finding has an independent verifier behind it.</li>
     </ul>
   </section>
 </div>
