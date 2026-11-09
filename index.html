@@ -36,121 +36,110 @@
   <header>
     <h1>Agency OS <span>Radar</span></h1>
     <div class="tagline">Daily open-source discoveries for a one-person AI software agency</div>
-    <div class="tagline date">Report date: Sunday, November 8, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
+    <div class="tagline date">Report date: Monday, November 9, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
   </header>
 
   <section>
     <h2>Start Here (plain English)</h2>
-    <p><strong>The problem:</strong> for a vibe coder, the hardest question before shipping to a client is not "does it run?" or "do tests pass?" but "is this actually secure?" AI-written code can look clean and still leak secrets, trust user input, or break authorization. A single prompt asking your agent to "check security" produces one guess at a time, with no coverage and no proof.</p>
-    <p><strong>The solution in today's radar:</strong> <a href="https://github.com/cloudflare/security-audit-skill">cloudflare/security-audit-skill</a>. Cloudflare open-sourced the agent skill that seeded its own internal vulnerability discovery harness. It turns the coding agent you already use (Claude Code, Codex, Cursor, others) into a disciplined six-phase security auditor: it maps the codebase, assigns isolated hunter agents from a coverage ledger, forces a <em>different</em> agent to try to disprove every finding, and writes machine-readable results (<code>findings.json</code>) validated by schema-checking scripts. Nothing is "confirmed" until an independent verifier failed to knock it down.</p>
-    <p class="muted">One featured discovery per day, per the format confirmed Nov 5, 2026. Links, license and repo history verified from GitHub directly on Nov 8, 2026; star counts and trending figures are reported by third-party trackers and not independently verified; Cloudflare's own claims (harness results, "one run finds roughly half") are labeled as project claims. The business-opportunity section is retired from this format. Not previously featured in the Nov 3-7 reports (Orkas, dsh-superagent, Betterleaks, Spec Kit, CodeAF).</p>
+    <p><strong>The problem:</strong> a vibe coder faces a trap. Either you babysit every agent step, or you walk away and get a 50-file diff you don't trust. Both kill a one-person agency's throughput: the first consumes your day, the second burns your credibility with the client.</p>
+    <p><strong>The solution in today's radar:</strong> <a href="https://github.com/fabro-sh/fabro">fabro-sh/fabro</a>, the open source "dark software factory for expert engineers." You define your delivery pipeline as an explicit, reviewable graph (plan → approve → implement → verify, with branches, loops and human gates), the engine executes it with AI coding agents, every stage is checkpointed to git, and failures in verification trigger automatic fix loops. You intervene only where judgment matters.</p>
+    <p class="muted">One featured factory per day, per the format confirmed Nov 5, 2026. Repo facts, license, activity and platform support verified directly from GitHub and the official docs (docs.fabro.sh) on Nov 9, 2026. Prior reports (Nov 3-7) featured Orkas, dsh-superagent, Betterleaks, Spec Kit and CodeAF, so today's factory is not a repeat; Spec Kit shipped v1.3.2 on Nov 6 and a new per-step reasoning feature on Nov 9 but is not re-featured under the no-repeat rule. The business-opportunity section is retired from this format. Agency OS compatibility is marked plausible/untested, never assumed.</p>
   </section>
 
   <section>
-    <h2>The Featured Discovery: Cloudflare security-audit-skill <span class="badge b-test">TEST NOW</span></h2>
+    <h2>The Featured Factory: Fabro <span class="badge b-test">TEST NOW</span></h2>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/cloudflare/security-audit-skill">github.com/cloudflare/security-audit-skill</a> · background post: <a href="https://blog.cloudflare.com/build-your-own-vulnerability-harness">Build your own vulnerability harness</a> (Cloudflare blog, June 2026)</li>
-      <li><strong>License (verified from the LICENSE file on GitHub):</strong> MIT.</li>
-      <li><strong>Verified repo facts (GitHub, Nov 8, 2026):</strong> created June 18, 2026; 14 commits; latest commit Sep 14, 2026 ("Clarify guidance and full audit modes", c1c8a8c); no tagged releases. Roughly 62,000 stars as of Nov 6, 2026 and the day's highest star growth (+2,085) on GitHub trending today, Nov 8, per third-party trackers (reported, not independently verified). This is a published artifact that changes rarely, not a busy codebase.</li>
-      <li><strong>What it is (simple English):</strong> not a scanner and not a program that runs by itself. It is a skill: a pack of instructions, attack-class playbooks (web/auth, client-side, supply chain, cloud/deployment, memory safety, AI/LLM prompt injection, data isolation, and more) and two tiny zero-dependency Node.js validators your coding agent loads when you ask for a security audit.</li>
-      <li><strong>The six phases (from the README, verified):</strong> 1) Reconnaissance maps architecture, trust boundaries and input surfaces into <code>architecture.md</code> and <code>coverage-ledger.json</code>; 2) coverage-led hunting sends isolated hunter agents after ledger units; 3) candidate validation gives every candidate to a fresh verifier agent that tries to disprove it; 4) structured output writes <code>confirmed</code>, <code>needs_validation</code> and <code>rejected</code> records to <code>findings.json</code>, checked against <code>report-schema.json</code>; 5) independent record verification re-checks final source claims; 6) target-neutral reporting derives <code>REPORT.md</code>, <code>FINDINGS-DETAIL.md</code> and <code>NEEDS-VALIDATION.md</code>.</li>
-      <li><strong>What changed recently (honest disclosure):</strong> no code change in the last 7 days; the last commit was Sep 14, 2026. Today's discovery signal is community: the repo is on GitHub trending on Nov 8, 2026 with the day's highest star growth (per trackers). Runs are additive: a second run reads the prior ledger and findings and targets the gaps.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> it converts "please check my code is secure" from a hope into a process with coverage accounting and adversarial proof. Its three verdicts match your epistemology: <code>confirmed</code> = VERIFIED, <code>needs_validation</code> = UNVERIFIED/BLOCKED with the exact unresolved fact recorded, <code>rejected</code> = disproved candidate. Severity requires demonstrated impact, not checklist deviation.</li>
-      <li><strong>Costs (verified status):</strong> the skill is free (MIT). The spend is your agent's tokens: a full audit spawns many sub-agents across six phases, and Cloudflare publishes no token cost; community reports describe full runs as expensive. Guidance mode (security questions, focused work) is cheaper. Open source ≠ free model access; your agent's model/API costs still apply.</li>
-      <li><strong>Windows compatibility (verified/plausible):</strong> agent-neutral by design; the only runtime requirement is Node.js for the two validators (cross-platform, zero dependencies), plus a coding agent whose model supports tool use and parallel sub-agents (Claude Code, Codex CLI and similar run on Windows). Full audit mode defaults output to <code>~/security-audit-skill/&lt;repo-name&gt;/run-&lt;N&gt;</code>. Windows compatibility: PLASIBLE, not yet tested by this radar; that is part of today's test.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/fabro-sh/fabro">github.com/fabro-sh/fabro</a> · docs: <a href="https://docs.fabro.sh">docs.fabro.sh</a></li>
+      <li><strong>License (verified from the repo's license page):</strong> MIT.</li>
+      <li><strong>Verified repo facts (GitHub, Nov 9, 2026):</strong> ~1.8k stars, 201 forks, 36 contributors, 5,635 commits, 159 releases; latest stable release v0.254.0 (Jun 4, 2026); latest commit Nov 5, 2026 ("Bump version to 0.408.0-nightly.0"). This is an update to an established, fast-moving project, not a new project.</li>
+      <li><strong>What it does (simple English):</strong> a workflow orchestration engine. You write your software process as a Graphviz DOT graph with human approval gates; Fabro executes it with AI coding agents (Claude Code, Codex and others, routed via CSS-like model stylesheets), commits each stage to git, and gives you a local server, REST API with SSE events, and a React web UI showing every run.</li>
+      <li><strong>Key verified features (from the README):</strong> deterministic workflow graphs; human-in-the-loop approval gates, mid-run steering and interview steps; multi-model routing with fallback chains; cloud sandboxes (Daytona) with network isolation; git checkpointing per stage (resume, revert, trace); automatic retrospectives with cost, duration and files touched; a single Rust binary with no Python, Node or Docker required.</li>
+      <li><strong>What changed recently (verified):</strong> latest commit Nov 5, 2026 (nightly 0.408.0); the repo has shipped 159 releases with nightly cadence, so expect churn — pin your install.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> it is the closest verified open-source analogue to Agency OS's core idea — deterministic process, agents as executors, human approval points, evidence at every step — without renting a platform.</li>
+      <li><strong>Costs (verified status):</strong> the software is free (MIT). Real costs are your model provider APIs (Claude Code / Codex subscriptions or tokens). Optional cloud sandboxing uses Daytona, an external cloud service whose pricing is unverified here. Open source ≠ free model access or free cloud.</li>
+      <li><strong>Windows compatibility (verified from official docs):</strong> native Windows is NOT supported. The official Quick Start lists Windows as unsupported and directs you to WSL2 with a supported Linux architecture. Windows status: UNTESTED native, WSL2 route documented by the project.</li>
     </ul>
   </section>
 
   <section>
-    <h2>The Map: security-audit-skill mapped onto the Agency OS lifecycle</h2>
+    <h2>The Factory Map: Fabro mapped onto the Agency OS lifecycle</h2>
     <table>
-      <tr><th>Agency OS stage</th><th>Skill phase</th><th>Artifact produced</th><th>Which gate consumes it</th></tr>
-      <tr><td>ARCHITECTURE (evidence)</td><td>Phase 1 reconnaissance</td><td>architecture.md, coverage-ledger.json</td><td>SECURITY gate input (trust boundaries, input surfaces)</td></tr>
-      <tr><td>SECURITY (core)</td><td>Phases 2-3: coverage-led hunting + adversarial candidate validation</td><td>candidate records with verdicts</td><td>SECURITY gate: only adversarially validated evidence counts</td></tr>
-      <tr><td>SECURITY (output)</td><td>Phase 4: structured output</td><td>findings.json validated against report-schema.json</td><td>SECURITY gate: machine-readable evidence file</td></tr>
-      <tr><td>SECURITY (verification)</td><td>Phase 5: independent record verification</td><td>re-verified source claims</td><td>SECURITY gate: VERIFIED vs UNVERIFIED marking</td></tr>
-      <tr><td>CEO_REVIEW</td><td>Phase 6: target-neutral reporting</td><td>REPORT.md, FINDINGS-DETAIL.md, NEEDS-VALIDATION.md</td><td>Human review artifact before release decisions</td></tr>
-      <tr><td>MAINTENANCE</td><td>Additive re-runs on changed source</td><td>updated ledger + carried-forward findings</td><td>Maintenance security re-check</td></tr>
-      <tr><td>LEAD / DISCOVERY / PROBLEM_DEFINITION / PROPOSAL / SPECIFICATION / DEVELOPMENT / QA / RELEASE / REUSABLE_COMPONENT</td><td>No coverage (honest gap)</td><td>—</td><td>—</td></tr>
+      <tr><th>Agency OS stage</th><th>Fabro feature</th><th>Artifact produced</th><th>Which gate consumes it</th></tr>
+      <tr><td>DISCOVERY / PROBLEM_DEFINITION</td><td>Interview steps (structured input)</td><td>Structured intake records</td><td>Spec-stage input</td></tr>
+      <tr><td>SPECIFICATION / ARCHITECTURE</td><td>Plan nodes; natural-language specs</td><td>Plan documents, workflow goals</td><td>CEO_REVIEW before development</td></tr>
+      <tr><td>CEO_REVIEW</td><td>Human approval gates</td><td>Human decision records</td><td>Blocks development until approved</td></tr>
+      <tr><td>DEVELOPMENT</td><td>Implement nodes with fix loops</td><td>Git checkpoint branch per stage</td><td>QA gate input</td></tr>
+      <tr><td>QA</td><td>Verification nodes: tests, linters, type checkers, LLM-as-judge</td><td>Pass/fail evidence per run</td><td>QA gate; failures loop back to implement</td></tr>
+      <tr><td>MAINTENANCE (partial)</td><td>Automatic retrospectives</td><td>Retro with cost, duration, files touched</td><td>Maintenance review</td></tr>
+      <tr><td>LEAD / PROPOSAL / SECURITY / RELEASE / REUSABLE_COMPONENT</td><td>No coverage (honest gap)</td><td>—</td><td>—</td></tr>
     </table>
-    <p class="muted">It is a SECURITY-stage instrument, not a factory: it slots in behind your gate engine as an evidence generator, never as the gate itself.</p>
-  </section>
-
-  <section>
-    <h2>Honest Gaps</h2>
-    <ul>
-      <li><strong>Not covered:</strong> no dependency-CVE scanning (the skill verifies from source only, pair it with pip-audit / npm audit / Trivy), no secret detection (pair with Gitleaks), no CI integration or gate engine, no running-app testing unless you provide an OS-enforced sandbox, single-repository scope, no specification, QA, release or reusable-component stages.</li>
-      <li><strong>One run is half a run (project claim):</strong> Cloudflare's own testing found a single run surfaced roughly half of what repeated runs found; the skill is built to be run more than once.</li>
-      <li><strong>The fleet harness is not released:</strong> the multi-repo system Cloudflare describes (128 repos, judgment stage, cross-repo tracing) remains internal; this skill is the single-repo seed.</li>
-      <li><strong>Unverified:</strong> precision/false-positive rates, token cost per run, and best-performing models are not published by Cloudflare.</li>
-      <li><strong>Agency OS compatibility:</strong> plausible, untested. The verdict taxonomy and adversarial validation match your governance rules, but there is no evidence it reads project-state.json; it would produce evidence for the SECURITY gate, not enforce it.</li>
-    </ul>
+    <p class="muted">No security scanning stage and no single authoritative project-state.json: state lives in durable events, checkpoints and git branches. A verified external tool to fill the security gap was not confirmed today, so none is recommended.</p>
   </section>
 
   <section>
     <h2>Why It Fits Agency OS</h2>
     <ul>
-      <li><strong>Adversarial validation:</strong> the agent that checks a finding is never the agent that found it, the same separation your evidence rules demand before anything advances.</li>
-      <li><strong>needs_validation, not fake certainty:</strong> a lead that cannot be proven keeps its exact unresolved fact and gets no severity, your UNVERIFIED/BLOCKED discipline, built in.</li>
-      <li><strong>Machine-readable evidence:</strong> findings.json is schema-validated by deterministic scripts (validate-findings.cjs, validate-coverage-ledger.cjs), so a gate can consume it without trusting prose.</li>
-      <li><strong>Severity requires impact:</strong> likelihood × impact, not deviation from a checklist, and a missing second layer of defense is a hardening note, not a vulnerability. No inflated findings.</li>
-      <li><strong>Additive coverage ledger:</strong> repeated runs target gaps and revalidate changed source instead of starting over, the same way project-state.json carries evidence forward.</li>
+      <li><strong>Process as code:</strong> the workflow graph is diffable, reviewable and version-controlled, the same philosophy as gate_engine.py — the graph, not the agent, owns control flow.</li>
+      <li><strong>Human gates:</strong> approval gates pause for human decisions, matching your CEO_REVIEW rule that humans approve scope and commercial decisions.</li>
+      <li><strong>Evidence at every step:</strong> per-stage git checkpoints and durable run events give the trail your "evidence must be validated before advancing" rule needs.</li>
+      <li><strong>Honest cost data:</strong> automatic retros report real cost and duration per run, evidence you can attach to project-state instead of guessing.</li>
+      <li><strong>Compatibility status:</strong> plausible, untested. It complements the gate engine and never replaces it; no evidence yet that it reads project-state.json.</li>
     </ul>
   </section>
 
   <section>
     <h2>Limitations, Risks &amp; Human Review</h2>
     <ul>
-      <li>Token-heavy on large codebases; use guidance mode for focused questions and budget caps where your agent supports them; Cloudflare publishes no cost figures.</li>
-      <li>Without an OS-enforced sandbox, the skill keeps execution-dependent leads as needs_validation instead of running target code, which is the safe default, but it means dynamic vulnerabilities stay unproven unless you sandbox.</li>
-      <li>It does not replace dependency/secret scanners or your QA gate; a clean audit is necessary, never sufficient, and a project is not production-ready because the audit came back clean.</li>
-      <li>Few commits and no tagged releases: pin the exact commit you install; review the skill's prompt files before pointing them at client code.</li>
-      <li>Human review required: every confirmed finding needs a human read before client or release decisions; needs_validation items are open questions, not evidence of security.</li>
+      <li>"Dark factory" unattended runs are the selling point and the risk: an unattended agent in a fix loop can churn tokens and produce many commits. Keep client code out until you trust the workflow.</li>
+      <li>Nightly release cadence means churn; pin the version you install.</li>
+      <li>Native Windows unsupported: everything runs inside WSL2 on a Windows PC, which conveniently keeps untrusted code off Windows proper. Do not enable cloud sandboxes for the first test.</li>
+      <li>Cloud sandboxes (Daytona) are an external service; pricing unverified here.</li>
+      <li>Human review required at every approval gate and before merging any checkpoint branch; never grant unrestricted computer access; read the DOT graph before running it.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Test Today: run a guidance-mode audit on a small scratch repo (~30-60 minutes, Windows-friendly)</h2>
+    <h2>Test Today: plan-approve-implement on a scratch repo in WSL2 (~1-2 hours, Windows PC)</h2>
     <ul>
-      <li><strong>Prerequisites:</strong> Windows 10/11, Node.js (LTS), and an AI coding agent that supports tool use and parallel sub-agents (Claude Code, Codex CLI, Cursor, etc.) with the model access you already have. No new subscription required.</li>
-      <li><strong>Official installation steps (from the README):</strong> <code>npx skills add https://github.com/cloudflare/security-audit-skill --skill security-audit</code> (add <code>--global</code> for a user-level install). The Skills CLI handles agent selection; run <code>npx skills --help</code> for non-interactive options.</li>
-      <li><strong>Practical test:</strong> create a small scratch repo with a deliberately unsafe pattern (e.g. a Flask/Express endpoint that concatenates user input into a query or shell command, plus a hardcoded API key). Start your agent in that repo and ask a guidance-mode question first ("is the input handling in ./src safe?"), then request a full audit: "security audit this codebase, output to ~/audits/scratch".</li>
-      <li><strong>Expected results:</strong> an output directory with <code>coverage-ledger.json</code>, <code>findings.json</code> (schema-validated), and REPORT.md / FINDINGS-DETAIL.md / NEEDS-VALIDATION.md; the injection and hardcoded-secret patterns should appear as candidates, with at least one surviving adversarial validation and others marked rejected or needs_validation.</li>
-      <li><strong>Safety precautions:</strong> scratch repo only, never client data; do not let the agent build or execute the target code (or do it only inside Windows Sandbox with networking off); expect a long run on big repos, so keep the target small; pin the commit; read the skill's files before installing.</li>
+      <li><strong>Prerequisites:</strong> WSL2 with Ubuntu, git, gh CLI authenticated, and Claude Code or Codex inside WSL (your existing model subscription; nothing new required).</li>
+      <li><strong>Official installation steps (from the README):</strong> <code>curl -fsSL https://fabro.sh/install.sh | bash</code> (or the Claude Code / Codex one-liners), then run <code>fabro server start</code> and finish the setup wizard in your browser.</li>
+      <li><strong>Practical test:</strong> in a scratch repo, create the README's plan-approve-implement workflow for a tiny feature ("add a word-count CLI"). Run it. Decline the first plan at the human gate to confirm pausing works, then approve and let it implement and verify.</li>
+      <li><strong>Expected results:</strong> the runs board shows stages; per-stage git checkpoint branches appear; a retro reports cost and duration; a verification failure should trigger the automatic fix loop.</li>
+      <li><strong>Safety precautions:</strong> everything inside WSL2; no cloud sandboxes; scratch repo only; bind the local server to localhost; review the DOT graph before executing; pin the installed version.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Agency OS Integration Proposal: the skill as the SECURITY stage's evidence generator</h2>
+    <h2>Agency OS Integration Proposal: Fabro's graph engine for the DEVELOPMENT → QA fix loop</h2>
     <ul>
-      <li><strong>Problem solved:</strong> the security agent currently produces prose opinions with no coverage accounting and no independent check, so SECURITY gate evidence is uneven and unauditable.</li>
-      <li><strong>Workflow/agent improved:</strong> the security agent's audit step, at the SECURITY stage, fed by artifacts from SPECIFICATION/ARCHITECTURE and feeding CEO_REVIEW.</li>
-      <li><strong>Lifecycle stage:</strong> SECURITY (with reconnaissance evidence reusable at ARCHITECTURE and reports consumed at CEO_REVIEW). Additive only.</li>
-      <li><strong>Inputs:</strong> the repository at the SECURITY gate. <strong>Outputs:</strong> architecture.md, coverage-ledger.json, findings.json (confirmed / needs_validation / rejected), and the three report files.</li>
-      <li><strong>How results are validated:</strong> the skill's own deterministic validators check schema and coverage; under Agency OS rules, confirmed findings are marked VERIFIED only after the independent verifier's transcript exists, needs_validation items are UNVERIFIED/BLOCKED, and a human re-reads REPORT.md before the gate advances. project-state.json stays authoritative.</li>
-      <li><strong>What happens on failure:</strong> unproven leads stay needs_validation and the SECURITY gate stays BLOCKED; nothing auto-advances, and open needs_validation items must be resolved or explicitly waived by a human.</li>
-      <li><strong>Gate or human approval?</strong> It feeds the existing SECURITY gate; it adds no gate and replaces none (gate_engine.py and advance_gate.ps1 unchanged). Human approval is still required to waive findings and accept client delivery.</li>
-      <li><strong>Smallest safe experiment:</strong> today's scratch-repo test above, zero changes to any Agency OS script; adopt into the security agent's runbook only after findings.json quality is confirmed on your own code.</li>
+      <li><strong>Problem solved:</strong> the orchestrator currently relies on prompts to keep the dev → QA loop disciplined; nothing deterministically enforces the loop or records per-stage evidence.</li>
+      <li><strong>Workflow improved:</strong> the orchestrator's DEVELOPMENT → QA loop, run by the dev and QA agents.</li>
+      <li><strong>Lifecycle point:</strong> DEVELOPMENT and QA, with human gates feeding CEO_REVIEW.</li>
+      <li><strong>Inputs and outputs:</strong> a spec from SPECIFICATION plus a DOT workflow in; git checkpoint branches, per-run durable events, pass/fail verification evidence and retros out.</li>
+      <li><strong>How results are validated:</strong> gate_engine.py consumes verification-node results and git checkpoints as evidence before the SECURITY transition; runs without validated evidence stay UNVERIFIED.</li>
+      <li><strong>What happens on failure:</strong> the fix loop runs inside Fabro; if retries exhaust, the stage is BLOCKED and returns to the dev agent. Nothing auto-waives.</li>
+      <li><strong>Gate or human approval:</strong> it feeds existing gates and replaces nothing (gate_engine.py, advance_gate.ps1 unchanged). Human approval still required at plan gates, scope changes and release.</li>
+      <li><strong>Smallest safe experiment:</strong> today's WSL2 scratch test, then compare Fabro's event and checkpoint outputs against what precommit_check.py expects as evidence. Zero changes to Agency OS scripts.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Daily Learning: adversarial validation ("the agent that checks a finding is never the agent that found it")</h2>
+    <h2>Daily Learning: process as code ("the graph, not the agent, owns control flow")</h2>
     <ul>
-      <li><strong>Concept (simple English):</strong> an agent that discovers a bug is invested in it; it tends to confirm its own discovery. Adversarial validation hands each candidate to a fresh agent whose only job is to disprove it, so only findings that survive a hostile check are reported as real.</li>
-      <li><strong>How an AI agent might get it wrong:</strong> it "verifies" its own finding in the same session, recycling its own reasoning as proof, so a hallucinated vulnerability gets labeled confirmed, or a real one gets waved away.</li>
-      <li><strong>How you recognize the failure:</strong> the finding and its confirmation come from one context (no separate verifier transcript), the confirmation restates the claim instead of testing it, or no needs_validation/rejected records exist at all (a red flag: nothing was ever disproven).</li>
-      <li><strong>What detects it:</strong> the skill's Phase 3/5 structure plus its deterministic validators; under Agency OS rules, any security claim without an independent verifier's output stays UNVERIFIED, and the SECURITY gate stays BLOCKED.</li>
+      <li><strong>Concept (simple English):</strong> the workflow graph defines what happens next; agents only execute nodes inside it. Control flow becomes reviewable source code instead of an agent's judgment.</li>
+      <li><strong>How an AI agent might get it wrong:</strong> it improvises "helpful" steps outside the graph — writing code during a plan node, skipping a verification step, or committing outside the checkpoint pattern.</li>
+      <li><strong>How you recognize the failure:</strong> stage outputs are missing or out of order, or git history shows commits that don't match the stage checkpoints.</li>
+      <li><strong>What detects it:</strong> Fabro's durable run events plus git checkpoint inspection; under Agency OS rules, the gate engine rejects any transition whose expected artifact is absent.</li>
     </ul>
   </section>
 
   <section>
     <h2>Final Summary</h2>
     <ul>
-      <li><strong>Best discovery today:</strong> <a href="https://github.com/cloudflare/security-audit-skill">cloudflare/security-audit-skill</a> (MIT), Cloudflare's open-sourced six-phase security audit skill for coding agents, trending today Nov 8, 2026. Verdict: TEST NOW (Windows plausible; only needs Node.js plus your existing agent).</li>
-      <li><strong>Best security/reliability improvement:</strong> adversarially validated, machine-readable security findings (findings.json + coverage ledger) that make the SECURITY gate's evidence auditable instead of a prose opinion; pair it with your existing dependency and secret scanners, it does not replace them.</li>
-      <li><strong>Best Agency OS integration:</strong> use the skill as the security agent's evidence generator at the SECURITY stage, findings.json in, gate engine and human approvals unchanged, needs_validation items keep the gate BLOCKED until resolved or waived.</li>
-      <li><strong>One practical action today:</strong> install the skill with the Skills CLI and run a guidance-mode security question plus one full audit on a small scratch repo on your Windows PC, then read findings.json and check that every confirmed finding has an independent verifier behind it.</li>
+      <li><strong>Best discovery today:</strong> <a href="https://github.com/fabro-sh/fabro">fabro-sh/fabro</a> (MIT) — a deterministic, human-gated software factory in a single Rust binary, latest commit Nov 5, 2026. Verdict: TEST NOW (via WSL2 on Windows; native Windows unsupported per official docs).</li>
+      <li><strong>Best security/reliability improvement:</strong> per-stage git checkpointing and deterministic verification nodes that make every run inspectable, resumable and revertible.</li>
+      <li><strong>Best Agency OS integration:</strong> use Fabro's graph engine for the orchestrator's DEVELOPMENT → QA fix loop, with evidence flowing into gate_engine.py, which stays authoritative and unchanged.</li>
+      <li><strong>One practical action today:</strong> install Fabro in WSL2 and run the plan-approve-implement workflow on a scratch repo, testing the human gate and the automatic fix loop.</li>
     </ul>
   </section>
 </div>
