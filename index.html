@@ -41,86 +41,67 @@
 
   <section>
     <h2>Start Here (plain English)</h2>
-    <p><strong>The problem:</strong> a vibe coder's biggest silent risk is an AI agent grading its own work. The same agent writes the code, writes the tests, and "reviews" the result — and reports success. Clients find out later, in production.</p>
-    <p><strong>The solution in today's radar:</strong> five verified discoveries that separate authorship from review, automate security and device testing honestly, and turn reusable admin panels into a deliverable. The star is <a href="https://github.com/the-open-engine/zeroshot">zeroshot</a>, an MIT-licensed orchestration engine whose whole purpose is "keeping coding agents from grading their own work."</p>
-    <p class="muted">Format note: the five-discovery daily format was requested for Nov 10, 2026, expanding the single-factory format. Repo facts, licenses, releases and commits verified directly from GitHub on Nov 10, 2026. Prior reports (Nov 3-9) featured Orkas, dsh-superagent, Betterleaks, Spec Kit, CodeAF and Fabro; none of today's five are repeats. Agency OS compatibility is marked verified/plausible/untested, never assumed.</p>
+    <p><strong>The problem:</strong> a vibe coder's biggest silent risk is an AI agent grading its own work. The same agent writes the code, writes the tests, and "reviews" the result — then reports success. The client finds out later, in production. Babysitting every step kills your throughput; walking away kills your credibility.</p>
+    <p><strong>The solution in today's radar:</strong> <a href="https://github.com/the-open-engine/zeroshot">zeroshot</a>, an MIT-licensed workflow engine for coding agents. You write your development and QA process as a graph of implementation, independent review, testing, repair and delivery. Agents do the work; the graph decides what happens next, and the engine enforces its transitions and retry limits. A different agent reviews every change, and no change merges until tests and both reviews pass.</p>
+    <p class="muted">One featured factory per day, per the format confirmed Nov 5, 2026 (re-confirmed Nov 10, 2026: today's earlier five-discovery version was replaced by this single-factory briefing). Repo facts, license, releases and commits verified directly from GitHub and the official docs (zeroshot.sh) on Nov 10, 2026. Prior reports (Nov 3-9) featured Orkas, dsh-superagent, Betterleaks, Spec Kit, CodeAF and Fabro, so today's factory is not a repeat. Agency OS compatibility is marked plausible/untested, never assumed.</p>
   </section>
 
   <section>
-    <h2>Five Discoveries (verified Nov 10, 2026)</h2>
+    <h2>The Featured Factory: Zeroshot <span class="badge b-test">TEST NOW</span></h2>
     <ul>
-      <li><strong>1. Zeroshot</strong> <span class="badge b-test">TEST NOW</span> — <a href="https://github.com/the-open-engine/zeroshot">github.com/the-open-engine/zeroshot</a>
-        <ul>
-          <li><strong>What it does:</strong> a multi-agent orchestration engine that keeps coding agents from grading their own work. One agent implements, a different agent reviews, tests must pass, and both must approve before a PR is created; CI must pass before merge.</li>
-          <li><strong>What changed recently:</strong> release <a href="https://github.com/the-open-engine/zeroshot/releases/tag/v13.1.0">v13.1.0</a> published today (Nov 10, 04:51 UTC); latest commit today. This is an update to an established, fast-moving project, not a new project.</li>
-          <li><strong>Why it matters to a vibe coder:</strong> it mechanizes exactly the discipline a solo agency needs — no self-review, evidence before merge.</li>
-          <li><strong>License (verified from LICENSE file):</strong> MIT.</li>
-          <li><strong>Costs:</strong> free software; real cost is your existing Claude Code / Codex model subscription. No external service required.</li>
-          <li><strong>Windows:</strong> installs via npm (<code>npm install -g @the-open-engine-company/zeroshot</code>); the repo's own CI includes a native Windows test lane (verified from a commit message). Plausible Windows support, untested here.</li>
-          <li><strong>Agency OS fit:</strong> supports the QA stage and the dev agent — author/reviewer separation. Evidence output: reviewer verdicts plus test pass/fail per run. Feeds gate_engine.py; compatibility plausible, untested.</li>
-          <li><strong>Limitations &amp; human review:</strong> fast release cadence (pin the version); a reviewer agent can still be wrong — human review stays mandatory at gates; verdict TEST NOW.</li>
-        </ul>
-      </li>
-      <li><strong>2. agent-device</strong> <span class="badge b-test">TEST NOW</span> — <a href="https://github.com/callstack/agent-device">github.com/callstack/agent-device</a>
-        <ul>
-          <li><strong>What it does:</strong> an open-source device layer for AI coding agents — a CLI, MCP server and typed Node.js API that let agents control and test mobile, web, TV and desktop apps on real devices or simulators, locally.</li>
-          <li><strong>What changed recently:</strong> commits Nov 9: a verify-evidence contract fix so "no baseline captured" is no longer reported as "screen unchanged", plus an ADR citation guard. Release v0.21.36 on Nov 2.</li>
-          <li><strong>Why it matters to a vibe coder:</strong> your QA agent gets real UI-E2E evidence (screenshots, interaction proof) instead of claiming the app works.</li>
-          <li><strong>License (verified from LICENSE file):</strong> MIT.</li>
-          <li><strong>Costs:</strong> free; local-first. Mobile device clouds exist as optional external services (unverified pricing).</li>
-          <li><strong>Windows:</strong> Node/npm CLI works on Windows for web and desktop targets; mobile needs emulators (Android emulator or macOS for iOS) — untested here.</li>
-          <li><strong>Agency OS fit:</strong> QA agent, UI-E2E coverage. Evidence output: interaction evidence with explicit verify flags. Compatibility plausible, untested.</li>
-          <li><strong>Limitations &amp; human review:</strong> recent commits show it treats missing evidence honestly — but a human still reviews what the agent claims it saw; verdict TEST NOW.</li>
-        </ul>
-      </li>
-      <li><strong>3. Xalgorix</strong> <span class="badge b-invest">INVESTIGATE</span> — <a href="https://github.com/xalgorix/xalgorix">github.com/xalgorix/xalgorix</a>
-        <ul>
-          <li><strong>What it does:</strong> an autonomous AI penetration-testing platform: reconnaissance, vulnerability detection and exploit-verified findings, running on your machine with your own LLM key or fully local with Ollama. Findings stay on your infrastructure.</li>
-          <li><strong>What changed recently:</strong> release v4.6.184 on Nov 9; a Nov 8 commit fixed 22 govulncheck-reported reachable dependency vulnerabilities in its own code — a good dogfooding sign.</li>
-          <li><strong>Why it matters to a vibe coder:</strong> security evidence that is exploit-verified, not guessed, for the SECURITY stage.</li>
-          <li><strong>License (verified from LICENSE file):</strong> Apache-2.0.</li>
-          <li><strong>Costs:</strong> free software with your own model; optional Xalgorix Cloud packs from $10 (external paid service) and a free GitHub App for PR reviews.</li>
-          <li><strong>Windows:</strong> official platform badge is Linux | macOS; no native Windows — WSL2 route plausible, untested.</li>
-          <li><strong>Agency OS fit:</strong> security agent, SECURITY stage. Evidence output: verified findings report. Compatibility untested.</li>
-          <li><strong>Limitations &amp; human review:</strong> pentesting tools must only run on systems you own or are authorized to test; findings need human triage before any client report; verdict INVESTIGATE.</li>
-        </ul>
-      </li>
-      <li><strong>4. amux</strong> <span class="badge b-invest">INVESTIGATE</span> — <a href="https://github.com/mixpeek/amux">github.com/mixpeek/amux</a>
-        <ul>
-          <li><strong>What it does:</strong> an agent control plane: runs Claude Code, Codex and Gemini CLI agents in parallel from one dashboard or your phone, with a shared task board, schedules and usage-limit recovery.</li>
-          <li><strong>What changed recently:</strong> active today (Nov 10): reliability fixes to its landing workflow and lease handling, plus README clarifications that it is self-hosted/source-available, not fully open source.</li>
-          <li><strong>Why it matters to a vibe coder:</strong> parallel agents with one task board is the orchestrator pattern Agency OS already follows conceptually.</li>
-          <li><strong>License (verified from LICENSE file):</strong> MIT + Commons Clause — free to use, modify and self-host, but you may not sell amux itself. Internal agency use is fine; reselling it as a service is not.</li>
-          <li><strong>Costs:</strong> free software; your model subscriptions are the cost. amux Cloud is a separate hosted option (unverified pricing).</li>
-          <li><strong>Windows:</strong> native apps are Mac/iPhone/iPad; any browser (including on Android and Windows) can use the dashboard against a self-hosted server — but self-host docs cover Linux services and macOS; Windows hosting unverified. Untested.</li>
-          <li><strong>Agency OS fit:</strong> orchestrator / multi-agent coordination. Evidence output: task board state, session records. Compatibility untested.</li>
-          <li><strong>Limitations &amp; human review:</strong> Commons Clause and young project; unattended parallel agents burn tokens; verdict INVESTIGATE.</li>
-        </ul>
-      </li>
-      <li><strong>5. Appsmith</strong> <span class="badge b-invest">INVESTIGATE</span> — <a href="https://github.com/appsmithorg/appsmith">github.com/appsmithorg/appsmith</a>
-        <ul>
-          <li><strong>What it does:</strong> build admin panels, internal tools and dashboards visually, connected to 25+ databases and any API — the classic small-business back office, without writing a frontend from scratch.</li>
-          <li><strong>What changed recently:</strong> release v2.6.0 on Oct 28; commits today (Nov 10): object events for partial application import/export, and a fix so a hotfix on an older line can no longer move the Docker <code>latest</code> tag backwards.</li>
-          <li><strong>Why it matters to a vibe coder:</strong> a reusable business-app shell you can deliver to many clients — the REUSABLE_COMPONENT stage in real life.</li>
-          <li><strong>License (verified from LICENSE file):</strong> Apache-2.0 (Community Edition).</li>
-          <li><strong>Costs:</strong> free self-hosted CE; Appsmith Cloud and enterprise features are paid external services.</li>
-          <li><strong>Windows:</strong> no native install; runs via Docker Desktop on Windows. Unverified on this PC.</li>
-          <li><strong>Agency OS fit:</strong> REUSABLE_COMPONENT stage, dev agent deliverable. Evidence output: the running panel plus its git-exportable app definition. Compatibility untested.</li>
-          <li><strong>Limitations &amp; human review:</strong> Docker hosting cost/complexity; auth and access control must be configured and reviewed before real client data; verdict INVESTIGATE.</li>
-        </ul>
-      </li>
+      <li><strong>Link:</strong> <a href="https://github.com/the-open-engine/zeroshot">github.com/the-open-engine/zeroshot</a> · docs: <a href="https://zeroshot.sh/docs/">zeroshot.sh/docs</a></li>
+      <li><strong>License (verified from the LICENSE file):</strong> MIT.</li>
+      <li><strong>Verified repo facts (GitHub, Nov 10, 2026):</strong> ~2,100 stars; release <a href="https://github.com/the-open-engine/zeroshot/releases/tag/v13.1.0">v13.1.0</a> published today (Nov 10, 04:51 UTC) and commits today, including a fix that removes secret-bearing temporary store files left behind by interrupted saves. This is an update to an established, fast-moving project, not a new project.</li>
+      <li><strong>What it does (simple English):</strong> an open-source workflow engine for coding agents. You define your process as a graph (implementation → independent review → adversarial test → PR → CI → merge, with repair loops on every rejection); the engine runs it with your agents, records every step's result in a run ledger, and cannot be talked out of the graph by the model — "model output cannot add an edge or raise a bound." Built-in graphs include software-change (implement + acceptance review + code review + repair + deliver), single-worker, pr-review, code-review and auto-research. Runs locally in any folder or on self-hosted targets.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> it mechanizes exactly the discipline a one-person agency needs — no self-review, independent rejection paths, evidence (the run ledger) before anything merges — without renting a platform.</li>
+      <li><strong>Costs (verified status):</strong> the software is free (MIT). Real costs are your model provider APIs (Claude Code / Codex subscriptions or tokens). No external cloud service is required for local runs. Open source ≠ free model access.</li>
+      <li><strong>Windows compatibility:</strong> installs via npm (<code>npm install -g @the-open-engine-company/zeroshot</code>); the repo's CI includes a native Windows test lane (verified from a commit message). Windows status: plausible, UNTESTED on this PC.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Best Tool to Test Today: Zeroshot on a scratch repo (~1 hour, Windows PC)</h2>
+    <h2>The Factory Map: Zeroshot mapped onto the Agency OS lifecycle</h2>
+    <table>
+      <tr><th>Agency OS stage</th><th>Zeroshot feature</th><th>Artifact produced</th><th>Which gate consumes it</th></tr>
+      <tr><td>DEVELOPMENT</td><td>Implementer node (software-change graph)</td><td>Code changes</td><td>QA gate input</td></tr>
+      <tr><td>QA</td><td>Independent acceptance review + code review + adversarial test, with repair loops</td><td>Reviewer verdicts and test pass/fail per run, in the run ledger</td><td>QA gate; failures loop back through repair</td></tr>
+      <tr><td>RELEASE (partial)</td><td>PR → CI → merge route</td><td>Merged PR with green CI</td><td>Release gate input</td></tr>
+      <tr><td>REUSABLE_COMPONENT (partial)</td><td>Reusable workflow profiles (process templates, not code components)</td><td>Saved profiles replayed across tasks</td><td>Maintenance review</td></tr>
+      <tr><td>LEAD / DISCOVERY / PROBLEM_DEFINITION / PROPOSAL / SPECIFICATION / ARCHITECTURE / CEO_REVIEW / SECURITY / MAINTENANCE</td><td>No coverage (honest gap)</td><td>—</td><td>—</td></tr>
+    </table>
+    <p class="muted">Verified gaps from the official docs: the built-in graphs replace "you, reading the diff" with agent review — there is no human approval gate inside the engine, and no security scanning stage. Under Agency OS rules the human stays in CEO_REVIEW and the security scanner stays external.</p>
+  </section>
+
+  <section>
+    <h2>Why It Fits Agency OS</h2>
     <ul>
-      <li><strong>Why this one:</strong> pure npm install, no Docker, no WSL, no new subscription — it drives the Claude Code or Codex CLI you already pay for.</li>
-      <li><strong>Prerequisites:</strong> Windows PC, Node.js (npm), and Claude Code or Codex CLI already installed and authenticated.</li>
-      <li><strong>Official installation step (from the README):</strong> <code>npm install -g @the-open-engine-company/zeroshot</code>. It also offers plugin/MCP connections for Claude Code, Codex and ChatGPT.</li>
-      <li><strong>Practical test:</strong> in a scratch repo, run a tiny feature (for example "a word-count CLI") through a graph where one agent implements and a different agent reviews, with tests required. Verify the reviewer can reject the first draft and force a revision.</li>
-      <li><strong>Expected results:</strong> a run record showing independent reviewer verdicts and test pass/fail evidence; a first-draft rejection proves the separation works.</li>
-      <li><strong>Safety precautions:</strong> scratch repo only; scoped permissions, never unrestricted computer access; pin v13.1.0; read the workflow before running it; expect fast release churn.</li>
+      <li><strong>Process as code:</strong> the graph, not the agent, owns control flow — the same philosophy as gate_engine.py, and the engine enforces transitions and retry limits the way your gate engine enforces lifecycle transitions.</li>
+      <li><strong>No invented authority:</strong> model output cannot add edges or raise bounds — an agent cannot talk its way past the process, matching your "agents must never invent facts/approvals/evidence" rule.</li>
+      <li><strong>Evidence before advancing:</strong> every step's result is recorded in the run ledger, giving the trail your "evidence must be validated before advancing" rule needs.</li>
+      <li><strong>Author/reviewer separation:</strong> a different agent reviews every change, attacking the self-grading failure mode directly.</li>
+      <li><strong>Compatibility status:</strong> plausible, untested. It complements the gate engine and never replaces it; no evidence yet that it reads project-state.json.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Limitations, Risks &amp; Human Review</h2>
+    <ul>
+      <li>No human approval gate in the built-in graphs: agent reviews replace you reading the diff. Under Agency OS rules, CEO_REVIEW, scope changes, waivers, client acceptance and release still require a human — keep those in the gate engine.</li>
+      <li>A reviewer agent can still be wrong or rubber-stamp; the run ledger makes that visible, but a human still reviews verdicts at gates.</li>
+      <li>Fast release cadence (v13.0.0 and v13.1.0 one day apart): pin the version you install.</li>
+      <li>Runs continue after the terminal closes and consume model tokens; keep first runs on a scratch repo with scoped permissions, never unrestricted computer access.</li>
+      <li>Windows is plausible (npm + CI lane) but untested on this PC.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Test Today: the built-in software-change graph on a scratch repo (~1 hour, Windows PC)</h2>
+    <ul>
+      <li><strong>Prerequisites:</strong> Node.js (npm), and Claude Code or Codex CLI already installed and authenticated (your existing subscription; nothing new required).</li>
+      <li><strong>Official installation steps (from the docs):</strong> <code>npm install --global @the-open-engine-company/zeroshot</code>, then run a first task with the built-in <code>software-change</code> graph. <code>zeroshot ui</code> shows live runs and replays finished ones.</li>
+      <li><strong>Practical test:</strong> in a scratch repo, give it a tiny task (for example "add a word-count CLI"). Watch the acceptance and code reviews run in parallel and the repair loop trigger on rejection.</li>
+      <li><strong>Expected results:</strong> a run ledger showing independent reviewer verdicts, test pass/fail evidence, and at least one rejection repaired before delivery — proof the author/reviewer separation works.</li>
+      <li><strong>Safety precautions:</strong> scratch repo only; scoped permissions; pin v13.1.0; read the graph before running it; never grant unrestricted computer access.</li>
     </ul>
   </section>
 
@@ -128,23 +109,13 @@
     <h2>Agency OS Integration Proposal: Zeroshot as the QA-stage author/reviewer separation</h2>
     <ul>
       <li><strong>Problem solved:</strong> today the dev agent's QA evidence rests on prompts; nothing mechanistically prevents an agent from grading its own work.</li>
-      <li><strong>Workflow/agent improved:</strong> the orchestrator's DEVELOPMENT → QA loop — dev agent implements, a second agent reviews, tests gate both.</li>
+      <li><strong>Workflow improved:</strong> the orchestrator's DEVELOPMENT → QA loop — dev agent implements, a second agent reviews, tests gate both, repair loops on rejection.</li>
       <li><strong>Lifecycle point:</strong> DEVELOPMENT and QA, feeding the SECURITY transition.</li>
-      <li><strong>Inputs and outputs:</strong> spec from SPECIFICATION plus tests in; independent reviewer verdicts and test pass/fail evidence out, per run.</li>
+      <li><strong>Inputs and outputs:</strong> a spec from SPECIFICATION plus tests in; independent reviewer verdicts and test pass/fail evidence out, per run, from the run ledger.</li>
       <li><strong>How results are validated:</strong> gate_engine.py consumes zeroshot's reviewer and test evidence before allowing the QA → SECURITY transition; runs without validated evidence stay UNVERIFIED.</li>
-      <li><strong>What happens on failure:</strong> reviewer rejection or test failure loops back to the dev agent; exhausted retries mark the stage BLOCKED. Nothing auto-waives.</li>
-      <li><strong>Gate or human approval:</strong> it feeds existing gates and replaces nothing (gate_engine.py, advance_gate.ps1 unchanged). Human approval still required at CEO_REVIEW, scope changes, waivers and release.</li>
-      <li><strong>Smallest safe experiment:</strong> today's scratch-repo test, then compare zeroshot's run evidence against what precommit_check.py expects. Zero changes to Agency OS scripts.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Business Opportunity: Stock &amp; order dashboard for Addis Ababa small retailers (with Appsmith)</h2>
-    <ul>
-      <li><strong>Customer problem:</strong> small retail shops and pharmacies in Addis track stock and orders on paper or scattered spreadsheets, so stockouts and lost orders are routine and there is no single view of the business.</li>
-      <li><strong>Minimum viable service:</strong> a self-hosted Appsmith Community Edition admin panel (Apache-2.0) on the client's existing computer or a cheap VPS, connected to their data, with login roles for owner and staff.</li>
-      <li><strong>Delivery workflow:</strong> DISCOVERY (observe their paper process) → PROPOSAL (demo panel with sample data) → DEVELOPMENT (configure against their real data) → QA/UAT (their staff try it) → RELEASE → MAINTENANCE (monthly check-ins). Each stage's artifact feeds the gate engine as usual.</li>
-      <li><strong>Main risks:</strong> hosting and internet reliability; data-migration errors during onboarding; ongoing support expectations from non-technical owners; Appsmith Cloud would be a paid external service — keep it self-hosted. No revenue projections made here.</li>
+      <li><strong>What happens on failure:</strong> reviewer rejection or test failure routes back through repair; exhausted retries mark the stage BLOCKED and return to the dev agent. Nothing auto-waives.</li>
+      <li><strong>Gate or human approval:</strong> it feeds existing gates and replaces nothing (gate_engine.py, advance_gate.ps1 unchanged). Human approval still required at CEO_REVIEW, scope changes, waivers, client acceptance and release — zeroshot has no human gate, so those stay in your gate engine.</li>
+      <li><strong>Smallest safe experiment:</strong> today's scratch-repo test, then compare zeroshot's run-ledger evidence against what precommit_check.py expects. Zero changes to Agency OS scripts.</li>
     </ul>
   </section>
 
@@ -161,10 +132,10 @@
   <section>
     <h2>Final Summary</h2>
     <ul>
-      <li><strong>Best discovery today:</strong> <a href="https://github.com/the-open-engine/zeroshot">zeroshot</a> (MIT) — an orchestration engine that stops coding agents from grading their own work; v13.1.0 released today. Verdict: TEST NOW.</li>
-      <li><strong>Best security/reliability improvement:</strong> exploit-verified security findings from <a href="https://github.com/xalgorix/xalgorix">xalgorix</a> (Apache-2.0) and agent-device's honest "no baseline" evidence fix — evidence quality, not evidence quantity.</li>
+      <li><strong>Best discovery today:</strong> <a href="https://github.com/the-open-engine/zeroshot">zeroshot</a> (MIT) — a workflow engine for coding agents whose whole purpose is stopping agents from grading their own work; v13.1.0 released today. Verdict: TEST NOW.</li>
+      <li><strong>Best security/reliability improvement:</strong> the run ledger — every step's result recorded, model output unable to add edges or raise bounds — evidence you can hand to the gate engine instead of trusting an agent's word.</li>
       <li><strong>Best Agency OS integration:</strong> zeroshot's independent-reviewer loop feeding QA gate evidence into gate_engine.py, which stays authoritative and unchanged.</li>
-      <li><strong>One practical action today:</strong> npm install zeroshot and run a scratch-repo implement→review→test loop; confirm a first draft actually gets rejected.</li>
+      <li><strong>One practical action today:</strong> npm install zeroshot and run the built-in software-change graph on a scratch repo; confirm a first draft actually gets rejected and repaired.</li>
     </ul>
   </section>
 </div>
