@@ -36,106 +36,109 @@
   <header>
     <h1>Agency OS <span>Radar</span></h1>
     <div class="tagline">Daily open-source discoveries for a one-person AI software agency</div>
-    <div class="tagline date">Report date: Tuesday, November 10, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
+    <div class="tagline date">Report date: Wednesday, November 11, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
   </header>
 
   <section>
     <h2>Start Here (plain English)</h2>
-    <p><strong>The problem:</strong> a vibe coder's biggest silent risk is an AI agent grading its own work. The same agent writes the code, writes the tests, and "reviews" the result — then reports success. The client finds out later, in production. Babysitting every step kills your throughput; walking away kills your credibility.</p>
-    <p><strong>The solution in today's radar:</strong> <a href="https://github.com/the-open-engine/zeroshot">zeroshot</a>, an MIT-licensed workflow engine for coding agents. You write your development and QA process as a graph of implementation, independent review, testing, repair and delivery. Agents do the work; the graph decides what happens next, and the engine enforces its transitions and retry limits. A different agent reviews every change, and no change merges until tests and both reviews pass.</p>
-    <p class="muted">One featured factory per day, per the format confirmed Nov 5, 2026 (re-confirmed Nov 10, 2026: today's earlier five-discovery version was replaced by this single-factory briefing). Repo facts, license, releases and commits verified directly from GitHub and the official docs (zeroshot.sh) on Nov 10, 2026. Prior reports (Nov 3-9) featured Orkas, dsh-superagent, Betterleaks, Spec Kit, CodeAF and Fabro, so today's factory is not a repeat. Agency OS compatibility is marked plausible/untested, never assumed.</p>
+    <p><strong>The problem:</strong> a one-person agency juggling several client projects ends up running agents in five places: one in an IDE, one in a terminal, one on the laptop, one on a server, one triggered by a GitHub issue. Nothing connects them. Leads arrive in Slack and GitHub and sit there; dependency updates and code review pile up; agents die when the laptop lid closes.</p>
+    <p><strong>The solution in today's radar:</strong> <a href="https://github.com/OpenHands/OpenHands">OpenHands</a>, an MIT-licensed self-hosted "Agent Canvas": one developer control center where your coding agents (OpenHands, Claude Code, Codex, Gemini, Pi, OpenCode, or any Agent-Client-Protocol agent) run across local, Docker, VM or cloud backends, and where automations respond to GitHub issues, Slack messages and schedules — like decomposing a GitHub issue into tasks, or running recurring code-review and dependency-update agents.</p>
+    <p class="muted">One featured factory per day, per the format confirmed Nov 5, 2026 (re-confirmed Nov 10, 2026). Repo facts, license, release and commit activity verified directly from GitHub on Nov 11, 2026. Prior reports featured Orkas, dsh-superagent, Betterleaks, Spec Kit, CodeAF, Fabro, zeroshot and dzhng/skills, so today's factory is not a repeat. Agency OS compatibility is marked plausible/untested, never assumed.</p>
   </section>
 
   <section>
-    <h2>The Featured Factory: Zeroshot <span class="badge b-test">TEST NOW</span></h2>
+    <h2>The Featured Factory: OpenHands (Agent Canvas) <span class="badge b-test">TEST NOW</span></h2>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/the-open-engine/zeroshot">github.com/the-open-engine/zeroshot</a> · docs: <a href="https://zeroshot.sh/docs/">zeroshot.sh/docs</a></li>
+      <li><strong>Link:</strong> <a href="https://github.com/OpenHands/OpenHands">github.com/OpenHands/OpenHands</a> · docs: <a href="https://docs.openhands.dev">docs.openhands.dev</a></li>
       <li><strong>License (verified from the LICENSE file):</strong> MIT.</li>
-      <li><strong>Verified repo facts (GitHub, Nov 10, 2026):</strong> ~2,100 stars; release <a href="https://github.com/the-open-engine/zeroshot/releases/tag/v13.1.0">v13.1.0</a> published today (Nov 10, 04:51 UTC) and commits today, including a fix that removes secret-bearing temporary store files left behind by interrupted saves. This is an update to an established, fast-moving project, not a new project.</li>
-      <li><strong>What it does (simple English):</strong> an open-source workflow engine for coding agents. You define your process as a graph (implementation → independent review → adversarial test → PR → CI → merge, with repair loops on every rejection); the engine runs it with your agents, records every step's result in a run ledger, and cannot be talked out of the graph by the model — "model output cannot add an edge or raise a bound." Built-in graphs include software-change (implement + acceptance review + code review + repair + deliver), single-worker, pr-review, code-review and auto-research. Runs locally in any folder or on self-hosted targets.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> it mechanizes exactly the discipline a one-person agency needs — no self-review, independent rejection paths, evidence (the run ledger) before anything merges — without renting a platform.</li>
-      <li><strong>Costs (verified status):</strong> the software is free (MIT). Real costs are your model provider APIs (Claude Code / Codex subscriptions or tokens). No external cloud service is required for local runs. Open source ≠ free model access.</li>
-      <li><strong>Windows compatibility:</strong> installs via npm (<code>npm install -g @the-open-engine-company/zeroshot</code>); the repo's CI includes a native Windows test lane (verified from a commit message). Windows status: plausible, UNTESTED on this PC.</li>
+      <li><strong>Verified repo facts (GitHub, Nov 11, 2026):</strong> ~93.2k stars, 12.5k forks, 626 contributors, 9,049 commits. Release <a href="https://github.com/OpenHands/OpenHands/releases/tag/v1.38.0">v1.38.0</a> published Nov 10, 2026, and multiple commits today (Nov 11), including a dependabot security bump of the <code>ws</code> package to 8.22.1 and a Windows-npm-install E2E CI job added Nov 3. This is an update to a long-established, fast-moving project, not a new project.</li>
+      <li><strong>What it does (simple English):</strong> a self-hosted control center for coding agents. One canvas starts conversations with your agents and runs automations on schedules or webhook events (GitHub, Slack, Linear, Notion integrations). Agents run by default on your own machine, or sandboxed in Docker, or on remote/cloud backends — and you switch between backends without losing the session. "Bring your own model": any LLM via API key. It also runs third-party agents (Claude Code, Codex, Gemini CLI) through the Agent-Client Protocol.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> it is the "always-on engineering team" half of Agency OS — leads and issues arriving in GitHub/Slack get decomposed and worked without you opening five tools, and agents keep running on a server even when your laptop is shut.</li>
+      <li><strong>Costs (verified status):</strong> the software is free (MIT). Real costs are your model API keys or subscriptions (BYO model), plus any server/VM you self-host on. Optional OpenHands Cloud hosting is a paid service you do not need for local use. Open source ≠ free model access.</li>
+      <li><strong>Windows compatibility:</strong> dedicated <a href="https://github.com/OpenHands/OpenHands/blob/main/README.windows.md">README.windows.md</a> with a PowerShell quickstart, Docker Desktop sandbox instructions, and a Windows npm-install E2E CI lane added Nov 3, 2026. Windows status: verified in the project's CI, UNTESTED on this PC.</li>
     </ul>
   </section>
 
   <section>
-    <h2>The Factory Map: Zeroshot mapped onto the Agency OS lifecycle</h2>
+    <h2>The Factory Map: OpenHands Agent Canvas mapped onto the Agency OS lifecycle</h2>
     <table>
-      <tr><th>Agency OS stage</th><th>Zeroshot feature</th><th>Artifact produced</th><th>Which gate consumes it</th></tr>
-      <tr><td>DEVELOPMENT</td><td>Implementer node (software-change graph)</td><td>Code changes</td><td>QA gate input</td></tr>
-      <tr><td>QA</td><td>Independent acceptance review + code review + adversarial test, with repair loops</td><td>Reviewer verdicts and test pass/fail per run, in the run ledger</td><td>QA gate; failures loop back through repair</td></tr>
-      <tr><td>RELEASE (partial)</td><td>PR → CI → merge route</td><td>Merged PR with green CI</td><td>Release gate input</td></tr>
-      <tr><td>REUSABLE_COMPONENT (partial)</td><td>Reusable workflow profiles (process templates, not code components)</td><td>Saved profiles replayed across tasks</td><td>Maintenance review</td></tr>
-      <tr><td>LEAD / DISCOVERY / PROBLEM_DEFINITION / PROPOSAL / SPECIFICATION / ARCHITECTURE / CEO_REVIEW / SECURITY / MAINTENANCE</td><td>No coverage (honest gap)</td><td>—</td><td>—</td></tr>
+      <tr><th>Agency OS stage</th><th>OpenHands feature</th><th>Artifact produced</th><th>Which gate consumes it</th></tr>
+      <tr><td>LEAD / DISCOVERY</td><td>Automations triggered by GitHub issues and Slack events</td><td>Task decompositions and conversation threads</td><td>Discovery gate input</td></tr>
+      <tr><td>PROBLEM_DEFINITION (partial)</td><td>Issue-decomposition automation ("automatically decomposing GitHub issues into tasks", per the README)</td><td>Task list from an issue</td><td>Problem-definition gate input</td></tr>
+      <tr><td>DEVELOPMENT</td><td>OpenHands agent or ACP agent (Claude Code, Codex, etc.) running in a local/Docker/remote sandbox</td><td>Code changes in the mounted workspace</td><td>QA gate input</td></tr>
+      <tr><td>QA (partial)</td><td>Agent code-review automations (docs mention shared agents for code review)</td><td>Review comments</td><td>QA gate input</td></tr>
+      <tr><td>MAINTENANCE (partial)</td><td>Recurring dependency-update automations, scheduled runs</td><td>Dependency PRs / reports</td><td>Maintenance review</td></tr>
+      <tr><td>REUSABLE_COMPONENT (partial)</td><td>Reusable automations and workflows (templates, not code components)</td><td>Saved automations replayed across projects</td><td>Maintenance review</td></tr>
+      <tr><td>PROPOSAL / SPECIFICATION / ARCHITECTURE / SECURITY / CEO_REVIEW / RELEASE</td><td>No coverage (honest gap)</td><td>—</td><td>—</td></tr>
     </table>
-    <p class="muted">Verified gaps from the official docs: the built-in graphs replace "you, reading the diff" with agent review — there is no human approval gate inside the engine, and no security scanning stage. Under Agency OS rules the human stays in CEO_REVIEW and the security scanner stays external.</p>
+    <p class="muted">Verified gaps from the README and docs: there is no specification, architecture, security-scanning or release-approval stage, and no gate engine inside Agent Canvas. Under Agency OS rules the human stays in CEO_REVIEW and the gate engine stays authoritative; Agent Canvas is the execution surface, never the governor.</p>
   </section>
 
   <section>
     <h2>Why It Fits Agency OS</h2>
     <ul>
-      <li><strong>Process as code:</strong> the graph, not the agent, owns control flow — the same philosophy as gate_engine.py, and the engine enforces transitions and retry limits the way your gate engine enforces lifecycle transitions.</li>
-      <li><strong>No invented authority:</strong> model output cannot add edges or raise bounds — an agent cannot talk its way past the process, matching your "agents must never invent facts/approvals/evidence" rule.</li>
-      <li><strong>Evidence before advancing:</strong> every step's result is recorded in the run ledger, giving the trail your "evidence must be validated before advancing" rule needs.</li>
-      <li><strong>Author/reviewer separation:</strong> a different agent reviews every change, attacking the self-grading failure mode directly.</li>
-      <li><strong>Compatibility status:</strong> plausible, untested. It complements the gate engine and never replaces it; no evidence yet that it reads project-state.json.</li>
+      <li><strong>One connected factory, not a toolbox:</strong> the canvas connects lead intake (GitHub/Slack), agent execution, review automations and maintenance schedules into one always-on surface — exactly the connected end-to-end workflow the radar format asks for.</li>
+      <li><strong>Bring your own agent and model:</strong> it does not lock you into one provider; your existing Claude Code/Codex subscriptions and API keys stay valid, and switching agents does not discard session state.</li>
+      <li><strong>Sandboxing by default:</strong> the documented "with a Docker Sandbox" mode keeps agent file access inside a mounted workspace — aligned with your scoped-permission rule. (The no-sandbox mode grants full filesystem access and must be avoided.)</li>
+      <li><strong>Event-driven intake:</strong> automations respond to real webhook events rather than invented ones — consistent with "agents must never invent facts/approvals/evidence": a run without a triggering event does not exist.</li>
+      <li><strong>Compatibility status:</strong> plausible, untested. Nothing in the docs shows it reads project-state.json or enforces lifecycle gates, so it complements gate_engine.py and never replaces it.</li>
     </ul>
   </section>
 
   <section>
     <h2>Limitations, Risks &amp; Human Review</h2>
     <ul>
-      <li>No human approval gate in the built-in graphs: agent reviews replace you reading the diff. Under Agency OS rules, CEO_REVIEW, scope changes, waivers, client acceptance and release still require a human — keep those in the gate engine.</li>
-      <li>A reviewer agent can still be wrong or rubber-stamp; the run ledger makes that visible, but a human still reviews verdicts at gates.</li>
-      <li>Fast release cadence (v13.0.0 and v13.1.0 one day apart): pin the version you install.</li>
-      <li>Runs continue after the terminal closes and consume model tokens; keep first runs on a scratch repo with scoped permissions, never unrestricted computer access.</li>
-      <li>Windows is plausible (npm + CI lane) but untested on this PC.</li>
+      <li><strong>No-sandbox mode is dangerous:</strong> the README itself warns that installing without the Docker sandbox gives the agent full filesystem access. Always run the sandboxed mode; keep the mounted workspace separate from sensitive data.</li>
+      <li><strong>No human approval gates:</strong> automations run on schedules and webhooks without a human checkpoint. Under Agency OS rules, CEO_REVIEW, scope changes, waivers, client acceptance and release stay in your gate engine — do not wire a release automation directly.</li>
+      <li><strong>Always-on means always-spending:</strong> agents that keep running on a server consume model tokens continuously; set per-run limits and monitor usage.</li>
+      <li><strong>Self-hosting security is on you:</strong> a cloud/VM installation needs the project's own security-hardening guidance read first, especially if automations are reachable from Slack/GitHub webhooks.</li>
+      <li><strong>Fast cadence:</strong> 161 releases; pin the exact version you install (today: v1.38.0).</li>
+      <li><strong>Windows:</strong> CI-verified install path exists, but untested on this PC.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Test Today: the built-in software-change graph on a scratch repo (~1 hour, Windows PC)</h2>
+    <h2>Test Today: sandboxed local Agent Canvas on a scratch workspace (~1 hour, Windows PC)</h2>
     <ul>
-      <li><strong>Prerequisites:</strong> Node.js (npm), and Claude Code or Codex CLI already installed and authenticated (your existing subscription; nothing new required).</li>
-      <li><strong>Official installation steps (from the docs):</strong> <code>npm install --global @the-open-engine-company/zeroshot</code>, then run a first task with the built-in <code>software-change</code> graph. <code>zeroshot ui</code> shows live runs and replays finished ones.</li>
-      <li><strong>Practical test:</strong> in a scratch repo, give it a tiny task (for example "add a word-count CLI"). Watch the acceptance and code reviews run in parallel and the repair loop trigger on rejection.</li>
-      <li><strong>Expected results:</strong> a run ledger showing independent reviewer verdicts, test pass/fail evidence, and at least one rejection repaired before delivery — proof the author/reviewer separation works.</li>
-      <li><strong>Safety precautions:</strong> scratch repo only; scoped permissions; pin v13.1.0; read the graph before running it; never grant unrestricted computer access.</li>
+      <li><strong>Prerequisites:</strong> Node.js 24+ and Docker Desktop (for the sandbox), plus one model API key or an existing Claude Code/Codex subscription. Nothing new to buy.</li>
+      <li><strong>Official steps (from the README):</strong> follow the <a href="https://github.com/OpenHands/OpenHands/blob/main/README.windows.md">Windows PowerShell quickstart</a>, or run the Docker sandbox: <code>docker run -it --rm -p 127.0.0.1:8000:8000 -v openhands-state:/home/openhands/.openhands -v "C:\openhands-projects:/projects" ghcr.io/openhands/agent-canvas:1.38.0</code>, then open http://localhost:8000/canvas.</li>
+      <li><strong>Practical test:</strong> create a scratch GitHub repo with one small issue ("add a word-count CLI"), connect the GitHub automation, and watch the issue get decomposed into tasks and picked up by the agent in the sandbox.</li>
+      <li><strong>Expected results:</strong> a task decomposition from the issue, code changes confined to the mounted scratch workspace, and a visible automation run log — evidence the lead-to-task-to-code path works end to end.</li>
+      <li><strong>Safety precautions:</strong> sandbox mode only; scratch workspace only; bind to 127.0.0.1 (never expose to LAN); pin v1.38.0; read the self-hosting security notes before any server install.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Agency OS Integration Proposal: Zeroshot as the QA-stage author/reviewer separation</h2>
+    <h2>Agency OS Integration Proposal: Agent Canvas as the LEAD/DISCOVERY intake surface</h2>
     <ul>
-      <li><strong>Problem solved:</strong> today the dev agent's QA evidence rests on prompts; nothing mechanistically prevents an agent from grading its own work.</li>
-      <li><strong>Workflow improved:</strong> the orchestrator's DEVELOPMENT → QA loop — dev agent implements, a second agent reviews, tests gate both, repair loops on rejection.</li>
-      <li><strong>Lifecycle point:</strong> DEVELOPMENT and QA, feeding the SECURITY transition.</li>
-      <li><strong>Inputs and outputs:</strong> a spec from SPECIFICATION plus tests in; independent reviewer verdicts and test pass/fail evidence out, per run, from the run ledger.</li>
-      <li><strong>How results are validated:</strong> gate_engine.py consumes zeroshot's reviewer and test evidence before allowing the QA → SECURITY transition; runs without validated evidence stay UNVERIFIED.</li>
-      <li><strong>What happens on failure:</strong> reviewer rejection or test failure routes back through repair; exhausted retries mark the stage BLOCKED and return to the dev agent. Nothing auto-waives.</li>
-      <li><strong>Gate or human approval:</strong> it feeds existing gates and replaces nothing (gate_engine.py, advance_gate.ps1 unchanged). Human approval still required at CEO_REVIEW, scope changes, waivers, client acceptance and release — zeroshot has no human gate, so those stay in your gate engine.</li>
-      <li><strong>Smallest safe experiment:</strong> today's scratch-repo test, then compare zeroshot's run-ledger evidence against what precommit_check.py expects. Zero changes to Agency OS scripts.</li>
+      <li><strong>Problem solved:</strong> leads and issues arriving in GitHub and Slack today wait for you to manually open a session; nothing decomposes them into tasks while you sleep.</li>
+      <li><strong>Workflow improved:</strong> the orchestrator's LEAD → DISCOVERY → PROBLEM_DEFINITION entry path — GitHub/Slack events trigger an automation, the issue is decomposed into tasks, output lands in the workspace for the orchestrator.</li>
+      <li><strong>Lifecycle point:</strong> LEAD and DISCOVERY, feeding PROBLEM_DEFINITION.</li>
+      <li><strong>Inputs and outputs:</strong> a GitHub issue or Slack message in; a task decomposition and workspace changes out, with the automation run log as evidence.</li>
+      <li><strong>How results are validated:</strong> gate_engine.py treats the automation's task decomposition as candidate input only; a human confirms the problem definition before the PROBLEM_DEFINITION gate advances. Decompositions without a real triggering event stay UNVERIFIED.</li>
+      <li><strong>What happens on failure:</strong> a failed or empty decomposition marks the intake attempt logged-not-advanced; nothing proceeds to PROPOSAL without human-confirmed problem definition. No auto-waivers.</li>
+      <li><strong>Gate or human approval:</strong> it feeds existing gates and replaces nothing (gate_engine.py, advance_gate.ps1 unchanged). Human approval still required at CEO_REVIEW, scope changes, waivers, client acceptance and release — Agent Canvas automations are never wired past those gates.</li>
+      <li><strong>Smallest safe experiment:</strong> today's scratch-repo test; then compare the issue-decomposition output against what your DISCOVERY stage template expects. Zero changes to Agency OS scripts.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Daily Learning: the self-grading problem (author/reviewer separation)</h2>
+    <h2>Daily Learning: the unattended-run problem (event-driven automation safety)</h2>
     <ul>
-      <li><strong>Concept (simple English):</strong> an AI agent that wrote code tends to approve it. The control is structural: a different agent reviews, and tests written from the spec (not from the code) must pass before anything advances.</li>
-      <li><strong>How an AI agent might get it wrong:</strong> it writes tests after the code that merely mirror the implementation, or produces a "review" that restates the diff without criticizing anything, then declares the work done.</li>
-      <li><strong>How you recognize the failure:</strong> tests that never failed once; review notes that only summarize; zero rejected drafts in the run history.</li>
-      <li><strong>What detects it:</strong> zeroshot's author/reviewer separation plus your precommit_check.py; under Agency OS rules the gate engine rejects a QA transition whose evidence is UNVERIFIED.</li>
+      <li><strong>Concept (simple English):</strong> an "always-on" agent is only safe when three things hold: it is sandboxed, it is triggered by real external events, and its output stops at a human gate. Miss any one and you have an agent with keys and no supervision.</li>
+      <li><strong>How an AI agent might get it wrong:</strong> it "helpfully" invents a task when no real event arrived, runs on a schedule against the wrong repo, or treats an automation run log as proof the work was correct.</li>
+      <li><strong>How you recognize the failure:</strong> automation runs with no corresponding GitHub issue or Slack message; task lists appearing overnight with no client request behind them; run logs presented as evidence.</li>
+      <li><strong>What detects it:</strong> trigger-to-run correlation (every run must trace to a real webhook event) plus your gate engine: intake evidence without a verified trigger stays UNVERIFIED and cannot advance past DISCOVERY.</li>
     </ul>
   </section>
 
   <section>
     <h2>Final Summary</h2>
     <ul>
-      <li><strong>Best discovery today:</strong> <a href="https://github.com/the-open-engine/zeroshot">zeroshot</a> (MIT) — a workflow engine for coding agents whose whole purpose is stopping agents from grading their own work; v13.1.0 released today. Verdict: TEST NOW.</li>
-      <li><strong>Best security/reliability improvement:</strong> the run ledger — every step's result recorded, model output unable to add edges or raise bounds — evidence you can hand to the gate engine instead of trusting an agent's word.</li>
-      <li><strong>Best Agency OS integration:</strong> zeroshot's independent-reviewer loop feeding QA gate evidence into gate_engine.py, which stays authoritative and unchanged.</li>
-      <li><strong>One practical action today:</strong> npm install zeroshot and run the built-in software-change graph on a scratch repo; confirm a first draft actually gets rejected and repaired.</li>
+      <li><strong>Best discovery today:</strong> <a href="https://github.com/OpenHands/OpenHands">OpenHands Agent Canvas</a> (MIT) — a self-hosted control center that turns your coding agents into an always-on, event-driven engineering team; v1.38.0 released Nov 10, commits today. Verdict: TEST NOW.</li>
+      <li><strong>Best intake/reliability improvement:</strong> GitHub/Slack-triggered automations that decompose issues into tasks while you sleep — with Docker sandboxing and run logs as evidence.</li>
+      <li><strong>Best Agency OS integration:</strong> Agent Canvas as the LEAD/DISCOVERY intake surface feeding candidate task decompositions to gate_engine.py, which stays authoritative and unchanged.</li>
+      <li><strong>One practical action today:</strong> install the Docker-sandboxed Agent Canvas on your Windows PC, point it at a scratch repo with one small issue, and verify the issue-to-task-to-code path stays inside the sandbox.</li>
     </ul>
   </section>
 </div>
