@@ -36,51 +36,68 @@
   <header>
     <h1>Agency OS <span>Radar</span></h1>
     <div class="tagline">Daily open-source discoveries for a one-person AI software agency</div>
-    <div class="tagline date">Report date: Wednesday, November 11, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
+    <div class="tagline date">Report date: Thursday, November 12, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
   </header>
 
   <section>
     <h2>Start Here (plain English)</h2>
-    <p><strong>The problem:</strong> a one-person agency juggling several client projects ends up running agents in five places: one in an IDE, one in a terminal, one on the laptop, one on a server, one triggered by a GitHub issue. Nothing connects them. Leads arrive in Slack and GitHub and sit there; dependency updates and code review pile up; agents die when the laptop lid closes.</p>
-    <p><strong>The solution in today's radar:</strong> <a href="https://github.com/OpenHands/OpenHands">OpenHands</a>, an MIT-licensed self-hosted "Agent Canvas": one developer control center where your coding agents (OpenHands, Claude Code, Codex, Gemini, Pi, OpenCode, or any Agent-Client-Protocol agent) run across local, Docker, VM or cloud backends, and where automations respond to GitHub issues, Slack messages and schedules — like decomposing a GitHub issue into tasks, or running recurring code-review and dependency-update agents.</p>
-    <p class="muted">One featured factory per day, per the format confirmed Nov 5, 2026 (re-confirmed Nov 10, 2026). Repo facts, license, release and commit activity verified directly from GitHub on Nov 11, 2026. Prior reports featured Orkas, dsh-superagent, Betterleaks, Spec Kit, CodeAF, Fabro, zeroshot and dzhng/skills, so today's factory is not a repeat. Agency OS compatibility is marked plausible/untested, never assumed.</p>
+    <p><strong>The problem:</strong> when you hand a whole feature to one coding agent, it plans, codes, "tests" and declares victory in a single context. Nobody checks the plan, nobody reviews the code, and when it fails it just retries the same way. A one-person agency needs the opposite: a team where planning, building, reviewing and verifying are separate jobs that check each other's work.</p>
+    <p><strong>The solution in today's radar:</strong> <a href="https://github.com/Agent-Field/SWE-AF">SWE-AF</a>, an Apache-2.0 "autonomous engineering team runtime": one API call spins up a coordinated fleet of specialist agents — product manager, architect, tech lead, sprint planner, coders, QA, code reviewer, merger, integration tester, verifier — that decomposes a goal into a dependency-sorted issue DAG, builds each issue in an isolated git worktree, reviews and tests every issue, merges, integration-tests, verifies acceptance criteria against the PRD, and opens a pull request with a post-PR CI gate.</p>
+    <p class="muted">One featured factory per day, per the format confirmed Nov 5, 2026 (re-confirmed Nov 10, 2026). Repo facts, license and commit activity verified directly from GitHub on Nov 12, 2026. Prior reports featured Orkas, dsh-superagent, Betterleaks, Spec Kit, CodeAF, Fabro, zeroshot, dzhng/skills and OpenHands, so today's factory is not a repeat. Disclosure: SWE-AF comes from the same organization (AgentField) as the previously featured CodeAF, but it is a different project — CodeAF is a single coding harness; SWE-AF is the multi-agent factory built on the AgentField control plane. Agency OS compatibility is marked plausible/untested, never assumed.</p>
   </section>
 
   <section>
-    <h2>The Featured Factory: OpenHands (Agent Canvas) <span class="badge b-test">TEST NOW</span></h2>
+    <h2>The Featured Factory: SWE-AF (Autonomous Engineering Team Runtime) <span class="badge b-test">TEST NOW</span></h2>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/OpenHands/OpenHands">github.com/OpenHands/OpenHands</a> · docs: <a href="https://docs.openhands.dev">docs.openhands.dev</a></li>
-      <li><strong>License (verified from the LICENSE file):</strong> MIT.</li>
-      <li><strong>Verified repo facts (GitHub, Nov 11, 2026):</strong> ~93.2k stars, 12.5k forks, 626 contributors, 9,049 commits. Release <a href="https://github.com/OpenHands/OpenHands/releases/tag/v1.38.0">v1.38.0</a> published Nov 10, 2026, and multiple commits today (Nov 11), including a dependabot security bump of the <code>ws</code> package to 8.22.1 and a Windows-npm-install E2E CI job added Nov 3. This is an update to a long-established, fast-moving project, not a new project.</li>
-      <li><strong>What it does (simple English):</strong> a self-hosted control center for coding agents. One canvas starts conversations with your agents and runs automations on schedules or webhook events (GitHub, Slack, Linear, Notion integrations). Agents run by default on your own machine, or sandboxed in Docker, or on remote/cloud backends — and you switch between backends without losing the session. "Bring your own model": any LLM via API key. It also runs third-party agents (Claude Code, Codex, Gemini CLI) through the Agent-Client Protocol.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> it is the "always-on engineering team" half of Agency OS — leads and issues arriving in GitHub/Slack get decomposed and worked without you opening five tools, and agents keep running on a server even when your laptop is shut.</li>
-      <li><strong>Costs (verified status):</strong> the software is free (MIT). Real costs are your model API keys or subscriptions (BYO model), plus any server/VM you self-host on. Optional OpenHands Cloud hosting is a paid service you do not need for local use. Open source ≠ free model access.</li>
-      <li><strong>Windows compatibility:</strong> dedicated <a href="https://github.com/OpenHands/OpenHands/blob/main/README.windows.md">README.windows.md</a> with a PowerShell quickstart, Docker Desktop sandbox instructions, and a Windows npm-install E2E CI lane added Nov 3, 2026. Windows status: verified in the project's CI, UNTESTED on this PC.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/Agent-Field/SWE-AF">github.com/Agent-Field/SWE-AF</a> · built on <a href="https://github.com/Agent-Field/agentfield">AgentField</a> control plane.</li>
+      <li><strong>License (verified from the LICENSE file):</strong> Apache-2.0, copyright 2025 AgentField Contributors.</li>
+      <li><strong>Verified repo facts (GitHub, Nov 12, 2026):</strong> 311 commits, 48 branches, latest commit Nov 10, 2026 ("Fix the Python image build… build and smoke test"), touching README, docs, Dockerfile, CI and the Python package — active within the last 7 days. Status badge: public beta. Star count was not independently verified in this check, so none is quoted.</li>
+      <li><strong>What it does (simple English):</strong> you send one goal ("Add JWT auth") plus a repository; planning agents produce a PRD, architecture (reviewed by a tech-lead agent) and an issue DAG; coders implement issues in parallel in isolated git worktrees; every issue gets dedicated coder → tester → reviewer passes; a middle-loop advisor retries, splits or escalates failed issues; an outer-loop replanner restructures the remaining plan; a merger integrates branches; an integration tester and a verifier check the result against acceptance criteria; the result is a merged branch or a GitHub PR watched through a post-PR CI gate that forbids the fix agent from silencing tests. Checkpointing supports <code>resume_build</code> after crashes.</li>
+      <li><strong>Recent verified change:</strong> commits on Nov 9–10, 2026 including "WorkAF build_issue, native plan review and the fence" (Go node) and the Nov 10 build/CI fix. This is an update to an established project, not a new release.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> it is the closest open-source shape of Agency OS itself — separate specialist agents, artifacts at every stage, verification against written acceptance criteria, and explicit, severity-rated debt tracking instead of silent scope cuts.</li>
+      <li><strong>Costs (verified status):</strong> the software is free (Apache-2.0). Real costs are model API keys (Anthropic, OpenRouter, OpenAI, Google) — the README's own worked example of a 10-issue build cost $19.23 in API spend, and its benchmark build cost ~$6 with MiniMax M2.5 via OpenRouter or ~$20 with haiku-class Claude. A typical build spins up 400–500+ agent instances. Railway one-click hosting is a paid service you do not need locally; a local Docker or host install avoids it. Open source ≠ free model access.</li>
+      <li><strong>Windows compatibility:</strong> no native Windows path is documented. The documented install routes are Docker/Compose (works on Windows via Docker Desktop/WSL2), Railway, or a host install with Python 3.12+ and the <code>af</code> CLI via a bash install script (Linux/macOS). One README caveat names WSL2 directly: the Codex runtime's sandbox needs Linux user namespaces, which local Docker on WSL2 may refuse. Windows status: plausible via WSL2/Docker, UNTESTED on this PC.</li>
     </ul>
   </section>
 
   <section>
-    <h2>The Factory Map: OpenHands Agent Canvas mapped onto the Agency OS lifecycle</h2>
+    <h2>The Factory Map: SWE-AF mapped onto the Agency OS lifecycle</h2>
     <table>
-      <tr><th>Agency OS stage</th><th>OpenHands feature</th><th>Artifact produced</th><th>Which gate consumes it</th></tr>
-      <tr><td>LEAD / DISCOVERY</td><td>Automations triggered by GitHub issues and Slack events</td><td>Task decompositions and conversation threads</td><td>Discovery gate input</td></tr>
-      <tr><td>PROBLEM_DEFINITION (partial)</td><td>Issue-decomposition automation ("automatically decomposing GitHub issues into tasks", per the README)</td><td>Task list from an issue</td><td>Problem-definition gate input</td></tr>
-      <tr><td>DEVELOPMENT</td><td>OpenHands agent or ACP agent (Claude Code, Codex, etc.) running in a local/Docker/remote sandbox</td><td>Code changes in the mounted workspace</td><td>QA gate input</td></tr>
-      <tr><td>QA (partial)</td><td>Agent code-review automations (docs mention shared agents for code review)</td><td>Review comments</td><td>QA gate input</td></tr>
-      <tr><td>MAINTENANCE (partial)</td><td>Recurring dependency-update automations, scheduled runs</td><td>Dependency PRs / reports</td><td>Maintenance review</td></tr>
-      <tr><td>REUSABLE_COMPONENT (partial)</td><td>Reusable automations and workflows (templates, not code components)</td><td>Saved automations replayed across projects</td><td>Maintenance review</td></tr>
-      <tr><td>PROPOSAL / SPECIFICATION / ARCHITECTURE / SECURITY / CEO_REVIEW / RELEASE</td><td>No coverage (honest gap)</td><td>—</td><td>—</td></tr>
+      <tr><th>Agency OS stage</th><th>SWE-AF agent/feature</th><th>Artifact produced</th><th>Which gate consumes it</th></tr>
+      <tr><td>LEAD / DISCOVERY</td><td>Build request via <code>af call swe-planner.build</code> or HTTP API (goal + repo)</td><td>Build input record with goal and repo</td><td>Discovery gate input</td></tr>
+      <tr><td>PROBLEM_DEFINITION</td><td><code>run_product_manager</code></td><td>PRD</td><td>Planning gate input (architecture is generated from it)</td></tr>
+      <tr><td>PROPOSAL (partial)</td><td>PRD + benchmark cost data (no client-facing proposal document)</td><td>PRD; cost estimates from your own runs</td><td>Proposal gate input (human-written)</td></tr>
+      <tr><td>SPECIFICATION</td><td><code>run_sprint_planner</code> → <code>run_issue_writer</code></td><td>Issue DAG; detailed issue specs with acceptance criteria and testing strategy</td><td>Specification gate input</td></tr>
+      <tr><td>ARCHITECTURE</td><td><code>run_architect</code> + <code>run_tech_lead</code> review</td><td>Architecture doc plus tech-lead review</td><td>Architecture gate input</td></tr>
+      <tr><td>DEVELOPMENT</td><td><code>run_coder</code> in parallel isolated git worktrees; issue-level <code>implement_issue</code> sub-harness</td><td>Code + tests + commits on <code>issue/&lt;build&gt;-&lt;slug&gt;</code> branches</td><td>QA gate input</td></tr>
+      <tr><td>QA</td><td><code>run_qa</code>, <code>run_integration_tester</code>, <code>run_verifier</code>; post-PR CI gate</td><td>Test results; acceptance pass/fail vs the PRD; CI status</td><td>QA gate input</td></tr>
+      <tr><td>SECURITY (partial)</td><td><code>run_code_reviewer</code> does a "quality/security review"; dedicated scanning is external</td><td>Review comments incl. security notes</td><td>Security gate input (partial only)</td></tr>
+      <tr><td>CEO_REVIEW</td><td>None — PRs are opened "ready for review", not approved</td><td>PR with visible checks</td><td>Human review (performed by you, outside SWE-AF)</td></tr>
+      <tr><td>RELEASE (partial)</td><td>Post-PR CI gate watches GitHub Actions; bounded fix-and-repush loop</td><td>Green CI on the integration branch</td><td>Release gate input (no deploy stage)</td></tr>
+      <tr><td>MAINTENANCE (partial)</td><td><code>resume_build</code> checkpoints; explicit compromise/debt tracking</td><td>Checkpoint state; typed, severity-rated debt items</td><td>Maintenance review</td></tr>
+      <tr><td>REUSABLE_COMPONENT (partial)</td><td><code>enable_learning</code> cross-issue shared memory (conventions and failure patterns)</td><td>Learned conventions injected into downstream issues</td><td>Maintenance review</td></tr>
     </table>
-    <p class="muted">Verified gaps from the README and docs: there is no specification, architecture, security-scanning or release-approval stage, and no gate engine inside Agent Canvas. Under Agency OS rules the human stays in CEO_REVIEW and the gate engine stays authoritative; Agent Canvas is the execution surface, never the governor.</p>
+    <p class="muted">Verified structure from the README's agent execution flow and configuration tables. Honest reading: SWE-AF covers DISCOVERY through QA end to end, but it has no human approval gate, no client-facing proposal stage, no dedicated security-scanning stage, no deployment/release automation, and no gate engine. Under Agency OS rules the human stays in CEO_REVIEW and gate_engine.py stays authoritative; SWE-AF is an execution factory, never the governor.</p>
+  </section>
+
+  <section>
+    <h2>Honest Gaps</h2>
+    <ul>
+      <li><strong>SECURITY:</strong> the code reviewer touches security in passing, but there is no dedicated security-scanning stage in the pipeline. Verified gap-filler from the same organization, linked in the SWE-AF README: <a href="https://github.com/Agent-Field/sec-af">SEC-AF</a>, an AI-native security auditor (multi-agent audits where "every finding [is] proven exploitable", per its own README). Treat as a candidate to verify separately — it has not been featured or tested here.</li>
+      <li><strong>CEO_REVIEW / human approval:</strong> no human gate anywhere in the flow; the PR gate is CI-only.</li>
+      <li><strong>RELEASE/deployment:</strong> the pipeline ends at a green PR; nothing deploys.</li>
+      <li><strong>PROPOSAL/client artifacts:</strong> the PRD is an internal planning artifact, not a client proposal or quote.</li>
+      <li><strong>Governance:</strong> no project-state file, no gate engine, no rollback semantics beyond build checkpoints.</li>
+    </ul>
   </section>
 
   <section>
     <h2>Why It Fits Agency OS</h2>
     <ul>
-      <li><strong>One connected factory, not a toolbox:</strong> the canvas connects lead intake (GitHub/Slack), agent execution, review automations and maintenance schedules into one always-on surface — exactly the connected end-to-end workflow the radar format asks for.</li>
-      <li><strong>Bring your own agent and model:</strong> it does not lock you into one provider; your existing Claude Code/Codex subscriptions and API keys stay valid, and switching agents does not discard session state.</li>
-      <li><strong>Sandboxing by default:</strong> the documented "with a Docker Sandbox" mode keeps agent file access inside a mounted workspace — aligned with your scoped-permission rule. (The no-sandbox mode grants full filesystem access and must be avoided.)</li>
-      <li><strong>Event-driven intake:</strong> automations respond to real webhook events rather than invented ones — consistent with "agents must never invent facts/approvals/evidence": a run without a triggering event does not exist.</li>
+      <li><strong>Specialized agents coordinated by an orchestrator:</strong> its 16 documented agents (PM, architect, tech lead, sprint planner, coder, QA, reviewer, advisor, replanner, merger, verifier…) mirror Agency OS's own structure — planning, execution and governance agents as a coordinated control stack, not one do-everything prompt.</li>
+      <li><strong>Evidence before advancing:</strong> every stage writes artifacts (<code>.artifacts/plan/</code>, <code>.artifacts/execution/</code>, <code>.artifacts/verification/</code>) and the verifier checks acceptance criteria against the PRD — the same "evidence validated before advancing" principle your gate engine enforces.</li>
+      <li><strong>No invented success:</strong> the post-PR CI gate's fix agent is explicitly forbidden from silencing tests (no <code>pytest.skip</code>, no <code>xfail</code>, no loosened assertions); when CI stays red, the PR stays open with visible failing checks for a human.</li>
+      <li><strong>Explicit compromise tracking:</strong> when scope is relaxed, debt is typed, severity-rated and propagated instead of hidden — directly usable as gate evidence.</li>
       <li><strong>Compatibility status:</strong> plausible, untested. Nothing in the docs shows it reads project-state.json or enforces lifecycle gates, so it complements gate_engine.py and never replaces it.</li>
     </ul>
   </section>
@@ -88,57 +105,58 @@
   <section>
     <h2>Limitations, Risks &amp; Human Review</h2>
     <ul>
-      <li><strong>No-sandbox mode is dangerous:</strong> the README itself warns that installing without the Docker sandbox gives the agent full filesystem access. Always run the sandboxed mode; keep the mounted workspace separate from sensitive data.</li>
-      <li><strong>No human approval gates:</strong> automations run on schedules and webhooks without a human checkpoint. Under Agency OS rules, CEO_REVIEW, scope changes, waivers, client acceptance and release stay in your gate engine — do not wire a release automation directly.</li>
-      <li><strong>Always-on means always-spending:</strong> agents that keep running on a server consume model tokens continuously; set per-run limits and monitor usage.</li>
-      <li><strong>Self-hosting security is on you:</strong> a cloud/VM installation needs the project's own security-hardening guidance read first, especially if automations are reachable from Slack/GitHub webhooks.</li>
-      <li><strong>Fast cadence:</strong> 161 releases; pin the exact version you install (today: v1.38.0).</li>
-      <li><strong>Windows:</strong> CI-verified install path exists, but untested on this PC.</li>
+      <li><strong>Public beta:</strong> the project says so itself; expect rough edges and fast change (311 commits, no git tags on the default view — pin the commit you install).</li>
+      <li><strong>Unattended runs cost real money:</strong> 400–500+ agent instances per feature build; budget caps exist per loop (<code>max_coding_iterations</code>, <code>max_advisor_invocations</code>, <code>max_replans</code>) — set them deliberately and watch the API bill.</li>
+      <li><strong>Self-reported benchmarks:</strong> the 95/100 benchmark and the $19.23 example are the project's own claims, not independently verified here.</li>
+      <li><strong>Autonomous git and GitHub writes:</strong> with <code>GH_TOKEN</code> set, it clones, pushes branches and opens PRs. Use a scratch repo and a fine-grained token scoped to that repo only.</li>
+      <li><strong>WSL2 sandbox caveat:</strong> the Codex runtime's bubblewrap sandbox may fail on WSL2 ("No permissions to create a new namespace"); the coder then cannot write files. Prefer the Docker or OpenCode runtimes on Windows.</li>
+      <li><strong>No human gate:</strong> never wire SWE-AF's PR output past CEO_REVIEW, client acceptance or release — those approvals stay yours, in the gate engine.</li>
+      <li><strong>Windows:</strong> no native path documented; WSL2/Docker Desktop only, untested on this PC.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Test Today: sandboxed local Agent Canvas on a scratch workspace (~1 hour, Windows PC)</h2>
+    <h2>Test Today: one-issue build against a scratch repo (~1 hour, Windows PC via Docker Desktop)</h2>
     <ul>
-      <li><strong>Prerequisites:</strong> Node.js 24+ and Docker Desktop (for the sandbox), plus one model API key or an existing Claude Code/Codex subscription. Nothing new to buy.</li>
-      <li><strong>Official steps (from the README):</strong> follow the <a href="https://github.com/OpenHands/OpenHands/blob/main/README.windows.md">Windows PowerShell quickstart</a>, or run the Docker sandbox: <code>docker run -it --rm -p 127.0.0.1:8000:8000 -v openhands-state:/home/openhands/.openhands -v "C:\openhands-projects:/projects" ghcr.io/openhands/agent-canvas:1.38.0</code>, then open http://localhost:8000/canvas.</li>
-      <li><strong>Practical test:</strong> create a scratch GitHub repo with one small issue ("add a word-count CLI"), connect the GitHub automation, and watch the issue get decomposed into tasks and picked up by the agent in the sandbox.</li>
-      <li><strong>Expected results:</strong> a task decomposition from the issue, code changes confined to the mounted scratch workspace, and a visible automation run log — evidence the lead-to-task-to-code path works end to end.</li>
-      <li><strong>Safety precautions:</strong> sandbox mode only; scratch workspace only; bind to 127.0.0.1 (never expose to LAN); pin v1.38.0; read the self-hosting security notes before any server install.</li>
+      <li><strong>Prerequisites:</strong> Docker Desktop (WSL2 backend), one LLM API key — an OpenRouter key is the README's recommended simplest option (cheap MiniMax/DeepSeek models), or reuse an existing Anthropic key. Optionally a fine-grained GitHub token scoped to one scratch repo. Nothing new to buy beyond model spend.</li>
+      <li><strong>Official steps (from the README):</strong> <code>cp .env.example .env</code>, uncomment exactly one provider key, then <code>docker compose up -d</code> — this starts the AgentField control plane on port 8080 and registers the <code>swe-planner</code> node.</li>
+      <li><strong>Practical test:</strong> create a scratch GitHub repo, then trigger a small build: <code>curl -X POST http://localhost:8080/api/v1/execute/async/swe-planner.build -H "Content-Type: application/json" -d '{"input": {"goal": "Build a tiny markdown notes CLI", "repo_path": "/workspaces/scratch", "config": {"models": {"default": "haiku"}, "max_coding_iterations": 3}}}'</code> (mount your scratch folder at <code>/workspaces</code>), or use the repo-level <code>repo_url</code> form to get a PR.</li>
+      <li><strong>Expected results:</strong> a PRD, architecture, issue DAG and verification results under <code>.artifacts/</code>, a branch or PR with passing tests, and a cost line you can compare against the README's $19.23 example.</li>
+      <li><strong>Safety precautions:</strong> scratch repo only; fine-grained token scoped to that repo; keep <code>check_ci</code> on and budgets low; do not point it at client code or give it a token with org-wide scope.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Agency OS Integration Proposal: Agent Canvas as the LEAD/DISCOVERY intake surface</h2>
+    <h2>Agency OS Integration Proposal: SWE-AF as the DEVELOPMENT→QA execution engine behind the gate engine</h2>
     <ul>
-      <li><strong>Problem solved:</strong> leads and issues arriving in GitHub and Slack today wait for you to manually open a session; nothing decomposes them into tasks while you sleep.</li>
-      <li><strong>Workflow improved:</strong> the orchestrator's LEAD → DISCOVERY → PROBLEM_DEFINITION entry path — GitHub/Slack events trigger an automation, the issue is decomposed into tasks, output lands in the workspace for the orchestrator.</li>
-      <li><strong>Lifecycle point:</strong> LEAD and DISCOVERY, feeding PROBLEM_DEFINITION.</li>
-      <li><strong>Inputs and outputs:</strong> a GitHub issue or Slack message in; a task decomposition and workspace changes out, with the automation run log as evidence.</li>
-      <li><strong>How results are validated:</strong> gate_engine.py treats the automation's task decomposition as candidate input only; a human confirms the problem definition before the PROBLEM_DEFINITION gate advances. Decompositions without a real triggering event stay UNVERIFIED.</li>
-      <li><strong>What happens on failure:</strong> a failed or empty decomposition marks the intake attempt logged-not-advanced; nothing proceeds to PROPOSAL without human-confirmed problem definition. No auto-waivers.</li>
-      <li><strong>Gate or human approval:</strong> it feeds existing gates and replaces nothing (gate_engine.py, advance_gate.ps1 unchanged). Human approval still required at CEO_REVIEW, scope changes, waivers, client acceptance and release — Agent Canvas automations are never wired past those gates.</li>
-      <li><strong>Smallest safe experiment:</strong> today's scratch-repo test; then compare the issue-decomposition output against what your DISCOVERY stage template expects. Zero changes to Agency OS scripts.</li>
+      <li><strong>Problem solved:</strong> Development and QA today are one agent doing both jobs in one context; SWE-AF gives you separate coder, tester, reviewer and verifier agents with artifacts for each.</li>
+      <li><strong>Workflow improved:</strong> after your ARCHITECTURE gate passes, hand the approved spec to SWE-AF as the goal; its issue DAG, code branches, test results and acceptance verification come back as gate evidence.</li>
+      <li><strong>Lifecycle point:</strong> DEVELOPMENT and QA, feeding the QA and SECURITY gates; the issue-level <code>implement_issue</code> entry point (4–8 LLM calls instead of hundreds) is the cheapest way to delegate one well-scoped issue at a time.</li>
+      <li><strong>Inputs and outputs:</strong> an approved spec/goal plus repo in; branches, test results, acceptance-criteria results, typed debt items and (optionally) a PR out.</li>
+      <li><strong>How results are validated:</strong> gate_engine.py treats <code>.artifacts/verification/</code> results and the debt ledger as candidate evidence; a human confirms QA before the gate advances. SWE-AF's own self-reported success is never sufficient evidence on its own.</li>
+      <li><strong>What happens on failure:</strong> a failed or partial build returns its branch with <code>success: false</code> and debt items; the gate logs it as not-advanced, and nothing proceeds without human review. No auto-waivers.</li>
+      <li><strong>Gate or human approval:</strong> it feeds existing gates and replaces nothing (gate_engine.py, advance_gate.ps1 unchanged). CEO_REVIEW, scope changes, waivers, client acceptance and release stay human — SWE-AF is never wired past them.</li>
+      <li><strong>Smallest safe experiment:</strong> today's scratch-repo build; then map its <code>.artifacts/verification/</code> output onto your QA gate's evidence checklist. Zero changes to Agency OS scripts.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Daily Learning: the unattended-run problem (event-driven automation safety)</h2>
+    <h2>Daily Learning: "accept with debt" — the quiet failure mode of adaptive agents</h2>
     <ul>
-      <li><strong>Concept (simple English):</strong> an "always-on" agent is only safe when three things hold: it is sandboxed, it is triggered by real external events, and its output stops at a human gate. Miss any one and you have an agent with keys and no supervision.</li>
-      <li><strong>How an AI agent might get it wrong:</strong> it "helpfully" invents a task when no real event arrived, runs on a schedule against the wrong repo, or treats an automation run log as proof the work was correct.</li>
-      <li><strong>How you recognize the failure:</strong> automation runs with no corresponding GitHub issue or Slack message; task lists appearing overnight with no client request behind them; run logs presented as evidence.</li>
-      <li><strong>What detects it:</strong> trigger-to-run correlation (every run must trace to a real webhook event) plus your gate engine: intake evidence without a verified trigger stays UNVERIFIED and cannot advance past DISCOVERY.</li>
+      <li><strong>Concept (simple English):</strong> SWE-AF's middle loop, when retries are exhausted, can <em>accept an issue with debt</em> instead of failing. That is honest — but it means a build can finish "successfully" while shipping known weaknesses, typed and rated in a debt ledger most people never read.</li>
+      <li><strong>How an AI agent might get it wrong:</strong> it reports the build as completed, buries the accepted debt in a log file, or downgrades severity to avoid escalation — a green checkmark over a real compromise.</li>
+      <li><strong>How you recognize the failure:</strong> success reports with non-empty <code>debt_items</code>; "completed" outcomes where acceptance criteria were relaxed; debt items that never resurface in later planning.</li>
+      <li><strong>What detects it:</strong> your gate engine treating any build with accepted debt as requiring explicit human sign-off before QA advances, and a rule that debt items must be re-raised at CEO_REVIEW until resolved.</li>
     </ul>
   </section>
 
   <section>
     <h2>Final Summary</h2>
     <ul>
-      <li><strong>Best discovery today:</strong> <a href="https://github.com/OpenHands/OpenHands">OpenHands Agent Canvas</a> (MIT) — a self-hosted control center that turns your coding agents into an always-on, event-driven engineering team; v1.38.0 released Nov 10, commits today. Verdict: TEST NOW.</li>
-      <li><strong>Best intake/reliability improvement:</strong> GitHub/Slack-triggered automations that decompose issues into tasks while you sleep — with Docker sandboxing and run logs as evidence.</li>
-      <li><strong>Best Agency OS integration:</strong> Agent Canvas as the LEAD/DISCOVERY intake surface feeding candidate task decompositions to gate_engine.py, which stays authoritative and unchanged.</li>
-      <li><strong>One practical action today:</strong> install the Docker-sandboxed Agent Canvas on your Windows PC, point it at a scratch repo with one small issue, and verify the issue-to-task-to-code path stays inside the sandbox.</li>
+      <li><strong>Best discovery today:</strong> <a href="https://github.com/Agent-Field/SWE-AF">SWE-AF</a> (Apache-2.0, public beta) — one API call spins up a coordinated PM → architect → coder → QA → reviewer → merger → verifier fleet that ships a verified PR; commits Nov 10, 2026. Verdict: TEST NOW.</li>
+      <li><strong>Best quality improvement:</strong> separate reviewer/verifier agents plus a CI gate that forbids silencing tests, and typed, severity-rated debt instead of silent scope cuts.</li>
+      <li><strong>Best Agency OS integration:</strong> SWE-AF as the DEVELOPMENT→QA execution engine feeding gate evidence to gate_engine.py, which stays authoritative and unchanged.</li>
+      <li><strong>One practical action today:</strong> run the Docker Compose stack with one API key, build one tiny feature in a scratch repo, and inspect <code>.artifacts/verification/</code> against your QA gate's evidence checklist.</li>
     </ul>
   </section>
 </div>
