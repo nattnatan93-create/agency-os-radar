@@ -36,128 +36,127 @@
   <header>
     <h1>Agency OS <span>Radar</span></h1>
     <div class="tagline">Daily open-source discoveries for a one-person AI software agency</div>
-    <div class="tagline date">Report date: Saturday, November 14, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
+    <div class="tagline date">Report date: Sunday, November 15, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
   </header>
 
   <section>
     <h2>Start Here (plain English)</h2>
-    <p><strong>The problem:</strong> when you wire several AI coding agents together yourself, three things break. First, nobody records what each agent decided, so a crashed run is unrecoverable and unauditable. Second, agents act on consequential tools (bash, file writes) with nobody approving the risky ones. Third, when something goes wrong you have no verifiable record of what the model actually saw, so you cannot prove your work to a client.</p>
-    <p><strong>The solution in today's radar:</strong> <a href="https://github.com/open-multi-agent/open-multi-agent">OMA (Open Multi-Agent)</a>, an MIT-licensed, self-hosted TypeScript agent runtime built around three verbs: own it, approve it, audit it. Durable approval gates suspend risky decisions until a human answers, an append-only run journal records every adapter call so a finished run can be cold-verified offline, and checkpoints let a crashed run resume instead of restarting. No telemetry, no hosted control plane, your keys and models.</p>
-    <p class="muted">One featured factory per day, per the format confirmed Nov 5, 2026 (re-confirmed Nov 10, 2026). Repo facts, license and changelog verified directly from GitHub on Nov 14, 2026. Prior reports featured Orkas, dsh-superagent, Betterleaks, Spec Kit, CodeAF, Fabro, zeroshot, dzhng/skills, OpenHands, SWE-AF and AgentTeams, so today's factory is not a repeat. Agency OS compatibility is marked plausible/untested, never assumed.</p>
+    <p><strong>The problem:</strong> a vibe coder running an AI agency ends up with twenty Claude Code and Codex terminals open, no idea which agent owns which task, no record of what each run cost, no approval step before an agent merges or spends, and everything lost when the machine reboots. Agents drift off-goal, runaway loops burn tokens, and there is no audit trail to show a client.</p>
+    <p><strong>The solution in today's radar:</strong> <a href="https://github.com/paperclipai/paperclip">Paperclip</a>, an MIT-licensed, self-hosted control plane that turns your existing AI agents into a governed company: org charts with roles and reporting lines, ticket-based tasks with atomic checkout, approval gates with rollback, budgets with hard stops, and a durable activity log. You keep your agents (Claude Code, Codex, OpenCode, Cursor, Gemini CLI, GitHub Copilot, OpenClaw); Paperclip supplies the company around them.</p>
+    <p class="muted">One featured item per day, per the format confirmed Nov 5, 2026 (re-confirmed Nov 10, 2026). Repo facts, license and release notes verified directly from GitHub on Nov 15, 2026. Prior reports featured OMA, Orkas, dsh-superagent, Betterleaks, Spec Kit, CodeAF, Fabro, zeroshot, dzhng/skills, OpenHands, SWE-AF and AgentTeams, so today's pick is not a repeat. Agency OS compatibility is marked plausible/untested, never assumed.</p>
   </section>
 
   <section>
-    <h2>The Featured Factory: OMA — Open Multi-Agent (Self-Hosted Governed Agent Runtime) <span class="badge b-test">TEST NOW</span></h2>
+    <h2>The Featured Factory: Paperclip — the company layer for your AI agent workforce <span class="badge b-test">TEST NOW</span></h2>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/open-multi-agent/open-multi-agent">github.com/open-multi-agent/open-multi-agent</a> · npm: <code>@open-multi-agent/core</code>, maintained by YuanASI (Shenzhen YuanASI Technology Co., Ltd.).</li>
-      <li><strong>License (verified from the LICENSE file):</strong> MIT, "Copyright (c) Shenzhen YuanASI Technology Co., Ltd. and open-multi-agent contributors".</li>
-      <li><strong>Verified repo facts (GitHub, Nov 14, 2026):</strong> 625 commits, 34 tags; latest commit Nov 13, 2026 (release-bot fix #676). Star count was not independently verified in this check, so none is quoted.</li>
-      <li><strong>What it does (simple English):</strong> a Node.js runtime you install into your own backend (<code>npm install @open-multi-agent/core</code>, or scaffold with <code>npm create oma-app@latest</code>, which ships a demo that needs no API key). Three run modes: <code>runAgent()</code> for one agent, <code>runTasks()</code> for an explicit pipeline, and <code>runTeam()</code>, where a coordinator model decomposes your goal into a task DAG and a deterministic scheduler executes it across role-based agents with shared memory. Around that sit the governance features: durable approval gates (plan, task-dispatch, and per-tool-call decisions suspend until approved, and tampered or stale approval state fails closed), a token and cost budget that stops runaway runs, per-agent filesystem sandboxing and scoped credentials, an opt-in egress policy that can confine LLM traffic to an allowlist, consensus verification with independent judges, and an offline Run Viewer that replays a run's task DAG, spans and per-task evidence with no hosted service.</li>
-      <li><strong>Recent verified change:</strong> core v1.24.0 released Nov 13, 2026 (yesterday): an NVIDIA NIM provider, experimental image tool, abort now cancels a pending tool approval gate instead of waiting, and journal draining continues after an append failure. This is a new release of an established project (launched April 2026), not a new project.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> it is not another agent framework that trusts the model; it is the audit-and-approval layer missing from most of them. Approval gates that fail closed, a verifiable run journal, cost budgets, sandboxed file tools and default-deny tool grants map almost one-to-one onto Agency OS's "evidence before advancing" rule.</li>
-      <li><strong>Costs (verified status):</strong> the software is free (MIT). Real costs: one LLM API key (OpenAI, Anthropic, DeepSeek, MiniMax, local Ollama/vLLM and more are supported), plus PostgreSQL if you want production-grade checkpoint stores. Open source ≠ free model access.</li>
-      <li><strong>Windows compatibility:</strong> Node.js 20+ required (22 or 24 LTS recommended); the v1.10.0 changelog explicitly fixed killing the full process tree on bash timeouts on Windows and states the test suite passes on Windows. Status: plausible and actively maintained for Windows, UNTESTED on this PC.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/paperclipai/paperclip">github.com/paperclipai/paperclip</a> · npm: <code>paperclipai</code> · docs: docs.paperclip.ing · maintained by Paperclip Labs, Inc.</li>
+      <li><strong>License (verified from the LICENSE file):</strong> MIT.</li>
+      <li><strong>Verified repo facts (GitHub, Nov 15, 2026):</strong> a commit merged today, Nov 15, 2026 at 14:09 UTC (perf fix #21758 on the remote-run sandbox path); the maintainers state over 2,700 merged pull requests; the v2026.1106.0 release page reports 2,566 commits to master since that release, confirming very high daily activity. Star count was not independently verified in this check, so none is quoted.</li>
+      <li><strong>What it does (simple English):</strong> a Node.js server plus React dashboard you self-host (embedded PostgreSQL included, no setup). You define a goal, hire agents into an org chart (CEO, CTO, engineers, any harness that can receive a heartbeat), and agents wake for assigned work, follow-ups, schedules or routines. Around that sit the governance features: ticket tasks with atomic checkout and execution locks, review and approval stages, budget tracking with warning thresholds and hard stops that pause work, scoped secrets, connection permissions (Allowed / Ask first / Off), revisioned configuration with safe rollback, and a durable activity log for auditing who did what and why.</li>
+      <li><strong>Recent verified changes:</strong> latest release v2026.1106.0 (Nov 6, 2026): the native Paperclip Runner is now the default for new Claude, Codex, OpenCode and Pi agents (qualified macOS and Linux hosts; Linux needs GNU libc 2.39+), GitHub Copilot joins as a native harness, project repositories auto-import as skill sources, model-backed prompt-injection prevention, agent observability to Braintrust or any OTLP endpoint, and workspaces that compact and expire themselves with encrypted restore points. Breaking changes in that release: the Pipelines experiment was removed, run failures no longer reach Sentry by default, and the run-history API is bounded to 200 rows by default (max 1,000). This is a new release of an established project, not a new project.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> it does not replace your AI IDE; it replaces the missing management layer. Sessions persist across reboots, one agent owns one task at a time, spend is capped, approvals are enforced, and every run leaves a record you can show a client.</li>
+      <li><strong>Costs (verified status):</strong> the software is free (MIT) and self-hosted with no account required; a hosted Paperclip Cloud exists as a waitlist product. Real costs: your agents' own subscriptions or API keys (Claude, Codex, OpenRouter, etc.), and an optional Postgres for production. Open source ≠ free model access.</li>
+      <li><strong>Windows compatibility:</strong> requires Node.js 24.11+; the native Runner defaults only on macOS and qualified Linux hosts, and Windows is not listed among them, so on Windows you would run the legacy adapter path or Docker. Status: plausible but UNTESTED on this PC, and the newest Runner path is not a Windows default.</li>
     </ul>
   </section>
 
   <section>
-    <h2>The Factory Map: OMA mapped onto the Agency OS lifecycle</h2>
+    <h2>The Factory Map: Paperclip mapped onto the Agency OS lifecycle</h2>
     <table>
-      <tr><th>Agency OS stage</th><th>OMA component</th><th>Artifact produced</th><th>Which gate consumes it</th></tr>
-      <tr><td>LEAD / DISCOVERY (partial)</td><td>Goal handed to <code>runTeam()</code>; coordinator decomposition</td><td>Task DAG with assignees and dependencies (inspectable before execution via plan-only mode)</td><td>Discovery gate input (the plan is evidence, not a PRD)</td></tr>
-      <tr><td>PROBLEM_DEFINITION (partial)</td><td>Coordinator goal decomposition; plan preview/replay</td><td>Validated task graph; frozen plan for replay</td><td>Problem-definition gate input</td></tr>
-      <tr><td>PROPOSAL</td><td>None — no client-facing proposal or quote artifact</td><td>—</td><td>Human-written (outside OMA)</td></tr>
-      <tr><td>SPECIFICATION (partial)</td><td>Zod <code>outputSchema</code> on agents and tools; <code>taskProfileSchema</code> / <code>gatePolicySchema</code> declarations</td><td>Machine-validated structured outputs and task requirements</td><td>Specification gate input (schemas as executable spec)</td></tr>
-      <tr><td>ARCHITECTURE (partial)</td><td>Explicit task DAG with <code>dependsOn</code>, capability requirements, and adaptive plan recovery with append-only patches</td><td>Plan revision history; routing decisions in traces</td><td>Architecture gate input (no architecture document artifact)</td></tr>
-      <tr><td>DEVELOPMENT</td><td>LLM agents with sandboxed file/bash tools, plus external coding agents (Claude Code, Gemini CLI, Codex) on the same task graph via ACP/process backends</td><td>Task outputs, tool results, checkpoints</td><td>QA gate input</td></tr>
-      <tr><td>QA (partial)</td><td>Consensus verification (independent judges), evaluation scorers and offline eval gates with pass-rate thresholds</td><td>Judge verdicts, eval reports and baselines</td><td>QA gate input (strongest built-in stage)</td></tr>
-      <tr><td>SECURITY (partial)</td><td>Per-agent filesystem sandbox, default-deny tools, per-call tool gate with bash risk classifier, egress policy, secret redaction on traces/checkpoints, per-agent scoped credentials</td><td>Gate decisions, redaction records, egress denials</td><td>Security gate input (runtime controls, not code vulnerability scanning)</td></tr>
-      <tr><td>CEO_REVIEW</td><td>Durable approval gates on plan, task dispatch and tool calls; first-wins reviewer decisions persisted in checkpoints</td><td>Approval ledger with content-bound pending requests and receipts</td><td>CEO_REVIEW gate input (strongest stage)</td></tr>
-      <tr><td>RELEASE</td><td>None — nothing deploys</td><td>—</td><td>Uncovered</td></tr>
-      <tr><td>MAINTENANCE</td><td>Checkpoint and resume, run store with leases and fencing tokens, append-only run journal with <code>verifyRun()</code> cold verification, offline Run Viewer, OTel export</td><td>Verifiable run journals, trace stores, checkpoints</td><td>Maintenance review (strongest stage)</td></tr>
-      <tr><td>REUSABLE_COMPONENT</td><td>Reusable <code>Scorer</code> implementations, versioned <code>EvalSet</code> fixtures, pluggable MemoryStore/ShellExecutor/adapter contracts</td><td>Versioned eval sets and reusable runtime components</td><td>Reusable-component gate input</td></tr>
+      <tr><th>Agency OS stage</th><th>Paperclip component</th><th>Artifact produced</th><th>Which gate consumes it</th></tr>
+      <tr><td>LEAD / DISCOVERY (partial)</td><td>Company goals; tasks and projects linked to goal ancestry; routines and research-style tasks</td><td>Goal-linked task with context</td><td>Discovery gate input (no lead-qualification artifact)</td></tr>
+      <tr><td>PROBLEM_DEFINITION (partial)</td><td>Deep planning (shipped): planning mode, revisioned plans, plan approvals</td><td>Revisioned plan with approval record</td><td>Problem-definition gate input</td></tr>
+      <tr><td>PROPOSAL</td><td>None — no client-facing proposal or quote artifact</td><td>—</td><td>Human-written (outside Paperclip)</td></tr>
+      <tr><td>SPECIFICATION (partial)</td><td>Task threads with plans, comments, documents, attachments; anchored document feedback</td><td>Task spec and revisioned documents</td><td>Specification gate input</td></tr>
+      <tr><td>ARCHITECTURE (partial)</td><td>Project repositories, workspaces, isolated execution worktrees and operator branches</td><td>Workspace and branch structure</td><td>Architecture gate input (no architecture document)</td></tr>
+      <tr><td>DEVELOPMENT</td><td>Delegation to your own coding agents (Claude Code, Codex, Copilot, Cursor, OpenCode, Pi, OpenClaw) with atomic task checkout, execution locks and heartbeat scheduling</td><td>Runs with logs, usage records, diffs, diffs-verified artifacts</td><td>QA gate input</td></tr>
+      <tr><td>QA (partial)</td><td>Configured task reviews govern completion; enforced outcomes (watchdogs, recovery actions); agent evals and saved test runs</td><td>Review verdicts, eval results, watchdog outcomes</td><td>QA gate input</td></tr>
+      <tr><td>SECURITY (partial)</td><td>Role-based permissions, scoped and encrypted secrets, connection gateway (Allowed / Ask first / Off), responsible-user attribution, model-backed prompt-injection prevention</td><td>Approval and permission records, secret-access records</td><td>Security gate input (runtime controls, not code vulnerability scanning)</td></tr>
+      <tr><td>CEO_REVIEW</td><td>Board approval workflows, review and approval stages, approvals inbox, agent pause/reassign/stop</td><td>Recorded approval decisions</td><td>CEO_REVIEW gate input (strongest stage)</td></tr>
+      <tr><td>RELEASE</td><td>None — no build, version or deploy pipeline (service connections like Railway exist but no release stage)</td><td>—</td><td>Uncovered</td></tr>
+      <tr><td>MAINTENANCE</td><td>Durable activity log, run history, routines with run history, self-healing runs and bounded recovery, config revision history with rollback</td><td>Audit trail, run records, rollback points</td><td>Maintenance review (strong stage)</td></tr>
+      <tr><td>REUSABLE_COMPONENT</td><td>Skill Studio, skill version history and restore, ready-made team catalog, company export/import packages with secret scrubbing</td><td>Versioned skills and portable company templates</td><td>Reusable-component gate input</td></tr>
     </table>
-    <p class="muted">Verified structure from the README's capability tables, package guide listing and the v1.15–v1.24 changelog entries. Honest reading: OMA is a governed agent runtime, not a requirements-to-release pipeline. It has no proposal, no release/deployment stage, and no gate engine of its own — its approval gates and journals are primitives you wire into governance. Under Agency OS rules it complements gate_engine.py as the auditable execution substrate; it never replaces governance.</p>
+    <p class="muted">Verified structure from the README's four-pillars and systems tables and the v2026.1106.0 release notes. Honest reading: Paperclip is not a requirements-to-release software factory; it is the governed company layer around the agents you already have. It has no proposal, no release stage, and no code-security scanning. Under Agency OS rules its approvals, budget hard stops and activity log are gate-evidence generators that complement gate_engine.py; they never replace governance.</p>
   </section>
 
   <section>
     <h2>Honest Gaps</h2>
     <ul>
-      <li><strong>RELEASE/deployment:</strong> the pipeline ends at task outputs and reports; nothing builds, versions or deploys. Uncovered.</li>
-      <li><strong>PROPOSAL / client artifacts:</strong> nothing generates PRDs, proposals, quotes or client-facing documents; planning artifacts are internal task graphs.</li>
-      <li><strong>ARCHITECTURE documents:</strong> the DAG and routing decisions are structure, not an architecture artifact a human can review as a document.</li>
-      <li><strong>SECURITY (code-level):</strong> OMA secures the runtime (sandbox, egress, redaction) but does not scan generated code for vulnerabilities. A dedicated scanner such as Semgrep is the classic gap-filler; treat as a candidate to verify separately, not as verified advice.</li>
-      <li><strong>Governance:</strong> no project-state file, no lifecycle transition enforcement, no rollback engine. Its approval gates and journals are the raw material for gate evidence, not the gates themselves.</li>
+      <li><strong>RELEASE/deployment:</strong> nothing builds, versions or deploys. Uncovered.</li>
+      <li><strong>PROPOSAL / client artifacts:</strong> no quotes, proposals or client-facing documents; artifacts are internal tasks, plans and documents.</li>
+      <li><strong>ARCHITECTURE documents:</strong> workspaces and worktrees are structure, not a reviewable architecture artifact.</li>
+      <li><strong>SECURITY (code-level):</strong> Paperclip governs who may act and what tools may do, but does not scan generated code for vulnerabilities. A dedicated scanner such as Semgrep is the classic gap-filler; treat as a candidate to verify separately, not as verified advice.</li>
+      <li><strong>Gate engine:</strong> no project-state file, no lifecycle transition enforcement, no gate rollback engine. Its approvals and activity log are the raw material for gate evidence, not the gates themselves.</li>
     </ul>
   </section>
 
   <section>
     <h2>Why It Fits Agency OS</h2>
     <ul>
-      <li><strong>Specialized agents coordinated by an orchestrator:</strong> a coordinator model decomposes goals into a task DAG executed by role-specific agents — the same orchestrator-plus-specialists shape, with a deterministic scheduler rather than agent self-coordination.</li>
-      <li><strong>Agents must never invent facts or approvals:</strong> durable approval gates suspend consequential decisions until a human answers; tampered, stale or missing approval state fails closed, and aborting a run cancels a pending gate rather than letting it decide later.</li>
-      <li><strong>Evidence validated before advancing:</strong> the append-only run journal records every adapter call, and <code>verifyRun()</code> cold-verifies that a finished run's model-visible content is reproducible from the events it names — a literal implementation of "evidence before advancing".</li>
-      <li><strong>Human approval points:</strong> plan, task-dispatch and tool-call approvals are native hooks, and plan patches (mid-run scope changes) can be routed through an <code>onPlanPatch</code> approval — directly aligned with Agency OS's rule that scope changes stay human.</li>
-      <li><strong>Living state:</strong> checkpoint/resume with a leased, fenced run store is the runtime equivalent of an authoritative state file that only one worker may advance.</li>
-      <li><strong>Compatibility status:</strong> plausible, untested. Nothing in the docs shows OMA reads project-state.json or enforces Agency OS lifecycle transitions, so it complements gate_engine.py and never replaces it.</li>
+      <li><strong>Specialized agents coordinated by an orchestrator:</strong> an org chart of role-typed agents (CEO, CTO, engineers) with delegation up and down reporting lines, woken by a server-side heartbeat queue — the orchestrator-plus-specialists shape, with the human as the board above it.</li>
+      <li><strong>Agents must never invent facts or approvals:</strong> approvals are a server-enforced stage, not an agent promise; connection actions default to Ask first; and the release notes added model-backed prompt-injection prevention, defending the very channel (agent instructions) an attacker would poison.</li>
+      <li><strong>Evidence validated before advancing:</strong> configured task reviews govern completion, watchdogs enforce outcomes, and every run produces logs, usage records and artifacts — completion claims are checked against recorded evidence, not accepted from the agent.</li>
+      <li><strong>Human approval points:</strong> plan approvals, board approval workflows, one-time or rule-based connection approvals — scope changes and consequential actions stay human, matching Agency OS's rule for commercial decisions.</li>
+      <li><strong>Living state:</strong> durable activity log, revisioned configuration with safe rollback, and persistent task context across reboots — the control-plane equivalent of an authoritative state file.</li>
+      <li><strong>Compatibility status:</strong> plausible, untested. Nothing in the docs shows Paperclip reads project-state.json or enforces Agency OS lifecycle transitions, so it complements gate_engine.py and never replaces it.</li>
     </ul>
   </section>
 
   <section>
     <h2>Limitations, Risks &amp; Human Review</h2>
     <ul>
-      <li><strong>Fast-moving minor releases with breaking changes:</strong> v1.23.0 (Oct 30, 2026) made zod a required peer dependency, retyped gate schemas, and capped coordinator plans; v1.14.0 raised the Node floor to 20. Pin an exact core version and read the changelog's Compatibility sections before upgrading.</li>
-      <li><strong>It is a library, not an app:</strong> you get a TypeScript runtime and CLI, not a finished product; expect to write glue code and configure providers yourself.</li>
-      <li><strong>bash is not sandboxed:</strong> the per-agent sandbox covers file tools only; the changelog itself says the bash risk classifier is "explicitly not a security boundary". Keep agents pointed at scratch workspaces and gate bash calls through <code>onToolCall</code>.</li>
-      <li><strong>Historical CVE worth knowing:</strong> v1.21.3 fixed <code>file_write</code> escaping the working directory via a dangling symlink (GHSA-h42w-g3ch-rjjm / CVE-2026-108600, affecting 1.5.0–1.21.2). Run 1.21.3 or newer.</li>
-      <li><strong>Costs are real:</strong> consensus judges, coordinator passes and retries all consume tokens; use the token and cost budgets (<code>maxCostBudget</code>, token budgets) on any unattended run.</li>
-      <li><strong>Corporate maintainer:</strong> MIT terms are unchanged, but the project is maintained by a company (YuanASI) that also sells services built on it — fine today, but watch for feature gravity toward their offering.</li>
-      <li><strong>Windows:</strong> Node 20+ (22/24 LTS recommended); the test suite is reported passing on Windows since v1.10.0, but untested on this PC.</li>
+      <li><strong>Windows is not a first-class Runner target:</strong> the new native Runner defaults on macOS and Linux (glibc 2.39+); on Windows expect the legacy adapter path or Docker. Untested on this PC.</li>
+      <li><strong>Fast-moving, big-bang releases:</strong> v2026.1106.0 shipped 515 commits with four breaking changes (Pipelines removed, Sentry defaults changed, bounded run-history API, a CLI flag now required). Pin a version and read the Breaking Changes section before upgrading.</li>
+      <li><strong>Telemetry is on by default:</strong> anonymous usage telemetry ships enabled; disable it with <code>PAPERCLIP_TELEMETRY_DISABLED=1</code>, <code>DO_NOT_TRACK=1</code>, or config if that matters for client work.</li>
+      <li><strong>Autonomy costs money:</strong> agents running 24/7 with heartbeats and routines consume real tokens; use company, agent and project budgets with hard stops on anything unattended.</li>
+      <li><strong>Company-package sharing leaks context:</strong> export packages omit referenced secret values, but the docs warn plain environment values and local paths can remain; review packages before sharing.</li>
+      <li><strong>Budget stops are not instant:</strong> enforcement uses recorded spend, so in-flight work can delay a hard stop — keep human review for anything with external side effects.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Test Today: scaffold, run the zero-key demo, then one gated run (~20 minutes, Windows PC with Node 22 LTS)</h2>
+    <h2>Test Today: test-drive with one agent, no install (~15 minutes, Windows PC with Node 24.11+)</h2>
     <ul>
-      <li><strong>Prerequisites:</strong> Node.js 22 or 24 LTS. Nothing else — the scaffold's demo runs with no API key and makes no model request.</li>
-      <li><strong>Official steps (from the README):</strong> run <code>npm create oma-app@latest my-oma</code>; pick a starter and runtime; the deterministic local demo drives the real OMA scheduler, aggregation and offline dashboard with scripted model responses.</li>
-      <li><strong>Practical test:</strong> inspect the demo's Run Viewer output (task DAG, spans, per-task evidence). Then add one real API key (a low-limit DeepSeek or OpenAI key keeps cost near zero) and run a two-agent <code>runTeam()</code> task on a scratch folder with an <code>onToolCall</code> gate that denies any command outside the workspace, plus a token budget. Confirm a risky tool call suspends until you approve it, and that <code>verifyRun()</code> passes on the finished journal.</li>
-      <li><strong>Expected results:</strong> a replayable run record, a suspended tool call that resumed only after your approval, budget enforcement, and a journal that verifies cleanly.</li>
-      <li><strong>Safety precautions:</strong> scratch workspace only; low-limit API key; keep the default-deny tool preset; do not point agents at client code or production credentials.</li>
+      <li><strong>Prerequisites:</strong> Node.js 24.11 or newer and one API key (an OpenRouter key with a small limit keeps cost near zero). Nothing else; the isolated test instance needs no service install.</li>
+      <li><strong>Official steps (from the README):</strong> run <code>npx paperclipai test-drive --harness opencode --model openrouter/&lt;cheap-model&gt;</code>. It creates a temporary data directory with a CEO agent, stays in the foreground, installs no service, and opens the browser only after setup succeeds.</li>
+      <li><strong>Practical test:</strong> create one task in the test instance, assign it to your agent, and watch the run: task thread, logs, usage record, artifact. Then try a second task while the first runs to see atomic checkout refuse the double claim, and set a $1 project budget to see the threshold alert.</li>
+      <li><strong>Expected results:</strong> one agent owns one task at a time; the run leaves logs and usage you can audit; the budget alert fires; nothing persists after the test-drive directory is discarded.</li>
+      <li><strong>Safety precautions:</strong> test-drive instance only; low-limit key; do not connect GitHub or other apps during the first run; keep connection gateway actions at "Ask first".</li>
     </ul>
   </section>
 
   <section>
-    <h2>Agency OS Integration Proposal: OMA's run journal and approval gates as evidence generators behind gate_engine.py</h2>
+    <h2>Agency OS Integration Proposal: Paperclip as the governed work queue and audit trail in front of Agency OS agents</h2>
     <ul>
-      <li><strong>Problem solved:</strong> Agency OS agents currently produce evidence you must trust at face value; OMA produces cryptographically replayable run journals and durable approval records, so gate evidence becomes verifiable rather than asserted.</li>
-      <li><strong>Workflow improved:</strong> after a gate passes, run the DEVELOPMENT-stage agent work inside an OMA <code>runTeam()</code> with tool gates and budgets; export the run journal, approval ledger and judge verdicts as candidate gate evidence.</li>
-      <li><strong>Lifecycle point:</strong> DEVELOPMENT execution plus CEO_REVIEW (durable approval gates) and MAINTENANCE (verifiable journals, checkpoint/resume).</li>
-      <li><strong>Inputs and outputs:</strong> an approved task description in; a verified run journal, approval ledger, judge verdicts and task outputs out.</li>
-      <li><strong>How results are validated:</strong> gate_engine.py treats OMA journals and approval records as candidate evidence only; QA evidence still comes from your own test runs, and a human confirms before any gate advances. An OMA "success" status is never sufficient evidence on its own.</li>
-      <li><strong>What happens on failure:</strong> OMA checkpoints let you resume instead of rerunning; gate rollback behavior is unchanged — nothing auto-advances because a runtime reported success.</li>
-      <li><strong>Gate or human approval:</strong> it feeds existing gates and replaces nothing (gate_engine.py, advance_gate.ps1 unchanged). CEO_REVIEW, scope changes, waivers, client acceptance and release stay human — OMA's <code>onPlanPatch</code> approval is an extra human checkpoint, not a substitute.</li>
-      <li><strong>Smallest safe experiment:</strong> today's zero-key scaffold plus one gated two-agent run on a scratch folder; then decide whether the verified journal is worth exporting as gate evidence. Zero changes to Agency OS scripts.</li>
+      <li><strong>Problem solved:</strong> Agency OS currently tracks state in project-state.json and gate decisions, but the day-to-day agent work (who owns which task, what a run cost, who approved what) lives in scattered terminal sessions; Paperclip supplies ticketed, locked, budgeted, audited work management.</li>
+      <li><strong>Workflow improved:</strong> DEVELOPMENT execution — each Agency OS task becomes a Paperclip ticket assigned to one coding agent, with review stages and budget hard stops around it.</li>
+      <li><strong>Lifecycle point:</strong> DEVELOPMENT (atomic checkout, runs) plus CEO_REVIEW (approval stages) and MAINTENANCE (activity log, run history, rollback of config changes).</li>
+      <li><strong>Inputs and outputs:</strong> an approved Agency OS task description in; run logs, usage records, artifacts and approval records out.</li>
+      <li><strong>How results are validated:</strong> gate_engine.py treats Paperclip run records and approvals as candidate evidence only; QA evidence still comes from your own test runs, and a human confirms before any gate advances. A Paperclip "completed" task is never sufficient evidence on its own.</li>
+      <li><strong>What happens on failure:</strong> Paperclip's bounded recovery and watchdogs handle or surface failed runs; gate rollback behavior is unchanged — nothing auto-advances because a ticket closed.</li>
+      <li><strong>Gate or human approval:</strong> it feeds existing gates and replaces nothing (gate_engine.py, advance_gate.ps1 unchanged). CEO_REVIEW, scope changes, waivers, client acceptance and release stay human.</li>
+      <li><strong>Smallest safe experiment:</strong> today's <code>test-drive</code> run with one agent and a $1 budget; if the audit trail is useful, pilot one real project's DEVELOPMENT tickets through a local Paperclip instance. Zero changes to Agency OS scripts.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Daily Learning: "fail closed" — the approval-gate failure mode of agent runtimes</h2>
+    <h2>Daily Learning: "atomic task checkout" — the double-claim failure mode of agent teams</h2>
     <ul>
-      <li><strong>Concept (simple English):</strong> when an approval system hits an unexpected state — missing record, stale hash, schema drift, tampering — it can either allow the action (fail open) or block it (fail closed). OMA's durable approval gates fail closed: anything suspicious about an approval blocks execution instead of proceeding.</li>
-      <li><strong>How an AI agent might get it wrong:</strong> an agent "helpfully" proceeds when an approval record is unreadable, or a crashed gate callback defaults to allow, so unapproved consequential actions execute silently.</li>
-      <li><strong>How you recognize the failure:</strong> runs that complete despite missing or malformed approval records; gate errors logged as warnings; approvals that survive refactors because nobody re-validates their schema.</li>
-      <li><strong>What detects it:</strong> a rule that every gate decision must produce a persisted, content-bound record, and a verification step (like <code>verifyRun()</code>) that replays the journal and fails the run when evidence does not reproduce — exactly what gate_engine.py already demands before advancing.</li>
+      <li><strong>Concept (simple English):</strong> when several agents can pick up work, two of them can start the same task at once, overwrite each other's files, and both report success. Atomic task checkout means a task has exactly one assignee and an execution lock: the second agent's claim is refused, not queued into a conflict.</li>
+      <li><strong>How an AI agent might get it wrong:</strong> an orchestrator assigns work by prompt only ("someone fix the login bug"), two eager agents both start, git history tangles, and each agent's completion report looks valid because neither saw the other.</li>
+      <li><strong>How you recognize the failure:</strong> two branches touching the same files for the same issue; duplicated work products; merge conflicts that "nobody" created; token spend roughly double for one task.</li>
+      <li><strong>What detects it:</strong> a rule that every work item must be claimed through a system that records assignee and lock state durably (a ticket system or project-state.json with a lock field), and a gate check that refuses to advance any task with more than one live claim — the same single-writer discipline gate_engine.py applies to lifecycle transitions.</li>
     </ul>
   </section>
 
   <section>
     <h2>Final Summary</h2>
     <ul>
-      <li><strong>Best discovery today:</strong> <a href="https://github.com/open-multi-agent/open-multi-agent">OMA (Open Multi-Agent)</a> (MIT) — a self-hosted TypeScript agent runtime with durable approval gates that fail closed, a verifiable append-only run journal, checkpoint/resume with fenced run leases, cost budgets and sandboxed tooling; core v1.24.0 released Nov 13, 2026. Verdict: TEST NOW.</li>
-      <li><strong>Best quality improvement:</strong> <code>verifyRun()</code> cold-verifying a finished run's journal, turning "the agent said it worked" into replayable evidence.</li>
-      <li><strong>Best Agency OS integration:</strong> OMA as the auditable execution substrate behind gate_engine.py — journals and approval ledgers as candidate gate evidence; governance stays exactly as it is.</li>
-      <li><strong>One practical action today:</strong> run <code>npm create oma-app@latest my-oma</code> on Node 22, watch the zero-key demo in the Run Viewer, then add one gated two-agent run on a scratch folder with a token budget.</li>
+      <li><strong>Best discovery today:</strong> <a href="https://github.com/paperclipai/paperclip">Paperclip</a> (MIT) — a self-hosted control plane that turns your existing AI agents into a governed company: org charts, atomic task checkout, approval gates with rollback, budget hard stops, scoped secrets and a durable activity log; v2026.1106.0 released Nov 6, 2026, with commits landing today. Verdict: TEST NOW.</li>
+      <li><strong>Best quality improvement:</strong> review and approval stages plus enforced outcomes (watchdogs, recovery actions), turning "the agent says it's done" into a recorded, gated completion.</li>
+      <li><strong>Best Agency OS integration:</strong> Paperclip as the governed work queue and audit trail in front of DEVELOPMENT-stage agents; journals, approvals and usage records as candidate gate evidence; governance stays exactly as it is.</li>
+      <li><strong>One practical action today:</strong> run <code>npx paperclipai test-drive --harness opencode --model openrouter/&lt;cheap-model&gt;</code> on Node 24.11+, assign one task, and watch the run, the lock and the budget alert.</li>
     </ul>
   </section>
 </div>
