@@ -36,127 +36,127 @@
   <header>
     <h1>Agency OS <span>Radar</span></h1>
     <div class="tagline">Daily open-source discoveries for a one-person AI software agency</div>
-    <div class="tagline date">Report date: Sunday, November 15, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
+    <div class="tagline date">Report date: Monday, November 16, 2026 · Agency OS Edition · Addis Ababa (EAT)</div>
   </header>
 
   <section>
     <h2>Start Here (plain English)</h2>
-    <p><strong>The problem:</strong> a vibe coder running an AI agency ends up with twenty Claude Code and Codex terminals open, no idea which agent owns which task, no record of what each run cost, no approval step before an agent merges or spends, and everything lost when the machine reboots. Agents drift off-goal, runaway loops burn tokens, and there is no audit trail to show a client.</p>
-    <p><strong>The solution in today's radar:</strong> <a href="https://github.com/paperclipai/paperclip">Paperclip</a>, an MIT-licensed, self-hosted control plane that turns your existing AI agents into a governed company: org charts with roles and reporting lines, ticket-based tasks with atomic checkout, approval gates with rollback, budgets with hard stops, and a durable activity log. You keep your agents (Claude Code, Codex, OpenCode, Cursor, Gemini CLI, GitHub Copilot, OpenClaw); Paperclip supplies the company around them.</p>
-    <p class="muted">One featured item per day, per the format confirmed Nov 5, 2026 (re-confirmed Nov 10, 2026). Repo facts, license and release notes verified directly from GitHub on Nov 15, 2026. Prior reports featured OMA, Orkas, dsh-superagent, Betterleaks, Spec Kit, CodeAF, Fabro, zeroshot, dzhng/skills, OpenHands, SWE-AF and AgentTeams, so today's pick is not a repeat. Agency OS compatibility is marked plausible/untested, never assumed.</p>
+    <p><strong>The problem:</strong> a vibe coder can plan a project with Claude Code, but turning that plan into merged, reviewed, CI-passing pull requests still means hand-running every step: writing tickets, launching sessions, chasing builders, reviewing diffs, running CI and deciding what merges. Do it alone and the crew stops the moment your terminal closes; do it with several agents and nothing records who decided what, or why.</p>
+    <p><strong>The solution in today's radar:</strong> <a href="https://github.com/glassflow/tares">Tares</a>, an open-source platform for always-on AI agents with a Software Factory edition: a crew of Claude Code sessions on your own machine takes a project from a spec to pull requests merged on main. An orchestrator hands out tickets, builders open PRs in parallel, a reviewer holds every change to a fixed bar, and a change merges only once it passes review and CI. Tickets, reviews, decisions and your answers stay recorded on Tares, so the crew carries on after a restart and you can audit every choice later.</p>
+    <p class="muted">One featured item per day, per the format confirmed Nov 5, 2026 (re-confirmed Nov 10, 2026). Repo facts, license and release notes verified directly from GitHub on Nov 16, 2026. Prior reports featured OMA, Orkas, dsh-superagent, Betterleaks, Spec Kit, CodeAF, Fabro, zeroshot, dzhng/skills, OpenHands, SWE-AF, AgentTeams and Paperclip, so today's pick is not a repeat. Agency OS compatibility is marked plausible/untested, never assumed.</p>
   </section>
 
   <section>
-    <h2>The Featured Factory: Paperclip — the company layer for your AI agent workforce <span class="badge b-test">TEST NOW</span></h2>
+    <h2>The Featured Factory: Tares — always-on AI agents, as a Software Factory <span class="badge b-test">TEST NOW</span></h2>
     <ul>
-      <li><strong>Link:</strong> <a href="https://github.com/paperclipai/paperclip">github.com/paperclipai/paperclip</a> · npm: <code>paperclipai</code> · docs: docs.paperclip.ing · maintained by Paperclip Labs, Inc.</li>
-      <li><strong>License (verified from the LICENSE file):</strong> MIT.</li>
-      <li><strong>Verified repo facts (GitHub, Nov 15, 2026):</strong> a commit merged today, Nov 15, 2026 at 14:09 UTC (perf fix #21758 on the remote-run sandbox path); the maintainers state over 2,700 merged pull requests; the v2026.1106.0 release page reports 2,566 commits to master since that release, confirming very high daily activity. Star count was not independently verified in this check, so none is quoted.</li>
-      <li><strong>What it does (simple English):</strong> a Node.js server plus React dashboard you self-host (embedded PostgreSQL included, no setup). You define a goal, hire agents into an org chart (CEO, CTO, engineers, any harness that can receive a heartbeat), and agents wake for assigned work, follow-ups, schedules or routines. Around that sit the governance features: ticket tasks with atomic checkout and execution locks, review and approval stages, budget tracking with warning thresholds and hard stops that pause work, scoped secrets, connection permissions (Allowed / Ask first / Off), revisioned configuration with safe rollback, and a durable activity log for auditing who did what and why.</li>
-      <li><strong>Recent verified changes:</strong> latest release v2026.1106.0 (Nov 6, 2026): the native Paperclip Runner is now the default for new Claude, Codex, OpenCode and Pi agents (qualified macOS and Linux hosts; Linux needs GNU libc 2.39+), GitHub Copilot joins as a native harness, project repositories auto-import as skill sources, model-backed prompt-injection prevention, agent observability to Braintrust or any OTLP endpoint, and workspaces that compact and expire themselves with encrypted restore points. Breaking changes in that release: the Pipelines experiment was removed, run failures no longer reach Sentry by default, and the run-history API is bounded to 200 rows by default (max 1,000). This is a new release of an established project, not a new project.</li>
-      <li><strong>Why it matters to a vibe coder:</strong> it does not replace your AI IDE; it replaces the missing management layer. Sessions persist across reboots, one agent owns one task at a time, spend is capped, approvals are enforced, and every run leaves a record you can show a client.</li>
-      <li><strong>Costs (verified status):</strong> the software is free (MIT) and self-hosted with no account required; a hosted Paperclip Cloud exists as a waitlist product. Real costs: your agents' own subscriptions or API keys (Claude, Codex, OpenRouter, etc.), and an optional Postgres for production. Open source ≠ free model access.</li>
-      <li><strong>Windows compatibility:</strong> requires Node.js 24.11+; the native Runner defaults only on macOS and qualified Linux hosts, and Windows is not listed among them, so on Windows you would run the legacy adapter path or Docker. Status: plausible but UNTESTED on this PC, and the newest Runner path is not a Windows default.</li>
+      <li><strong>Link:</strong> <a href="https://github.com/glassflow/tares">github.com/glassflow/tares</a> · Python · docs: docs.glassflow.ai/tares · by GlassFlow.</li>
+      <li><strong>License (verified from the LICENSE file):</strong> MIT for everything in the repo except the <code>ee/</code> directories, which are under a separate enterprise license in <code>ee/LICENSE</code>. Note the practical limit: without an enterprise license key, a self-hosted Tares runs for one person.</li>
+      <li><strong>Verified repo facts (GitHub, Nov 16, 2026):</strong> 47 stars, 9 forks, 12 open issues, created Jul 2, 2026, primary language Python. Commits merged today, Nov 16, 2026 (latest at 10:37 UTC: reading Claude Code's version from the binary on the Windows crew path). Star count is low for a project this active, which is normal for a young, fast-moving codebase.</li>
+      <li><strong>What it does (simple English):</strong> you plan a project with Claude Code; Tares turns it into a spec, milestones with acceptance checks, and tickets (kept on Tares, Linear or GitHub Issues). A crew of Claude Code sessions builds it: an orchestrator hands out tickets, one builder per milestone and repo opens pull requests, a reviewer holds every change to a fixed bar, and a change merges once it passes review and CI. The console shows what waits for you, progress, tickets, PRs in review and the crew at work. A second edition, the AI SRE, watches services and writes incident notes; today's focus is the factory.</li>
+      <li><strong>Recent verified changes:</strong> stable v1.57.0 released Nov 12, 2026: Python is now the default crew engine (the bash engine was removed), Windows CI for the engine, an integrations framework with built-in Tares tickets, Linear and GitHub Issues sync, the Tares reviewer as the built-in review gate, GitHub Actions and local checks as built-in CI integrations, a single <code>merge_ready</code> answer from review gate + CI + guardrails, a merge queue with approval and repo rules, and project secrets for builders kept on the cell. Prerelease v1.58.0-rc.5 published today, Nov 16, 2026 at 10:00 UTC: guardrails as readable rules, hook points <code>pre_build</code>, <code>pre_merge</code>, <code>pre_release</code>, stations that refuse to start without rules, the reviewer's verdict posted as the cell's GitHub App, a "Second Brain" of connected repos and decisions, and extensive Windows fixes (no termios crash in <code>crew up</code>, atomic cross-process state events). This is a fast-moving established project, not a new one.</li>
+      <li><strong>Why it matters to a vibe coder:</strong> it closes the gap between "Claude Code wrote a plan" and "the work is merged": parallel builders, a reviewer with a fixed bar, CI as a merge condition, a merge queue, and a permanent record of tickets, reviews and decisions. You talk to one session, and only for the decisions that are yours.</li>
+      <li><strong>Costs (verified status):</strong> the software is free (MIT, one-person self-hosted without an enterprise key) with no telemetry in the self-hosted path (<code>tares up</code>: one daemon, one DuckDB file, no external database or broker). Real costs: a Claude Code subscription with background sessions, <code>gh</code> with write access to your repos, and your agents' token spend. Tares Cloud is a paid managed alternative. Open source ≠ free model access.</li>
+      <li><strong>Windows compatibility:</strong> unusually good for this category: v1.57.0 added Windows CI for the engine, hand-over accepts Windows repo folders (<code>C:\...</code>), and this week's prereleases fix <code>crew up</code> on Windows (no termios crash), make state events atomic across processes on Windows, and add Windows upgrade guidance. Status: plausible and actively engineered for, but UNTESTED on this PC.</li>
     </ul>
   </section>
 
   <section>
-    <h2>The Factory Map: Paperclip mapped onto the Agency OS lifecycle</h2>
+    <h2>The Factory Map: Tares mapped onto the Agency OS lifecycle</h2>
     <table>
-      <tr><th>Agency OS stage</th><th>Paperclip component</th><th>Artifact produced</th><th>Which gate consumes it</th></tr>
-      <tr><td>LEAD / DISCOVERY (partial)</td><td>Company goals; tasks and projects linked to goal ancestry; routines and research-style tasks</td><td>Goal-linked task with context</td><td>Discovery gate input (no lead-qualification artifact)</td></tr>
-      <tr><td>PROBLEM_DEFINITION (partial)</td><td>Deep planning (shipped): planning mode, revisioned plans, plan approvals</td><td>Revisioned plan with approval record</td><td>Problem-definition gate input</td></tr>
-      <tr><td>PROPOSAL</td><td>None — no client-facing proposal or quote artifact</td><td>—</td><td>Human-written (outside Paperclip)</td></tr>
-      <tr><td>SPECIFICATION (partial)</td><td>Task threads with plans, comments, documents, attachments; anchored document feedback</td><td>Task spec and revisioned documents</td><td>Specification gate input</td></tr>
-      <tr><td>ARCHITECTURE (partial)</td><td>Project repositories, workspaces, isolated execution worktrees and operator branches</td><td>Workspace and branch structure</td><td>Architecture gate input (no architecture document)</td></tr>
-      <tr><td>DEVELOPMENT</td><td>Delegation to your own coding agents (Claude Code, Codex, Copilot, Cursor, OpenCode, Pi, OpenClaw) with atomic task checkout, execution locks and heartbeat scheduling</td><td>Runs with logs, usage records, diffs, diffs-verified artifacts</td><td>QA gate input</td></tr>
-      <tr><td>QA (partial)</td><td>Configured task reviews govern completion; enforced outcomes (watchdogs, recovery actions); agent evals and saved test runs</td><td>Review verdicts, eval results, watchdog outcomes</td><td>QA gate input</td></tr>
-      <tr><td>SECURITY (partial)</td><td>Role-based permissions, scoped and encrypted secrets, connection gateway (Allowed / Ask first / Off), responsible-user attribution, model-backed prompt-injection prevention</td><td>Approval and permission records, secret-access records</td><td>Security gate input (runtime controls, not code vulnerability scanning)</td></tr>
-      <tr><td>CEO_REVIEW</td><td>Board approval workflows, review and approval stages, approvals inbox, agent pause/reassign/stop</td><td>Recorded approval decisions</td><td>CEO_REVIEW gate input (strongest stage)</td></tr>
-      <tr><td>RELEASE</td><td>None — no build, version or deploy pipeline (service connections like Railway exist but no release stage)</td><td>—</td><td>Uncovered</td></tr>
-      <tr><td>MAINTENANCE</td><td>Durable activity log, run history, routines with run history, self-healing runs and bounded recovery, config revision history with rollback</td><td>Audit trail, run records, rollback points</td><td>Maintenance review (strong stage)</td></tr>
-      <tr><td>REUSABLE_COMPONENT</td><td>Skill Studio, skill version history and restore, ready-made team catalog, company export/import packages with secret scrubbing</td><td>Versioned skills and portable company templates</td><td>Reusable-component gate input</td></tr>
+      <tr><th>Agency OS stage</th><th>Tares component</th><th>Artifact produced</th><th>Which gate consumes it</th></tr>
+      <tr><td>LEAD (partial)</td><td>Projects and people (project leads, private projects, repo owners)</td><td>Project with an owner</td><td>Lead gate input (no lead-qualification artifact)</td></tr>
+      <tr><td>DISCOVERY / PROBLEM_DEFINITION (partial)</td><td>Planning with Claude Code: a spec session that asks questions before handing over</td><td>Spec and clarified problem statement</td><td>Problem-definition gate input</td></tr>
+      <tr><td>PROPOSAL</td><td>None — no client-facing proposal or quote artifact</td><td>—</td><td>Human-written (outside Tares)</td></tr>
+      <tr><td>SPECIFICATION</td><td>Spec, milestones with acceptance checks, tickets with a working doc each, on Tares, Linear or GitHub Issues</td><td>Spec, milestone list, ticket set</td><td>Specification gate input (strong stage)</td></tr>
+      <tr><td>ARCHITECTURE (partial)</td><td>Milestones and per-milestone working docs; builder/repo assignment; Second Brain indexed repos</td><td>Milestone plan, repo structure</td><td>Architecture gate input (no architecture document)</td></tr>
+      <tr><td>DEVELOPMENT</td><td>Crew of Claude Code sessions: orchestrator hands out tickets, one builder per milestone and repo opens PRs</td><td>Pull requests with recorded crew conversations</td><td>QA gate input</td></tr>
+      <tr><td>QA</td><td>Tares reviewer as the built-in review gate; GitHub Actions and local checks as built-in CI integrations; required checks</td><td>Review verdict, CI results</td><td>QA gate input (strong stage)</td></tr>
+      <tr><td>SECURITY (partial)</td><td>Guardrails as readable rules at hook points (pre_build, pre_merge, pre_release) that block or warn; project secrets kept on the cell; stations refuse to start without rules</td><td>Guardrail decisions, blocked/warned actions</td><td>Security gate input (policy enforcement, not code vulnerability scanning)</td></tr>
+      <tr><td>CEO_REVIEW</td><td>Console shows what waits for you; merge queue approval; the first crew run asks how far it may go; bounce ladder escalates repeated send-backs to the orchestrator, then your desk</td><td>Your recorded decisions and answers</td><td>CEO_REVIEW gate input (strong stage)</td></tr>
+      <tr><td>RELEASE (partial)</td><td>Merge queue merges to main once review, CI and guardrails say <code>merge_ready</code>; reviewer verdict posted as the cell's GitHub App</td><td>Merged commits on main</td><td>Release gate input (merge, not deployment)</td></tr>
+      <tr><td>MAINTENANCE</td><td>Nothing is lost: tickets, reviews, crew calls and your answers persist on Tares and survive restarts; AI SRE edition watches running systems and writes incident notes</td><td>Durable record of every choice; incident notes</td><td>Maintenance review (strong stage)</td></tr>
+      <tr><td>REUSABLE_COMPONENT (partial)</td><td>Second Brain keeps decisions and repo knowledge for the next reader, human or agent; memory integration and recall</td><td>Indexed decisions and knowledge</td><td>Reusable-component gate input</td></tr>
     </table>
-    <p class="muted">Verified structure from the README's four-pillars and systems tables and the v2026.1106.0 release notes. Honest reading: Paperclip is not a requirements-to-release software factory; it is the governed company layer around the agents you already have. It has no proposal, no release stage, and no code-security scanning. Under Agency OS rules its approvals, budget hard stops and activity log are gate-evidence generators that complement gate_engine.py; they never replace governance.</p>
+    <p class="muted">Verified structure from the README (Software Factory section) and the v1.57.0 / v1.58.0-rc release notes. Honest reading: Tares covers SPECIFICATION → DEVELOPMENT → QA → merge better than anything featured so far, but it has no proposal artifact, no code-level vulnerability scanning, and no deployment beyond merging to main. Its guardrails and reviewer verdicts are gate-evidence generators that complement gate_engine.py; they never replace governance.</p>
   </section>
 
   <section>
     <h2>Honest Gaps</h2>
     <ul>
-      <li><strong>RELEASE/deployment:</strong> nothing builds, versions or deploys. Uncovered.</li>
-      <li><strong>PROPOSAL / client artifacts:</strong> no quotes, proposals or client-facing documents; artifacts are internal tasks, plans and documents.</li>
-      <li><strong>ARCHITECTURE documents:</strong> workspaces and worktrees are structure, not a reviewable architecture artifact.</li>
-      <li><strong>SECURITY (code-level):</strong> Paperclip governs who may act and what tools may do, but does not scan generated code for vulnerabilities. A dedicated scanner such as Semgrep is the classic gap-filler; treat as a candidate to verify separately, not as verified advice.</li>
-      <li><strong>Gate engine:</strong> no project-state file, no lifecycle transition enforcement, no gate rollback engine. Its approvals and activity log are the raw material for gate evidence, not the gates themselves.</li>
+      <li><strong>PROPOSAL / client artifacts:</strong> no quotes, proposals or client-facing documents; the spec is internal.</li>
+      <li><strong>SECURITY (code-level):</strong> guardrails enforce policy at hook points, but nothing scans generated code for vulnerabilities. A dedicated scanner such as Semgrep is the classic gap-filler; treat as a candidate to verify separately, not as verified advice.</li>
+      <li><strong>RELEASE/deployment:</strong> the factory ends at merge to main; nothing builds a deployable artifact or deploys it.</li>
+      <li><strong>LEAD / DISCOVERY:</strong> assumes you arrive with a project to plan; no lead qualification or discovery workflow.</li>
+      <li><strong>Gate engine:</strong> no project-state file, no lifecycle transition enforcement, no gate rollback engine. Its reviewer verdicts, guardrail decisions and merge queue approvals are the raw material for gate evidence, not the gates themselves.</li>
     </ul>
   </section>
 
   <section>
     <h2>Why It Fits Agency OS</h2>
     <ul>
-      <li><strong>Specialized agents coordinated by an orchestrator:</strong> an org chart of role-typed agents (CEO, CTO, engineers) with delegation up and down reporting lines, woken by a server-side heartbeat queue — the orchestrator-plus-specialists shape, with the human as the board above it.</li>
-      <li><strong>Agents must never invent facts or approvals:</strong> approvals are a server-enforced stage, not an agent promise; connection actions default to Ask first; and the release notes added model-backed prompt-injection prevention, defending the very channel (agent instructions) an attacker would poison.</li>
-      <li><strong>Evidence validated before advancing:</strong> configured task reviews govern completion, watchdogs enforce outcomes, and every run produces logs, usage records and artifacts — completion claims are checked against recorded evidence, not accepted from the agent.</li>
-      <li><strong>Human approval points:</strong> plan approvals, board approval workflows, one-time or rule-based connection approvals — scope changes and consequential actions stay human, matching Agency OS's rule for commercial decisions.</li>
-      <li><strong>Living state:</strong> durable activity log, revisioned configuration with safe rollback, and persistent task context across reboots — the control-plane equivalent of an authoritative state file.</li>
-      <li><strong>Compatibility status:</strong> plausible, untested. Nothing in the docs shows Paperclip reads project-state.json or enforces Agency OS lifecycle transitions, so it complements gate_engine.py and never replaces it.</li>
+      <li><strong>Specialized agents coordinated by an orchestrator:</strong> exactly the Agency OS shape, built in: an orchestrator hands out tickets, builders own one milestone and repo each, a reviewer enforces a fixed bar, and a merge queue serializes what lands.</li>
+      <li><strong>Agents must never invent facts or approvals:</strong> a change merges only when review, CI and guardrails together answer <code>merge_ready</code>; the reviewer's verdict is posted as the cell's GitHub App so it exists as a system record, not an agent's claim; stations refuse to start without rules.</li>
+      <li><strong>Evidence validated before advancing:</strong> milestones have acceptance checks, the reviewer holds every change to a fixed bar, required CI checks are enforced, and tickets, reviews and decisions persist for audit.</li>
+      <li><strong>Human approval points:</strong> the first crew run asks how far it may go; the console shows what waits for you; merge-queue approval and the bounce ladder keep consequential decisions human. You talk to one session, only for decisions that are yours.</li>
+      <li><strong>Living state:</strong> tickets, reviews, crew calls and your answers live on Tares and survive restarts, and the Second Brain keeps decisions indexed for the next reader, the control-plane equivalent of an authoritative state file.</li>
+      <li><strong>Compatibility status:</strong> plausible, untested. Nothing in the docs shows Tares reads project-state.json or enforces Agency OS lifecycle transitions, so it complements gate_engine.py and never replaces it.</li>
     </ul>
   </section>
 
   <section>
     <h2>Limitations, Risks &amp; Human Review</h2>
     <ul>
-      <li><strong>Windows is not a first-class Runner target:</strong> the new native Runner defaults on macOS and Linux (glibc 2.39+); on Windows expect the legacy adapter path or Docker. Untested on this PC.</li>
-      <li><strong>Fast-moving, big-bang releases:</strong> v2026.1106.0 shipped 515 commits with four breaking changes (Pipelines removed, Sentry defaults changed, bounded run-history API, a CLI flag now required). Pin a version and read the Breaking Changes section before upgrading.</li>
-      <li><strong>Telemetry is on by default:</strong> anonymous usage telemetry ships enabled; disable it with <code>PAPERCLIP_TELEMETRY_DISABLED=1</code>, <code>DO_NOT_TRACK=1</code>, or config if that matters for client work.</li>
-      <li><strong>Autonomy costs money:</strong> agents running 24/7 with heartbeats and routines consume real tokens; use company, agent and project budgets with hard stops on anything unattended.</li>
-      <li><strong>Company-package sharing leaks context:</strong> export packages omit referenced secret values, but the docs warn plain environment values and local paths can remain; review packages before sharing.</li>
-      <li><strong>Budget stops are not instant:</strong> enforcement uses recorded spend, so in-flight work can delay a hard stop — keep human review for anything with external side effects.</li>
+      <li><strong>One-person limit on self-hosted:</strong> without an enterprise license key, a self-hosted Tares runs for one person; team features need Tares Cloud or an enterprise license. Fine for a solo agency, a real cost if you grow.</li>
+      <li><strong>Hard dependency on Claude Code:</strong> the factory crew is made of Claude Code sessions on a plan with background sessions, plus <code>gh</code> with write access to your repos. No Claude Code subscription, no factory.</li>
+      <li><strong>Young project, low stars:</strong> 47 stars and heavy daily churn (a bash engine removed, engines swapped to Python within weeks). Pin a stable release, read each changelog, and expect breaking changes; the maintainers even enforce schema-version bumps for breaking changes, which is a good sign.</li>
+      <li><strong>Unattended crews spend real tokens:</strong> builders run in parallel on background sessions; cap spend with your Claude plan limits, start with one small project, and keep the "how far may I go" answer conservative.</li>
+      <li><strong>Guardrails are new:</strong> readable rules and hook points land in the v1.58.0 release candidates; verify their block/warn behavior yourself before trusting them as a security control.</li>
+      <li><strong>Windows is engineered-for but untested here:</strong> Windows CI is green and this week's fixes target Windows specifically, yet nothing here has been run on this PC. Budget time for first-run friction.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Test Today: test-drive with one agent, no install (~15 minutes, Windows PC with Node 24.11+)</h2>
+    <h2>Test Today: one tiny factory run on a scratch repo (~30 minutes, Windows PC)</h2>
     <ul>
-      <li><strong>Prerequisites:</strong> Node.js 24.11 or newer and one API key (an OpenRouter key with a small limit keeps cost near zero). Nothing else; the isolated test instance needs no service install.</li>
-      <li><strong>Official steps (from the README):</strong> run <code>npx paperclipai test-drive --harness opencode --model openrouter/&lt;cheap-model&gt;</code>. It creates a temporary data directory with a CEO agent, stays in the foreground, installs no service, and opens the browser only after setup succeeds.</li>
-      <li><strong>Practical test:</strong> create one task in the test instance, assign it to your agent, and watch the run: task thread, logs, usage record, artifact. Then try a second task while the first runs to see atomic checkout refuse the double claim, and set a $1 project budget to see the threshold alert.</li>
-      <li><strong>Expected results:</strong> one agent owns one task at a time; the run leaves logs and usage you can audit; the budget alert fires; nothing persists after the test-drive directory is discarded.</li>
-      <li><strong>Safety precautions:</strong> test-drive instance only; low-limit key; do not connect GitHub or other apps during the first run; keep connection gateway actions at "Ask first".</li>
+      <li><strong>Prerequisites:</strong> Python (uv installed), Claude Code signed in on a plan with background sessions, and <code>gh</code> authenticated with write access. Use a scratch repo only.</li>
+      <li><strong>Official steps (from the README):</strong> <code>uv tool install tares</code>, then <code>tares up</code> (or <code>tares login</code> for Tares Cloud), then in your scratch repo: <code>tares factory crew up</code> (the first run asks how far it may go) and <code>tares factory spec "what you want to build"</code>.</li>
+      <li><strong>Practical test:</strong> spec something trivial (a one-page notes app; the maintainers' own <code>glassflow/fernpage</code> demo was built this way). Watch the console: spec, milestones, tickets, a builder opening a PR, the reviewer's verdict, CI, and the merge queue decision.</li>
+      <li><strong>Expected results:</strong> a merged PR on your scratch repo's main with a recorded review verdict and CI checks, and a console showing every ticket, review and decision behind it. Answer "how far may I go" conservatively and confirm the crew pauses for you where you said it must.</li>
+      <li><strong>Safety precautions:</strong> scratch repo only; no production secrets in the project; keep the crew's permission answer minimal; stop the crew before upgrading (the maintainers' own Windows guidance).</li>
     </ul>
   </section>
 
   <section>
-    <h2>Agency OS Integration Proposal: Paperclip as the governed work queue and audit trail in front of Agency OS agents</h2>
+    <h2>Agency OS Integration Proposal: Tares crew as the governed DEVELOPMENT→QA→merge execution layer</h2>
     <ul>
-      <li><strong>Problem solved:</strong> Agency OS currently tracks state in project-state.json and gate decisions, but the day-to-day agent work (who owns which task, what a run cost, who approved what) lives in scattered terminal sessions; Paperclip supplies ticketed, locked, budgeted, audited work management.</li>
-      <li><strong>Workflow improved:</strong> DEVELOPMENT execution — each Agency OS task becomes a Paperclip ticket assigned to one coding agent, with review stages and budget hard stops around it.</li>
-      <li><strong>Lifecycle point:</strong> DEVELOPMENT (atomic checkout, runs) plus CEO_REVIEW (approval stages) and MAINTENANCE (activity log, run history, rollback of config changes).</li>
-      <li><strong>Inputs and outputs:</strong> an approved Agency OS task description in; run logs, usage records, artifacts and approval records out.</li>
-      <li><strong>How results are validated:</strong> gate_engine.py treats Paperclip run records and approvals as candidate evidence only; QA evidence still comes from your own test runs, and a human confirms before any gate advances. A Paperclip "completed" task is never sufficient evidence on its own.</li>
-      <li><strong>What happens on failure:</strong> Paperclip's bounded recovery and watchdogs handle or surface failed runs; gate rollback behavior is unchanged — nothing auto-advances because a ticket closed.</li>
+      <li><strong>Problem solved:</strong> Agency OS specifies and gates well, but the DEVELOPMENT→QA→merge stretch is manual today: who builds, who reviews, what CI must say before merge. Tares supplies exactly that stretch with parallel builders, a fixed-bar reviewer, required CI and a merge queue.</li>
+      <li><strong>Workflow improved:</strong> DEVELOPMENT and QA execution — an approved Agency OS specification becomes a Tares spec with milestones and acceptance checks; the crew builds, reviews and merges.</li>
+      <li><strong>Lifecycle point:</strong> SPECIFICATION (spec, milestones, tickets) → DEVELOPMENT (builders) → QA (reviewer + CI) → RELEASE (merge queue to main).</li>
+      <li><strong>Inputs and outputs:</strong> an approved Agency OS specification in; merged PRs, review verdicts, CI results, guardrail decisions and a durable decision record out.</li>
+      <li><strong>How results are validated:</strong> gate_engine.py treats Tares review verdicts, CI results and merge-queue approvals as candidate evidence only; QA evidence still comes from your own test runs, and a human confirms before any gate advances. A merged PR is never sufficient evidence on its own.</li>
+      <li><strong>What happens on failure:</strong> failed CI or a reviewer send-back bounces the ticket back to the builder (with a bounce ladder to the orchestrator, then your desk); gate rollback behavior is unchanged — nothing auto-advances because a PR merged.</li>
       <li><strong>Gate or human approval:</strong> it feeds existing gates and replaces nothing (gate_engine.py, advance_gate.ps1 unchanged). CEO_REVIEW, scope changes, waivers, client acceptance and release stay human.</li>
-      <li><strong>Smallest safe experiment:</strong> today's <code>test-drive</code> run with one agent and a $1 budget; if the audit trail is useful, pilot one real project's DEVELOPMENT tickets through a local Paperclip instance. Zero changes to Agency OS scripts.</li>
+      <li><strong>Smallest safe experiment:</strong> today's scratch-repo run: one trivial spec, one milestone, conservative permissions. Zero changes to Agency OS scripts; if the review + CI + merge evidence is useful, pilot one real project's DEVELOPMENT stage through a local Tares.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Daily Learning: "atomic task checkout" — the double-claim failure mode of agent teams</h2>
+    <h2>Daily Learning: "merge_ready" — one answer instead of three opinions</h2>
     <ul>
-      <li><strong>Concept (simple English):</strong> when several agents can pick up work, two of them can start the same task at once, overwrite each other's files, and both report success. Atomic task checkout means a task has exactly one assignee and an execution lock: the second agent's claim is refused, not queued into a conflict.</li>
-      <li><strong>How an AI agent might get it wrong:</strong> an orchestrator assigns work by prompt only ("someone fix the login bug"), two eager agents both start, git history tangles, and each agent's completion report looks valid because neither saw the other.</li>
-      <li><strong>How you recognize the failure:</strong> two branches touching the same files for the same issue; duplicated work products; merge conflicts that "nobody" created; token spend roughly double for one task.</li>
-      <li><strong>What detects it:</strong> a rule that every work item must be claimed through a system that records assignee and lock state durably (a ticket system or project-state.json with a lock field), and a gate check that refuses to advance any task with more than one live claim — the same single-writer discipline gate_engine.py applies to lifecycle transitions.</li>
+      <li><strong>Concept (simple English):</strong> Tares computes a single <code>merge_ready</code> verdict per change from three independent sources: the review gate, CI checks and guardrails. No single voice, including the builder agent, can merge; the change lands only when all three agree.</li>
+      <li><strong>How an AI agent might get it wrong:</strong> a builder reports "tests pass, ready to merge" from its own reading of the logs, a reviewer agent skims the diff and agrees, and the change merges on two agents' word with nothing executed. Independent evidence channels collapse into one agent's opinion.</li>
+      <li><strong>How you recognize the failure:</strong> merge decisions with no CI run attached; review verdicts that quote the builder's own summary; "green" claims with no recorded check IDs; the same agent both producing and approving the work.</li>
+      <li><strong>What detects it:</strong> a gate rule that every advance requires evidence from independent, system-recorded sources (executed CI, a separate reviewer, guardrail logs), never an agent's prose claim — the same "evidence validated before advancing" discipline gate_engine.py applies to every Agency OS transition.</li>
     </ul>
   </section>
 
   <section>
     <h2>Final Summary</h2>
     <ul>
-      <li><strong>Best discovery today:</strong> <a href="https://github.com/paperclipai/paperclip">Paperclip</a> (MIT) — a self-hosted control plane that turns your existing AI agents into a governed company: org charts, atomic task checkout, approval gates with rollback, budget hard stops, scoped secrets and a durable activity log; v2026.1106.0 released Nov 6, 2026, with commits landing today. Verdict: TEST NOW.</li>
-      <li><strong>Best quality improvement:</strong> review and approval stages plus enforced outcomes (watchdogs, recovery actions), turning "the agent says it's done" into a recorded, gated completion.</li>
-      <li><strong>Best Agency OS integration:</strong> Paperclip as the governed work queue and audit trail in front of DEVELOPMENT-stage agents; journals, approvals and usage records as candidate gate evidence; governance stays exactly as it is.</li>
-      <li><strong>One practical action today:</strong> run <code>npx paperclipai test-drive --harness opencode --model openrouter/&lt;cheap-model&gt;</code> on Node 24.11+, assign one task, and watch the run, the lock and the budget alert.</li>
+      <li><strong>Best discovery today:</strong> <a href="https://github.com/glassflow/tares">Tares</a> (MIT, Python, 47 stars) — an open-source platform for always-on AI agents whose Software Factory edition takes projects from spec to merged PRs with an orchestrator, parallel builders, a fixed-bar reviewer, required CI, guardrails and a merge queue; v1.57.0 released Nov 12, 2026 and commits landing today. Verdict: TEST NOW.</li>
+      <li><strong>Best quality improvement:</strong> the single <code>merge_ready</code> answer combining review gate, CI and guardrails — no agent can merge on its own word.</li>
+      <li><strong>Best Agency OS integration:</strong> the Tares crew as the governed DEVELOPMENT→QA→merge execution layer; verdicts, CI results and merge approvals as candidate gate evidence; governance stays exactly as it is.</li>
+      <li><strong>One practical action today:</strong> run <code>uv tool install tares</code>, <code>tares up</code>, then <code>tares factory spec "..."</code> on a scratch repo and watch one trivial change go from ticket to merged PR.</li>
     </ul>
   </section>
 </div>
